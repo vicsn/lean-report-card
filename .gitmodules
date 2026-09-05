@@ -1,0 +1,16 @@
+[submodule "third_party/lean-action"]
+  path = third_party/lean-action
+  url = https://github.com/leanprover/lean-action.git
+  branch = main
+[submodule "third_party/axiom-audit"]
+  path = third_party/axiom-audit
+  url = https://github.com/leanprover-community/axiom-audit.git
+  branch = main
+[submodule "third_party/import-graph"]
+  path = third_party/import-graph
+  url = https://github.com/leanprover-community/import-graph.git
+  branch = main
+[submodule "third_party/reservoir"]
+  path = third_party/reservoir
+  url = https://github.com/leanprover/reservoir.git
+  branch = master

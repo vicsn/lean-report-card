@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ report.repository.owner }}/{{ report.repository.name }} · Lean Report Card{% endblock %}
+{% block head %}
+  {% if report.status in ['queued', 'running'] %}<meta http-equiv="refresh" content="5">{% endif %}
+{% endblock %}
+{% block content %}
+<nav class="breadcrumb"><a href="/">Reports</a><span>/</span><span>{{ report.repository.owner }}/{{ report.repository.name }}</span></nav>
+
+<section class="report-hero">
+  <div>
+    <p class="eyebrow">{{ report.status.replace('_', ' ') }} · {{ report.queue_name }} queue</p>
+    <h1>{{ report.repository.owner }}/{{ report.repository.name }}</h1>
+    <p class="lede"><a href="{{ report.repository.canonical_url.removesuffix('.git') }}">Repository</a> at <code>{{ report.commit_sha }}</code></p>
+  </div>
+  <div class="grade-card grade-{{ (report.grade or 'pending')|lower }}">
+    <span class="grade">{{ report.grade or '…' }}</span>
+    <span class="score">{% if report.score is not none %}{{ report.score }}/100{% else %}pending{% endif %}</span>
+  </div>
+</section>
+
+<div class="meta-grid">
+  <div><span>Analyzer</span><strong>{{ report.analyzer_version }}</strong></div>
+  <div><span>Requested</span><strong>{{ report.requested_at }}</strong></div>
+  <div><span>Duration</span><strong>{{ report.duration_seconds if report.duration_seconds is not none else '—' }}{% if report.duration_seconds is not none %} s{% endif %}</strong></div>
+  <div><span>Repository size</span><strong>{{ report.repository.size_kib if report.repository.size_kib is not none else 'unknown' }}{% if report.repository.size_kib is not none %} KiB{% endif %}</strong></div>
+</div>
+
+{% if report.status in ['queued', 'running'] %}
+<div class="alert info">The report is {{ report.status }}. This page refreshes every five seconds.</div>
+{% endif %}
+{% if report.error %}
+<section class="panel">
+  <h2>Analysis error</h2>
+  <pre class="log-block">{{ report.error }}</pre>
+</section>
+{% endif %}
+
+{% if report.summary %}
+<section class="section-heading">
+  <div><p class="eyebrow">Scoring</p><h2>Checks</h2></div>
+  <a class="secondary-button" href="/api/v1/reports/{{ report.id }}/raw">Raw JSON</a>
+</section>
+<div class="check-grid">
+  {% for check in report.summary.checks %}
+  <article class="check-card">
+    <div class="check-topline">
+      <span class="status status-{{ check.status }}">{{ check.status }}</span>
+      <strong>{{ check.score }}/{{ check.maximum }}</strong>
+    </div>
+    <h3>{{ check.title }}</h3>
+    <p>{{ check.summary }}</p>
+    {% if check.details %}
+    <details>
+      <summary>Measurements</summary>
+      <dl>
+      {% for key, value in check.details.items() %}
+        <div><dt>{{ key.replace('_', ' ') }}</dt><dd>{{ value }}</dd></div>
+      {% endfor %}
+      </dl>
+    </details>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+<p class="caveat">{{ report.summary.caveat }}</p>
+{% endif %}
+
+<section class="section-heading">
+  <div><p class="eyebrow">Repository</p><h2>Report history</h2></div>
+  <code>/badge/{{ report.repository.owner }}/{{ report.repository.name }}.svg</code>
+</section>
+<div class="report-list compact">
+  {% for item in history %}
+  <a class="report-row" href="/reports/{{ item.id }}">
+    <span class="commit">{{ item.commit_sha[:10] }}</span>
+    <span class="queue-pill">{{ item.queue_name }}</span>
+    <span class="status status-{{ item.status }}">{{ item.status.replace('_', ' ') }}</span>
+    <span>{{ item.requested_at }}</span>
+    <span class="mini-grade">{{ item.grade or '—' }}{% if item.score is not none %} · {{ item.score }}{% endif %}</span>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

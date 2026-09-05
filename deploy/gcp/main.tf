@@ -230,6 +230,8 @@ resource "google_compute_instance" "app" {
     application_secret_name   = google_secret_manager_secret.application_secret.secret_id
     github_token_secret_name  = var.github_token == "" ? "" : google_secret_manager_secret.github_token[0].secret_id
     public_ip                 = google_compute_address.web.address
+    posthog_project_token     = var.posthog_project_token
+    posthog_host              = var.posthog_host
   })
 
   scheduling {

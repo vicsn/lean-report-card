@@ -1,0 +1,906 @@
+{
+  "schema_version": 1,
+  "generated": "sample-index",
+  "reports": [
+    {
+      "slug": "proof-garden/linear-types",
+      "file": null,
+      "grade": "F",
+      "score": 53,
+      "updated_at": "2026-08-19T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/proof-garden/linear-types"
+    },
+    {
+      "slug": "math-inc/concurrent-gc",
+      "file": null,
+      "grade": "D",
+      "score": 63,
+      "updated_at": "2026-08-18T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/math-inc/concurrent-gc"
+    },
+    {
+      "slug": "FormalLand/iris-examples",
+      "file": null,
+      "grade": "C",
+      "score": 68,
+      "updated_at": "2026-08-17T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/FormalLand/iris-examples"
+    },
+    {
+      "slug": "leanprover-community/separation-logic",
+      "file": null,
+      "grade": "C",
+      "score": 70,
+      "updated_at": "2026-08-16T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/leanprover-community/separation-logic"
+    },
+    {
+      "slug": "open-tactics/rust-belt-notes",
+      "file": null,
+      "grade": "C",
+      "score": 77,
+      "updated_at": "2026-08-15T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/open-tactics/rust-belt-notes"
+    },
+    {
+      "slug": "quietly-proved/wasm-semantics",
+      "file": null,
+      "grade": "B",
+      "score": 81,
+      "updated_at": "2026-08-14T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/quietly-proved/wasm-semantics"
+    },
+    {
+      "slug": "sideline-math/compcert-bridge",
+      "file": null,
+      "grade": "B",
+      "score": 83,
+      "updated_at": "2026-08-13T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/sideline-math/compcert-bridge"
+    },
+    {
+      "slug": "tau-formal/capability-model",
+      "file": null,
+      "grade": "B",
+      "score": 89,
+      "updated_at": "2026-08-12T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/tau-formal/capability-model"
+    },
+    {
+      "slug": "proof-garden/seL4-lemmas",
+      "file": null,
+      "grade": "A",
+      "score": 91,
+      "updated_at": "2026-08-11T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/proof-garden/seL4-lemmas"
+    },
+    {
+      "slug": "math-inc/file-systems",
+      "file": null,
+      "grade": "A",
+      "score": 95,
+      "updated_at": "2026-08-10T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/math-inc/file-systems"
+    },
+    {
+      "slug": "FormalLand/raft-spec",
+      "file": null,
+      "grade": "F",
+      "score": 55,
+      "updated_at": "2026-08-09T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/FormalLand/raft-spec"
+    },
+    {
+      "slug": "leanprover-community/byzantine-broadcast",
+      "file": null,
+      "grade": "D",
+      "score": 62,
+      "updated_at": "2026-08-08T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/leanprover-community/byzantine-broadcast"
+    },
+    {
+      "slug": "open-tactics/consensus-safety",
+      "file": null,
+      "grade": "C",
+      "score": 67,
+      "updated_at": "2026-08-07T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/open-tactics/consensus-safety"
+    },
+    {
+      "slug": "quietly-proved/merkle-trees",
+      "file": null,
+      "grade": "C",
+      "score": 72,
+      "updated_at": "2026-08-06T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/quietly-proved/merkle-trees"
+    },
+    {
+      "slug": "sideline-math/fri-soundness",
+      "file": null,
+      "grade": "C",
+      "score": 76,
+      "updated_at": "2026-08-05T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/sideline-math/fri-soundness"
+    },
+    {
+      "slug": "tau-formal/plonk-verifier",
+      "file": null,
+      "grade": "B",
+      "score": 80,
+      "updated_at": "2026-08-04T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/tau-formal/plonk-verifier"
+    },
+    {
+      "slug": "proof-garden/zk-circuits",
+      "file": null,
+      "grade": "B",
+      "score": 85,
+      "updated_at": "2026-08-03T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/proof-garden/zk-circuits"
+    },
+    {
+      "slug": "math-inc/mlwe-reductions",
+      "file": null,
+      "grade": "B",
+      "score": 88,
+      "updated_at": "2026-08-02T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/math-inc/mlwe-reductions"
+    },
+    {
+      "slug": "FormalLand/lattice-crypto",
+      "file": null,
+      "grade": "A",
+      "score": 90,
+      "updated_at": "2026-08-01T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/FormalLand/lattice-crypto"
+    },
+    {
+      "slug": "leanprover-community/error-correcting",
+      "file": null,
+      "grade": "A",
+      "score": 97,
+      "updated_at": "2026-07-31T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/leanprover-community/error-correcting"
+    },
+    {
+      "slug": "open-tactics/channel-capacities",
+      "file": null,
+      "grade": "F",
+      "score": 54,
+      "updated_at": "2026-07-30T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/open-tactics/channel-capacities"
+    },
+    {
+      "slug": "quietly-proved/quantum-information",
+      "file": null,
+      "grade": "D",
+      "score": 61,
+      "updated_at": "2026-07-29T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/quietly-proved/quantum-information"
+    },
+    {
+      "slug": "sideline-math/black-hole-mechanics",
+      "file": null,
+      "grade": "C",
+      "score": 69,
+      "updated_at": "2026-07-28T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/sideline-math/black-hole-mechanics"
+    },
+    {
+      "slug": "tau-formal/einstein-equations",
+      "file": null,
+      "grade": "C",
+      "score": 71,
+      "updated_at": "2026-07-27T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/tau-formal/einstein-equations"
+    },
+    {
+      "slug": "proof-garden/general-relativity",
+      "file": null,
+      "grade": "C",
+      "score": 75,
+      "updated_at": "2026-07-26T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/proof-garden/general-relativity"
+    },
+    {
+      "slug": "math-inc/yang-mills-notes",
+      "file": null,
+      "grade": "B",
+      "score": 82,
+      "updated_at": "2026-07-25T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/math-inc/yang-mills-notes"
+    },
+    {
+      "slug": "FormalLand/gauge-theory",
+      "file": null,
+      "grade": "B",
+      "score": 84,
+      "updated_at": "2026-07-24T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/FormalLand/gauge-theory"
+    },
+    {
+      "slug": "leanprover-community/aqft-axioms",
+      "file": null,
+      "grade": "B",
+      "score": 87,
+      "updated_at": "2026-07-23T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/leanprover-community/aqft-axioms"
+    },
+    {
+      "slug": "open-tactics/conformal-nets",
+      "file": null,
+      "grade": "A",
+      "score": 92,
+      "updated_at": "2026-07-22T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/open-tactics/conformal-nets"
+    },
+    {
+      "slug": "quietly-proved/vertex-algebras",
+      "file": null,
+      "grade": "A",
+      "score": 96,
+      "updated_at": "2026-07-21T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/quietly-proved/vertex-algebras"
+    },
+    {
+      "slug": "sideline-math/quantum-groups",
+      "file": null,
+      "grade": "F",
+      "score": 53,
+      "updated_at": "2026-07-20T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/sideline-math/quantum-groups"
+    },
+    {
+      "slug": "tau-formal/canonical-bases",
+      "file": null,
+      "grade": "D",
+      "score": 63,
+      "updated_at": "2026-07-19T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/tau-formal/canonical-bases"
+    },
+    {
+      "slug": "proof-garden/cluster-algebras",
+      "file": null,
+      "grade": "C",
+      "score": 68,
+      "updated_at": "2026-07-18T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/proof-garden/cluster-algebras"
+    },
+    {
+      "slug": "math-inc/tropical-geometry",
+      "file": null,
+      "grade": "C",
+      "score": 70,
+      "updated_at": "2026-07-17T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/math-inc/tropical-geometry"
+    },
+    {
+      "slug": "FormalLand/mirror-symmetry",
+      "file": null,
+      "grade": "C",
+      "score": 77,
+      "updated_at": "2026-07-16T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/FormalLand/mirror-symmetry"
+    },
+    {
+      "slug": "leanprover-community/floer-homology",
+      "file": null,
+      "grade": "B",
+      "score": 81,
+      "updated_at": "2026-07-15T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/leanprover-community/floer-homology"
+    },
+    {
+      "slug": "open-tactics/symplectic-geometry",
+      "file": null,
+      "grade": "B",
+      "score": 83,
+      "updated_at": "2026-07-14T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/open-tactics/symplectic-geometry"
+    },
+    {
+      "slug": "quietly-proved/equivariant-cohomology",
+      "file": null,
+      "grade": "B",
+      "score": 89,
+      "updated_at": "2026-07-13T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/quietly-proved/equivariant-cohomology"
+    },
+    {
+      "slug": "sideline-math/chromatic-height",
+      "file": null,
+      "grade": "A",
+      "score": 91,
+      "updated_at": "2026-07-12T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/sideline-math/chromatic-height"
+    },
+    {
+      "slug": "tau-formal/stable-homotopy",
+      "file": null,
+      "grade": "A",
+      "score": 95,
+      "updated_at": "2026-07-11T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/tau-formal/stable-homotopy"
+    },
+    {
+      "slug": "proof-garden/spectra-scratch",
+      "file": null,
+      "grade": "F",
+      "score": 55,
+      "updated_at": "2026-07-10T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/proof-garden/spectra-scratch"
+    },
+    {
+      "slug": "math-inc/infinity-categories",
+      "file": null,
+      "grade": "D",
+      "score": 62,
+      "updated_at": "2026-07-09T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/math-inc/infinity-categories"
+    },
+    {
+      "slug": "FormalLand/derived-categories",
+      "file": null,
+      "grade": "C",
+      "score": 67,
+      "updated_at": "2026-07-08T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/FormalLand/derived-categories"
+    },
+    {
+      "slug": "leanprover-community/crystalline-notes",
+      "file": null,
+      "grade": "C",
+      "score": 72,
+      "updated_at": "2026-07-07T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/leanprover-community/crystalline-notes"
+    },
+    {
+      "slug": "open-tactics/etale-cohomology",
+      "file": null,
+      "grade": "C",
+      "score": 76,
+      "updated_at": "2026-07-06T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/open-tactics/etale-cohomology"
+    },
+    {
+      "slug": "quietly-proved/langlands-dictionary",
+      "file": null,
+      "grade": "B",
+      "score": 80,
+      "updated_at": "2026-07-05T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/quietly-proved/langlands-dictionary"
+    },
+    {
+      "slug": "sideline-math/automorphic-forms",
+      "file": null,
+      "grade": "B",
+      "score": 85,
+      "updated_at": "2026-07-04T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/sideline-math/automorphic-forms"
+    },
+    {
+      "slug": "tau-formal/l-functions",
+      "file": null,
+      "grade": "B",
+      "score": 88,
+      "updated_at": "2026-07-03T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/tau-formal/l-functions"
+    },
+    {
+      "slug": "proof-garden/bsd-lemmas",
+      "file": null,
+      "grade": "A",
+      "score": 90,
+      "updated_at": "2026-07-02T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/proof-garden/bsd-lemmas"
+    },
+    {
+      "slug": "math-inc/elliptic-curves",
+      "file": null,
+      "grade": "A",
+      "score": 97,
+      "updated_at": "2026-07-01T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/math-inc/elliptic-curves"
+    },
+    {
+      "slug": "FormalLand/modular-forms",
+      "file": null,
+      "grade": "F",
+      "score": 54,
+      "updated_at": "2026-06-30T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/FormalLand/modular-forms"
+    },
+    {
+      "slug": "leanprover-community/class-field-scratch",
+      "file": null,
+      "grade": "D",
+      "score": 61,
+      "updated_at": "2026-06-29T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/leanprover-community/class-field-scratch"
+    },
+    {
+      "slug": "open-tactics/algebraic-number-theory",
+      "file": null,
+      "grade": "C",
+      "score": 69,
+      "updated_at": "2026-06-28T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/open-tactics/algebraic-number-theory"
+    },
+    {
+      "slug": "quietly-proved/resultants",
+      "file": null,
+      "grade": "C",
+      "score": 71,
+      "updated_at": "2026-06-27T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/quietly-proved/resultants"
+    },
+    {
+      "slug": "sideline-math/grobner-bases",
+      "file": null,
+      "grade": "C",
+      "score": 75,
+      "updated_at": "2026-06-26T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/sideline-math/grobner-bases"
+    },
+    {
+      "slug": "tau-formal/knuth-bendix",
+      "file": null,
+      "grade": "B",
+      "score": 82,
+      "updated_at": "2026-06-25T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/tau-formal/knuth-bendix"
+    },
+    {
+      "slug": "proof-garden/sat-encoding",
+      "file": null,
+      "grade": "B",
+      "score": 84,
+      "updated_at": "2026-06-24T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/proof-garden/sat-encoding"
+    },
+    {
+      "slug": "math-inc/fft-correctness",
+      "file": null,
+      "grade": "B",
+      "score": 87,
+      "updated_at": "2026-06-23T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/math-inc/fft-correctness"
+    },
+    {
+      "slug": "FormalLand/navier-stokes-notes",
+      "file": null,
+      "grade": "A",
+      "score": 92,
+      "updated_at": "2026-06-22T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/FormalLand/navier-stokes-notes"
+    },
+    {
+      "slug": "leanprover-community/pde-weak-solutions",
+      "file": null,
+      "grade": "A",
+      "score": 96,
+      "updated_at": "2026-06-21T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/leanprover-community/pde-weak-solutions"
+    },
+    {
+      "slug": "open-tactics/brownian-motion",
+      "file": null,
+      "grade": "F",
+      "score": 53,
+      "updated_at": "2026-06-20T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/open-tactics/brownian-motion"
+    },
+    {
+      "slug": "quietly-proved/martingales",
+      "file": null,
+      "grade": "D",
+      "score": 63,
+      "updated_at": "2026-06-19T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/quietly-proved/martingales"
+    },
+    {
+      "slug": "sideline-math/probability-kernel",
+      "file": null,
+      "grade": "C",
+      "score": 68,
+      "updated_at": "2026-06-18T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/sideline-math/probability-kernel"
+    },
+    {
+      "slug": "tau-formal/float-interval",
+      "file": null,
+      "grade": "C",
+      "score": 70,
+      "updated_at": "2026-06-17T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/tau-formal/float-interval"
+    },
+    {
+      "slug": "proof-garden/bitvec-lemmas",
+      "file": null,
+      "grade": "C",
+      "score": 77,
+      "updated_at": "2026-06-16T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/proof-garden/bitvec-lemmas"
+    },
+    {
+      "slug": "math-inc/grind-bench",
+      "file": null,
+      "grade": "B",
+      "score": 81,
+      "updated_at": "2026-06-15T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/math-inc/grind-bench"
+    },
+    {
+      "slug": "FormalLand/omega-examples",
+      "file": null,
+      "grade": "B",
+      "score": 83,
+      "updated_at": "2026-06-14T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/FormalLand/omega-examples"
+    },
+    {
+      "slug": "leanprover-community/simp-hygiene",
+      "file": null,
+      "grade": "B",
+      "score": 89,
+      "updated_at": "2026-06-13T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/leanprover-community/simp-hygiene"
+    },
+    {
+      "slug": "open-tactics/aesop-extras",
+      "file": null,
+      "grade": "A",
+      "score": 91,
+      "updated_at": "2026-06-12T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/open-tactics/aesop-extras"
+    },
+    {
+      "slug": "quietly-proved/typeclass-search",
+      "file": null,
+      "grade": "A",
+      "score": 95,
+      "updated_at": "2026-06-11T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/quietly-proved/typeclass-search"
+    },
+    {
+      "slug": "sideline-math/topos-theory",
+      "file": null,
+      "grade": "F",
+      "score": 55,
+      "updated_at": "2026-06-10T12:00:00Z",
+      "summary": "Builds \u00b7 axiom declarations in core",
+      "url": "https://github.com/sideline-math/topos-theory"
+    },
+    {
+      "slug": "tau-formal/condensed-math",
+      "file": null,
+      "grade": "D",
+      "score": 62,
+      "updated_at": "2026-06-09T12:00:00Z",
+      "summary": "Reproducible manifest \u00b7 no contributing guide",
+      "url": "https://github.com/tau-formal/condensed-math"
+    },
+    {
+      "slug": "proof-garden/perfectoid-experiments",
+      "file": null,
+      "grade": "C",
+      "score": 67,
+      "updated_at": "2026-06-08T12:00:00Z",
+      "summary": "Tests present \u00b7 docs sparse",
+      "url": "https://github.com/proof-garden/perfectoid-experiments"
+    },
+    {
+      "slug": "math-inc/scheme-theory",
+      "file": null,
+      "grade": "C",
+      "score": 72,
+      "updated_at": "2026-06-07T12:00:00Z",
+      "summary": "Builds \u00b7 high direct-import fan-out",
+      "url": "https://github.com/math-inc/scheme-theory"
+    },
+    {
+      "slug": "FormalLand/algebraic-geometry-scratch",
+      "file": null,
+      "grade": "C",
+      "score": 76,
+      "updated_at": "2026-06-06T12:00:00Z",
+      "summary": "Partial build \u00b7 native_decide used",
+      "url": "https://github.com/FormalLand/algebraic-geometry-scratch"
+    },
+    {
+      "slug": "leanprover-community/representation-theory",
+      "file": null,
+      "grade": "B",
+      "score": 80,
+      "updated_at": "2026-06-05T12:00:00Z",
+      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
+      "url": "https://github.com/leanprover-community/representation-theory"
+    },
+    {
+      "slug": "open-tactics/lie-algebras",
+      "file": null,
+      "grade": "B",
+      "score": 85,
+      "updated_at": "2026-06-04T12:00:00Z",
+      "summary": "Builds \u00b7 several sorry placeholders",
+      "url": "https://github.com/open-tactics/lie-algebras"
+    },
+    {
+      "slug": "quietly-proved/homological-algebra",
+      "file": null,
+      "grade": "B",
+      "score": 88,
+      "updated_at": "2026-06-03T12:00:00Z",
+      "summary": "Pinned toolchain \u00b7 README only",
+      "url": "https://github.com/quietly-proved/homological-algebra"
+    },
+    {
+      "slug": "sideline-math/simplex-category",
+      "file": null,
+      "grade": "A",
+      "score": 90,
+      "updated_at": "2026-06-02T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 lint unavailable",
+      "url": "https://github.com/sideline-math/simplex-category"
+    },
+    {
+      "slug": "tau-formal/category-theory-notes",
+      "file": null,
+      "grade": "A",
+      "score": 97,
+      "updated_at": "2026-06-01T12:00:00Z",
+      "summary": "Builds \u00b7 tests passing \u00b7 license present",
+      "url": "https://github.com/tau-formal/category-theory-notes"
+    },
+    {
+      "slug": "leanprover-community/lean4-samples",
+      "file": null,
+      "grade": "C",
+      "score": 71,
+      "updated_at": "2026-05-31T12:00:00Z",
+      "summary": "Samples \u00b7 mixed pinning",
+      "url": "https://github.com/leanprover-community/lean4-samples"
+    },
+    {
+      "slug": "leanprover-community/NNG4",
+      "file": null,
+      "grade": "A",
+      "score": 94,
+      "updated_at": "2026-05-30T12:00:00Z",
+      "summary": "Builds \u00b7 Natural Number Game",
+      "url": "https://github.com/leanprover-community/NNG4"
+    },
+    {
+      "slug": "dwrensha/compfiles",
+      "file": null,
+      "grade": "B",
+      "score": 79,
+      "updated_at": "2026-05-29T12:00:00Z",
+      "summary": "Builds \u00b7 contest problems",
+      "url": "https://github.com/dwrensha/compfiles"
+    },
+    {
+      "slug": "nomeata/lean-wf-induct",
+      "file": null,
+      "grade": "A",
+      "score": 90,
+      "updated_at": "2026-05-28T12:00:00Z",
+      "summary": "Builds \u00b7 well-founded induction",
+      "url": "https://github.com/nomeata/lean-wf-induct"
+    },
+    {
+      "slug": "PatrickMassot/verbose-lean4",
+      "file": null,
+      "grade": "B",
+      "score": 82,
+      "updated_at": "2026-05-27T12:00:00Z",
+      "summary": "Builds \u00b7 teaching tactics",
+      "url": "https://github.com/PatrickMassot/verbose-lean4"
+    },
+    {
+      "slug": "google-deepmind/formal-conjectures",
+      "file": null,
+      "grade": "B",
+      "score": 85,
+      "updated_at": "2026-05-26T12:00:00Z",
+      "summary": "Builds \u00b7 conjecture corpus",
+      "url": "https://github.com/google-deepmind/formal-conjectures"
+    },
+    {
+      "slug": "leanprover-community/flt-regular",
+      "file": null,
+      "grade": "B",
+      "score": 87,
+      "updated_at": "2026-05-25T12:00:00Z",
+      "summary": "Builds \u00b7 theorem development",
+      "url": "https://github.com/leanprover-community/flt-regular"
+    },
+    {
+      "slug": "leanprover-community/mathlib4-nightly-testing",
+      "file": null,
+      "grade": "C",
+      "score": 69,
+      "updated_at": "2026-05-24T12:00:00Z",
+      "summary": "Nightly \u00b7 intermittent build warnings",
+      "url": "https://github.com/leanprover-community/mathlib4-nightly-testing"
+    },
+    {
+      "slug": "leanprover/doc-gen4",
+      "file": null,
+      "grade": "B",
+      "score": 83,
+      "updated_at": "2026-05-23T12:00:00Z",
+      "summary": "Builds \u00b7 doc-gen for Lean 4",
+      "url": "https://github.com/leanprover/doc-gen4"
+    },
+    {
+      "slug": "leanprover/lean4checker",
+      "file": null,
+      "grade": "A",
+      "score": 92,
+      "updated_at": "2026-05-22T12:00:00Z",
+      "summary": "Builds \u00b7 checker coverage",
+      "url": "https://github.com/leanprover/lean4checker"
+    },
+    {
+      "slug": "leanprover/verso",
+      "file": null,
+      "grade": "B",
+      "score": 86,
+      "updated_at": "2026-05-21T12:00:00Z",
+      "summary": "Builds \u00b7 documentation generator",
+      "url": "https://github.com/leanprover/verso"
+    },
+    {
+      "slug": "leanprover/lean4",
+      "file": null,
+      "grade": "A",
+      "score": 95,
+      "updated_at": "2026-05-20T12:00:00Z",
+      "summary": "Builds \u00b7 official toolchain \u00b7 extensive tests",
+      "url": "https://github.com/leanprover/lean4"
+    },
+    {
+      "slug": "leanprover-community/repl",
+      "file": null,
+      "grade": "B",
+      "score": 80,
+      "updated_at": "2026-05-19T12:00:00Z",
+      "summary": "Builds \u00b7 documentation uneven",
+      "url": "https://github.com/leanprover-community/repl"
+    },
+    {
+      "slug": "leanprover-community/LeanSearchClient",
+      "file": null,
+      "grade": "C",
+      "score": 72,
+      "updated_at": "2026-05-18T12:00:00Z",
+      "summary": "Builds with warnings \u00b7 tests unavailable",
+      "url": "https://github.com/leanprover-community/LeanSearchClient"
+    },
+    {
+      "slug": "leanprover-community/import-graph",
+      "file": null,
+      "grade": "B",
+      "score": 84,
+      "updated_at": "2026-05-17T12:00:00Z",
+      "summary": "Builds \u00b7 CI present \u00b7 few TODOs",
+      "url": "https://github.com/leanprover-community/import-graph"
+    },
+    {
+      "slug": "leanprover-community/quote4",
+      "file": null,
+      "grade": "A",
+      "score": 91,
+      "updated_at": "2026-05-16T12:00:00Z",
+      "summary": "Builds \u00b7 reproducible Lake manifest",
+      "url": "https://github.com/leanprover-community/quote4"
+    },
+    {
+      "slug": "leanprover-community/ProofWidgets4",
+      "file": null,
+      "grade": "B",
+      "score": 81,
+      "updated_at": "2026-05-15T12:00:00Z",
+      "summary": "Builds \u00b7 UI widgets \u00b7 sparse module docs",
+      "url": "https://github.com/leanprover-community/ProofWidgets4"
+    },
+    {
+      "slug": "leanprover-community/batteries",
+      "file": null,
+      "grade": "A",
+      "score": 93,
+      "updated_at": "2026-05-14T12:00:00Z",
+      "summary": "Builds and tests \u00b7 pinned toolchain",
+      "url": "https://github.com/leanprover-community/batteries"
+    },
+    {
+      "slug": "leanprover-community/mathlib4",
+      "file": null,
+      "grade": "B",
+      "score": 88,
+      "updated_at": "2026-05-13T12:00:00Z",
+      "summary": "Builds \u00b7 Mathlib cache used \u00b7 large import graph",
+      "url": "https://github.com/leanprover-community/mathlib4"
+    },
+    {
+      "slug": "leanprover-community/aesop",
+      "file": "leanprover-community/aesop.json",
+      "grade": "A",
+      "score": 100,
+      "updated_at": "2026-05-12T12:00:00Z",
+      "summary": "Builds on v4.20.0 \u00b7 no sorry",
+      "url": "https://github.com/leanprover-community/aesop"
+    }
+  ]
+}

@@ -75,6 +75,23 @@ variable "app_git_ref" {
   }
 }
 
+variable "posthog_project_token" {
+  description = "Optional override for the public PostHog project token. Empty keeps the compiled-in default."
+  type        = string
+  default     = ""
+}
+
+variable "posthog_host" {
+  description = "PostHog ingest host. Use https://eu.i.posthog.com for EU Cloud."
+  type        = string
+  default     = "https://us.i.posthog.com"
+
+  validation {
+    condition     = can(regex("^https://[A-Za-z0-9.-]+$", var.posthog_host))
+    error_message = "posthog_host must be an https origin without a path, query or fragment."
+  }
+}
+
 variable "github_token" {
   description = "Optional GitHub token for private-repo clone and public API rate limits. Stored in Secret Manager."
   type        = string

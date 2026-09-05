@@ -1,6 +1,6 @@
 # Lean Report Card
 
-A runnable scaffold for a single-machine service that accepts a public Lean GitHub repository, resolves an exact revision, queues a bounded analysis job, stores a report, and presents current and historical results through a small website and JSON API.
+A static website that publishes a public index of Lean 4 project scores. Submissions are queued as PostHog events; reports are indexed JSON files.
 
 The initial score is deliberately modest in scope. It combines build/test/lint outcomes with coarse source, documentation, reproducibility and repository-hygiene signals. It is not a proof of mathematical correctness or security.
 
@@ -8,31 +8,33 @@ The initial score is deliberately modest in scope. It combines build/test/lint o
 
 ```mermaid
 flowchart LR
-    U[Browser or API client] --> C[Caddy]
-    C --> W[FastAPI web/API]
-    W --> P[(PostgreSQL)]
-    W --> R[(Redis broker)]
-    R --> S[Small worker pool]
-    R --> B[Big worker]
-    S --> D[Disposable Lean runner container]
-    B --> D
-    D --> G[GitHub, Elan and Lake dependencies]
-    S --> P
-    B --> P
+    U[Browser] --> S[Static site]
+    S --> H[PostHog events]
+    S --> J[Indexed report JSON]
+    W[Async analyzer] --> J
 ```
 
-- **Web/API:** FastAPI plus server-rendered Jinja templates.
-- **History and cache:** PostgreSQL stores repositories and historical analysis runs. A row changes state while its job runs, then remains available as history. The same commit and analyzer version reuses a queued, running or successful report unless `force=true`.
+- **Website:** static files in `site/`. The index lists one line per published repository, with pagination. A compact form can request another analysis. A top Contact control collects a message and email. Both submit to PostHog.
+- **Reports:** `site/reports/index.json` lists published files. Jobs can add JSON later without changing the site.
+- **History and cache (legacy stack):** PostgreSQL stores repositories and historical analysis runs. A row changes state while its job runs, then remains available as history. The same commit and analyzer version reuses a queued, running or successful report unless `force=true`.
 - **Queues:** Celery and Redis expose separate `small` and `big` queues. Auto classification uses GitHub repository size plus a configurable known-large set.
 - **Execution:** workers launch disposable Docker runner containers. Small and big queues have different CPU, memory, Lean thread and timeout budgets.
-- **Monitoring:** `/healthz`, `/readyz` and private Prometheus metrics; the GCP scaffold installs the Ops Agent and provisions an uptime check and alert policies.
+- **Monitoring:** `/healthz`, `/readyz` and private Prometheus metrics; cookieless PostHog page views and exception capture; the GCP scaffold installs the Ops Agent and provisions an uptime check and alert policies.
 - **Deployment:** Docker Compose locally; Terraform provisions one Compute Engine VM and persistent data disk.
 
 See `docs/ARCHITECTURE.md`, `docs/SCORING.md`, `docs/SECURITY.md` and `docs/FUTURE_WORK.md`.
 
 ## Run locally
 
-### Website shell without background jobs
+### Static website
+
+```sh
+make site
+```
+
+Open `http://127.0.0.1:8080`. Submissions go to PostHog. A published example lives at `reports/leanprover-community/aesop.json`.
+
+### Legacy API shell without background jobs
 
 ```sh
 python -m venv .venv
@@ -42,9 +44,7 @@ mkdir -p .data
 uvicorn lean_report_card.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000` to inspect the UI, health endpoints, and API documentation.
-Submitting a repository requires Redis, a Celery worker, and the analysis runner; use the full
-stack below for an end-to-end run.
+Open `http://127.0.0.1:8000` for the older FastAPI UI, health endpoints, and API documentation.
 
 ### Full single-machine stack
 
@@ -129,6 +129,10 @@ terraform apply
 ```
 
 The output is initially an HTTP URL by static IP. Domain ownership, DNS, HTTPS, stronger isolation, backups, abuse controls and production IAM are required before public launch.
+
+## Analytics
+
+A public PostHog project token is compiled into `site/index.html`. Score and contact forms capture `score_requested` and `contact_submitted` (including email). Enable **Cookieless server hash mode** in PostHog. Session replay and click autocapture stay off. Emails in those events are contact data, not anonymous analytics.
 
 ## Development
 

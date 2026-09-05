@@ -1,5 +1,7 @@
 # Architecture
 
+The public website is static files in `site/`. Score and contact forms send events to PostHog. Published reports are an indexed set of JSON files under `site/reports/`, written asynchronously by analysis jobs. The FastAPI/Celery stack remains in the repository as the current worker implementation and is not required to serve the site.
+
 ## Request lifecycle
 
 1. The API accepts only a public GitHub repository URL or `owner/name` shorthand.
@@ -28,5 +30,7 @@ A report is immutable in meaning but changes state from queued to running to a t
 ## Failure domains
 
 The basic deployment intentionally puts Caddy, FastAPI, Redis, PostgreSQL and both workers on one VM. The attached persistent disk holds Docker data, including database volumes and Lean caches. This simplifies deployment but does not provide high availability or independent scaling.
+
+The website loads a cookieless PostHog snippet (public project token, not a secret API key) for page views and browser exceptions. The API and workers send unhandled server exceptions plus anonymous `report_requested` events (queue, cache hit, force). Session replay, click autocapture, visitor profiles and repository identifiers are not sent. Set `LRC_POSTHOG_PROJECT_TOKEN` empty to disable.
 
 Lean has no compiler-level RAM cap. The runner therefore sets Docker `mem_limit` equal to `memswap_limit`, disables swappiness, and raises `oom_score_adj` so the kernel prefers killing the analyzer. Control-plane Compose services also have memory limits so Postgres and Redis are not the first victims. A job that still exceeds its budget is stored as `oom_killed`. Host memory pressure is a Cloud Monitoring alert, not a hard admission controller.

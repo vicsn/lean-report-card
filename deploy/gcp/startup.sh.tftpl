@@ -81,8 +81,12 @@ LRC_BIG_CPUS=6.0
 LRC_SMALL_LEAN_THREADS=2
 LRC_BIG_LEAN_THREADS=6
 LRC_RUNNER_NETWORK_MODE=bridge
+LRC_POSTHOG_HOST=${posthog_host}
 SITE_ADDRESS=:80
 ENV
+%{ if posthog_project_token != "" ~}
+printf 'LRC_POSTHOG_PROJECT_TOKEN=%s\n' '${posthog_project_token}' >>"$APP_DIR/.env"
+%{ endif ~}
 chmod 600 "$APP_DIR/.env"
 
 cd "$APP_DIR"

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lean Report Card</title>
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init("phc_s94Q4HVoFQHHZCXNvYYY84f9FKuDjGFKgwpBCWjwGr2K", {
+      api_host: "https://us.i.posthog.com",
+      defaults: "2026-05-24",
+      cookieless_mode: "always",
+      person_profiles: "identified_only",
+      autocapture: false,
+      capture_pageview: true,
+      capture_pageleave: false,
+      capture_exceptions: true,
+      disable_session_recording: true,
+      disable_surveys: true,
+      enable_heatmaps: false,
+      advanced_disable_feature_flags: true,
+      respect_dnt: true,
+      ip: false
+    });
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#registry">Skip to index</a>
+  <header class="site-header">
+    <a class="brand" href="./">Lean Report Card</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="./">Index</a>
+      <button class="text-button" type="button" id="contact-open" aria-expanded="false" aria-controls="contact-panel">Contact</button>
+    </nav>
+  </header>
+
+  <div class="contact-backdrop" id="contact-backdrop" hidden></div>
+  <aside class="contact-panel" id="contact-panel" hidden>
+    <div class="contact-panel-head">
+      <h2>Want to reach out?</h2>
+      <button class="icon-close" type="button" id="contact-close" aria-label="Close contact form">×</button>
+    </div>
+    <form id="contact-form">
+      <label>Message
+        <textarea name="message" required rows="6" maxlength="4000" placeholder="What should we know?"></textarea>
+      </label>
+      <label>Contact email
+        <input name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+      </label>
+      <button type="submit">Send</button>
+    </form>
+    <p class="queued-note" id="contact-queued" hidden>Thanks — we received your message.</p>
+  </aside>
+
+  <main class="page-shell">
+    <section class="intro" id="intro">
+      <h1>Index of Lean repository scores</h1>
+      <p class="lede">A public index of Lean 4 project scores. Each line is one GitHub repository: how it builds, how it pins Lean, and the coarse signals we can read from source.</p>
+      <p class="counts"><strong id="report-count">—</strong> published reports</p>
+    </section>
+
+    <section id="registry" class="registry" aria-label="Published reports">
+      <div id="repo-list" class="repo-list"></div>
+      <nav id="pagination" class="pagination" aria-label="Index pages"></nav>
+    </section>
+
+    <section id="result" class="result-section" hidden></section>
+
+    <section class="submit-strip" id="score-card" aria-labelledby="submit-title">
+      <h2 id="submit-title">Submit another repository for analysis</h2>
+      <form id="score-form">
+        <label class="sr-only" for="repository">GitHub repository URL</label>
+        <input id="repository" name="repository" type="text" required placeholder="https://github.com/owner/repository" autocomplete="url">
+        <label class="sr-only" for="email">Contact email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+        <button type="submit">Submit</button>
+      </form>
+      <div id="rescan-confirm" class="rescan-confirm" hidden></div>
+      <p class="queued-note" id="score-queued" hidden>Submission queued</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Lean Report Card — a public index of Lean 4 project scores</p>
+    <p class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </p>
+  </footer>
+  <script src="js/app.js"></script>
+</body>
+</html>

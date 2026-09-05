@@ -41,6 +41,11 @@ class Settings(BaseSettings):
     elan_cache_volume: str = "lrc_elan_cache"
     lake_cache_volume: str = "lrc_lake_cache"
 
+    # Public PostHog project token (phc_...). This identifies the project to the
+    # browser SDK; it is not a secret personal API key.
+    posthog_project_token: str = "phc_s94Q4HVoFQHHZCXNvYYY84f9FKuDjGFKgwpBCWjwGr2K"
+    posthog_host: str = "https://us.i.posthog.com"
+
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:

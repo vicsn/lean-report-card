@@ -12,6 +12,7 @@ It is **not safe for an unrestricted public production service yet**:
 - shared Elan and dependency caches can become a cross-job channel;
 - no submission authentication, quotas, rate limiting, malware scanning or abuse workflow exists;
 - no egress allowlist, per-job service account, provenance verification or secretless build proof exists;
-- resource limits do not prevent all kernel, Docker daemon or dependency-supply-chain attacks.
+- resource limits do not prevent all kernel, Docker daemon or dependency-supply-chain attacks;
+- PostHog analytics embeds the public project token in HTML (that is how the browser SDK identifies the project) and sends page paths and exception text to PostHog. It is configured cookieless, without session replay, autocapture or person profiles.
 
 Before public launch, move untrusted analyses to ephemeral VMs or a hardened sandbox such as gVisor/Kata with no Docker socket, minimal identity, controlled egress, disposable caches, image and dependency provenance checks, strict quotas and automatic teardown. Keep the web/database control plane separate from executors.

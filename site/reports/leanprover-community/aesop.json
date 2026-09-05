@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "slug": "leanprover-community/aesop",
+  "repository": {
+    "url": "https://github.com/leanprover-community/aesop",
+    "owner": "leanprover-community",
+    "name": "aesop",
+    "commit_sha": "18889deb9e83ea7428ef51c160d6f88552e744e3"
+  },
+  "status": "succeeded",
+  "analyzer_version": "0.1.0",
+  "analyzed_at": "2026-09-01T12:00:00Z",
+  "score": 100,
+  "grade": "A",
+  "checks": [
+    {
+      "id": "build",
+      "category": "build",
+      "title": "Lake build",
+      "status": "passed",
+      "score": 25,
+      "maximum": 25,
+      "summary": "The pinned project revision builds.",
+      "details": {
+        "duration_seconds": null,
+        "returncode": null
+      }
+    },
+    {
+      "id": "tests",
+      "category": "verification",
+      "title": "Project test driver",
+      "status": "passed",
+      "score": 10,
+      "maximum": 10,
+      "summary": "The configured Lake test driver passed.",
+      "details": {
+        "duration_seconds": null,
+        "returncode": null
+      }
+    },
+    {
+      "id": "lint",
+      "category": "maintainability",
+      "title": "Project lint driver",
+      "status": "passed",
+      "score": 10,
+      "maximum": 10,
+      "summary": "The configured Lake lint driver passed.",
+      "details": {
+        "duration_seconds": null,
+        "returncode": null
+      }
+    },
+    {
+      "id": "source-trust-signals",
+      "category": "trust",
+      "title": "Source-level trust signals",
+      "status": "passed",
+      "score": 15,
+      "maximum": 15,
+      "summary": "No obvious source-level trust exceptions were found.",
+      "details": {
+        "sorry_count": 0,
+        "admit_count": 0,
+        "axiom_declaration_count": 0,
+        "native_decide_count": 0
+      }
+    },
+    {
+      "id": "reproducibility",
+      "category": "reproducibility",
+      "title": "Pinned toolchain and dependencies",
+      "status": "passed",
+      "score": 10,
+      "maximum": 10,
+      "summary": "Lean and Lake dependencies are pinned.",
+      "details": {
+        "lean_toolchain": "leanprover/lean4:v4.20.0",
+        "lake_manifest": true
+      }
+    },
+    {
+      "id": "documentation",
+      "category": "documentation",
+      "title": "Documentation coverage",
+      "status": "passed",
+      "score": 10,
+      "maximum": 10,
+      "summary": "README, module docs and declaration docs are estimated from source text.",
+      "details": {
+        "module_doc_ratio": 1.0,
+        "declaration_doc_ratio": 1.0
+      }
+    },
+    {
+      "id": "imports",
+      "category": "architecture",
+      "title": "Direct import footprint",
+      "status": "passed",
+      "score": 5,
+      "maximum": 5,
+      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
+      "details": {
+        "average_direct_imports": 4.0,
+        "max_direct_imports": 8
+      }
+    },
+    {
+      "id": "project-hygiene",
+      "category": "project",
+      "title": "Repository hygiene",
+      "status": "passed",
+      "score": 10,
+      "maximum": 10,
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "details": {
+        "test_file_count": 3,
+        "todo_count": 0
+      }
+    },
+    {
+      "id": "diagnostics",
+      "category": "performance",
+      "title": "Warnings and run diagnostics",
+      "status": "passed",
+      "score": 5,
+      "maximum": 5,
+      "summary": "Build warnings and analyzer resource limits are visible in the report.",
+      "details": {
+        "warning_count": 0,
+        "logs_truncated": false
+      }
+    }
+  ],
+  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "facts": {
+    "files": {
+      "lean_toolchain": "leanprover/lean4:v4.20.0",
+      "lake_manifest": true,
+      "readme": true,
+      "license": true,
+      "ci": true,
+      "contributing": true,
+      "security": true,
+      "changelog": true
+    },
+    "static": {
+      "sorry_count": 0,
+      "admit_count": 0,
+      "axiom_declaration_count": 0,
+      "native_decide_count": 0,
+      "module_doc_ratio": 1.0,
+      "declaration_doc_ratio": 1.0,
+      "average_direct_imports": 4.0,
+      "max_direct_imports": 8,
+      "test_file_count": 3,
+      "todo_count": 0
+    },
+    "commands": {
+      "build": {
+        "status": "passed",
+        "warning_count": 0
+      },
+      "test": {
+        "status": "passed"
+      },
+      "lint": {
+        "status": "passed"
+      }
+    }
+  }
+}

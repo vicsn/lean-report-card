@@ -1,7 +1,10 @@
-.PHONY: dev up down logs test lint format typecheck runner tooling smoke archive
+.PHONY: dev site up down logs test lint format typecheck runner tooling smoke archive
 
 dev:
 	python -m uvicorn lean_report_card.main:app --reload
+
+site:
+	python3 -m http.server 8080 --directory site
 
 up:
 	docker compose up --build

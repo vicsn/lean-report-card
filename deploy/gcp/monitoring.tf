@@ -101,3 +101,36 @@ resource "google_monitoring_alert_policy" "cpu" {
   notification_channels = var.notification_email == "" ? [] : [google_monitoring_notification_channel.email[0].name]
   depends_on            = [google_project_service.required]
 }
+
+resource "google_monitoring_alert_policy" "memory" {
+  display_name = "${var.name}: host memory pressure"
+  combiner     = "OR"
+  enabled      = true
+
+  documentation {
+    content   = "VM memory utilization has exceeded 90% for five minutes. A Lean job that ignores the runner cgroup cap, or an oversized budget, can still pressure the host."
+    mime_type = "text/markdown"
+  }
+
+  conditions {
+    display_name = "Memory utilization above 90%"
+    condition_threshold {
+      filter          = "resource.type = \"gce_instance\" AND metric.type = \"agent.googleapis.com/memory/percent_used\" AND resource.label.instance_id = \"${google_compute_instance.app.instance_id}\""
+      comparison      = "COMPARISON_GT"
+      threshold_value = 90
+      duration        = "300s"
+
+      aggregations {
+        alignment_period   = "60s"
+        per_series_aligner = "ALIGN_MEAN"
+      }
+
+      trigger {
+        count = 1
+      }
+    }
+  }
+
+  notification_channels = var.notification_email == "" ? [] : [google_monitoring_notification_channel.email[0].name]
+  depends_on            = [google_project_service.required]
+}

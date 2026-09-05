@@ -8,7 +8,12 @@ from celery import Celery
 
 from lean_report_card.config import get_settings
 from lean_report_card.database import SessionLocal, init_db
-from lean_report_card.docker_runner import RunnerError, RunnerTimedOut, run_analysis_container
+from lean_report_card.docker_runner import (
+    RunnerError,
+    RunnerOOMError,
+    RunnerTimedOut,
+    run_analysis_container,
+)
 from lean_report_card.models import Report
 from lean_report_card.repository_service import get_report
 from lean_report_card.scoring import score_report
@@ -79,6 +84,15 @@ def analyze_report(self: object, report_id: str) -> None:
         report = db.get(Report, report_uuid)
         if report is not None:
             report.status = "timed_out"
+            report.error = str(exc)
+            report.completed_at = completed
+            report.duration_seconds = max(0, int((completed - started).total_seconds()))
+            db.commit()
+    except RunnerOOMError as exc:
+        completed = _utcnow()
+        report = db.get(Report, report_uuid)
+        if report is not None:
+            report.status = "oom_killed"
             report.error = str(exc)
             report.completed_at = completed
             report.duration_seconds = max(0, int((completed - started).total_seconds()))

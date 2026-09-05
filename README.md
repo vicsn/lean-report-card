@@ -60,7 +60,7 @@ Open `http://localhost`. Two Celery workers listen independently:
 - `small`: concurrency 2, default 2 CPU / 4 GiB / 30 minutes per job;
 - `big`: concurrency 1, default 6 CPU / 12 GiB / 2 hours per job.
 
-Tune these values in `.env` for the host. The default GCP machine is `e2-standard-8`; the big job budget should never exceed physical RAM after allowing for Postgres, Redis, Docker and the web service.
+Each runner is hard-capped with cgroup memory plus a matching swap limit, so a Lean project with bad memory growth is killed (`oom_killed`) instead of paging the host to death. Lean itself has no heap ceiling; `LEAN_NUM_THREADS` only reduces parallelism. Tune the budgets in `.env` for the host. The default GCP machine is `e2-standard-8` (8 vCPU, 32 GiB); keep `2 × small + 1 × big` plus about 8 GiB for the OS and control plane under physical RAM.
 
 ## API
 
@@ -118,7 +118,7 @@ Run `make tooling` in a networked checkout to initialize the pinned revisions. T
 
 ## GCP
 
-The `deploy/gcp` directory provisions a basic one-VM installation. After publishing this repository:
+The `deploy/gcp` directory provisions a basic one-VM installation. After this private repository is reachable with a GitHub token:
 
 ```sh
 cd deploy/gcp

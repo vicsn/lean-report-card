@@ -6,7 +6,7 @@ This Terraform configuration creates one Compute Engine VM, one persistent data 
 
 1. Create a GCP project with billing enabled.
 2. Install and authenticate `gcloud` and Terraform.
-3. Publish this repository at a public HTTPS Git URL.
+3. Push this repository to GitHub. A private clone needs `github_token` in `terraform.tfvars`.
 4. Copy `terraform.tfvars.example` to `terraform.tfvars` and edit it.
 
 ```sh

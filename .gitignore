@@ -13,3 +13,5 @@ terraform.tfstate
 terraform.tfstate.*
 .terraform/
 crash.log
+*.swp
+.*.swp

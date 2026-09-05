@@ -23,6 +23,52 @@ class RunnerTimedOut(RunnerError):
     pass
 
 
+class RunnerOOMError(RunnerError):
+    pass
+
+
+_MEMORY_SUFFIXES = {
+    "": 1,
+    "b": 1,
+    "k": 1024,
+    "kb": 1024,
+    "ki": 1024,
+    "kib": 1024,
+    "m": 1024**2,
+    "mb": 1024**2,
+    "mi": 1024**2,
+    "mib": 1024**2,
+    "g": 1024**3,
+    "gb": 1024**3,
+    "gi": 1024**3,
+    "gib": 1024**3,
+}
+
+
+def memory_to_bytes(value: str) -> int:
+    text = value.strip().lower().replace(" ", "")
+    suffix = ""
+    number = text
+    for candidate in sorted(_MEMORY_SUFFIXES, key=len, reverse=True):
+        if candidate and text.endswith(candidate):
+            suffix = candidate
+            number = text[: -len(candidate)]
+            break
+    amount = float(number)
+    if amount <= 0:
+        raise ValueError(f"Memory budget must be positive, got {value!r}.")
+    return int(amount * _MEMORY_SUFFIXES[suffix])
+
+
+def container_was_oom_killed(container: Any, status_code: int) -> bool:
+    try:
+        container.reload()
+        state = container.attrs.get("State") or {}
+    except Exception:  # noqa: BLE001 - inspection is best-effort after the wait
+        state = {}
+    return bool(state.get("OOMKilled")) or status_code == 137
+
+
 @dataclass(frozen=True)
 class RunnerBudget:
     timeout_seconds: int
@@ -137,6 +183,10 @@ def run_analysis_container(report: Report, settings: Settings) -> dict[str, Any]
             },
             network_mode=settings.runner_network_mode,
             mem_limit=budget.memory,
+            memswap_limit=memory_to_bytes(budget.memory),
+            mem_swappiness=0,
+            oom_kill_disable=False,
+            oom_score_adj=800,
             nano_cpus=int(budget.cpus * 1_000_000_000),
             pids_limit=2048 if report.queue_name == "big" else 1024,
             cap_drop=["ALL"],
@@ -163,6 +213,11 @@ def run_analysis_container(report: Report, settings: Settings) -> dict[str, Any]
         logs = container.logs(stdout=True, stderr=True, tail=5000).decode(
             "utf-8", errors="replace"
         )
+        if container_was_oom_killed(container, status_code):
+            raise RunnerOOMError(
+                f"Analyzer exceeded the {budget.memory} {report.queue_name} memory budget "
+                "and was stopped before it could take down the host."
+            )
         if status_code != 0:
             raise RunnerError(
                 f"Analyzer container exited with {status_code}.\n{logs[-settings.max_log_bytes:]}"

@@ -47,7 +47,7 @@ variable "data_disk_size_gb" {
 }
 
 variable "app_repo_url" {
-  description = "Public Git URL for this application after you publish the scaffold."
+  description = "HTTPS Git URL for this application. Private repositories need github_token so the VM can clone."
   type        = string
 
   validation {
@@ -76,7 +76,7 @@ variable "app_git_ref" {
 }
 
 variable "github_token" {
-  description = "Optional GitHub token used only for public API rate limits. Stored in Secret Manager."
+  description = "Optional GitHub token for private-repo clone and public API rate limits. Stored in Secret Manager."
   type        = string
   sensitive   = true
   default     = ""

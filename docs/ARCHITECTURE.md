@@ -28,3 +28,5 @@ A report is immutable in meaning but changes state from queued to running to a t
 ## Failure domains
 
 The basic deployment intentionally puts Caddy, FastAPI, Redis, PostgreSQL and both workers on one VM. The attached persistent disk holds Docker data, including database volumes and Lean caches. This simplifies deployment but does not provide high availability or independent scaling.
+
+Lean has no compiler-level RAM cap. The runner therefore sets Docker `mem_limit` equal to `memswap_limit`, disables swappiness, and raises `oom_score_adj` so the kernel prefers killing the analyzer. Control-plane Compose services also have memory limits so Postgres and Redis are not the first victims. A job that still exceeds its budget is stored as `oom_killed`. Host memory pressure is a Cloud Monitoring alert, not a hard admission controller.

@@ -28,6 +28,7 @@ x-app-environment: &app-environment
 services:
   db:
     image: postgres:16-alpine
+    mem_limit: 1g
     environment:
       POSTGRES_DB: lrc
       POSTGRES_USER: lrc
@@ -42,6 +43,7 @@ services:
 
   redis:
     image: redis:7-alpine
+    mem_limit: 256m
     command: ["redis-server", "--appendonly", "yes"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -61,6 +63,7 @@ services:
 
   web:
     build: .
+    mem_limit: 512m
     environment: *app-environment
     depends_on:
       db:
@@ -73,6 +76,7 @@ services:
 
   worker-small:
     build: .
+    mem_limit: 512m
     environment: *app-environment
     depends_on:
       db:
@@ -88,6 +92,7 @@ services:
 
   worker-big:
     build: .
+    mem_limit: 512m
     environment: *app-environment
     depends_on:
       db:
@@ -103,6 +108,7 @@ services:
 
   caddy:
     image: caddy:2-alpine
+    mem_limit: 128m
     environment:
       SITE_ADDRESS: ${SITE_ADDRESS:-:80}
     depends_on:

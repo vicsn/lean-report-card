@@ -65,7 +65,7 @@ button:hover { background: var(--accent-dark); }
 .status { display: inline-flex; width: fit-content; border-radius: 999px; padding: 3px 8px; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; }
 .status-passed, .status-succeeded { color: var(--good); background: #e9f7f0; }
 .status-warning, .status-running, .status-queued { color: var(--warn); background: #fff5db; }
-.status-failed, .status-timed_out { color: var(--bad); background: #fdecec; }
+.status-failed, .status-timed_out, .status-oom_killed { color: var(--bad); background: #fdecec; }
 .status-unavailable, .status-skipped { color: #596273; background: #edf0f4; }
 
 .breadcrumb { display: flex; gap: 8px; color: var(--muted); padding-top: 20px; font-size: .9rem; }

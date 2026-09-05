@@ -7,7 +7,7 @@
 - Replace Docker-socket execution with isolated ephemeral workers; restrict egress, remove ambient credentials, wipe job disks/caches and establish an abuse-response process.
 - Add authentication or anti-abuse controls, quotas, rate limits, queue admission limits, repository allow/deny rules and legal/privacy/data-retention policies.
 - Add schema migrations, automated Postgres backups with restore tests, persistent-disk snapshots, disaster recovery, dependency/image pinning and signed release provenance.
-- Validate capacity for big jobs, reserve host memory, handle disk exhaustion, add job cancellation/reaping, and verify that a failed worker cannot leave containers behind.
+- Add admission control from live host memory, handle disk exhaustion, add job cancellation/reaping, and verify that a failed worker cannot leave containers behind.
 - Configure production alerts and on-call ownership; monitor queue age, failed/timed-out jobs, database health, disk, memory, Docker, cache growth and certificate expiry.
 
 ## Optional productionization

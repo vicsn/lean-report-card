@@ -1,8 +1,8 @@
 project_id         = "your-gcp-project"
-app_repo_url       = "https://github.com/your-org/lean-report-card.git"
+app_repo_url       = "https://github.com/vicsn/lean-report-card.git"
 app_git_ref        = "main"
 notification_email = "ops@example.com"
 
-# Optional; use a GitHub fine-grained token with read-only public metadata access
-# to increase API rate limits. It is written to Secret Manager.
+# Required to clone this private repository onto the VM. Also raises GitHub API
+# rate limits. It is written to Secret Manager.
 # github_token = "github_pat_..."

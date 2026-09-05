@@ -46,14 +46,18 @@ if [ -n '${github_token_secret_name}' ]; then
 fi
 
 APP_DIR=/opt/lean-report-card
+git_auth=()
+if [ -n "$GITHUB_TOKEN" ]; then
+  git_auth=(-c "http.extraHeader=Authorization: Bearer $GITHUB_TOKEN")
+fi
 if [ ! -d "$APP_DIR/.git" ]; then
   rm -rf "$APP_DIR"
-  git clone '${app_repo_url}' "$APP_DIR"
+  git "${git_auth[@]}" clone '${app_repo_url}' "$APP_DIR"
 fi
 git -C "$APP_DIR" remote set-url origin '${app_repo_url}'
-git -C "$APP_DIR" fetch --force --tags --prune origin '${app_git_ref}'
+git -C "$APP_DIR" "${git_auth[@]}" fetch --force --tags --prune origin '${app_git_ref}'
 git -C "$APP_DIR" checkout --force --detach FETCH_HEAD
-git -C "$APP_DIR" submodule update --init --recursive || true
+git -C "$APP_DIR" "${git_auth[@]}" submodule update --init --recursive || true
 
 cat >"$APP_DIR/.env" <<ENV
 LRC_ENVIRONMENT=production

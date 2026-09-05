@@ -2,7 +2,7 @@
 
 Analyzing a repository means executing attacker-controlled build configuration, compiler plugins, macros, elaborators, native code and shell commands. Treat every submitted repository as hostile.
 
-The scaffold reduces obvious risk by accepting only public GitHub HTTPS URLs, resolving exact commits before execution, using disposable runner containers, dropping Linux capabilities, enabling `no-new-privileges`, bounding CPU/RAM/PIDs/time, limiting captured logs and separating small/big worker concurrency.
+The scaffold reduces obvious risk by accepting only public GitHub HTTPS URLs, resolving exact commits before execution, using disposable runner containers, dropping Linux capabilities, enabling `no-new-privileges`, bounding CPU/RAM (no extra swap)/PIDs/time, limiting captured logs and separating small/big worker concurrency.
 
 It is **not safe for an unrestricted public production service yet**:
 

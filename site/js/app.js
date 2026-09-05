@@ -46,6 +46,19 @@ function setHidden(el, hidden) {
   if (el) el.hidden = hidden;
 }
 
+function showSubmitError(message) {
+  const el = document.getElementById("score-error");
+  el.textContent = message;
+  setHidden(el, false);
+  document.getElementById("repository").focus();
+}
+
+function clearSubmitError() {
+  const el = document.getElementById("score-error");
+  el.textContent = "";
+  setHidden(el, true);
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -199,20 +212,22 @@ function closeContact() {
   document.getElementById("contact-open").setAttribute("aria-expanded", "false");
 }
 
-async function queueScan(parsed, email, rescan) {
+async function queueScan(parsed, email, rescan, publish) {
+  clearSubmitError();
   await capture("score_requested", {
     repository: parsed.url,
     repository_slug: parsed.slug,
     email,
     rescan,
+    publish,
   });
   document.getElementById("score-form").hidden = true;
   setHidden(document.getElementById("rescan-confirm"), true);
   setHidden(document.getElementById("score-queued"), false);
 }
 
-function askRescan(parsed, email, entry) {
-  pendingSubmission = { parsed, email, entry };
+function askRescan(parsed, email, entry, publish) {
+  pendingSubmission = { parsed, email, entry, publish };
   const box = document.getElementById("rescan-confirm");
   box.innerHTML = `
     <p><a href="?repo=${encodeURIComponent(entry.slug)}">${escapeHtml(entry.slug)}</a>
@@ -224,7 +239,7 @@ function askRescan(parsed, email, entry) {
     </div>`;
   setHidden(box, false);
   document.getElementById("confirm-rescan").addEventListener("click", async () => {
-    await queueScan(parsed, email, true);
+    await queueScan(parsed, email, true, publish);
   });
 }
 
@@ -232,21 +247,23 @@ async function onScoreSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const data = new FormData(form);
+  clearSubmitError();
   setHidden(document.getElementById("rescan-confirm"), true);
   let parsed;
   try {
     parsed = parseGithubRepository(String(data.get("repository") || ""));
   } catch (error) {
-    showResult(`<div class="alert error">${escapeHtml(error.message)}</div>`);
+    showSubmitError(error instanceof Error ? error.message : "Enter a GitHub repository URL.");
     return;
   }
   const email = String(data.get("email") || "").trim();
+  const publish = data.get("publish") === "on";
   const existing = findEntry(parsed.slug);
   if (existing) {
-    askRescan(parsed, email, existing);
+    askRescan(parsed, email, existing, publish);
     return;
   }
-  await queueScan(parsed, email, false);
+  await queueScan(parsed, email, false, publish);
 }
 
 async function onContactSubmit(event) {

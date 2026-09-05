@@ -118,7 +118,7 @@ h1 {
 .pagination .current { color: var(--ink); font-weight: 700; }
 
 .submit-strip {
-  margin: 28px 0 8px;
+  margin: 16px 0 22px;
   padding: 16px 16px 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -130,11 +130,21 @@ h1 {
   font-weight: 650;
   margin: 0 0 10px;
 }
-#score-form {
+#score-form { display: grid; gap: 10px; }
+.submit-row {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(12rem, 1fr) auto;
   gap: 8px;
 }
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.checkbox-label input { width: auto; accent-color: var(--accent); }
 #contact-form { display: grid; gap: 12px; }
 label { display: grid; gap: 6px; font-size: .88rem; }
 .sr-only {
@@ -170,6 +180,12 @@ button[type="submit"] {
 }
 button[type="submit"]:hover { background: var(--accent-hover); }
 .queued-note { margin: 10px 0 0; font-weight: 650; }
+.submit-error {
+  margin: 10px 0 0;
+  color: var(--bad);
+  font-size: .92rem;
+  font-weight: 650;
+}
 .rescan-confirm {
   margin-top: 12px;
   padding-top: 10px;
@@ -258,6 +274,7 @@ button[type="submit"]:hover { background: var(--accent-hover); }
   }
   .repo-summary { display: none; }
   #score-form { grid-template-columns: 1fr; }
+  .submit-row { grid-template-columns: 1fr; }
   .report-hero, .meta-grid { grid-template-columns: 1fr; }
   .site-footer { flex-direction: column; }
 }

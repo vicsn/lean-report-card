@@ -84,7 +84,7 @@ variable "posthog_project_token" {
 variable "posthog_host" {
   description = "PostHog ingest host. Use https://eu.i.posthog.com for EU Cloud."
   type        = string
-  default     = "https://us.i.posthog.com"
+  default     = "https://eu.i.posthog.com"
 
   validation {
     condition     = can(regex("^https://[A-Za-z0-9.-]+$", var.posthog_host))

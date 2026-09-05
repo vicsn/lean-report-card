@@ -132,7 +132,7 @@ The output is initially an HTTP URL by static IP. Domain ownership, DNS, HTTPS, 
 
 ## Analytics
 
-A public PostHog project token is compiled into `site/index.html`. Score and contact forms capture `score_requested` and `contact_submitted` (including email). Enable **Cookieless server hash mode** in PostHog. Session replay and click autocapture stay off. Emails in those events are contact data, not anonymous analytics.
+A public PostHog project token is compiled into `site/index.html`. Events are sent to EU Cloud (`https://eu.i.posthog.com`). Score and contact forms capture `score_requested` and `contact_submitted` (including email). Enable **Cookieless server hash mode** in the PostHog project (Project settings → Web analytics). Localhost works; after a hard refresh, submit a repo and look for `$pageview` and `score_requested` under Activity → Live events. Session replay and click autocapture stay off. Emails in those events are contact data, not anonymous analytics.
 
 ## Development
 

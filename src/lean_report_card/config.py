@@ -44,7 +44,7 @@ class Settings(BaseSettings):
     # Public PostHog project token (phc_...). This identifies the project to the
     # browser SDK; it is not a secret personal API key.
     posthog_project_token: str = "phc_s94Q4HVoFQHHZCXNvYYY84f9FKuDjGFKgwpBCWjwGr2K"
-    posthog_host: str = "https://us.i.posthog.com"
+    posthog_host: str = "https://eu.i.posthog.com"
 
 
 @lru_cache(maxsize=1)

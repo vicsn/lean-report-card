@@ -9,4 +9,4 @@ notification_email = "ops@example.com"
 
 # Optional override for the compiled-in public PostHog project token.
 # posthog_project_token = "phc_..."
-# posthog_host          = "https://us.i.posthog.com"
+# posthog_host          = "https://eu.i.posthog.com"

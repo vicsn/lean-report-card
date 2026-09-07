@@ -1,11 +1,13 @@
-const OWNER_REPO = /^[A-Za-z0-9_.-]+$/;
 const PAGE_SIZE = 20;
 
 let reportIndex = [];
 let pendingSubmission = null;
 
-function parseGithubRepository(value) {
-  let raw = value.trim();
+function parseRepositoryUrl(value) {
+  let raw = String(value || "").trim();
+  if (!raw) {
+    throw new Error("Enter an http or https URL.");
+  }
   if (raw.startsWith("github.com/")) raw = `https://${raw}`;
   if ((raw.match(/\//g) || []).length === 1 && !raw.includes("://")) {
     raw = `https://github.com/${raw}`;
@@ -14,24 +16,34 @@ function parseGithubRepository(value) {
   try {
     parsed = new URL(raw);
   } catch {
-    throw new Error("Enter a GitHub repository URL.");
+    throw new Error("Enter a well-formed http or https URL.");
   }
-  if (parsed.protocol !== "https:" || parsed.hostname !== "github.com") {
-    throw new Error("Only public HTTPS GitHub repositories are accepted.");
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    throw new Error("Only http and https URLs are accepted.");
   }
-  if (parsed.username || parsed.password || parsed.port) {
-    throw new Error("Repository URLs may not contain credentials or ports.");
+  if (!parsed.hostname) {
+    throw new Error("The URL must include a host.");
+  }
+  if (parsed.username || parsed.password) {
+    throw new Error("Repository URLs may not contain credentials.");
   }
   const parts = parsed.pathname.split("/").filter(Boolean);
-  if (parts.length !== 2) {
-    throw new Error("Use a repository URL of the form github.com/owner/name.");
+  const normalizedPath = parts
+    .map((part, index) => (index === parts.length - 1 ? part.replace(/\.git$/, "") : part))
+    .join("/");
+  const url = `${parsed.protocol}//${parsed.host}${normalizedPath ? `/${normalizedPath}` : ""}${parsed.search}`;
+  if (parsed.hostname === "github.com" && parts.length >= 2) {
+    const owner = parts[0];
+    const name = parts[1].replace(/\.git$/, "");
+    return { owner, name, slug: `${owner}/${name}`, url };
   }
-  const owner = parts[0];
-  const name = parts[1].replace(/\.git$/, "");
-  if (!OWNER_REPO.test(owner) || !OWNER_REPO.test(name)) {
-    throw new Error("The GitHub owner or repository name is invalid.");
-  }
-  return { owner, name, slug: `${owner}/${name}`, url: `https://github.com/${owner}/${name}` };
+  const name = parts.length ? parts[parts.length - 1].replace(/\.git$/, "") : parsed.hostname;
+  return {
+    owner: parsed.hostname,
+    name,
+    slug: normalizedPath ? `${parsed.hostname}/${normalizedPath}` : parsed.hostname,
+    url,
+  };
 }
 
 function capture(event, properties) {
@@ -80,12 +92,49 @@ function formatDate(iso) {
   return iso.slice(0, 10);
 }
 
+const SORTS = new Set(["score", "date", "name"]);
+
+function currentSort() {
+  const value = params().get("sort") || "score";
+  return SORTS.has(value) ? value : "score";
+}
+
+function listHref(page, sort) {
+  const query = new URLSearchParams();
+  if (page > 1) query.set("page", String(page));
+  if (sort && sort !== "score") query.set("sort", sort);
+  const encoded = query.toString();
+  return encoded ? `?${encoded}` : "./";
+}
+
+function compareEntries(left, right, sort) {
+  const byName = () => left.slug.localeCompare(right.slug, undefined, { sensitivity: "base" });
+  if (sort === "name") return byName();
+  if (sort === "date") {
+    const leftDate = left.updated_at || "";
+    const rightDate = right.updated_at || "";
+    if (leftDate !== rightDate) return rightDate.localeCompare(leftDate);
+    return byName();
+  }
+  const leftMissing = left.score == null;
+  const rightMissing = right.score == null;
+  if (leftMissing !== rightMissing) return leftMissing ? 1 : -1;
+  if (left.score !== right.score) return (right.score || 0) - (left.score || 0);
+  return byName();
+}
+
+function sortedReports(sort) {
+  return reportIndex.slice().sort((left, right) => compareEntries(left, right, sort));
+}
+
 function renderList(page) {
-  const total = reportIndex.length;
+  const sort = currentSort();
+  const ordered = sortedReports(sort);
+  const total = ordered.length;
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const current = Math.min(Math.max(page, 1), pageCount);
   const start = (current - 1) * PAGE_SIZE;
-  const slice = reportIndex.slice(start, start + PAGE_SIZE);
+  const slice = ordered.slice(start, start + PAGE_SIZE);
   const list = document.getElementById("repo-list");
   list.innerHTML = slice
     .map((entry) => {
@@ -102,15 +151,19 @@ function renderList(page) {
 
   const nav = document.getElementById("pagination");
   const links = [];
-  if (current > 1) links.push(`<a href="?page=${current - 1}">Previous</a>`);
+  if (current > 1) links.push(`<a href="${listHref(current - 1, sort)}">Previous</a>`);
   for (let n = 1; n <= pageCount; n += 1) {
     links.push(
-      n === current ? `<span class="current" aria-current="page">${n}</span>` : `<a href="?page=${n}">${n}</a>`,
+      n === current
+        ? `<span class="current" aria-current="page">${n}</span>`
+        : `<a href="${listHref(n, sort)}">${n}</a>`,
     );
   }
-  if (current < pageCount) links.push(`<a href="?page=${current + 1}">Next</a>`);
+  if (current < pageCount) links.push(`<a href="${listHref(current + 1, sort)}">Next</a>`);
   nav.innerHTML = links.join("");
   document.getElementById("report-count").textContent = String(total);
+  const sortBy = document.getElementById("sort-by");
+  if (sortBy) sortBy.value = sort;
 }
 
 function renderDetails(details) {
@@ -239,9 +292,9 @@ async function onScoreSubmit(event) {
   setHidden(document.getElementById("rescan-confirm"), true);
   let parsed;
   try {
-    parsed = parseGithubRepository(String(data.get("repository") || ""));
+    parsed = parseRepositoryUrl(String(data.get("repository") || ""));
   } catch (error) {
-    showSubmitError(error instanceof Error ? error.message : "Enter a GitHub repository URL.");
+    showSubmitError(error instanceof Error ? error.message : "Enter a well-formed http or https URL.");
     return;
   }
   const email = String(data.get("email") || "").trim();
@@ -282,6 +335,9 @@ async function boot() {
 }
 
 document.getElementById("score-form").addEventListener("submit", onScoreSubmit);
+document.getElementById("sort-by").addEventListener("change", (event) => {
+  window.location.assign(listHref(1, event.target.value));
+});
 boot().catch((error) => {
   showResult(`<div class="alert error">${escapeHtml(error.message)}</div>`);
 });

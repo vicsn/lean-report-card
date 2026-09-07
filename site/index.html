@@ -89,8 +89,8 @@
       <form id="score-form">
         <h2 id="submit-title">Submit another repository and contact info for analysis</h2>
         <div class="submit-row">
-          <label class="sr-only" for="repository">GitHub repository URL</label>
-          <input id="repository" name="repository" type="text" required placeholder="https://github.com/owner/repository" autocomplete="url">
+          <label class="sr-only" for="repository">Repository URL</label>
+          <input id="repository" name="repository" type="text" required placeholder="https://example.com/owner/repository" autocomplete="url">
           <label class="sr-only" for="email">Contact email</label>
           <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
           <button type="submit">Submit</button>
@@ -106,6 +106,14 @@
     </section>
 
     <section id="registry" class="registry" aria-label="Published reports">
+      <div class="list-toolbar">
+        <label for="sort-by">Sort by</label>
+        <select id="sort-by">
+          <option value="score">Score</option>
+          <option value="date">Date added</option>
+          <option value="name">Repository name</option>
+        </select>
+      </div>
       <div id="repo-list" class="repo-list"></div>
       <nav id="pagination" class="pagination" aria-label="Index pages"></nav>
     </section>

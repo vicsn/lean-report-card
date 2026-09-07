@@ -9,13 +9,12 @@ compatibility_date = "2026-09-01"
 directory = "./site"
 binding = "ASSETS"
 
-# FORM_FROM must be on a domain onboarded in Email Service > Email Sending.
-# FORM_TO must be a verified destination address until that domain is
-# onboarded; sends to verified destinations do not count against any quota.
+# FORM_FROM must be on a domain with Email Routing (or Email Sending) enabled.
+# FORM_TO is the notification mailbox and is deliberately not checked in: set
+# it as a Worker secret, and in .dev.vars for local runs. On the Workers Free
+# plan it must be a verified destination address in the account.
 [vars]
 FORM_FROM = "info@leanreportcard.com"
-FORM_TO = "forms@example.com"
 
 [[send_email]]
 name = "SEND_EMAIL"
-allowed_destination_addresses = ["forms@example.com"]

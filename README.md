@@ -119,14 +119,16 @@ Run `make tooling` in a networked checkout to initialize the pinned revisions. T
 
 The site has no analytics or tracking code. The score and contact forms post JSON to `/api/score` and `/api/contact`, handled by the Worker in `worker/`. Each handler validates the fields and emails the submission through the `SEND_EMAIL` binding (Cloudflare Email Service).
 
-The site itself ships as [Workers static assets](https://developers.cloudflare.com/workers/static-assets/): a request matching a file under `site/` is served without invoking the Worker, and anything else falls through to `worker/index.js`, which owns `/api/*` and defers unknown paths back to the asset handler. Because the default `html_handling` strips the extension, `/about.html` answers with a 307 to `/about`.
+The site itself ships as [Workers static assets](https://developers.cloudflare.com/workers/static-assets/): a request matching a file under `site/` is served without invoking the Worker, and anything else falls through to `worker/index.js`, which owns `/api/*` and defers unknown paths back to the asset handler. Because the default `html_handling` strips the extension, pages live at `/about` rather than `/about.html`; the old `.html` URLs still answer with a 307 to the new ones.
 
-`wrangler.toml` declares the binding and two variables:
+Two addresses configure delivery:
 
-- `FORM_FROM` — sender address on a domain onboarded under Email Service → Email Sending;
-- `FORM_TO` — the notification mailbox. Until that domain is onboarded this must be a **verified destination address**; sends to verified destinations are free and do not count against any quota.
+- `FORM_FROM` — sender address, in `wrangler.toml`. It must be on a domain with Email Routing or Email Sending enabled;
+- `FORM_TO` — the notification mailbox. Not checked in: set it as a Worker secret, and in a local `.dev.vars` (git-ignored) for `wrangler dev`.
 
 No API token is needed, since the binding authenticates implicitly. The forms only show their success message after the Worker returns 2xx.
+
+Outbound Email Sending to arbitrary recipients requires the Workers Paid plan, but sends to a **verified destination address** in your own account are free on every plan and exempt from the quota — which is all this Worker does. On the Workers Free plan, `FORM_TO` must therefore be an address verified under Email Routing, and `FORM_FROM` must be on one of your routing domains.
 
 ## Development
 

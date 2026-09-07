@@ -17,11 +17,32 @@ try:
 except ModuleNotFoundError:
     from lean_report_card.scoring import score_report
 
-WORKSPACE = Path("/workspace")
+WORKSPACE = Path(os.getenv("ANALYZE_WORKSPACE", "/workspace"))
 REPOSITORY = WORKSPACE / "repository"
-OUTPUT = Path("/output/report.json")
+OUTPUT = Path(os.getenv("ANALYZE_OUTPUT", "/output/report.json"))
 MAX_LOG_BYTES = int(os.getenv("MAX_LOG_BYTES", "1000000"))
 PROFILE = os.getenv("PROFILE", "small")
+
+
+def configure_paths() -> None:
+    global WORKSPACE, REPOSITORY, OUTPUT, MAX_LOG_BYTES, PROFILE
+    WORKSPACE = Path(os.getenv("ANALYZE_WORKSPACE", "/workspace"))
+    REPOSITORY = WORKSPACE / "repository"
+    OUTPUT = Path(os.getenv("ANALYZE_OUTPUT", "/output/report.json"))
+    MAX_LOG_BYTES = int(os.getenv("MAX_LOG_BYTES", "1000000"))
+    PROFILE = os.getenv("PROFILE", "small")
+
+
+def resolve_project_root(repo: Path) -> Path:
+    raw = os.getenv("ANALYZE_PROJECT_PATH", "").strip()
+    if not raw or raw in {".", "./"}:
+        return repo
+    candidate = (repo / raw).resolve()
+    try:
+        candidate.relative_to(repo.resolve())
+    except ValueError:
+        return repo
+    return candidate if candidate.is_dir() else repo
 
 EXCLUDED_DIRECTORIES = {
     ".git",
@@ -84,7 +105,12 @@ def run_command(
         status = "failed"
         try:
             returncode = process.wait(timeout=timeout_seconds)
-            status = "passed" if returncode == 0 else "failed"
+            if returncode == 0:
+                status = "passed"
+            elif returncode in {137, -9, 9}:
+                status = "oom_killed"
+            else:
+                status = "failed"
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGKILL)
             returncode = process.wait()
@@ -247,22 +273,29 @@ def find_case_insensitive(root: Path, names: set[str]) -> bool:
         return False
 
 
-def file_facts(root: Path) -> dict[str, Any]:
+def file_facts(root: Path, repo_root: Path | None = None) -> dict[str, Any]:
+    repo_root = repo_root or root
     toolchain_path = root / "lean-toolchain"
     toolchain = None
     if toolchain_path.is_file():
         lines = toolchain_path.read_text(encoding="utf-8", errors="replace").strip().splitlines()
         toolchain = lines[0] if lines else None
+
+    def listed(*names: str) -> bool:
+        wanted = set(names)
+        return find_case_insensitive(root, wanted) or find_case_insensitive(repo_root, wanted)
+
     return {
         "lean_toolchain": toolchain,
         "lake_manifest": (root / "lake-manifest.json").is_file(),
         "lakefile": (root / "lakefile.lean").is_file() or (root / "lakefile.toml").is_file(),
-        "readme": find_case_insensitive(root, {"README", "README.md", "README.rst"}),
-        "license": find_case_insensitive(root, {"LICENSE", "LICENSE.md", "COPYING"}),
-        "contributing": find_case_insensitive(root, {"CONTRIBUTING", "CONTRIBUTING.md"}),
-        "security": find_case_insensitive(root, {"SECURITY", "SECURITY.md"}),
-        "changelog": find_case_insensitive(root, {"CHANGELOG", "CHANGELOG.md", "CHANGES.md"}),
-        "ci": (root / ".github" / "workflows").is_dir(),
+        "readme": listed("README", "README.md", "README.rst"),
+        "license": listed("LICENSE", "LICENSE.md", "COPYING"),
+        "contributing": listed("CONTRIBUTING", "CONTRIBUTING.md"),
+        "security": listed("SECURITY", "SECURITY.md"),
+        "changelog": listed("CHANGELOG", "CHANGELOG.md", "CHANGES.md"),
+        "ci": (root / ".github" / "workflows").is_dir()
+        or (repo_root / ".github" / "workflows").is_dir(),
     }
 
 
@@ -287,6 +320,7 @@ def write_report(payload: dict[str, Any]) -> None:
 
 
 def main() -> int:
+    configure_paths()
     repo_url = os.environ["REPO_URL"]
     git_sha = os.environ["GIT_SHA"]
     analyzer_version = os.getenv("ANALYZER_VERSION", "dev")
@@ -345,8 +379,9 @@ def main() -> int:
         timeout_seconds=clone_timeout,
         env=env,
     )
-    files = file_facts(REPOSITORY)
-    static = scan_sources(REPOSITORY)
+    project_root = resolve_project_root(REPOSITORY)
+    files = file_facts(project_root, repo_root=REPOSITORY)
+    static = scan_sources(project_root)
 
     commands: dict[str, dict[str, Any]] = {}
     cache_result = command_result_unavailable(["lake", "exe", "cache", "get"], "Not attempted.")
@@ -373,12 +408,15 @@ def main() -> int:
         install_timeout = 1800 if PROFILE == "big" else 900
         install = run_command(
             ["elan", "toolchain", "install", toolchain],
-            cwd=REPOSITORY,
+            cwd=project_root,
             timeout_seconds=install_timeout,
             env=env,
         )
+        install_output = str(install.get("output") or "")
+        if install["status"] != "passed" and "already installed" in install_output.lower():
+            install["status"] = "passed"
         if install["status"] == "passed":
-            manifest_path = REPOSITORY / "lake-manifest.json"
+            manifest_path = project_root / "lake-manifest.json"
             manifest = (
                 manifest_path.read_text(encoding="utf-8", errors="replace")
                 if manifest_path.is_file()
@@ -387,14 +425,14 @@ def main() -> int:
             if '"mathlib"' in manifest or "mathlib4" in manifest:
                 cache_result = run_command(
                     ["lake", "exe", "cache", "get"],
-                    cwd=REPOSITORY,
+                    cwd=project_root,
                     timeout_seconds=1800 if PROFILE == "big" else 600,
                     env=env,
                 )
             build_timeout = 5400 if PROFILE == "big" else 1200
             commands["build"] = run_command(
                 ["lake", "build"],
-                cwd=REPOSITORY,
+                cwd=project_root,
                 timeout_seconds=build_timeout,
                 env=env,
             )
@@ -402,10 +440,10 @@ def main() -> int:
             commands["build"]["warning_count"] = len(
                 re.findall(r"(?im)^.*\bwarning:", build_output)
             )
-            if commands["build"]["status"] == "passed" and configured_driver(REPOSITORY, "test"):
+            if commands["build"]["status"] == "passed" and configured_driver(project_root, "test"):
                 commands["test"] = run_command(
                     ["lake", "test"],
-                    cwd=REPOSITORY,
+                    cwd=project_root,
                     timeout_seconds=1200 if PROFILE == "big" else 300,
                     env=env,
                 )
@@ -416,10 +454,10 @@ def main() -> int:
                     else "Build did not pass."
                 )
                 commands["test"] = command_result_unavailable(["lake", "test"], reason)
-            if commands["build"]["status"] == "passed" and configured_driver(REPOSITORY, "lint"):
+            if commands["build"]["status"] == "passed" and configured_driver(project_root, "lint"):
                 commands["lint"] = run_command(
                     ["lake", "lint"],
-                    cwd=REPOSITORY,
+                    cwd=project_root,
                     timeout_seconds=1200 if PROFILE == "big" else 300,
                     env=env,
                 )
@@ -453,12 +491,21 @@ def main() -> int:
         "logs_truncated": logs_truncated,
     }
     scoring = score_report(facts)
+    oom = any(
+        str(result.get("status")) == "oom_killed"
+        for result in [install, cache_result, *commands.values()]
+    )
+    project_path = os.getenv("ANALYZE_PROJECT_PATH", "").strip() or None
     payload = {
         "schema_version": 1,
-        "analysis_status": "completed",
+        "analysis_status": "oom_killed" if oom else "completed",
         "analyzer_version": analyzer_version,
         "profile": PROFILE,
-        "repository": {"url": repo_url, "commit_sha": git_sha},
+        "repository": {
+            "url": repo_url,
+            "commit_sha": git_sha,
+            "project_path": project_path,
+        },
         "clone": clone,
         "checkout": checkout,
         "facts": facts,

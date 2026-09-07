@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "slug": "ehrlich-b/sequential-products-lean",
+  "repository": {
+    "url": "https://github.com/ehrlich-b/sequential-products-lean",
+    "owner": "ehrlich-b",
+    "name": "sequential-products-lean",
+    "commit_sha": "9c6d92f5fc222d9d1646ae6044dcec053900ca83",
+    "project_path": null
+  },
+  "status": "succeeded",
+  "analyzer_version": "0.1.0",
+  "analyzed_at": "2026-09-07T02:55:44Z",
+  "score": 65,
+  "grade": "D",
+  "checks": [
+    {
+      "category": "build",
+      "details": {
+        "duration_seconds": 415,
+        "returncode": 0
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
+    },
+    {
+      "category": "verification",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "admit_count": 0,
+        "axiom_declaration_count": 0,
+        "native_decide_count": 0,
+        "sorry_count": 15
+      },
+      "id": "source-trust-signals",
+      "maximum": 15,
+      "score": 5,
+      "status": "warning",
+      "summary": "Potential trust exceptions need review; source scanning is not an axiom audit.",
+      "title": "Source-level trust signals"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.33.0"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_doc_ratio": 0.7,
+        "module_doc_ratio": 0.94
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 9,
+      "status": "passed",
+      "summary": "README, module docs and declaration docs are estimated from source text.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "architecture",
+      "details": {
+        "average_direct_imports": 3.45,
+        "max_direct_imports": 139
+      },
+      "id": "imports",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
+      "title": "Direct import footprint"
+    },
+    {
+      "category": "project",
+      "details": {
+        "test_file_count": 0,
+        "todo_count": 24
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 2,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
+    },
+    {
+      "category": "performance",
+      "details": {
+        "logs_truncated": false,
+        "warning_count": 1897
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 2,
+      "status": "warning",
+      "summary": "Build warnings and analyzer resource limits are visible in the report.",
+      "title": "Warnings and run diagnostics"
+    }
+  ],
+  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "facts": {
+    "files": {
+      "changelog": false,
+      "ci": false,
+      "contributing": false,
+      "lake_manifest": true,
+      "lakefile": true,
+      "lean_toolchain": "leanprover/lean4:v4.33.0",
+      "license": true,
+      "readme": true,
+      "security": false
+    },
+    "static": {
+      "admit_count": 0,
+      "average_direct_imports": 3.448087431693989,
+      "axiom_declaration_count": 0,
+      "declaration_count": 3054,
+      "declaration_doc_ratio": 0.7000654878847413,
+      "documented_declaration_count": 2138,
+      "lean_file_count": 183,
+      "line_count": 55891,
+      "max_direct_imports": 139,
+      "module_doc_ratio": 0.9398907103825137,
+      "native_decide_count": 0,
+      "sorry_count": 15,
+      "test_file_count": 0,
+      "todo_count": 24
+    },
+    "commands": {
+      "build": {
+        "command": [
+          "lake",
+          "build"
+        ],
+        "duration_seconds": 415,
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false,
+        "warning_count": 1897
+      },
+      "lint": {
+        "command": [
+          "lake",
+          "lint"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      },
+      "test": {
+        "command": [
+          "lake",
+          "test"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      }
+    },
+    "toolchain_install": {
+      "command": [
+        "elan",
+        "toolchain",
+        "install",
+        "leanprover/lean4:v4.33.0"
+      ],
+      "duration_seconds": 0,
+      "returncode": 1,
+      "status": "passed",
+      "truncated": false
+    },
+    "mathlib_cache": {
+      "command": [
+        "lake",
+        "exe",
+        "cache",
+        "get"
+      ],
+      "duration_seconds": 133,
+      "returncode": 0,
+      "status": "passed",
+      "truncated": false
+    },
+    "logs_truncated": false
+  },
+  "error": null,
+  "palomar": {
+    "ids": [
+      "PALOMAR-2026-08-22-000006",
+      "PALOMAR-2026-08-21-000009",
+      "PALOMAR-2026-08-21-000001"
+    ],
+    "title": "ehrlich-b/sequential-products-lean",
+    "published_at": "2026-08-22T16:18:09Z"
+  },
+  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+}

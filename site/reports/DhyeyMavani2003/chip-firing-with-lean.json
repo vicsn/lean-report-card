@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "slug": "DhyeyMavani2003/chip-firing-with-lean",
+  "repository": {
+    "url": "https://github.com/DhyeyMavani2003/chip-firing-with-lean",
+    "owner": "DhyeyMavani2003",
+    "name": "chip-firing-with-lean",
+    "commit_sha": "5b422d855c02af60591121ba7c11b5e8242542b8",
+    "project_path": null
+  },
+  "status": "succeeded",
+  "analyzer_version": "0.1.0",
+  "analyzed_at": "2026-09-07T02:27:53Z",
+  "score": 78,
+  "grade": "C",
+  "checks": [
+    {
+      "category": "build",
+      "details": {
+        "duration_seconds": 30,
+        "returncode": 0
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
+    },
+    {
+      "category": "verification",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "admit_count": 0,
+        "axiom_declaration_count": 0,
+        "native_decide_count": 0,
+        "sorry_count": 2
+      },
+      "id": "source-trust-signals",
+      "maximum": 15,
+      "score": 13,
+      "status": "warning",
+      "summary": "Potential trust exceptions need review; source scanning is not an axiom audit.",
+      "title": "Source-level trust signals"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.34.0-rc2"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_doc_ratio": 0.717,
+        "module_doc_ratio": 0.667
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 8,
+      "status": "passed",
+      "summary": "README, module docs and declaration docs are estimated from source text.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "architecture",
+      "details": {
+        "average_direct_imports": 2.83,
+        "max_direct_imports": 8
+      },
+      "id": "imports",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
+      "title": "Direct import footprint"
+    },
+    {
+      "category": "project",
+      "details": {
+        "test_file_count": 0,
+        "todo_count": 0
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 5,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
+    },
+    {
+      "category": "performance",
+      "details": {
+        "logs_truncated": false,
+        "warning_count": 0
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "Build warnings and analyzer resource limits are visible in the report.",
+      "title": "Warnings and run diagnostics"
+    }
+  ],
+  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "facts": {
+    "files": {
+      "changelog": false,
+      "ci": true,
+      "contributing": false,
+      "lake_manifest": true,
+      "lakefile": true,
+      "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+      "license": true,
+      "readme": true,
+      "security": false
+    },
+    "static": {
+      "admit_count": 0,
+      "average_direct_imports": 2.8333333333333335,
+      "axiom_declaration_count": 0,
+      "declaration_count": 360,
+      "declaration_doc_ratio": 0.7166666666666667,
+      "documented_declaration_count": 258,
+      "lean_file_count": 12,
+      "line_count": 5711,
+      "max_direct_imports": 8,
+      "module_doc_ratio": 0.6666666666666666,
+      "native_decide_count": 0,
+      "sorry_count": 2,
+      "test_file_count": 0,
+      "todo_count": 0
+    },
+    "commands": {
+      "build": {
+        "command": [
+          "lake",
+          "build"
+        ],
+        "duration_seconds": 30,
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false,
+        "warning_count": 0
+      },
+      "lint": {
+        "command": [
+          "lake",
+          "lint"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      },
+      "test": {
+        "command": [
+          "lake",
+          "test"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      }
+    },
+    "toolchain_install": {
+      "command": [
+        "elan",
+        "toolchain",
+        "install",
+        "leanprover/lean4:v4.34.0-rc2"
+      ],
+      "duration_seconds": 57,
+      "returncode": 0,
+      "status": "passed",
+      "truncated": false
+    },
+    "mathlib_cache": {
+      "command": [
+        "lake",
+        "exe",
+        "cache",
+        "get"
+      ],
+      "duration_seconds": 152,
+      "returncode": 0,
+      "status": "passed",
+      "truncated": false
+    },
+    "logs_truncated": false
+  },
+  "error": null,
+  "palomar": {
+    "ids": [
+      "PALOMAR-2026-09-02-000013"
+    ],
+    "title": "Chip-Firing with Lean 4",
+    "published_at": "2026-09-02T23:45:21Z"
+  },
+  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+}

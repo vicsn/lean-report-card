@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "slug": "Arthur742Ramos/SpinorLean",
+  "repository": {
+    "url": "https://github.com/Arthur742Ramos/SpinorLean",
+    "owner": "Arthur742Ramos",
+    "name": "SpinorLean",
+    "commit_sha": "5c890f3466da7433a133eb45c5372a55fbdab1da",
+    "project_path": null
+  },
+  "status": "succeeded",
+  "analyzer_version": "0.1.0",
+  "analyzed_at": "2026-09-06T23:04:21Z",
+  "score": 77,
+  "grade": "C",
+  "checks": [
+    {
+      "category": "build",
+      "details": {
+        "duration_seconds": 649,
+        "returncode": 0
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
+    },
+    {
+      "category": "verification",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "admit_count": 0,
+        "axiom_declaration_count": 0,
+        "native_decide_count": 0,
+        "sorry_count": 1
+      },
+      "id": "source-trust-signals",
+      "maximum": 15,
+      "score": 14,
+      "status": "warning",
+      "summary": "Potential trust exceptions need review; source scanning is not an axiom audit.",
+      "title": "Source-level trust signals"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.30.0-rc1"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_doc_ratio": 0.697,
+        "module_doc_ratio": 0.9
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 9,
+      "status": "passed",
+      "summary": "README, module docs and declaration docs are estimated from source text.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "architecture",
+      "details": {
+        "average_direct_imports": 3.97,
+        "max_direct_imports": 26
+      },
+      "id": "imports",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
+      "title": "Direct import footprint"
+    },
+    {
+      "category": "project",
+      "details": {
+        "test_file_count": 0,
+        "todo_count": 0
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 5,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
+    },
+    {
+      "category": "performance",
+      "details": {
+        "logs_truncated": false,
+        "warning_count": 217
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 2,
+      "status": "warning",
+      "summary": "Build warnings and analyzer resource limits are visible in the report.",
+      "title": "Warnings and run diagnostics"
+    }
+  ],
+  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "facts": {
+    "files": {
+      "changelog": false,
+      "ci": true,
+      "contributing": false,
+      "lake_manifest": true,
+      "lakefile": true,
+      "lean_toolchain": "leanprover/lean4:v4.30.0-rc1",
+      "license": true,
+      "readme": true,
+      "security": false
+    },
+    "static": {
+      "admit_count": 0,
+      "average_direct_imports": 3.966666666666667,
+      "axiom_declaration_count": 0,
+      "declaration_count": 1490,
+      "declaration_doc_ratio": 0.6973154362416107,
+      "documented_declaration_count": 1039,
+      "lean_file_count": 30,
+      "line_count": 23379,
+      "max_direct_imports": 26,
+      "module_doc_ratio": 0.9,
+      "native_decide_count": 0,
+      "sorry_count": 1,
+      "test_file_count": 0,
+      "todo_count": 0
+    },
+    "commands": {
+      "build": {
+        "command": [
+          "lake",
+          "build"
+        ],
+        "duration_seconds": 649,
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false,
+        "warning_count": 217
+      },
+      "lint": {
+        "command": [
+          "lake",
+          "lint"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      },
+      "test": {
+        "command": [
+          "lake",
+          "test"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      }
+    },
+    "toolchain_install": {
+      "command": [
+        "elan",
+        "toolchain",
+        "install",
+        "leanprover/lean4:v4.30.0-rc1"
+      ],
+      "duration_seconds": 52,
+      "returncode": 0,
+      "status": "passed",
+      "truncated": false
+    },
+    "mathlib_cache": {
+      "command": [
+        "lake",
+        "exe",
+        "cache",
+        "get"
+      ],
+      "duration_seconds": 130,
+      "returncode": 0,
+      "status": "passed",
+      "truncated": false
+    },
+    "logs_truncated": false
+  },
+  "error": null,
+  "palomar": {
+    "ids": [
+      "PALOMAR-2026-08-27-000017"
+    ],
+    "title": "Arthur742Ramos/SpinorLean",
+    "published_at": "2026-08-27T21:07:51Z"
+  },
+  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+}

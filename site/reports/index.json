@@ -1,906 +1,597 @@
 {
   "schema_version": 1,
-  "generated": "sample-index",
+  "generated": "2026-09-07T05:36:09Z",
+  "source": "palomar-registry",
   "reports": [
     {
-      "slug": "proof-garden/linear-types",
-      "file": null,
-      "grade": "F",
-      "score": 53,
-      "updated_at": "2026-08-19T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/proof-garden/linear-types"
-    },
-    {
-      "slug": "math-inc/concurrent-gc",
-      "file": null,
-      "grade": "D",
-      "score": 63,
-      "updated_at": "2026-08-18T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/math-inc/concurrent-gc"
-    },
-    {
-      "slug": "FormalLand/iris-examples",
-      "file": null,
-      "grade": "C",
-      "score": 68,
-      "updated_at": "2026-08-17T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/FormalLand/iris-examples"
-    },
-    {
-      "slug": "leanprover-community/separation-logic",
-      "file": null,
-      "grade": "C",
-      "score": 70,
-      "updated_at": "2026-08-16T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/leanprover-community/separation-logic"
-    },
-    {
-      "slug": "open-tactics/rust-belt-notes",
-      "file": null,
-      "grade": "C",
-      "score": 77,
-      "updated_at": "2026-08-15T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/open-tactics/rust-belt-notes"
-    },
-    {
-      "slug": "quietly-proved/wasm-semantics",
-      "file": null,
-      "grade": "B",
-      "score": 81,
-      "updated_at": "2026-08-14T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/quietly-proved/wasm-semantics"
-    },
-    {
-      "slug": "sideline-math/compcert-bridge",
-      "file": null,
-      "grade": "B",
-      "score": 83,
-      "updated_at": "2026-08-13T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/sideline-math/compcert-bridge"
-    },
-    {
-      "slug": "tau-formal/capability-model",
-      "file": null,
-      "grade": "B",
-      "score": 89,
-      "updated_at": "2026-08-12T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/tau-formal/capability-model"
-    },
-    {
-      "slug": "proof-garden/seL4-lemmas",
-      "file": null,
-      "grade": "A",
-      "score": 91,
-      "updated_at": "2026-08-11T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/proof-garden/seL4-lemmas"
-    },
-    {
-      "slug": "math-inc/file-systems",
-      "file": null,
-      "grade": "A",
-      "score": 95,
-      "updated_at": "2026-08-10T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/math-inc/file-systems"
-    },
-    {
-      "slug": "FormalLand/raft-spec",
-      "file": null,
-      "grade": "F",
-      "score": 55,
-      "updated_at": "2026-08-09T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/FormalLand/raft-spec"
-    },
-    {
-      "slug": "leanprover-community/byzantine-broadcast",
-      "file": null,
-      "grade": "D",
-      "score": 62,
-      "updated_at": "2026-08-08T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/leanprover-community/byzantine-broadcast"
-    },
-    {
-      "slug": "open-tactics/consensus-safety",
-      "file": null,
-      "grade": "C",
-      "score": 67,
-      "updated_at": "2026-08-07T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/open-tactics/consensus-safety"
-    },
-    {
-      "slug": "quietly-proved/merkle-trees",
-      "file": null,
-      "grade": "C",
-      "score": 72,
-      "updated_at": "2026-08-06T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/quietly-proved/merkle-trees"
-    },
-    {
-      "slug": "sideline-math/fri-soundness",
-      "file": null,
-      "grade": "C",
-      "score": 76,
-      "updated_at": "2026-08-05T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/sideline-math/fri-soundness"
-    },
-    {
-      "slug": "tau-formal/plonk-verifier",
-      "file": null,
-      "grade": "B",
-      "score": 80,
-      "updated_at": "2026-08-04T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/tau-formal/plonk-verifier"
-    },
-    {
-      "slug": "proof-garden/zk-circuits",
-      "file": null,
+      "slug": "gdahia/DensityHalesJewett",
+      "file": "gdahia/DensityHalesJewett.json",
       "grade": "B",
       "score": 85,
-      "updated_at": "2026-08-03T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/proof-garden/zk-circuits"
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:03:00Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/gdahia/DensityHalesJewett"
     },
     {
-      "slug": "math-inc/mlwe-reductions",
-      "file": null,
-      "grade": "B",
-      "score": 88,
-      "updated_at": "2026-08-02T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/math-inc/mlwe-reductions"
-    },
-    {
-      "slug": "FormalLand/lattice-crypto",
-      "file": null,
-      "grade": "A",
-      "score": 90,
-      "updated_at": "2026-08-01T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/FormalLand/lattice-crypto"
-    },
-    {
-      "slug": "leanprover-community/error-correcting",
-      "file": null,
-      "grade": "A",
-      "score": 97,
-      "updated_at": "2026-07-31T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/leanprover-community/error-correcting"
-    },
-    {
-      "slug": "open-tactics/channel-capacities",
-      "file": null,
-      "grade": "F",
-      "score": 54,
-      "updated_at": "2026-07-30T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/open-tactics/channel-capacities"
-    },
-    {
-      "slug": "quietly-proved/quantum-information",
-      "file": null,
-      "grade": "D",
-      "score": 61,
-      "updated_at": "2026-07-29T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/quietly-proved/quantum-information"
-    },
-    {
-      "slug": "sideline-math/black-hole-mechanics",
-      "file": null,
-      "grade": "C",
-      "score": 69,
-      "updated_at": "2026-07-28T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/sideline-math/black-hole-mechanics"
-    },
-    {
-      "slug": "tau-formal/einstein-equations",
-      "file": null,
-      "grade": "C",
-      "score": 71,
-      "updated_at": "2026-07-27T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/tau-formal/einstein-equations"
-    },
-    {
-      "slug": "proof-garden/general-relativity",
-      "file": null,
-      "grade": "C",
-      "score": 75,
-      "updated_at": "2026-07-26T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/proof-garden/general-relativity"
-    },
-    {
-      "slug": "math-inc/yang-mills-notes",
-      "file": null,
-      "grade": "B",
-      "score": 82,
-      "updated_at": "2026-07-25T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/math-inc/yang-mills-notes"
-    },
-    {
-      "slug": "FormalLand/gauge-theory",
-      "file": null,
-      "grade": "B",
-      "score": 84,
-      "updated_at": "2026-07-24T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/FormalLand/gauge-theory"
-    },
-    {
-      "slug": "leanprover-community/aqft-axioms",
-      "file": null,
-      "grade": "B",
-      "score": 87,
-      "updated_at": "2026-07-23T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/leanprover-community/aqft-axioms"
-    },
-    {
-      "slug": "open-tactics/conformal-nets",
-      "file": null,
-      "grade": "A",
-      "score": 92,
-      "updated_at": "2026-07-22T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/open-tactics/conformal-nets"
-    },
-    {
-      "slug": "quietly-proved/vertex-algebras",
-      "file": null,
-      "grade": "A",
-      "score": 96,
-      "updated_at": "2026-07-21T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/quietly-proved/vertex-algebras"
-    },
-    {
-      "slug": "sideline-math/quantum-groups",
-      "file": null,
-      "grade": "F",
-      "score": 53,
-      "updated_at": "2026-07-20T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/sideline-math/quantum-groups"
-    },
-    {
-      "slug": "tau-formal/canonical-bases",
-      "file": null,
-      "grade": "D",
-      "score": 63,
-      "updated_at": "2026-07-19T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/tau-formal/canonical-bases"
-    },
-    {
-      "slug": "proof-garden/cluster-algebras",
-      "file": null,
-      "grade": "C",
-      "score": 68,
-      "updated_at": "2026-07-18T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/proof-garden/cluster-algebras"
-    },
-    {
-      "slug": "math-inc/tropical-geometry",
-      "file": null,
-      "grade": "C",
-      "score": 70,
-      "updated_at": "2026-07-17T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/math-inc/tropical-geometry"
-    },
-    {
-      "slug": "FormalLand/mirror-symmetry",
-      "file": null,
-      "grade": "C",
-      "score": 77,
-      "updated_at": "2026-07-16T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/FormalLand/mirror-symmetry"
-    },
-    {
-      "slug": "leanprover-community/floer-homology",
-      "file": null,
+      "slug": "gaearon/conway-refinement",
+      "file": "gaearon/conway-refinement.json",
       "grade": "B",
       "score": 81,
-      "updated_at": "2026-07-15T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/leanprover-community/floer-homology"
+      "status": "succeeded",
+      "updated_at": "2026-09-07T04:43:19Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/gaearon/conway-refinement"
     },
     {
-      "slug": "open-tactics/symplectic-geometry",
-      "file": null,
-      "grade": "B",
-      "score": 83,
-      "updated_at": "2026-07-14T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/open-tactics/symplectic-geometry"
-    },
-    {
-      "slug": "quietly-proved/equivariant-cohomology",
-      "file": null,
-      "grade": "B",
-      "score": 89,
-      "updated_at": "2026-07-13T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/quietly-proved/equivariant-cohomology"
-    },
-    {
-      "slug": "sideline-math/chromatic-height",
-      "file": null,
-      "grade": "A",
-      "score": 91,
-      "updated_at": "2026-07-12T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/sideline-math/chromatic-height"
-    },
-    {
-      "slug": "tau-formal/stable-homotopy",
-      "file": null,
-      "grade": "A",
-      "score": 95,
-      "updated_at": "2026-07-11T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/tau-formal/stable-homotopy"
-    },
-    {
-      "slug": "proof-garden/spectra-scratch",
-      "file": null,
-      "grade": "F",
-      "score": 55,
-      "updated_at": "2026-07-10T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/proof-garden/spectra-scratch"
-    },
-    {
-      "slug": "math-inc/infinity-categories",
-      "file": null,
-      "grade": "D",
-      "score": 62,
-      "updated_at": "2026-07-09T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/math-inc/infinity-categories"
-    },
-    {
-      "slug": "FormalLand/derived-categories",
-      "file": null,
-      "grade": "C",
-      "score": 67,
-      "updated_at": "2026-07-08T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/FormalLand/derived-categories"
-    },
-    {
-      "slug": "leanprover-community/crystalline-notes",
-      "file": null,
-      "grade": "C",
-      "score": 72,
-      "updated_at": "2026-07-07T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/leanprover-community/crystalline-notes"
-    },
-    {
-      "slug": "open-tactics/etale-cohomology",
-      "file": null,
-      "grade": "C",
-      "score": 76,
-      "updated_at": "2026-07-06T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/open-tactics/etale-cohomology"
-    },
-    {
-      "slug": "quietly-proved/langlands-dictionary",
-      "file": null,
+      "slug": "akopjan/NRR-AAK",
+      "file": "akopjan/NRR-AAK.json",
       "grade": "B",
       "score": 80,
-      "updated_at": "2026-07-05T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/quietly-proved/langlands-dictionary"
+      "status": "succeeded",
+      "updated_at": "2026-09-06T20:57:09Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/akopjan/NRR-AAK"
     },
     {
-      "slug": "sideline-math/automorphic-forms",
-      "file": null,
-      "grade": "B",
-      "score": 85,
-      "updated_at": "2026-07-04T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/sideline-math/automorphic-forms"
-    },
-    {
-      "slug": "tau-formal/l-functions",
-      "file": null,
-      "grade": "B",
-      "score": 88,
-      "updated_at": "2026-07-03T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/tau-formal/l-functions"
-    },
-    {
-      "slug": "proof-garden/bsd-lemmas",
-      "file": null,
-      "grade": "A",
-      "score": 90,
-      "updated_at": "2026-07-02T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/proof-garden/bsd-lemmas"
-    },
-    {
-      "slug": "math-inc/elliptic-curves",
-      "file": null,
-      "grade": "A",
-      "score": 97,
-      "updated_at": "2026-07-01T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/math-inc/elliptic-curves"
-    },
-    {
-      "slug": "FormalLand/modular-forms",
-      "file": null,
-      "grade": "F",
-      "score": 54,
-      "updated_at": "2026-06-30T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/FormalLand/modular-forms"
-    },
-    {
-      "slug": "leanprover-community/class-field-scratch",
-      "file": null,
-      "grade": "D",
-      "score": 61,
-      "updated_at": "2026-06-29T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/leanprover-community/class-field-scratch"
-    },
-    {
-      "slug": "open-tactics/algebraic-number-theory",
-      "file": null,
-      "grade": "C",
-      "score": 69,
-      "updated_at": "2026-06-28T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/open-tactics/algebraic-number-theory"
-    },
-    {
-      "slug": "quietly-proved/resultants",
-      "file": null,
-      "grade": "C",
-      "score": 71,
-      "updated_at": "2026-06-27T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/quietly-proved/resultants"
-    },
-    {
-      "slug": "sideline-math/grobner-bases",
-      "file": null,
-      "grade": "C",
-      "score": 75,
-      "updated_at": "2026-06-26T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/sideline-math/grobner-bases"
-    },
-    {
-      "slug": "tau-formal/knuth-bendix",
-      "file": null,
-      "grade": "B",
-      "score": 82,
-      "updated_at": "2026-06-25T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/tau-formal/knuth-bendix"
-    },
-    {
-      "slug": "proof-garden/sat-encoding",
-      "file": null,
-      "grade": "B",
-      "score": 84,
-      "updated_at": "2026-06-24T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/proof-garden/sat-encoding"
-    },
-    {
-      "slug": "math-inc/fft-correctness",
-      "file": null,
-      "grade": "B",
-      "score": 87,
-      "updated_at": "2026-06-23T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/math-inc/fft-correctness"
-    },
-    {
-      "slug": "FormalLand/navier-stokes-notes",
-      "file": null,
-      "grade": "A",
-      "score": 92,
-      "updated_at": "2026-06-22T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/FormalLand/navier-stokes-notes"
-    },
-    {
-      "slug": "leanprover-community/pde-weak-solutions",
-      "file": null,
-      "grade": "A",
-      "score": 96,
-      "updated_at": "2026-06-21T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/leanprover-community/pde-weak-solutions"
-    },
-    {
-      "slug": "open-tactics/brownian-motion",
-      "file": null,
-      "grade": "F",
-      "score": 53,
-      "updated_at": "2026-06-20T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/open-tactics/brownian-motion"
-    },
-    {
-      "slug": "quietly-proved/martingales",
-      "file": null,
-      "grade": "D",
-      "score": 63,
-      "updated_at": "2026-06-19T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/quietly-proved/martingales"
-    },
-    {
-      "slug": "sideline-math/probability-kernel",
-      "file": null,
-      "grade": "C",
-      "score": 68,
-      "updated_at": "2026-06-18T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/sideline-math/probability-kernel"
-    },
-    {
-      "slug": "tau-formal/float-interval",
-      "file": null,
-      "grade": "C",
-      "score": 70,
-      "updated_at": "2026-06-17T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/tau-formal/float-interval"
-    },
-    {
-      "slug": "proof-garden/bitvec-lemmas",
-      "file": null,
-      "grade": "C",
-      "score": 77,
-      "updated_at": "2026-06-16T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/proof-garden/bitvec-lemmas"
-    },
-    {
-      "slug": "math-inc/grind-bench",
-      "file": null,
-      "grade": "B",
-      "score": 81,
-      "updated_at": "2026-06-15T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/math-inc/grind-bench"
-    },
-    {
-      "slug": "FormalLand/omega-examples",
-      "file": null,
-      "grade": "B",
-      "score": 83,
-      "updated_at": "2026-06-14T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/FormalLand/omega-examples"
-    },
-    {
-      "slug": "leanprover-community/simp-hygiene",
-      "file": null,
-      "grade": "B",
-      "score": 89,
-      "updated_at": "2026-06-13T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/leanprover-community/simp-hygiene"
-    },
-    {
-      "slug": "open-tactics/aesop-extras",
-      "file": null,
-      "grade": "A",
-      "score": 91,
-      "updated_at": "2026-06-12T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/open-tactics/aesop-extras"
-    },
-    {
-      "slug": "quietly-proved/typeclass-search",
-      "file": null,
-      "grade": "A",
-      "score": 95,
-      "updated_at": "2026-06-11T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/quietly-proved/typeclass-search"
-    },
-    {
-      "slug": "sideline-math/topos-theory",
-      "file": null,
-      "grade": "F",
-      "score": 55,
-      "updated_at": "2026-06-10T12:00:00Z",
-      "summary": "Builds \u00b7 axiom declarations in core",
-      "url": "https://github.com/sideline-math/topos-theory"
-    },
-    {
-      "slug": "tau-formal/condensed-math",
-      "file": null,
-      "grade": "D",
-      "score": 62,
-      "updated_at": "2026-06-09T12:00:00Z",
-      "summary": "Reproducible manifest \u00b7 no contributing guide",
-      "url": "https://github.com/tau-formal/condensed-math"
-    },
-    {
-      "slug": "proof-garden/perfectoid-experiments",
-      "file": null,
-      "grade": "C",
-      "score": 67,
-      "updated_at": "2026-06-08T12:00:00Z",
-      "summary": "Tests present \u00b7 docs sparse",
-      "url": "https://github.com/proof-garden/perfectoid-experiments"
-    },
-    {
-      "slug": "math-inc/scheme-theory",
-      "file": null,
-      "grade": "C",
-      "score": 72,
-      "updated_at": "2026-06-07T12:00:00Z",
-      "summary": "Builds \u00b7 high direct-import fan-out",
-      "url": "https://github.com/math-inc/scheme-theory"
-    },
-    {
-      "slug": "FormalLand/algebraic-geometry-scratch",
-      "file": null,
-      "grade": "C",
-      "score": 76,
-      "updated_at": "2026-06-06T12:00:00Z",
-      "summary": "Partial build \u00b7 native_decide used",
-      "url": "https://github.com/FormalLand/algebraic-geometry-scratch"
-    },
-    {
-      "slug": "leanprover-community/representation-theory",
-      "file": null,
+      "slug": "AxiomMath/PrimeGapsLib",
+      "file": "AxiomMath/PrimeGapsLib.json",
       "grade": "B",
       "score": 80,
-      "updated_at": "2026-06-05T12:00:00Z",
-      "summary": "Builds \u00b7 CI green \u00b7 changelog missing",
-      "url": "https://github.com/leanprover-community/representation-theory"
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:30:25Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/AxiomMath/PrimeGapsLib"
     },
     {
-      "slug": "open-tactics/lie-algebras",
-      "file": null,
-      "grade": "B",
-      "score": 85,
-      "updated_at": "2026-06-04T12:00:00Z",
-      "summary": "Builds \u00b7 several sorry placeholders",
-      "url": "https://github.com/open-tactics/lie-algebras"
-    },
-    {
-      "slug": "quietly-proved/homological-algebra",
-      "file": null,
-      "grade": "B",
-      "score": 88,
-      "updated_at": "2026-06-03T12:00:00Z",
-      "summary": "Pinned toolchain \u00b7 README only",
-      "url": "https://github.com/quietly-proved/homological-algebra"
-    },
-    {
-      "slug": "sideline-math/simplex-category",
-      "file": null,
-      "grade": "A",
-      "score": 90,
-      "updated_at": "2026-06-02T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 lint unavailable",
-      "url": "https://github.com/sideline-math/simplex-category"
-    },
-    {
-      "slug": "tau-formal/category-theory-notes",
-      "file": null,
-      "grade": "A",
-      "score": 97,
-      "updated_at": "2026-06-01T12:00:00Z",
-      "summary": "Builds \u00b7 tests passing \u00b7 license present",
-      "url": "https://github.com/tau-formal/category-theory-notes"
-    },
-    {
-      "slug": "leanprover-community/lean4-samples",
-      "file": null,
+      "slug": "balancedscorpion/shifted-square-root-fourier-classification",
+      "file": "balancedscorpion/shifted-square-root-fourier-classification.json",
       "grade": "C",
-      "score": 71,
-      "updated_at": "2026-05-31T12:00:00Z",
-      "summary": "Samples \u00b7 mixed pinning",
-      "url": "https://github.com/leanprover-community/lean4-samples"
-    },
-    {
-      "slug": "leanprover-community/NNG4",
-      "file": null,
-      "grade": "A",
-      "score": 94,
-      "updated_at": "2026-05-30T12:00:00Z",
-      "summary": "Builds \u00b7 Natural Number Game",
-      "url": "https://github.com/leanprover-community/NNG4"
-    },
-    {
-      "slug": "dwrensha/compfiles",
-      "file": null,
-      "grade": "B",
       "score": 79,
-      "updated_at": "2026-05-29T12:00:00Z",
-      "summary": "Builds \u00b7 contest problems",
-      "url": "https://github.com/dwrensha/compfiles"
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:46:48Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/balancedscorpion/shifted-square-root-fourier-classification"
     },
     {
-      "slug": "nomeata/lean-wf-induct",
-      "file": null,
-      "grade": "A",
-      "score": 90,
-      "updated_at": "2026-05-28T12:00:00Z",
-      "summary": "Builds \u00b7 well-founded induction",
-      "url": "https://github.com/nomeata/lean-wf-induct"
+      "slug": "BochaoKong/classical-complex-wpt",
+      "file": "BochaoKong/classical-complex-wpt.json",
+      "grade": "C",
+      "score": 79,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:03:35Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/BochaoKong/classical-complex-wpt"
     },
     {
-      "slug": "PatrickMassot/verbose-lean4",
-      "file": null,
-      "grade": "B",
-      "score": 82,
-      "updated_at": "2026-05-27T12:00:00Z",
-      "summary": "Builds \u00b7 teaching tactics",
-      "url": "https://github.com/PatrickMassot/verbose-lean4"
+      "slug": "Arthur742Ramos/jacobian-conjecture-lean",
+      "file": "Arthur742Ramos/jacobian-conjecture-lean.json",
+      "grade": "C",
+      "score": 78,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T22:13:47Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/jacobian-conjecture-lean"
+    },
+    {
+      "slug": "benkeene/erdos266",
+      "file": "benkeene/erdos266.json",
+      "grade": "C",
+      "score": 78,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:58:36Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/benkeene/erdos266"
+    },
+    {
+      "slug": "DhyeyMavani2003/chip-firing-with-lean",
+      "file": "DhyeyMavani2003/chip-firing-with-lean.json",
+      "grade": "C",
+      "score": 78,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:27:53Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/DhyeyMavani2003/chip-firing-with-lean"
+    },
+    {
+      "slug": "dsm054/kasami_cyclic_additive",
+      "file": "dsm054/kasami_cyclic_additive.json",
+      "grade": "C",
+      "score": 78,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:38:27Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/dsm054/kasami_cyclic_additive"
+    },
+    {
+      "slug": "GrgAakash/factorial-hypergraph-auxiliary-erdos",
+      "file": "GrgAakash/factorial-hypergraph-auxiliary-erdos.json",
+      "grade": "C",
+      "score": 78,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:17:39Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/GrgAakash/factorial-hypergraph-auxiliary-erdos"
+    },
+    {
+      "slug": "Arthur742Ramos/HigherLambdaModel/palomar",
+      "file": "Arthur742Ramos/HigherLambdaModel__palomar.json",
+      "grade": "C",
+      "score": 77,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T22:06:48Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/HigherLambdaModel"
+    },
+    {
+      "slug": "Arthur742Ramos/SpinorLean",
+      "file": "Arthur742Ramos/SpinorLean.json",
+      "grade": "C",
+      "score": 77,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:04:21Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/SpinorLean"
+    },
+    {
+      "slug": "ashebson/kinin-lean",
+      "file": "ashebson/kinin-lean.json",
+      "grade": "C",
+      "score": 77,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:21:53Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/ashebson/kinin-lean"
+    },
+    {
+      "slug": "dcposch/jc2-lean/theorem-a",
+      "file": "dcposch/jc2-lean__theorem-a.json",
+      "grade": "C",
+      "score": 77,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:20:44Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/dcposch/jc2-lean"
+    },
+    {
+      "slug": "geoconuk/lean-misc-math",
+      "file": "geoconuk/lean-misc-math.json",
+      "grade": "C",
+      "score": 77,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:06:36Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/geoconuk/lean-misc-math"
+    },
+    {
+      "slug": "hkjtsgmc79-boop/colombo-odd-lean",
+      "file": "hkjtsgmc79-boop/colombo-odd-lean.json",
+      "grade": "C",
+      "score": 77,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:31:26Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/hkjtsgmc79-boop/colombo-odd-lean"
+    },
+    {
+      "slug": "adas1236/KaltonPeckPalomar",
+      "file": "adas1236/KaltonPeckPalomar.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T20:52:43Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/adas1236/KaltonPeckPalomar"
+    },
+    {
+      "slug": "Arthur742Ramos/GrushkoNeumannTheorem",
+      "file": "Arthur742Ramos/GrushkoNeumannTheorem.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T21:43:39Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/GrushkoNeumannTheorem"
+    },
+    {
+      "slug": "Arthur742Ramos/Metatheory/palomar",
+      "file": "Arthur742Ramos/Metatheory__palomar.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:01:03Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/Metatheory"
+    },
+    {
+      "slug": "CoolRmal/Besicovitchs-1-2",
+      "file": "CoolRmal/Besicovitchs-1-2.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T01:21:20Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/CoolRmal/Besicovitchs-1-2"
+    },
+    {
+      "slug": "dcposch/jc2-lean/gcd3-69-cube",
+      "file": "dcposch/jc2-lean__gcd3-69-cube.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T01:28:34Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/dcposch/jc2-lean"
+    },
+    {
+      "slug": "gexahedron/sabidussi-lean",
+      "file": "gexahedron/sabidussi-lean.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:10:04Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/gexahedron/sabidussi-lean"
+    },
+    {
+      "slug": "Arthur742Ramos/finite-graph-fundamental-group",
+      "file": "Arthur742Ramos/finite-graph-fundamental-group.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T21:37:21Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/finite-graph-fundamental-group"
+    },
+    {
+      "slug": "Arthur742Ramos/GraphCoveringTheory",
+      "file": "Arthur742Ramos/GraphCoveringTheory.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T21:40:35Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/GraphCoveringTheory"
+    },
+    {
+      "slug": "Arthur742Ramos/lean-poincare-formalization-plan/contracted-bianchi",
+      "file": "Arthur742Ramos/lean-poincare-formalization-plan__contracted-bianchi.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T22:20:12Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/lean-poincare-formalization-plan"
+    },
+    {
+      "slug": "Arthur742Ramos/MarshallHallTheorem",
+      "file": "Arthur742Ramos/MarshallHallTheorem.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T22:57:25Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/MarshallHallTheorem"
+    },
+    {
+      "slug": "Arthur742Ramos/TopologicalComputationalPaths",
+      "file": "Arthur742Ramos/TopologicalComputationalPaths.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:18:32Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/TopologicalComputationalPaths"
+    },
+    {
+      "slug": "BochaoKong/nullstellensatz",
+      "file": "BochaoKong/nullstellensatz.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:09:17Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/BochaoKong/nullstellensatz"
+    },
+    {
+      "slug": "guanyangwang/ktv-swap-lean-comparator",
+      "file": "guanyangwang/ktv-swap-lean-comparator.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:24:07Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/guanyangwang/ktv-swap-lean-comparator"
+    },
+    {
+      "slug": "Arthur742Ramos/HowsonIntersectionTheorem",
+      "file": "Arthur742Ramos/HowsonIntersectionTheorem.json",
+      "grade": "C",
+      "score": 74,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T22:09:33Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/HowsonIntersectionTheorem"
+    },
+    {
+      "slug": "BrandonMYates/csordas-comparator",
+      "file": "BrandonMYates/csordas-comparator.json",
+      "grade": "C",
+      "score": 74,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:16:24Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/BrandonMYates/csordas-comparator"
+    },
+    {
+      "slug": "BrandonMYates/yz-cubic-comparator",
+      "file": "BrandonMYates/yz-cubic-comparator.json",
+      "grade": "C",
+      "score": 74,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:29:09Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/BrandonMYates/yz-cubic-comparator"
+    },
+    {
+      "slug": "DiarHaidary/Nelson-Nguyen-conjecture-upper-bound-palomar",
+      "file": "DiarHaidary/Nelson-Nguyen-conjecture-upper-bound-palomar.json",
+      "grade": "C",
+      "score": 74,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:32:16Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/DiarHaidary/Nelson-Nguyen-conjecture-upper-bound-palomar"
     },
     {
       "slug": "google-deepmind/formal-conjectures",
-      "file": null,
-      "grade": "B",
-      "score": 85,
-      "updated_at": "2026-05-26T12:00:00Z",
-      "summary": "Builds \u00b7 conjecture corpus",
+      "file": "google-deepmind/formal-conjectures.json",
+      "grade": "C",
+      "score": 73,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:13:57Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
       "url": "https://github.com/google-deepmind/formal-conjectures"
     },
     {
-      "slug": "leanprover-community/flt-regular",
-      "file": null,
-      "grade": "B",
-      "score": 87,
-      "updated_at": "2026-05-25T12:00:00Z",
-      "summary": "Builds \u00b7 theorem development",
-      "url": "https://github.com/leanprover-community/flt-regular"
-    },
-    {
-      "slug": "leanprover-community/mathlib4-nightly-testing",
-      "file": null,
-      "grade": "C",
-      "score": 69,
-      "updated_at": "2026-05-24T12:00:00Z",
-      "summary": "Nightly \u00b7 intermittent build warnings",
-      "url": "https://github.com/leanprover-community/mathlib4-nightly-testing"
-    },
-    {
-      "slug": "leanprover/doc-gen4",
-      "file": null,
-      "grade": "B",
-      "score": 83,
-      "updated_at": "2026-05-23T12:00:00Z",
-      "summary": "Builds \u00b7 doc-gen for Lean 4",
-      "url": "https://github.com/leanprover/doc-gen4"
-    },
-    {
-      "slug": "leanprover/lean4checker",
-      "file": null,
-      "grade": "A",
-      "score": 92,
-      "updated_at": "2026-05-22T12:00:00Z",
-      "summary": "Builds \u00b7 checker coverage",
-      "url": "https://github.com/leanprover/lean4checker"
-    },
-    {
-      "slug": "leanprover/verso",
-      "file": null,
-      "grade": "B",
-      "score": 86,
-      "updated_at": "2026-05-21T12:00:00Z",
-      "summary": "Builds \u00b7 documentation generator",
-      "url": "https://github.com/leanprover/verso"
-    },
-    {
-      "slug": "leanprover/lean4",
-      "file": null,
-      "grade": "A",
-      "score": 95,
-      "updated_at": "2026-05-20T12:00:00Z",
-      "summary": "Builds \u00b7 official toolchain \u00b7 extensive tests",
-      "url": "https://github.com/leanprover/lean4"
-    },
-    {
-      "slug": "leanprover-community/repl",
-      "file": null,
-      "grade": "B",
-      "score": 80,
-      "updated_at": "2026-05-19T12:00:00Z",
-      "summary": "Builds \u00b7 documentation uneven",
-      "url": "https://github.com/leanprover-community/repl"
-    },
-    {
-      "slug": "leanprover-community/LeanSearchClient",
-      "file": null,
+      "slug": "Arthur742Ramos/KuroshSubgroupTheorem",
+      "file": "Arthur742Ramos/KuroshSubgroupTheorem.json",
       "grade": "C",
       "score": 72,
-      "updated_at": "2026-05-18T12:00:00Z",
-      "summary": "Builds with warnings \u00b7 tests unavailable",
-      "url": "https://github.com/leanprover-community/LeanSearchClient"
+      "status": "succeeded",
+      "updated_at": "2026-09-06T22:16:33Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/KuroshSubgroupTheorem"
     },
     {
-      "slug": "leanprover-community/import-graph",
-      "file": null,
-      "grade": "B",
-      "score": 84,
-      "updated_at": "2026-05-17T12:00:00Z",
-      "summary": "Builds \u00b7 CI present \u00b7 few TODOs",
-      "url": "https://github.com/leanprover-community/import-graph"
+      "slug": "catskillsresearch/scott1976",
+      "file": "catskillsresearch/scott1976.json",
+      "grade": "C",
+      "score": 72,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:39:52Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/catskillsresearch/scott1976"
     },
     {
-      "slug": "leanprover-community/quote4",
-      "file": null,
-      "grade": "A",
-      "score": 91,
-      "updated_at": "2026-05-16T12:00:00Z",
-      "summary": "Builds \u00b7 reproducible Lake manifest",
-      "url": "https://github.com/leanprover-community/quote4"
+      "slug": "dcposch/jc2-lean/vertex-gap",
+      "file": "dcposch/jc2-lean__vertex-gap.json",
+      "grade": "C",
+      "score": 72,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:24:07Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/dcposch/jc2-lean"
     },
     {
-      "slug": "leanprover-community/ProofWidgets4",
-      "file": null,
-      "grade": "B",
-      "score": 81,
-      "updated_at": "2026-05-15T12:00:00Z",
-      "summary": "Builds \u00b7 UI widgets \u00b7 sparse module docs",
-      "url": "https://github.com/leanprover-community/ProofWidgets4"
+      "slug": "Arthur742Ramos/equality-saturation-checker-lean",
+      "file": "Arthur742Ramos/equality-saturation-checker-lean.json",
+      "grade": "C",
+      "score": 71,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T21:34:36Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/equality-saturation-checker-lean"
     },
     {
-      "slug": "leanprover-community/batteries",
-      "file": null,
-      "grade": "A",
-      "score": 93,
-      "updated_at": "2026-05-14T12:00:00Z",
-      "summary": "Builds and tests \u00b7 pinned toolchain",
-      "url": "https://github.com/leanprover-community/batteries"
+      "slug": "Arthur742Ramos/hadamard-668-lean",
+      "file": "Arthur742Ramos/hadamard-668-lean.json",
+      "grade": "C",
+      "score": 71,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T21:47:17Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/hadamard-668-lean"
     },
     {
-      "slug": "leanprover-community/mathlib4",
-      "file": null,
-      "grade": "B",
-      "score": 88,
-      "updated_at": "2026-05-13T12:00:00Z",
-      "summary": "Builds \u00b7 Mathlib cache used \u00b7 large import graph",
-      "url": "https://github.com/leanprover-community/mathlib4"
+      "slug": "g-pichler/bsc-averaging",
+      "file": "g-pichler/bsc-averaging.json",
+      "grade": "C",
+      "score": 71,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T04:27:16Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/g-pichler/bsc-averaging"
     },
     {
-      "slug": "leanprover-community/aesop",
-      "file": "leanprover-community/aesop.json",
-      "grade": "A",
-      "score": 100,
-      "updated_at": "2026-05-12T12:00:00Z",
-      "summary": "Builds on v4.20.0 \u00b7 no sorry",
-      "url": "https://github.com/leanprover-community/aesop"
+      "slug": "Arthur742Ramos/lean-poincare-formalization-plan/curvature",
+      "file": "Arthur742Ramos/lean-poincare-formalization-plan__curvature.json",
+      "grade": "C",
+      "score": 70,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T22:28:45Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/lean-poincare-formalization-plan"
+    },
+    {
+      "slug": "Arthur742Ramos/NagataFactoriality",
+      "file": "Arthur742Ramos/NagataFactoriality.json",
+      "grade": "C",
+      "score": 70,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:01:09Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/NagataFactoriality"
+    },
+    {
+      "slug": "AviKndr/universal-words/lean",
+      "file": "AviKndr/universal-words__lean.json",
+      "grade": "C",
+      "score": 70,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T23:24:41Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/AviKndr/universal-words"
+    },
+    {
+      "slug": "ehrlich-b/composition-algebras",
+      "file": "ehrlich-b/composition-algebras.json",
+      "grade": "C",
+      "score": 70,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:46:48Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/ehrlich-b/composition-algebras"
+    },
+    {
+      "slug": "catskillsresearch/cardb",
+      "file": "catskillsresearch/cardb.json",
+      "grade": "D",
+      "score": 68,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:32:46Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/catskillsresearch/cardb"
+    },
+    {
+      "slug": "catskillsresearch/scott1972",
+      "file": "catskillsresearch/scott1972.json",
+      "grade": "D",
+      "score": 68,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:36:48Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/catskillsresearch/scott1972"
+    },
+    {
+      "slug": "catskillsresearch/scott1980",
+      "file": "catskillsresearch/scott1980.json",
+      "grade": "D",
+      "score": 68,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:42:51Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/catskillsresearch/scott1980"
+    },
+    {
+      "slug": "Arthur742Ramos/dinitz-garg-goemans-counterexample-lean",
+      "file": "Arthur742Ramos/dinitz-garg-goemans-counterexample-lean.json",
+      "grade": "D",
+      "score": 67,
+      "status": "succeeded",
+      "updated_at": "2026-09-06T21:31:48Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/Arthur742Ramos/dinitz-garg-goemans-counterexample-lean"
+    },
+    {
+      "slug": "BrandonMYates/tempered-xi-comparator",
+      "file": "BrandonMYates/tempered-xi-comparator.json",
+      "grade": "D",
+      "score": 67,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:24:56Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/BrandonMYates/tempered-xi-comparator"
+    },
+    {
+      "slug": "catskillsresearch/scott1982",
+      "file": "catskillsresearch/scott1982.json",
+      "grade": "D",
+      "score": 67,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:54:04Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/catskillsresearch/scott1982"
+    },
+    {
+      "slug": "dcposch/jc2-lean/gcd3-69-noncube",
+      "file": "dcposch/jc2-lean__gcd3-69-noncube.json",
+      "grade": "D",
+      "score": 67,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:17:15Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/dcposch/jc2-lean"
+    },
+    {
+      "slug": "elliotglazer/nf-not-wpp",
+      "file": "elliotglazer/nf-not-wpp.json",
+      "grade": "D",
+      "score": 67,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T03:11:02Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/elliotglazer/nf-not-wpp"
+    },
+    {
+      "slug": "CBirkbeck/uniform-sheafy-tate-domains-lean",
+      "file": "CBirkbeck/uniform-sheafy-tate-domains-lean.json",
+      "grade": "D",
+      "score": 66,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T01:01:00Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/CBirkbeck/uniform-sheafy-tate-domains-lean"
+    },
+    {
+      "slug": "catskillsresearch/scott_models",
+      "file": "catskillsresearch/scott_models.json",
+      "grade": "D",
+      "score": 65,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:57:31Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/catskillsresearch/scott_models"
+    },
+    {
+      "slug": "ehrlich-b/sequential-products-lean",
+      "file": "ehrlich-b/sequential-products-lean.json",
+      "grade": "D",
+      "score": 65,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:55:44Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/ehrlich-b/sequential-products-lean"
+    },
+    {
+      "slug": "elliotglazer/erdos501",
+      "file": "elliotglazer/erdos501.json",
+      "grade": "D",
+      "score": 65,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T03:05:17Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/elliotglazer/erdos501"
+    },
+    {
+      "slug": "BrandonMYates/schwarzschild-comparator",
+      "file": "BrandonMYates/schwarzschild-comparator.json",
+      "grade": "D",
+      "score": 64,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T00:20:21Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/BrandonMYates/schwarzschild-comparator"
+    },
+    {
+      "slug": "ehrlich-b/euclidean-jordan",
+      "file": "ehrlich-b/euclidean-jordan.json",
+      "grade": "D",
+      "score": 64,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T02:50:58Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/ehrlich-b/euclidean-jordan"
     }
   ]
 }

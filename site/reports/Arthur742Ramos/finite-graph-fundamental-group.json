@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "slug": "Arthur742Ramos/finite-graph-fundamental-group",
+  "repository": {
+    "url": "https://github.com/Arthur742Ramos/finite-graph-fundamental-group",
+    "owner": "Arthur742Ramos",
+    "name": "finite-graph-fundamental-group",
+    "commit_sha": "dd57e3ab8bc5a7042fcc5498e778b008d87ac032",
+    "project_path": null
+  },
+  "status": "succeeded",
+  "analyzer_version": "0.1.0",
+  "analyzed_at": "2026-09-06T21:37:21Z",
+  "score": 75,
+  "grade": "C",
+  "checks": [
+    {
+      "category": "build",
+      "details": {
+        "duration_seconds": 24,
+        "returncode": 0
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
+    },
+    {
+      "category": "verification",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "admit_count": 0,
+        "axiom_declaration_count": 0,
+        "native_decide_count": 0,
+        "sorry_count": 1
+      },
+      "id": "source-trust-signals",
+      "maximum": 15,
+      "score": 14,
+      "status": "warning",
+      "summary": "Potential trust exceptions need review; source scanning is not an axiom audit.",
+      "title": "Source-level trust signals"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.32.0"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_doc_ratio": 0.227,
+        "module_doc_ratio": 0.7
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 6,
+      "status": "warning",
+      "summary": "README, module docs and declaration docs are estimated from source text.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "architecture",
+      "details": {
+        "average_direct_imports": 4.1,
+        "max_direct_imports": 8
+      },
+      "id": "imports",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
+      "title": "Direct import footprint"
+    },
+    {
+      "category": "project",
+      "details": {
+        "test_file_count": 0,
+        "todo_count": 0
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 6,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
+    },
+    {
+      "category": "performance",
+      "details": {
+        "logs_truncated": false,
+        "warning_count": 24
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 2,
+      "status": "warning",
+      "summary": "Build warnings and analyzer resource limits are visible in the report.",
+      "title": "Warnings and run diagnostics"
+    }
+  ],
+  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "facts": {
+    "files": {
+      "changelog": false,
+      "ci": true,
+      "contributing": true,
+      "lake_manifest": true,
+      "lakefile": true,
+      "lean_toolchain": "leanprover/lean4:v4.32.0",
+      "license": true,
+      "readme": true,
+      "security": false
+    },
+    "static": {
+      "admit_count": 0,
+      "average_direct_imports": 4.1,
+      "axiom_declaration_count": 0,
+      "declaration_count": 331,
+      "declaration_doc_ratio": 0.22658610271903323,
+      "documented_declaration_count": 75,
+      "lean_file_count": 10,
+      "line_count": 5279,
+      "max_direct_imports": 8,
+      "module_doc_ratio": 0.7,
+      "native_decide_count": 0,
+      "sorry_count": 1,
+      "test_file_count": 0,
+      "todo_count": 0
+    },
+    "commands": {
+      "build": {
+        "command": [
+          "lake",
+          "build"
+        ],
+        "duration_seconds": 24,
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false,
+        "warning_count": 24
+      },
+      "lint": {
+        "command": [
+          "lake",
+          "lint"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      },
+      "test": {
+        "command": [
+          "lake",
+          "test"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      }
+    },
+    "toolchain_install": {
+      "command": [
+        "elan",
+        "toolchain",
+        "install",
+        "leanprover/lean4:v4.32.0"
+      ],
+      "duration_seconds": 0,
+      "returncode": 1,
+      "status": "passed",
+      "truncated": false
+    },
+    "mathlib_cache": {
+      "command": [
+        "lake",
+        "exe",
+        "cache",
+        "get"
+      ],
+      "duration_seconds": 147,
+      "returncode": 0,
+      "status": "passed",
+      "truncated": false
+    },
+    "logs_truncated": false
+  },
+  "error": null,
+  "palomar": {
+    "ids": [
+      "PALOMAR-2026-08-27-000004"
+    ],
+    "title": "Arthur742Ramos/finite-graph-fundamental-group",
+    "published_at": "2026-08-27T01:24:24Z"
+  },
+  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+}

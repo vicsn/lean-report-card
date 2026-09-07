@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "slug": "Arthur742Ramos/KuroshSubgroupTheorem",
+  "repository": {
+    "url": "https://github.com/Arthur742Ramos/KuroshSubgroupTheorem",
+    "owner": "Arthur742Ramos",
+    "name": "KuroshSubgroupTheorem",
+    "commit_sha": "911707126c8b9bb0c764bf853008fe1053c0aad9",
+    "project_path": null
+  },
+  "status": "succeeded",
+  "analyzer_version": "0.1.0",
+  "analyzed_at": "2026-09-06T22:16:33Z",
+  "score": 72,
+  "grade": "C",
+  "checks": [
+    {
+      "category": "build",
+      "details": {
+        "duration_seconds": 63,
+        "returncode": 0
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
+    },
+    {
+      "category": "verification",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "admit_count": 0,
+        "axiom_declaration_count": 0,
+        "native_decide_count": 0,
+        "sorry_count": 2
+      },
+      "id": "source-trust-signals",
+      "maximum": 15,
+      "score": 13,
+      "status": "warning",
+      "summary": "Potential trust exceptions need review; source scanning is not an axiom audit.",
+      "title": "Source-level trust signals"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.32.0"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_doc_ratio": 0.123,
+        "module_doc_ratio": 0.429
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 4,
+      "status": "warning",
+      "summary": "README, module docs and declaration docs are estimated from source text.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "architecture",
+      "details": {
+        "average_direct_imports": 2.4,
+        "max_direct_imports": 8
+      },
+      "id": "imports",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
+      "title": "Direct import footprint"
+    },
+    {
+      "category": "project",
+      "details": {
+        "test_file_count": 0,
+        "todo_count": 0
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 6,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
+    },
+    {
+      "category": "performance",
+      "details": {
+        "logs_truncated": false,
+        "warning_count": 72
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 2,
+      "status": "warning",
+      "summary": "Build warnings and analyzer resource limits are visible in the report.",
+      "title": "Warnings and run diagnostics"
+    }
+  ],
+  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "facts": {
+    "files": {
+      "changelog": false,
+      "ci": true,
+      "contributing": true,
+      "lake_manifest": true,
+      "lakefile": true,
+      "lean_toolchain": "leanprover/lean4:v4.32.0",
+      "license": true,
+      "readme": true,
+      "security": false
+    },
+    "static": {
+      "admit_count": 0,
+      "average_direct_imports": 2.4,
+      "axiom_declaration_count": 0,
+      "declaration_count": 871,
+      "declaration_doc_ratio": 0.12284730195177956,
+      "documented_declaration_count": 107,
+      "lean_file_count": 35,
+      "line_count": 15921,
+      "max_direct_imports": 8,
+      "module_doc_ratio": 0.42857142857142855,
+      "native_decide_count": 0,
+      "sorry_count": 2,
+      "test_file_count": 0,
+      "todo_count": 0
+    },
+    "commands": {
+      "build": {
+        "command": [
+          "lake",
+          "build"
+        ],
+        "duration_seconds": 63,
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false,
+        "warning_count": 72
+      },
+      "lint": {
+        "command": [
+          "lake",
+          "lint"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      },
+      "test": {
+        "command": [
+          "lake",
+          "test"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      }
+    },
+    "toolchain_install": {
+      "command": [
+        "elan",
+        "toolchain",
+        "install",
+        "leanprover/lean4:v4.32.0"
+      ],
+      "duration_seconds": 0,
+      "returncode": 1,
+      "status": "passed",
+      "truncated": false
+    },
+    "mathlib_cache": {
+      "command": [
+        "lake",
+        "exe",
+        "cache",
+        "get"
+      ],
+      "duration_seconds": 134,
+      "returncode": 0,
+      "status": "passed",
+      "truncated": false
+    },
+    "logs_truncated": false
+  },
+  "error": null,
+  "palomar": {
+    "ids": [
+      "PALOMAR-2026-08-31-000016"
+    ],
+    "title": "Arthur742Ramos/KuroshSubgroupTheorem",
+    "published_at": "2026-08-31T18:59:14Z"
+  },
+  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+}

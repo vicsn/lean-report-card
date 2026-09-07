@@ -200,18 +200,6 @@ function showResult(html) {
   setHidden(result, false);
 }
 
-function openContact() {
-  setHidden(document.getElementById("contact-panel"), false);
-  setHidden(document.getElementById("contact-backdrop"), false);
-  document.getElementById("contact-open").setAttribute("aria-expanded", "true");
-}
-
-function closeContact() {
-  setHidden(document.getElementById("contact-panel"), true);
-  setHidden(document.getElementById("contact-backdrop"), true);
-  document.getElementById("contact-open").setAttribute("aria-expanded", "false");
-}
-
 async function queueScan(parsed, email, rescan, publish) {
   clearSubmitError();
   await capture("score_requested", {
@@ -266,18 +254,6 @@ async function onScoreSubmit(event) {
   await queueScan(parsed, email, false, publish);
 }
 
-async function onContactSubmit(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const data = new FormData(form);
-  await capture("contact_submitted", {
-    email: String(data.get("email") || "").trim(),
-    message: String(data.get("message") || "").trim(),
-  });
-  form.hidden = true;
-  setHidden(document.getElementById("contact-queued"), false);
-}
-
 async function boot() {
   const index = await fetch("reports/index.json", { cache: "no-store" }).then((response) => {
     if (!response.ok) throw new Error("The report index is unavailable.");
@@ -306,13 +282,6 @@ async function boot() {
 }
 
 document.getElementById("score-form").addEventListener("submit", onScoreSubmit);
-document.getElementById("contact-form").addEventListener("submit", onContactSubmit);
-document.getElementById("contact-open").addEventListener("click", openContact);
-document.getElementById("contact-close").addEventListener("click", closeContact);
-document.getElementById("contact-backdrop").addEventListener("click", closeContact);
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeContact();
-});
 boot().catch((error) => {
   showResult(`<div class="alert error">${escapeHtml(error.message)}</div>`);
 });

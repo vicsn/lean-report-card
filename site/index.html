@@ -31,15 +31,17 @@
   <header class="site-header">
     <a class="brand" href="./">Lean Report Card</a>
     <nav class="site-nav" aria-label="Main">
-      <a href="./">Index</a>
+      <a href="./" aria-current="page">Main</a>
+      <a href="about.html">About</a>
+      <button class="text-button" type="button" id="badge-open" aria-expanded="false" aria-controls="badge-panel">Add badge to your README</button>
       <button class="text-button" type="button" id="contact-open" aria-expanded="false" aria-controls="contact-panel">Contact</button>
     </nav>
   </header>
 
-  <div class="contact-backdrop" id="contact-backdrop" hidden></div>
-  <aside class="contact-panel" id="contact-panel" hidden>
-    <div class="contact-panel-head">
-      <h2>Want to reach out?</h2>
+  <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+  <aside class="contact-panel" id="contact-panel" hidden role="dialog" aria-labelledby="contact-title">
+    <div class="panel-head">
+      <h2 id="contact-title">Want to reach out?</h2>
       <button class="icon-close" type="button" id="contact-close" aria-label="Close contact form">×</button>
     </div>
     <form id="contact-form">
@@ -53,6 +55,28 @@
     </form>
     <p class="queued-note" id="contact-queued" hidden>Thanks — we received your message.</p>
   </aside>
+  <aside class="badge-panel" id="badge-panel" hidden role="dialog" aria-labelledby="badge-title">
+    <div class="panel-head">
+      <h2 id="badge-title">Add a badge to your README</h2>
+      <button class="icon-close" type="button" id="badge-close" aria-label="Close badge instructions">×</button>
+    </div>
+    <p>Show the latest published grade next to your repository name. GitHub fetches the SVG; the badge links to the report on this site.</p>
+    <ol>
+      <li>Submit the repository on <a href="./">Main</a> and allow publication.</li>
+      <li>Paste this into <code>README.md</code>, with your GitHub owner and repository name:</li>
+    </ol>
+    <label>GitHub repository
+      <input id="badge-repository" type="text" placeholder="owner/repository" autocomplete="off">
+    </label>
+    <div class="badge-snippet-row">
+      <label for="badge-snippet">Markdown</label>
+      <textarea id="badge-snippet" readonly rows="3"></textarea>
+    </div>
+    <div class="badge-actions">
+      <button type="button" id="badge-copy">Copy markdown</button>
+    </div>
+    <p class="badge-localhost" id="badge-localhost" hidden>GitHub cannot load images from localhost. After the site is deployed, use that public origin in the snippet.</p>
+  </aside>
 
   <main class="page-shell">
     <section class="intro" id="intro">
@@ -62,8 +86,8 @@
     </section>
 
     <section class="submit-strip" id="score-card" aria-labelledby="submit-title">
-      <h2 id="submit-title">Submit another repository for analysis</h2>
       <form id="score-form">
+        <h2 id="submit-title">Submit another repository and contact info for analysis</h2>
         <div class="submit-row">
           <label class="sr-only" for="repository">GitHub repository URL</label>
           <input id="repository" name="repository" type="text" required placeholder="https://github.com/owner/repository" autocomplete="url">
@@ -96,6 +120,7 @@
       <a href="terms.html">Terms</a>
     </p>
   </footer>
+  <script src="js/site.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

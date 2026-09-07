@@ -1,3 +1,5 @@
+import { sendFormEmail } from "../../lib/cf-email.js";
+
 const MAX_MESSAGE = 4000;
 const MAX_EMAIL = 320;
 
@@ -24,9 +26,7 @@ export async function onRequestPost({ request, env }) {
     return json({ error: `Enter a message of up to ${MAX_MESSAGE} characters.` }, 400);
   }
   try {
-    await env.SEND_EMAIL.send({
-      from: env.FORM_FROM,
-      to: env.FORM_TO,
+    await sendFormEmail(env, {
       replyTo: email,
       subject: `Contact form: ${email}`,
       text: `From: ${email}\n\n${message}\n`,

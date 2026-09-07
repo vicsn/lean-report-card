@@ -1,3 +1,5 @@
+import { sendFormEmail } from "../../lib/cf-email.js";
+
 const MAX_URL = 2048;
 const MAX_EMAIL = 320;
 
@@ -51,9 +53,7 @@ export async function onRequestPost({ request, env }) {
     `Publish: ${publish ? "yes" : "no"}`,
   ];
   try {
-    await env.SEND_EMAIL.send({
-      from: env.FORM_FROM,
-      to: env.FORM_TO,
+    await sendFormEmail(env, {
       replyTo: email,
       subject: `Score request: ${slug || repository}`,
       text: `${lines.join("\n")}\n`,

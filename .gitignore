@@ -12,3 +12,7 @@ htmlcov/
 crash.log
 *.swp
 .*.swp
+
+# Cloudflare Pages local secrets
+.dev.vars
+.wrangler/

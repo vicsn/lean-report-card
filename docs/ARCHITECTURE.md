@@ -31,6 +31,6 @@ A report is immutable in meaning but changes state from queued to running to a t
 
 The leftover Compose stack colocates Caddy, FastAPI, Redis, PostgreSQL and both workers. Docker volumes hold database data and Lean caches. That layout does not provide high availability or independent scaling.
 
-The website carries no analytics or tracking code. Score and contact submissions post to Cloudflare Pages Functions in `functions/api/`, which validate the payload and email it through the `SEND_EMAIL` binding. Delivery is the only record: a failed send returns 502 and the form reports the error instead of claiming success. Server-side errors are visible through logs and Prometheus metrics only.
+The website carries no analytics or tracking code. Score and contact submissions post to Cloudflare Pages Functions in `functions/api/`, which validate the payload and email it through the Email Service REST API (Pages Functions cannot use the Workers `send_email` binding). Delivery is the only record: a failed send returns 502 and the form reports the error instead of claiming success. Server-side errors are visible through logs and Prometheus metrics only.
 
 Lean has no compiler-level RAM cap. The runner therefore sets Docker `mem_limit` equal to `memswap_limit`, disables swappiness, and raises `oom_score_adj` so the kernel prefers killing the analyzer. Control-plane Compose services also have memory limits so Postgres and Redis are not the first victims. A job that still exceeds its budget is stored as `oom_killed`.

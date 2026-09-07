@@ -117,14 +117,16 @@ Run `make tooling` in a networked checkout to initialize the pinned revisions. T
 
 ## Form submissions
 
-The site has no analytics or tracking code. The score and contact forms post JSON to `/api/score` and `/api/contact`, implemented as Cloudflare Pages Functions in `functions/api/`. Each function validates the fields and emails the submission through the `SEND_EMAIL` binding (Cloudflare Email Service).
+The site has no analytics or tracking code. The score and contact forms post JSON to `/api/score` and `/api/contact`, implemented as Cloudflare Pages Functions in `functions/api/`. Each function validates the fields and emails the submission via `lib/cf-email.js`.
 
-`wrangler.toml` declares the binding and two variables:
+Pages Functions cannot use the Workers `send_email` binding, so delivery goes through the Email Service REST API (`POST /accounts/{account_id}/email/sending/send`). Four values configure it:
 
 - `FORM_FROM` — sender address on a domain onboarded under Email Service → Email Sending;
-- `FORM_TO` — the notification mailbox. On the Workers Free plan this must be a **verified destination address**; sending to arbitrary recipients requires Workers Paid.
+- `FORM_TO` — the notification mailbox. Until that domain is onboarded this must be a **verified destination address**; sends to verified destinations do not count against any quota;
+- `CF_ACCOUNT_ID` — the Cloudflare account ID;
+- `CF_EMAIL_TOKEN` — an API token with the **Email Sending: Edit** permission.
 
-Replace the `example.com` placeholders before deploying. The forms only show their success message after the function returns 2xx.
+The first two live in `wrangler.toml`. The last two are secrets: set them under Pages → Settings → Variables and secrets, and in a local `.dev.vars` (git-ignored) for `npx wrangler pages dev`. The forms only show their success message after the function returns 2xx.
 
 ## Development
 

@@ -2,13 +2,15 @@ name = "lean-report-card"
 compatibility_date = "2026-09-01"
 pages_build_output_dir = "site"
 
+# Pages Functions do not support the Workers `send_email` binding, so the form
+# handlers call the Email Service REST API instead. Two values must be set as
+# Pages environment variables (Settings > Variables and secrets) and never
+# committed: CF_ACCOUNT_ID and CF_EMAIL_TOKEN (an API token with the
+# "Email Sending: Edit" permission). Locally they go in .dev.vars.
+#
 # FORM_FROM must be on a domain onboarded in Email Service > Email Sending.
-# FORM_TO must be a verified destination address while the account is on the
-# Workers Free plan; arbitrary recipients need Workers Paid.
+# FORM_TO must be a verified destination address until that domain is
+# onboarded; sends to verified destinations do not count against any quota.
 [vars]
 FORM_FROM = "info@leanreportcard.com"
 FORM_TO = "forms@example.com"
-
-[[send_email]]
-name = "SEND_EMAIL"
-allowed_destination_addresses = ["forms@example.com"]

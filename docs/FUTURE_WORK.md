@@ -3,7 +3,6 @@
 ## Required production-readiness
 
 - Acquire a domain, configure DNS, and enable HTTPS with an automatically renewed certificate; redirect HTTP and add HSTS only after validation.
-- Create the production GCP organization/project, billing, budgets, least-privilege IAM, remote Terraform state, protected deployment identities and audited Secret Manager access.
 - Replace Docker-socket execution with isolated ephemeral workers; restrict egress, remove ambient credentials, wipe job disks/caches and establish an abuse-response process.
 - Add authentication or anti-abuse controls, quotas, rate limits, queue admission limits, repository allow/deny rules and legal/privacy/data-retention policies.
 - Add schema migrations, automated Postgres backups with restore tests, persistent-disk snapshots, disaster recovery, dependency/image pinning and signed release provenance.
@@ -12,7 +11,7 @@
 
 ## Optional productionization
 
-- Split the control plane from executors; move PostgreSQL to Cloud SQL, Redis to Memorystore, logs/artifacts to Cloud Storage, and workers to managed instance groups or a batch platform.
+- Split the control plane from executors; move PostgreSQL, Redis and logs/artifacts to managed services, and workers to a batch platform.
 - Autoscale small and big workers independently from queue depth and oldest-job age; add more repository size classes and preemptible capacity for retryable work.
 - Add OpenTelemetry traces, structured logs, SLOs/error budgets, dashboards, synthetic scans, cost attribution and per-tool performance histories.
 - Add CDN/static asset caching, read replicas, report archival/retention tiers, multi-region disaster recovery and blue/green deployment.

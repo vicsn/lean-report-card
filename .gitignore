@@ -9,9 +9,6 @@ htmlcov/
 *.pyc
 *.egg-info/
 .data/
-terraform.tfstate
-terraform.tfstate.*
-.terraform/
 crash.log
 *.swp
 .*.swp

@@ -9,6 +9,4 @@ ruff check .
 pytest
 docker build .
 docker build -f runner/Dockerfile .
-terraform -chdir=deploy/gcp fmt -check -recursive
-terraform -chdir=deploy/gcp validate
 ```

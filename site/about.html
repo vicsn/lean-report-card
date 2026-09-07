@@ -21,7 +21,7 @@
     <nav class="site-nav" aria-label="Main">
       <a href="./">Main</a>
       <a href="about.html" aria-current="page">About</a>
-      <button class="text-button" type="button" id="badge-open" aria-expanded="false" aria-controls="badge-panel">Add badge to your README</button>
+      <button class="text-button" type="button" id="badge-open" aria-expanded="false" aria-controls="badge-panel">Get a badge</button>
       <button class="text-button" type="button" id="contact-open" aria-expanded="false" aria-controls="contact-panel">Contact</button>
     </nav>
   </header>
@@ -45,13 +45,13 @@
   </aside>
   <aside class="badge-panel" id="badge-panel" hidden role="dialog" aria-labelledby="badge-title">
     <div class="panel-head">
-      <h2 id="badge-title">Add a badge to your README</h2>
+      <h2 id="badge-title">Get a badge</h2>
       <button class="icon-close" type="button" id="badge-close" aria-label="Close badge instructions">×</button>
     </div>
-    <p>Show the latest published grade next to your repository name. GitHub fetches the SVG; the badge links to the report on this site.</p>
+    <p>Show the latest published grade next to your project. Use the markdown on GitHub, or on any Lean project registry that renders images. The host fetches the SVG; the badge links to the report on this site.</p>
     <ol>
       <li>Submit the repository on <a href="./">Main</a> and allow publication.</li>
-      <li>Paste this into <code>README.md</code>, with your GitHub owner and repository name:</li>
+      <li>Paste this into a README, a registry listing, or any other page that supports image badges, with your GitHub owner and repository name:</li>
     </ol>
     <label>GitHub repository
       <input id="badge-repository" type="text" placeholder="owner/repository" autocomplete="off">
@@ -63,14 +63,14 @@
     <div class="badge-actions">
       <button type="button" id="badge-copy">Copy markdown</button>
     </div>
-    <p class="badge-localhost" id="badge-localhost" hidden>GitHub cannot load images from localhost. After the site is deployed, use that public origin in the snippet.</p>
+    <p class="badge-localhost" id="badge-localhost" hidden>Hosts such as GitHub cannot load images from localhost. After the site is deployed, use that public origin in the snippet.</p>
   </aside>
 
   <main class="page-shell legal">
     <h1>About</h1>
     <p class="lede">Lean libraries are easy to publish and hard to size up. A README can look complete while the toolchain is unpinned, the build is broken, or the sources are full of <code>sorry</code>.</p>
-    <p>Cloning and building every candidate is slow. Reading a Lake manifest is incomplete. Lean Report Card is a public index of coarse, explained scores for Lean 4 GitHub repositories, so maintainers, users, and reviewers can compare the same signals: does it build, is Lean pinned, and what shows up in source, tests, and project files.</p>
-    <p>The grade is a heuristic from 0 to 100, not a kernel proof of correctness or security. Compare scores only for the same analyzer version. If you maintain a public repository, you can submit it for analysis and, if you allow publication, keep the result on the index and as a README badge.</p>
+    <p>Cloning and building every candidate is slow. Reading a Lake manifest is incomplete. Lean Report Card is a public index of mechanical scores for Lean 4 GitHub repositories, so maintainers, users, and reviewers can compare the same checks: does it build, is Lean pinned, and what token and file counts show up in source, tests, and project files.</p>
+    <p>The grade is a deterministic total from 0 to 100, not a kernel proof of correctness or security. Compare scores only for the same analyzer version. If you maintain a public repository, you can submit it for analysis and, if you allow publication, keep the result on the index and as a badge on GitHub or another Lean project registry.</p>
   </main>
 
   <footer class="site-footer">

@@ -20,7 +20,7 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite+pysqlite:///./.data/lean-report-card.db"
     redis_url: str = "redis://localhost:6379/0"
-    analyzer_version: str = "0.1.0"
+    analyzer_version: str = "0.2.0"
     runner_image: str = "lean-report-card-runner:local"
     runner_mode: str = "docker"
 

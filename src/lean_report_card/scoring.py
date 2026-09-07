@@ -2,6 +2,11 @@ from __future__ import annotations
 
 from typing import Any
 
+CAVEAT = (
+    "This score is produced by fixed mechanical checks on a pinned revision. "
+    "It is not a proof of mathematical correctness, soundness, security or project fitness."
+)
+
 
 def _check(
     check_id: str,
@@ -31,6 +36,20 @@ def _command_score(status: str, maximum: int, unavailable_score: int = 0) -> int
     if status in {"unavailable", "skipped"}:
         return unavailable_score
     return 0
+
+
+def _ratio_points(numerator: int, denominator: int, maximum: int) -> int:
+    if denominator <= 0 or numerator <= 0:
+        return 0
+    if numerator >= denominator:
+        return maximum
+    return (numerator * maximum + denominator // 2) // denominator
+
+
+def _count_from_ratio(ratio: float, total: int) -> int:
+    if total <= 0:
+        return 0
+    return min(total, max(0, int(ratio * total + 0.5)))
 
 
 def grade_for(score: int) -> str:
@@ -129,9 +148,9 @@ def score_report(facts: dict[str, Any]) -> dict[str, Any]:
             "passed" if trust_score == 15 else "warning",
             trust_score,
             15,
-            "No obvious source-level trust exceptions were found."
+            "No sorry, admit, axiom, or native_decide tokens outside comments and strings."
             if trust_score == 15
-            else "Potential trust exceptions need review; source scanning is not an axiom audit.",
+            else "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
             {
                 "sorry_count": sorry_count,
                 "admit_count": admit_count,
@@ -159,9 +178,20 @@ def score_report(facts: dict[str, Any]) -> dict[str, Any]:
         )
     )
 
-    module_doc_ratio = float(static.get("module_doc_ratio", 0.0))
-    declaration_doc_ratio = float(static.get("declaration_doc_ratio", 0.0))
-    docs_score = min(4, round(module_doc_ratio * 4)) + min(4, round(declaration_doc_ratio * 4))
+    lean_file_count = int(static.get("lean_file_count", 0))
+    module_doc_count = int(static.get("module_doc_count", 0))
+    if "module_doc_count" not in static:
+        module_doc_count = _count_from_ratio(
+            float(static.get("module_doc_ratio", 0.0)), lean_file_count
+        )
+    declaration_count = int(static.get("declaration_count", 0))
+    documented_declaration_count = int(static.get("documented_declaration_count", 0))
+    if "documented_declaration_count" not in static:
+        documented_declaration_count = _count_from_ratio(
+            float(static.get("declaration_doc_ratio", 0.0)), declaration_count
+        )
+    docs_score = _ratio_points(module_doc_count, lean_file_count, 4)
+    docs_score += _ratio_points(documented_declaration_count, declaration_count, 4)
     docs_score += 2 if files.get("readme") else 0
     checks.append(
         _check(
@@ -171,39 +201,12 @@ def score_report(facts: dict[str, Any]) -> dict[str, Any]:
             "passed" if docs_score >= 8 else "warning",
             docs_score,
             10,
-            "README, module docs and declaration docs are estimated from source text.",
+            "README present; module-doc and declaration-doc comments scored by count.",
             {
-                "module_doc_ratio": round(module_doc_ratio, 3),
-                "declaration_doc_ratio": round(declaration_doc_ratio, 3),
-            },
-        )
-    )
-
-    average_imports = float(static.get("average_direct_imports", 0.0))
-    max_imports = int(static.get("max_direct_imports", 0))
-    if average_imports <= 10:
-        import_score = 5
-    elif average_imports <= 25:
-        import_score = 4
-    elif average_imports <= 50:
-        import_score = 2
-    else:
-        import_score = 1
-    checks.append(
-        _check(
-            "imports",
-            "architecture",
-            "Direct import footprint",
-            "passed" if import_score >= 4 else "warning",
-            import_score,
-            5,
-            (
-                "Lower direct-import counts generally reduce hidden coupling; "
-                "this is only a coarse signal."
-            ),
-            {
-                "average_direct_imports": round(average_imports, 2),
-                "max_direct_imports": max_imports,
+                "module_doc_count": module_doc_count,
+                "lean_file_count": lean_file_count,
+                "documented_declaration_count": documented_declaration_count,
+                "declaration_count": declaration_count,
             },
         )
     )
@@ -233,33 +236,32 @@ def score_report(facts: dict[str, Any]) -> dict[str, Any]:
     )
 
     warning_count = int(build.get("warning_count", 0))
-    diagnostics_score = 3 if warning_count == 0 else 2 if warning_count <= 5 else 0
-    diagnostics_score += 1 if facts.get("logs_truncated") is False else 0
-    diagnostics_score += 1 if facts.get("toolchain_install", {}).get("status") == "passed" else 0
+    diagnostics_score = 5 if build_status == "passed" and warning_count == 0 else 0
     checks.append(
         _check(
             "diagnostics",
             "performance",
-            "Warnings and run diagnostics",
-            "passed" if diagnostics_score >= 4 else "warning",
+            "Build warnings",
+            "passed" if diagnostics_score == 5 else "warning",
             diagnostics_score,
             5,
-            "Build warnings and analyzer resource limits are visible in the report.",
-            {"warning_count": warning_count, "logs_truncated": facts.get("logs_truncated")},
+            (
+                "The build produced no warning lines."
+                if diagnostics_score == 5
+                else "The build was not clean, or no passing build was observed."
+            ),
+            {"warning_count": warning_count},
         )
     )
 
     total = sum(int(item["score"]) for item in checks)
     maximum = sum(int(item["maximum"]) for item in checks)
-    score = round(total * 100 / maximum) if maximum else 0
+    score = (total * 100 + maximum // 2) // maximum if maximum else 0
     return {
         "score": score,
         "grade": grade_for(score),
         "checks": checks,
         "maximum_raw_score": maximum,
         "raw_score": total,
-        "caveat": (
-            "This is a heuristic maintainability report, not a proof of mathematical correctness, "
-            "soundness, security or project fitness."
-        ),
+        "caveat": CAVEAT,
     }

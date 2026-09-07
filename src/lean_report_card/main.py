@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import html
 import time
 import uuid
 from collections.abc import AsyncIterator
@@ -18,6 +17,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session, selectinload
 
 from lean_report_card.analytics import capture, capture_exception, init_analytics
+from lean_report_card.badge import render_badge_svg
 from lean_report_card.config import Settings, get_settings
 from lean_report_card.database import engine, get_db, init_db
 from lean_report_card.github import RepositoryInputError, RepositoryLookupError, resolve_repository
@@ -276,32 +276,10 @@ def badge(
         .order_by(desc(Report.completed_at))
         .limit(1)
     )
-    value = f"{report.grade} · {report.score}" if report and report.grade else "unknown"
-    safe_value = html.escape(value)
-    label_width = 102
-    value_width = max(72, 8 * len(value) + 18)
-    total = label_width + value_width
-    value_midpoint = label_width + value_width / 2
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{total}" height="20"
- role="img" aria-label="Lean report: {safe_value}">
-<linearGradient id="s" x2="0" y2="100%">
-  <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
-  <stop offset="1" stop-opacity=".1"/>
-</linearGradient>
-<clipPath id="r"><rect width="{total}" height="20" rx="3" fill="#fff"/></clipPath>
-<g clip-path="url(#r)">
-  <rect width="{label_width}" height="20" fill="#555"/>
-  <rect x="{label_width}" width="{value_width}" height="20" fill="#337ab7"/>
-  <rect width="{total}" height="20" fill="url(#s)"/>
-</g>
-<g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif"
- font-size="11">
-  <text x="51" y="15" fill="#010101" fill-opacity=".3">lean report</text>
-  <text x="51" y="14">lean report</text>
-  <text x="{value_midpoint}" y="15" fill="#010101" fill-opacity=".3">{safe_value}</text>
-  <text x="{value_midpoint}" y="14">{safe_value}</text>
-</g>
-</svg>"""
+    svg = render_badge_svg(
+        report.grade if report else None,
+        report.score if report else None,
+    )
     headers = {"Cache-Control": "public, max-age=300"}
     return Response(svg, media_type="image/svg+xml", headers=headers)
 

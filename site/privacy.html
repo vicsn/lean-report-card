@@ -21,7 +21,7 @@
     <nav class="site-nav" aria-label="Main">
       <a href="./">Main</a>
       <a href="about.html">About</a>
-      <button class="text-button" type="button" id="badge-open" aria-expanded="false" aria-controls="badge-panel">Add badge to your README</button>
+      <button class="text-button" type="button" id="badge-open" aria-expanded="false" aria-controls="badge-panel">Get a badge</button>
       <button class="text-button" type="button" id="contact-open" aria-expanded="false" aria-controls="contact-panel">Contact</button>
     </nav>
   </header>
@@ -45,13 +45,13 @@
   </aside>
   <aside class="badge-panel" id="badge-panel" hidden role="dialog" aria-labelledby="badge-title">
     <div class="panel-head">
-      <h2 id="badge-title">Add a badge to your README</h2>
+      <h2 id="badge-title">Get a badge</h2>
       <button class="icon-close" type="button" id="badge-close" aria-label="Close badge instructions">×</button>
     </div>
-    <p>Show the latest published grade next to your repository name. GitHub fetches the SVG; the badge links to the report on this site.</p>
+    <p>Show the latest published grade next to your project. Use the markdown on GitHub, or on any Lean project registry that renders images. The host fetches the SVG; the badge links to the report on this site.</p>
     <ol>
       <li>Submit the repository on <a href="./">Main</a> and allow publication.</li>
-      <li>Paste this into <code>README.md</code>, with your GitHub owner and repository name:</li>
+      <li>Paste this into a README, a registry listing, or any other page that supports image badges, with your GitHub owner and repository name:</li>
     </ol>
     <label>GitHub repository
       <input id="badge-repository" type="text" placeholder="owner/repository" autocomplete="off">
@@ -63,7 +63,7 @@
     <div class="badge-actions">
       <button type="button" id="badge-copy">Copy markdown</button>
     </div>
-    <p class="badge-localhost" id="badge-localhost" hidden>GitHub cannot load images from localhost. After the site is deployed, use that public origin in the snippet.</p>
+    <p class="badge-localhost" id="badge-localhost" hidden>Hosts such as GitHub cannot load images from localhost. After the site is deployed, use that public origin in the snippet.</p>
   </aside>
   <main class="page-shell legal">
     <h1>Privacy</h1>

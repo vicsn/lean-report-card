@@ -18,6 +18,14 @@ def test_health_and_index() -> None:
         assert "Anonymous page views" in response.text
 
 
+def test_unknown_badge_svg() -> None:
+    with TestClient(app) as client:
+        response = client.get("/badge/missing/repo.svg")
+        assert response.status_code == 200
+        assert response.headers["content-type"].startswith("image/svg+xml")
+        assert "unknown" in response.text
+
+
 def test_index_omits_posthog_when_token_cleared(monkeypatch) -> None:
     from lean_report_card import main
 

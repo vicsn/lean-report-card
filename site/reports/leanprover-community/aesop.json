@@ -8,9 +8,9 @@
     "commit_sha": "18889deb9e83ea7428ef51c160d6f88552e744e3"
   },
   "status": "succeeded",
-  "analyzer_version": "0.1.0",
+  "analyzer_version": "0.2.0",
   "analyzed_at": "2026-09-01T12:00:00Z",
-  "score": 100,
+  "score": 92,
   "grade": "A",
   "checks": [
     {
@@ -59,7 +59,7 @@
       "status": "passed",
       "score": 15,
       "maximum": 15,
-      "summary": "No obvious source-level trust exceptions were found.",
+      "summary": "No sorry, admit, axiom, or native_decide tokens outside comments and strings.",
       "details": {
         "sorry_count": 0,
         "admit_count": 0,
@@ -84,26 +84,15 @@
       "id": "documentation",
       "category": "documentation",
       "title": "Documentation coverage",
-      "status": "passed",
-      "score": 10,
+      "status": "warning",
+      "score": 2,
       "maximum": 10,
-      "summary": "README, module docs and declaration docs are estimated from source text.",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
       "details": {
-        "module_doc_ratio": 1.0,
-        "declaration_doc_ratio": 1.0
-      }
-    },
-    {
-      "id": "imports",
-      "category": "architecture",
-      "title": "Direct import footprint",
-      "status": "passed",
-      "score": 5,
-      "maximum": 5,
-      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
-      "details": {
-        "average_direct_imports": 4.0,
-        "max_direct_imports": 8
+        "module_doc_count": 0,
+        "lean_file_count": 0,
+        "documented_declaration_count": 0,
+        "declaration_count": 0
       }
     },
     {
@@ -122,18 +111,17 @@
     {
       "id": "diagnostics",
       "category": "performance",
-      "title": "Warnings and run diagnostics",
+      "title": "Build warnings",
       "status": "passed",
       "score": 5,
       "maximum": 5,
-      "summary": "Build warnings and analyzer resource limits are visible in the report.",
+      "summary": "The build produced no warning lines.",
       "details": {
-        "warning_count": 0,
-        "logs_truncated": false
+        "warning_count": 0
       }
     }
   ],
-  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "lean_toolchain": "leanprover/lean4:v4.20.0",
@@ -169,5 +157,6 @@
         "status": "passed"
       }
     }
-  }
+  },
+  "summary": "Builds \u00b7 pinned toolchain"
 }

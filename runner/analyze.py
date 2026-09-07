@@ -254,6 +254,7 @@ def scan_sources(root: Path) -> dict[str, Any]:
         "native_decide_count": native_decide_count,
         "todo_count": todo_count,
         "test_file_count": test_file_count,
+        "module_doc_count": module_docs,
         "module_doc_ratio": module_docs / len(paths) if paths else 0.0,
         "declaration_count": declaration_count,
         "documented_declaration_count": documented_declarations,

@@ -18,13 +18,15 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(ROOT / "src"))
+
+from lean_report_card.badge import write_badges  # noqa: E402
+from lean_report_card.scoring import CAVEAT, score_report  # noqa: E402
+
 ANALYZER = ROOT / "runner" / "analyze.py"
 PALOMAR_RECENT = "https://data.palomar-registry.org/recent.json"
-ANALYZER_VERSION = "0.1.0"
-CAVEAT = (
-    "This is a heuristic maintainability report, not a proof of mathematical correctness, "
-    "soundness, security or project fitness."
-)
+ANALYZER_VERSION = "0.2.0"
 
 
 class DiskFull(RuntimeError):
@@ -263,27 +265,29 @@ def rewrite_index(site_reports: Path, reports: list[dict[str, Any]]) -> None:
             str(item.get("slug") or "").lower(),
         ),
     )
+    entries = [
+        {
+            "slug": item["slug"],
+            "file": item["file"],
+            "grade": item.get("grade"),
+            "score": item.get("score"),
+            "status": item.get("status"),
+            "updated_at": item.get("analyzed_at") or item.get("updated_at"),
+            "summary": item.get("summary"),
+            "url": item.get("url"),
+        }
+        for item in ordered
+    ]
     write_json(
         site_reports / "index.json",
         {
             "schema_version": 1,
             "generated": utcnow(),
             "source": "palomar-registry",
-            "reports": [
-                {
-                    "slug": item["slug"],
-                    "file": item["file"],
-                    "grade": item.get("grade"),
-                    "score": item.get("score"),
-                    "status": item.get("status"),
-                    "updated_at": item.get("analyzed_at"),
-                    "summary": item.get("summary"),
-                    "url": item.get("url"),
-                }
-                for item in ordered
-            ],
+            "reports": entries,
         },
     )
+    write_badges(site_reports.parent / "badge", entries)
 
 
 def stub_report(job: dict[str, Any], *, status: str, error: str, analyzed_at: str) -> dict[str, Any]:
@@ -483,6 +487,58 @@ def analyze_job(
         shutil.rmtree(workspace, ignore_errors=True)
 
 
+def apply_mechanical_score(report: dict[str, Any]) -> dict[str, Any]:
+    facts = report.get("facts")
+    if isinstance(facts, dict) and facts:
+        scoring = score_report(facts)
+        report["score"] = scoring["score"]
+        report["grade"] = scoring["grade"]
+        report["checks"] = scoring["checks"]
+        report["caveat"] = scoring["caveat"]
+        report["analyzer_version"] = ANALYZER_VERSION
+    report["summary"] = index_summary(report)
+    return report
+
+
+def rescore_existing_reports(site_reports: Path) -> int:
+    index_path = site_reports / "index.json"
+    index = json.loads(index_path.read_text(encoding="utf-8")) if index_path.is_file() else {}
+    updated: list[dict[str, Any]] = []
+    scored = 0
+    indexed_files: set[Path] = set()
+    for entry in index.get("reports") or []:
+        rel = entry.get("file")
+        if not rel:
+            updated.append(entry)
+            continue
+        path = site_reports / str(rel)
+        indexed_files.add(path.resolve())
+        if not path.is_file():
+            updated.append(entry)
+            continue
+        report = apply_mechanical_score(json.loads(path.read_text(encoding="utf-8")))
+        write_json(path, report)
+        scored += 1
+        updated.append(
+            {
+                **entry,
+                "grade": report.get("grade"),
+                "score": report.get("score"),
+                "status": report.get("status"),
+                "summary": report.get("summary"),
+                "analyzed_at": report.get("analyzed_at") or entry.get("updated_at"),
+            }
+        )
+    for path in site_reports.rglob("*.json"):
+        if path.name == "index.json" or path.resolve() in indexed_files:
+            continue
+        report = apply_mechanical_score(json.loads(path.read_text(encoding="utf-8")))
+        write_json(path, report)
+        scored += 1
+    rewrite_index(site_reports, updated)
+    return scored
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--site-dir", type=Path, default=ROOT / "site")
@@ -492,6 +548,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout-seconds", type=int, default=7800)
     parser.add_argument("--limit", type=int, default=0, help="Process at most N remaining jobs.")
     parser.add_argument("--refresh-catalog", action="store_true")
+    parser.add_argument(
+        "--rescore-existing",
+        action="store_true",
+        help="Recompute scores for JSON already under site/reports and exit.",
+    )
     return parser.parse_args()
 
 
@@ -499,6 +560,10 @@ def main() -> int:
     args = parse_args()
     data_dir: Path = args.data_dir
     site_reports = args.site_dir / "reports"
+    if args.rescore_existing:
+        count = rescore_existing_reports(site_reports)
+        print(f"Rescored {count} reports under {site_reports}.", flush=True)
+        return 0
     catalog_path = data_dir / "recent.json"
     progress_path = data_dir / "progress.json"
     workspace = data_dir / "workspace"

@@ -9,132 +9,120 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.1.0",
+  "analyzer_version": "0.2.0",
   "analyzed_at": "2026-09-07T04:27:16Z",
-  "score": 71,
-  "grade": "C",
+  "score": 67,
+  "grade": "D",
   "checks": [
     {
+      "id": "build",
       "category": "build",
+      "title": "Lake build",
+      "status": "passed",
+      "score": 25,
+      "maximum": 25,
+      "summary": "The pinned project revision builds.",
       "details": {
         "duration_seconds": 802,
         "returncode": 0
-      },
-      "id": "build",
-      "maximum": 25,
-      "score": 25,
-      "status": "passed",
-      "summary": "The pinned project revision builds.",
-      "title": "Lake build"
+      }
     },
     {
-      "category": "verification",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      },
       "id": "tests",
-      "maximum": 10,
-      "score": 3,
+      "category": "verification",
+      "title": "Project test driver",
       "status": "unavailable",
+      "score": 3,
+      "maximum": 10,
       "summary": "No passing project test result was observed.",
-      "title": "Project test driver"
-    },
-    {
-      "category": "maintainability",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      },
-      "id": "lint",
-      "maximum": 10,
-      "score": 4,
-      "status": "unavailable",
-      "summary": "No passing project lint result was observed.",
-      "title": "Project lint driver"
+      }
     },
     {
-      "category": "trust",
+      "id": "lint",
+      "category": "maintainability",
+      "title": "Project lint driver",
+      "status": "unavailable",
+      "score": 4,
+      "maximum": 10,
+      "summary": "No passing project lint result was observed.",
       "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      }
+    },
+    {
+      "id": "source-trust-signals",
+      "category": "trust",
+      "title": "Source-level trust signals",
+      "status": "warning",
+      "score": 10,
+      "maximum": 15,
+      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
+      "details": {
+        "sorry_count": 3,
         "admit_count": 0,
         "axiom_declaration_count": 0,
-        "native_decide_count": 2,
-        "sorry_count": 3
-      },
-      "id": "source-trust-signals",
-      "maximum": 15,
-      "score": 10,
-      "status": "warning",
-      "summary": "Potential trust exceptions need review; source scanning is not an axiom audit.",
-      "title": "Source-level trust signals"
+        "native_decide_count": 2
+      }
     },
     {
-      "category": "reproducibility",
-      "details": {
-        "lake_manifest": true,
-        "lean_toolchain": "leanprover/lean4:v4.32.0"
-      },
       "id": "reproducibility",
-      "maximum": 10,
+      "category": "reproducibility",
+      "title": "Pinned toolchain and dependencies",
+      "status": "passed",
       "score": 10,
-      "status": "passed",
-      "summary": "Lean and Lake dependencies are pinned.",
-      "title": "Pinned toolchain and dependencies"
-    },
-    {
-      "category": "documentation",
-      "details": {
-        "declaration_doc_ratio": 0.733,
-        "module_doc_ratio": 0.903
-      },
-      "id": "documentation",
       "maximum": 10,
-      "score": 9,
-      "status": "passed",
-      "summary": "README, module docs and declaration docs are estimated from source text.",
-      "title": "Documentation coverage"
-    },
-    {
-      "category": "architecture",
+      "summary": "Lean and Lake dependencies are pinned.",
       "details": {
-        "average_direct_imports": 2.72,
-        "max_direct_imports": 32
-      },
-      "id": "imports",
-      "maximum": 5,
-      "score": 5,
-      "status": "passed",
-      "summary": "Lower direct-import counts generally reduce hidden coupling; this is only a coarse signal.",
-      "title": "Direct import footprint"
+        "lean_toolchain": "leanprover/lean4:v4.32.0",
+        "lake_manifest": true
+      }
     },
     {
+      "id": "documentation",
+      "category": "documentation",
+      "title": "Documentation coverage",
+      "status": "passed",
+      "score": 9,
+      "maximum": 10,
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "details": {
+        "module_doc_count": 65,
+        "lean_file_count": 72,
+        "documented_declaration_count": 1030,
+        "declaration_count": 1406
+      }
+    },
+    {
+      "id": "project-hygiene",
       "category": "project",
+      "title": "Repository hygiene",
+      "status": "warning",
+      "score": 3,
+      "maximum": 10,
+      "summary": "Checks for common maintenance files, CI and test sources.",
       "details": {
         "test_file_count": 0,
         "todo_count": 0
-      },
-      "id": "project-hygiene",
-      "maximum": 10,
-      "score": 3,
-      "status": "warning",
-      "summary": "Checks for common maintenance files, CI and test sources.",
-      "title": "Repository hygiene"
+      }
     },
     {
-      "category": "performance",
-      "details": {
-        "logs_truncated": false,
-        "warning_count": 68
-      },
       "id": "diagnostics",
-      "maximum": 5,
-      "score": 2,
+      "category": "performance",
+      "title": "Build warnings",
       "status": "warning",
-      "summary": "Build warnings and analyzer resource limits are visible in the report.",
-      "title": "Warnings and run diagnostics"
+      "score": 0,
+      "maximum": 5,
+      "summary": "The build was not clean, or no passing build was observed.",
+      "details": {
+        "warning_count": 68
+      }
     }
   ],
-  "caveat": "This is a heuristic maintainability report, not a proof of mathematical correctness, soundness, security or project fitness.",
+  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "changelog": false,

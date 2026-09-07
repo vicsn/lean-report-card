@@ -2,7 +2,7 @@
 
 A static website that publishes a public index of Lean 4 project scores. Submissions are queued as PostHog events; reports are indexed JSON files.
 
-The initial score is deliberately modest in scope. It combines build/test/lint outcomes with coarse source, documentation, reproducibility and repository-hygiene signals. It is not a proof of mathematical correctness or security.
+The score is produced by fixed mechanical checks on a pinned revision. It combines build/test/lint outcomes with source token counts, documentation comments, reproducibility files and repository-hygiene files. It is not a proof of mathematical correctness or security.
 
 ## Architecture
 
@@ -15,7 +15,7 @@ flowchart LR
 ```
 
 - **Website:** static files in `site/`. The index lists one line per published repository, with pagination. A compact form can request another analysis. A top Contact control collects a message and email. Both submit to PostHog.
-- **Reports:** `site/reports/index.json` lists published files. Jobs can add JSON later without changing the site.
+- **Reports:** `site/reports/index.json` lists published files. Jobs can add JSON later without changing the site. Each published report also has a static badge at `site/badge/{owner}/{name}.svg`.
 - **History and cache (legacy stack):** PostgreSQL stores repositories and historical analysis runs. A row changes state while its job runs, then remains available as history. The same commit and analyzer version reuses a queued, running or successful report unless `force=true`.
 - **Queues:** Celery and Redis expose separate `small` and `big` queues. Auto classification uses GitHub repository size plus a configurable known-large set.
 - **Execution:** workers launch disposable Docker runner containers. Small and big queues have different CPU, memory, Lean thread and timeout budgets.
@@ -99,7 +99,7 @@ The runner currently:
 5. runs `lake build`;
 6. runs `lake test` and `lake lint` when their Lake drivers are detected;
 7. records bounded logs and durations;
-8. performs coarse source scans for Lean file counts, documentation, imports, tests, `sorry`, `admit`, `axiom`, `native_decide`, TODOs and common project files;
+8. counts Lean files, documentation comments, tests, `sorry`, `admit`, `axiom`, `native_decide`, TODOs and common project files;
 9. emits versioned JSON and an explained score.
 
 Source scans ignore comments and strings for trust-related tokens, but remain approximations. A real axiom audit must inspect the compiled Lean environment.

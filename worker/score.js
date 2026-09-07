@@ -1,14 +1,8 @@
-import { sendFormEmail } from "../../lib/cf-email.js";
+import { sendFormEmail } from "./email.js";
+import { json } from "./http.js";
 
 const MAX_URL = 2048;
 const MAX_EMAIL = 320;
-
-function json(body, status) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "content-type": "application/json" },
-  });
-}
 
 function repositoryError(value) {
   if (!value || value.length > MAX_URL) return "Send an http or https repository URL.";
@@ -28,7 +22,7 @@ function repositoryError(value) {
   return "";
 }
 
-export async function onRequestPost({ request, env }) {
+export async function handleScore(request, env) {
   let payload;
   try {
     payload = await request.json();
@@ -59,7 +53,7 @@ export async function onRequestPost({ request, env }) {
       text: `${lines.join("\n")}\n`,
     });
   } catch (error) {
-    console.error("score delivery failed", error?.code || error);
+    console.error("score delivery failed", error?.message || error);
     return json({ error: "The submission could not be delivered. Try again later." }, 502);
   }
   return json({ status: "queued" }, 202);

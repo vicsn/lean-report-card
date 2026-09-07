@@ -1,6 +1,6 @@
 # Lean Report Card
 
-A static website that publishes a public index of Lean 4 project scores. Submissions are emailed by a Cloudflare Pages Function; reports are indexed JSON files.
+A static website that publishes a public index of Lean 4 project scores. Submissions are emailed by a Cloudflare Worker; reports are indexed JSON files.
 
 The score is produced by fixed mechanical checks on a pinned revision. It combines build/test/lint outcomes with source token counts, documentation comments, reproducibility files and repository-hygiene files. It is not a proof of mathematical correctness or security.
 
@@ -9,12 +9,12 @@ The score is produced by fixed mechanical checks on a pinned revision. It combin
 ```mermaid
 flowchart LR
     U[Browser] --> S[Static site]
-    S --> H[Pages Function email]
+    S --> H[Worker email]
     S --> J[Indexed report JSON]
     W[Async analyzer] --> J
 ```
 
-- **Website:** static files in `site/`. The index lists one line per published repository, with pagination. A compact form can request another analysis. A top Contact control collects a message and email. Both post to Cloudflare Pages Functions under `functions/api/`, which email the submission to the maintainers.
+- **Website:** static files in `site/`. The index lists one line per published repository, with pagination. A compact form can request another analysis. A top Contact control collects a message and email. Both post to a Cloudflare Worker in `worker/`, which emails the submission to the maintainers.
 - **Reports:** `site/reports/index.json` lists published files. Jobs can add JSON later without changing the site. Each published report also has a static badge at `site/badge/{owner}/{name}.svg`.
 - **History and cache (legacy stack):** PostgreSQL stores repositories and historical analysis runs. A row changes state while its job runs, then remains available as history. The same commit and analyzer version reuses a queued, running or successful report unless `force=true`.
 - **Queues:** Celery and Redis expose separate `small` and `big` queues. Auto classification uses GitHub repository size plus a configurable known-large set.
@@ -31,7 +31,7 @@ See `docs/ARCHITECTURE.md`, `docs/SCORING.md`, `docs/SECURITY.md` and `docs/FUTU
 make site
 ```
 
-Open `http://127.0.0.1:8080`. A published example lives at `reports/leanprover-community/aesop.json`. `make site` serves static files only, so form posts to `/api/...` return 404; use `npx wrangler pages dev` to exercise the functions.
+Open `http://127.0.0.1:8080`. A published example lives at `reports/leanprover-community/aesop.json`. `make site` serves static files only, so form posts to `/api/...` return 404; use `npx wrangler dev` to exercise the API routes, which simulates email delivery locally.
 
 ### Legacy API shell without background jobs
 
@@ -117,16 +117,16 @@ Run `make tooling` in a networked checkout to initialize the pinned revisions. T
 
 ## Form submissions
 
-The site has no analytics or tracking code. The score and contact forms post JSON to `/api/score` and `/api/contact`, implemented as Cloudflare Pages Functions in `functions/api/`. Each function validates the fields and emails the submission via `lib/cf-email.js`.
+The site has no analytics or tracking code. The score and contact forms post JSON to `/api/score` and `/api/contact`, handled by the Worker in `worker/`. Each handler validates the fields and emails the submission through the `SEND_EMAIL` binding (Cloudflare Email Service).
 
-Pages Functions cannot use the Workers `send_email` binding, so delivery goes through the Email Service REST API (`POST /accounts/{account_id}/email/sending/send`). Four values configure it:
+The site itself ships as [Workers static assets](https://developers.cloudflare.com/workers/static-assets/): a request matching a file under `site/` is served without invoking the Worker, and anything else falls through to `worker/index.js`, which owns `/api/*` and defers unknown paths back to the asset handler. Because the default `html_handling` strips the extension, `/about.html` answers with a 307 to `/about`.
+
+`wrangler.toml` declares the binding and two variables:
 
 - `FORM_FROM` — sender address on a domain onboarded under Email Service → Email Sending;
-- `FORM_TO` — the notification mailbox. Until that domain is onboarded this must be a **verified destination address**; sends to verified destinations do not count against any quota;
-- `CF_ACCOUNT_ID` — the Cloudflare account ID;
-- `CF_EMAIL_TOKEN` — an API token with the **Email Sending: Edit** permission.
+- `FORM_TO` — the notification mailbox. Until that domain is onboarded this must be a **verified destination address**; sends to verified destinations are free and do not count against any quota.
 
-The first two live in `wrangler.toml`. The last two are secrets: set them under Pages → Settings → Variables and secrets, and in a local `.dev.vars` (git-ignored) for `npx wrangler pages dev`. The forms only show their success message after the function returns 2xx.
+No API token is needed, since the binding authenticates implicitly. The forms only show their success message after the Worker returns 2xx.
 
 ## Development
 

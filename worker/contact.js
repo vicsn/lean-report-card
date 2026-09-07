@@ -1,16 +1,10 @@
-import { sendFormEmail } from "../../lib/cf-email.js";
+import { sendFormEmail } from "./email.js";
+import { json } from "./http.js";
 
 const MAX_MESSAGE = 4000;
 const MAX_EMAIL = 320;
 
-function json(body, status) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "content-type": "application/json" },
-  });
-}
-
-export async function onRequestPost({ request, env }) {
+export async function handleContact(request, env) {
   let payload;
   try {
     payload = await request.json();
@@ -32,7 +26,7 @@ export async function onRequestPost({ request, env }) {
       text: `From: ${email}\n\n${message}\n`,
     });
   } catch (error) {
-    console.error("contact delivery failed", error?.code || error);
+    console.error("contact delivery failed", error?.message || error);
     return json({ error: "The message could not be delivered. Try again later." }, 502);
   }
   return json({ status: "received" }, 202);

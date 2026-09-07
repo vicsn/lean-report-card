@@ -1,6 +1,6 @@
 # Lean Report Card
 
-A static website that publishes a public index of Lean 4 project scores. Submissions are queued as PostHog events; reports are indexed JSON files.
+A static website that publishes a public index of Lean 4 project scores. Submissions are emailed by a Cloudflare Pages Function; reports are indexed JSON files.
 
 The score is produced by fixed mechanical checks on a pinned revision. It combines build/test/lint outcomes with source token counts, documentation comments, reproducibility files and repository-hygiene files. It is not a proof of mathematical correctness or security.
 
@@ -9,17 +9,17 @@ The score is produced by fixed mechanical checks on a pinned revision. It combin
 ```mermaid
 flowchart LR
     U[Browser] --> S[Static site]
-    S --> H[PostHog events]
+    S --> H[Pages Function email]
     S --> J[Indexed report JSON]
     W[Async analyzer] --> J
 ```
 
-- **Website:** static files in `site/`. The index lists one line per published repository, with pagination. A compact form can request another analysis. A top Contact control collects a message and email. Both submit to PostHog.
+- **Website:** static files in `site/`. The index lists one line per published repository, with pagination. A compact form can request another analysis. A top Contact control collects a message and email. Both post to Cloudflare Pages Functions under `functions/api/`, which email the submission to the maintainers.
 - **Reports:** `site/reports/index.json` lists published files. Jobs can add JSON later without changing the site. Each published report also has a static badge at `site/badge/{owner}/{name}.svg`.
 - **History and cache (legacy stack):** PostgreSQL stores repositories and historical analysis runs. A row changes state while its job runs, then remains available as history. The same commit and analyzer version reuses a queued, running or successful report unless `force=true`.
 - **Queues:** Celery and Redis expose separate `small` and `big` queues. Auto classification uses GitHub repository size plus a configurable known-large set.
 - **Execution:** workers launch disposable Docker runner containers. Small and big queues have different CPU, memory, Lean thread and timeout budgets.
-- **Monitoring:** `/healthz`, `/readyz` and private Prometheus metrics; cookieless PostHog page views and exception capture.
+- **Monitoring:** `/healthz`, `/readyz` and private Prometheus metrics. The website carries no analytics or tracking code.
 
 See `docs/ARCHITECTURE.md`, `docs/SCORING.md`, `docs/SECURITY.md` and `docs/FUTURE_WORK.md`.
 
@@ -31,7 +31,7 @@ See `docs/ARCHITECTURE.md`, `docs/SCORING.md`, `docs/SECURITY.md` and `docs/FUTU
 make site
 ```
 
-Open `http://127.0.0.1:8080`. Submissions go to PostHog. A published example lives at `reports/leanprover-community/aesop.json`.
+Open `http://127.0.0.1:8080`. A published example lives at `reports/leanprover-community/aesop.json`. `make site` serves static files only, so form posts to `/api/...` return 404; use `npx wrangler pages dev` to exercise the functions.
 
 ### Legacy API shell without background jobs
 
@@ -115,9 +115,16 @@ The repository pins integration candidates as Git submodules:
 
 Run `make tooling` in a networked checkout to initialize the pinned revisions. The base runner intentionally does not require initialized submodules. Details and the adapter boundary are in `docs/TOOLING_INTEGRATION.md`.
 
-## Analytics
+## Form submissions
 
-A public PostHog project token is compiled into `site/index.html`. Events are sent to EU Cloud (`https://eu.i.posthog.com`). Score and contact forms capture `score_requested` and `contact_submitted` (including email). Enable **Cookieless server hash mode** in the PostHog project (Project settings → Web analytics). Localhost works; after a hard refresh, submit a repo and look for `$pageview` and `score_requested` under Activity → Live events. Session replay and click autocapture stay off. Emails in those events are contact data, not anonymous analytics.
+The site has no analytics or tracking code. The score and contact forms post JSON to `/api/score` and `/api/contact`, implemented as Cloudflare Pages Functions in `functions/api/`. Each function validates the fields and emails the submission through the `SEND_EMAIL` binding (Cloudflare Email Service).
+
+`wrangler.toml` declares the binding and two variables:
+
+- `FORM_FROM` — sender address on a domain onboarded under Email Service → Email Sending;
+- `FORM_TO` — the notification mailbox. On the Workers Free plan this must be a **verified destination address**; sending to arbitrary recipients requires Workers Paid.
+
+Replace the `example.com` placeholders before deploying. The forms only show their success message after the function returns 2xx.
 
 ## Development
 

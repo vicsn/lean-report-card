@@ -2,6 +2,7 @@ const PAGE_SIZE = 20;
 
 let reportIndex = [];
 let pendingSubmission = null;
+let submitting = false;
 
 function parseRepositoryUrl(value) {
   let raw = String(value || "").trim();
@@ -46,12 +47,16 @@ function parseRepositoryUrl(value) {
   };
 }
 
-function capture(event, properties) {
-  if (!window.posthog || typeof window.posthog.capture !== "function") {
-    return Promise.resolve(false);
+async function postForm(path, payload) {
+  const response = await fetch(path, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    throw new Error(body.error || "The submission could not be delivered. Try again later.");
   }
-  window.posthog.capture(event, { $process_person_profile: false, ...properties });
-  return Promise.resolve(true);
 }
 
 function setHidden(el, hidden) {
@@ -254,14 +259,23 @@ function showResult(html) {
 }
 
 async function queueScan(parsed, email, rescan, publish) {
+  if (submitting) return;
+  submitting = true;
   clearSubmitError();
-  await capture("score_requested", {
-    repository: parsed.url,
-    repository_slug: parsed.slug,
-    email,
-    rescan,
-    publish,
-  });
+  try {
+    await postForm("/api/score", {
+      repository: parsed.url,
+      repository_slug: parsed.slug,
+      email,
+      rescan,
+      publish,
+    });
+  } catch (error) {
+    showSubmitError(error.message);
+    return;
+  } finally {
+    submitting = false;
+  }
   document.getElementById("score-form").hidden = true;
   setHidden(document.getElementById("rescan-confirm"), true);
   setHidden(document.getElementById("score-queued"), false);

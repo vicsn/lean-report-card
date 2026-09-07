@@ -6,7 +6,6 @@ from datetime import UTC, datetime
 
 from celery import Celery
 
-from lean_report_card.analytics import capture_exception, init_analytics
 from lean_report_card.config import get_settings
 from lean_report_card.database import SessionLocal, init_db
 from lean_report_card.docker_runner import (
@@ -21,7 +20,6 @@ from lean_report_card.scoring import score_report
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
-init_analytics(settings)
 celery_app = Celery("lean_report_card", broker=settings.redis_url, backend=settings.redis_url)
 celery_app.conf.update(
     task_acks_late=True,
@@ -110,7 +108,6 @@ def analyze_report(self: object, report_id: str) -> None:
             report.duration_seconds = max(0, int((completed - started).total_seconds()))
             db.commit()
         if not isinstance(exc, RunnerError):
-            capture_exception(exc, {"phase": "analyze_report", "report_id": str(report_uuid)})
             raise
     finally:
         db.close()

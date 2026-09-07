@@ -16,7 +16,6 @@ from sqlalchemy import desc, select, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session, selectinload
 
-from lean_report_card.analytics import capture, capture_exception, init_analytics
 from lean_report_card.badge import render_badge_svg
 from lean_report_card.config import Settings, get_settings
 from lean_report_card.database import engine, get_db, init_db
@@ -47,7 +46,6 @@ REPORT_REQUESTS = Counter(
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     init_db()
-    init_analytics(settings)
     yield
 
 
@@ -63,11 +61,7 @@ templates.env.globals["settings"] = settings
 @app.middleware("http")
 async def observe_requests(request: Request, call_next: Any) -> Response:
     started = time.perf_counter()
-    try:
-        response = await call_next(request)
-    except Exception as exc:
-        capture_exception(exc, {"method": request.method, "path": request.url.path})
-        raise
+    response = await call_next(request)
     route = request.scope.get("route")
     path = getattr(route, "path", request.url.path)
     REQUEST_TIME.labels(path=path).observe(time.perf_counter() - started)
@@ -93,10 +87,6 @@ async def _submit(
         if cached is not None:
             REPORT_REQUESTS.labels(queue=cached.queue_name, cache_hit="true").inc()
             db.commit()
-            capture(
-                "report_requested",
-                {"queue": cached.queue_name, "cache_hit": True, "forced": False},
-            )
             return cached, True
 
     report = Report(
@@ -114,16 +104,11 @@ async def _submit(
     try:
         report.task_id = enqueue_report(str(report.id), queue_name)
     except Exception as exc:  # noqa: BLE001 - queue failure becomes report state
-        capture_exception(exc, {"phase": "enqueue", "queue": queue_name})
         report.status = "failed"
         report.error = f"Unable to enqueue analysis: {exc}"
     db.commit()
     db.refresh(report)
     REPORT_REQUESTS.labels(queue=queue_name, cache_hit="false").inc()
-    capture(
-        "report_requested",
-        {"queue": queue_name, "cache_hit": False, "forced": payload.force},
-    )
     return report, False
 
 

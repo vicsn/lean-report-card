@@ -90,12 +90,30 @@ async function onContactSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const data = new FormData(form);
-  if (window.posthog && typeof window.posthog.capture === "function") {
-    window.posthog.capture("contact_submitted", {
-      $process_person_profile: false,
-      email: String(data.get("email") || "").trim(),
-      message: String(data.get("message") || "").trim(),
+  const error = document.getElementById("contact-error");
+  const button = form.querySelector("button[type=submit]");
+  setHidden(error, true);
+  if (button) button.disabled = true;
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        email: String(data.get("email") || "").trim(),
+        message: String(data.get("message") || "").trim(),
+      }),
     });
+    if (!response.ok) {
+      const body = await response.json().catch(() => ({}));
+      throw new Error(body.error || "The message could not be delivered. Try again later.");
+    }
+  } catch (caught) {
+    if (error) {
+      error.textContent = caught.message;
+      setHidden(error, false);
+    }
+    if (button) button.disabled = false;
+    return;
   }
   form.hidden = true;
   setHidden(document.getElementById("contact-queued"), false);

@@ -24,7 +24,6 @@ x-app-environment: &app-environment
   LRC_RUNNER_NETWORK_MODE: ${LRC_RUNNER_NETWORK_MODE:-bridge}
   LRC_ELAN_CACHE_VOLUME: lrc_elan_cache
   LRC_LAKE_CACHE_VOLUME: lrc_lake_cache
-  LRC_POSTHOG_HOST: ${LRC_POSTHOG_HOST:-https://eu.i.posthog.com}
 
 services:
   db:

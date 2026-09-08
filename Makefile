@@ -1,22 +1,13 @@
-.PHONY: dev site up down logs test lint format typecheck runner tooling smoke archive
-
-dev:
-	python -m uvicorn lean_report_card.main:app --reload
+.PHONY: site score rescore test lint format typecheck tooling archive
 
 site:
 	python3 -m http.server 8080 --directory site
 
-up:
-	docker compose up --build
+score:
+	python3 scripts/score_palomar.py
 
-down:
-	docker compose down
-
-logs:
-	docker compose logs -f --tail=200
-
-runner:
-	docker build -f runner/Dockerfile -t lean-report-card-runner:local .
+rescore:
+	python3 scripts/score_palomar.py --rescore-existing
 
 test:
 	pytest
@@ -28,13 +19,10 @@ format:
 	ruff format .
 
 typecheck:
-	mypy src
+	mypy lean_report_card
 
 tooling:
 	./scripts/bootstrap-submodules.sh
-
-smoke:
-	./scripts/smoke.sh
 
 archive:
 	git archive --format=tar.gz --output=lean-report-card.tar.gz HEAD

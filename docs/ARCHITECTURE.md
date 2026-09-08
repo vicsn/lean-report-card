@@ -1,36 +1,36 @@
 # Architecture
 
-The public website is static files in `site/`. Score and contact forms post to a Cloudflare Worker that emails the submission. Published reports are an indexed set of JSON files under `site/reports/`, written asynchronously by analysis jobs. The FastAPI/Celery stack remains in the repository as the current worker implementation and is not required to serve the site.
+There is no server-side application. Analyses run locally on a maintainer's machine and commit their output; the published site is static files plus a small Cloudflare Worker for form submissions.
 
-## Request lifecycle
+```mermaid
+flowchart LR
+    A[scripts/score_palomar.py] --> B[runner/analyze.py]
+    B --> C[site/reports/*.json]
+    A --> D[site/badge/*.svg]
+    A --> E[site/reports/index.json]
+    C --> F[Static site on Workers]
+    F --> G[worker/ email]
+```
 
-1. The API accepts only a public GitHub repository URL or `owner/name` shorthand.
-2. It resolves repository metadata and an exact 40-character commit SHA using the GitHub API, with `git ls-remote` as a rate-limit fallback.
-3. The repository row is inserted or refreshed.
-4. Unless forced, the service returns the newest queued, running or successful report for the same repository, commit and analyzer version.
-5. A new report is assigned to `small` or `big` and sent to the matching Celery queue.
-6. The worker starts a disposable analyzer container and records a terminal report state.
-7. The website and API read only persisted report data; clients do not need a Celery result backend contract.
+## Analysis lifecycle
 
-## Queue classification
+1. `scripts/score_palomar.py` fetches the Palomar registry catalogue and derives one job per source project.
+2. Progress is journalled to `.data/palomar-score/progress.json`, so an interrupted run resumes instead of repeating work.
+3. Each job runs `runner/analyze.py` as a subprocess in a new session, with `~/.elan/bin` prepended to `PATH`.
+4. The driver polls the process tree's resident memory and elapsed time, killing the whole group on breach. Results are recorded as `oom` or `timeout` rather than lost.
+5. Raw analyzer output and a bounded log land in `.data/palomar-score/raw/{owner}/{name}.{json,log}`.
+6. Successful payloads are converted to a site report and written to `site/reports/{owner}/{name}.json`, with a badge and a rewritten `site/reports/index.json`.
 
-`auto` selects the big queue when either condition holds:
+`--rescore-existing` recomputes scores from the JSON already under `site/reports/` and exits, which is how a scoring change is applied without cloning anything.
 
-- GitHub reports `size >= LRC_BIG_REPO_THRESHOLD_KIB`;
-- the lowercase `owner/name` appears in `LRC_KNOWN_BIG_REPOS`.
+## Isolation
 
-An API caller can explicitly request either queue. This is intentionally simple. Future classification should use historical checkout size, dependency closure, prior peak memory and elapsed time.
+Analyses are not sandboxed. `runner/analyze.py` clones untrusted repositories and runs `lake build`, which executes arbitrary build code with the privileges of the invoking user. Memory and wall-clock ceilings are enforced by the driver, but the filesystem and network are not. Run it only on repositories you are willing to execute, or inside a disposable VM.
 
-## Persistence
+Lean has no compiler-level RAM cap and `LEAN_NUM_THREADS` only reduces parallelism, so the resident-memory poll is the only thing standing between a pathological project and the host's swap.
 
-`repositories` stores canonical identity and the latest observed metadata. `reports` stores every requested analysis run, including commit, analyzer version, queue, status, score, summary, raw JSON, timings and errors. There is an index for cache lookup and another for repository history.
+## Publishing
 
-A report is immutable in meaning but changes state from queued to running to a terminal status. A forced rescan creates a separate row, preserving historical results for the same commit.
+The site is served as Workers static assets, so `site/` needs no build step: committing a report publishes it. `site/reports/index.json` is the only file the index page reads, and reports can be added without touching any HTML.
 
-## Failure domains
-
-The leftover Compose stack colocates Caddy, FastAPI, Redis, PostgreSQL and both workers. Docker volumes hold database data and Lean caches. That layout does not provide high availability or independent scaling.
-
-The website carries no analytics or tracking code. Score and contact submissions post to a Cloudflare Worker in `worker/`, which validates the payload and emails it through the `send_email` binding. The static site is served alongside it as Workers static assets. Delivery is the only record: a failed send returns 502 and the form reports the error instead of claiming success. Server-side errors are visible through logs and Prometheus metrics only.
-
-Lean has no compiler-level RAM cap. The runner therefore sets Docker `mem_limit` equal to `memswap_limit`, disables swappiness, and raises `oom_score_adj` so the kernel prefers killing the analyzer. Control-plane Compose services also have memory limits so Postgres and Redis are not the first victims. A job that still exceeds its budget is stored as `oom_killed`.
+Score and contact submissions post to the Worker in `worker/`, which validates the payload and emails it through the `send_email` binding. Delivery is the only record — there is no database and no analytics. A failed send returns 502 and the form reports the error instead of claiming success.

@@ -1,21 +1,17 @@
 # Future work
 
-## Required production-readiness
+## Hardening local analysis
 
-- Acquire a domain, configure DNS, and enable HTTPS with an automatically renewed certificate; redirect HTTP and add HSTS only after validation.
-- Replace Docker-socket execution with isolated ephemeral workers; restrict egress, remove ambient credentials, wipe job disks/caches and establish an abuse-response process.
-- Add authentication or anti-abuse controls, quotas, rate limits, queue admission limits, repository allow/deny rules and legal/privacy/data-retention policies.
-- Add schema migrations, automated Postgres backups with restore tests, persistent-disk snapshots, disaster recovery, dependency/image pinning and signed release provenance.
-- Add admission control from live host memory, handle disk exhaustion, add job cancellation/reaping, and verify that a failed worker cannot leave containers behind.
-- Configure production alerts and on-call ownership; monitor queue age, failed/timed-out jobs, database health, disk, memory, Docker, cache growth and certificate expiry.
+- Sandbox the analyzer so cloning and building an untrusted repository cannot touch the host: a disposable VM or container per job, restricted egress, no ambient credentials, and a wiped disk afterwards.
+- Handle disk exhaustion as deliberately as memory and timeouts are handled today, and verify an interrupted run leaves no orphaned process groups.
+- Pin analyzer dependencies and record a reproducible environment alongside each report, so a score can be recomputed years later.
 
-## Optional productionization
+## Returning to automated analysis
 
-- Split the control plane from executors; move PostgreSQL, Redis and logs/artifacts to managed services, and workers to a batch platform.
-- Autoscale small and big workers independently from queue depth and oldest-job age; add more repository size classes and preemptible capacity for retryable work.
-- Add OpenTelemetry traces, structured logs, SLOs/error budgets, dashboards, synthetic scans, cost attribution and per-tool performance histories.
-- Add CDN/static asset caching, read replicas, report archival/retention tiers, multi-region disaster recovery and blue/green deployment.
-- Add GitHub App/webhook integration for commit-triggered scans and private repositories with narrowly scoped, short-lived credentials.
+- Trigger scans from commits via a GitHub App or webhooks, with narrowly scoped short-lived credentials, rather than a maintainer running a script.
+- Restore a queue and result store if scan volume outgrows a single machine, with size classes derived from historical checkout size, dependency closure and prior peak memory.
+- Add anti-abuse controls before accepting arbitrary public submissions: quotas, rate limits, admission limits and repository allow/deny rules.
+- Add structured logs, dashboards and alerts on failed or timed-out jobs and per-tool performance histories.
 
 ## Adding more known Lean or uLean tools
 

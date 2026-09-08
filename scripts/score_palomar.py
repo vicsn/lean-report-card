@@ -18,8 +18,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT / "src") not in sys.path:
-    sys.path.insert(0, str(ROOT / "src"))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from lean_report_card.badge import write_badges  # noqa: E402
 from lean_report_card.scoring import CAVEAT, score_report  # noqa: E402
@@ -290,7 +290,9 @@ def rewrite_index(site_reports: Path, reports: list[dict[str, Any]]) -> None:
     write_badges(site_reports.parent / "badge", entries)
 
 
-def stub_report(job: dict[str, Any], *, status: str, error: str, analyzed_at: str) -> dict[str, Any]:
+def stub_report(
+    job: dict[str, Any], *, status: str, error: str, analyzed_at: str
+) -> dict[str, Any]:
     return {
         "schema_version": 1,
         "slug": job["slug"],
@@ -318,7 +320,9 @@ def stub_report(job: dict[str, Any], *, status: str, error: str, analyzed_at: st
     }
 
 
-def to_site_report(job: dict[str, Any], payload: dict[str, Any], analyzed_at: str) -> dict[str, Any]:
+def to_site_report(
+    job: dict[str, Any], payload: dict[str, Any], analyzed_at: str
+) -> dict[str, Any]:
     scoring = payload.get("scoring") if isinstance(payload.get("scoring"), dict) else {}
     analysis_status = str(payload.get("analysis_status") or "failed")
     if analysis_status == "oom_killed":
@@ -345,7 +349,9 @@ def to_site_report(job: dict[str, Any], payload: dict[str, Any], analyzed_at: st
         "grade": scoring.get("grade"),
         "checks": scoring.get("checks") or [],
         "caveat": scoring.get("caveat") or CAVEAT,
-        "facts": compact_facts(payload.get("facts") if isinstance(payload.get("facts"), dict) else {}),
+        "facts": compact_facts(
+            payload.get("facts") if isinstance(payload.get("facts"), dict) else {}
+        ),
         "error": payload.get("error"),
         "palomar": {
             "ids": job["palomar_ids"],
@@ -377,7 +383,7 @@ def run_analyzer(
             "PROFILE": "big",
             "ANALYZER_VERSION": ANALYZER_VERSION,
             "LEAN_NUM_THREADS": "2",
-            "PYTHONPATH": str(ROOT / "src"),
+            "PYTHONPATH": str(ROOT),
             "GIT_TERMINAL_PROMPT": "0",
             "CI": "true",
         }
@@ -446,17 +452,21 @@ def analyze_job(
             memory_limit_bytes=memory_limit_bytes,
             timeout_seconds=timeout_seconds,
         )
-        if failure is None and payload is not None and payload.get("error") == "Repository clone failed.":
-            if job.get("archive_url"):
-                shutil.rmtree(workspace, ignore_errors=True)
-                payload, failure = run_analyzer(
-                    job,
-                    clone_url=job["archive_url"],
-                    workspace=workspace,
-                    output=raw_output,
-                    memory_limit_bytes=memory_limit_bytes,
-                    timeout_seconds=timeout_seconds,
-                )
+        clone_failed = (
+            failure is None
+            and payload is not None
+            and payload.get("error") == "Repository clone failed."
+        )
+        if clone_failed and job.get("archive_url"):
+            shutil.rmtree(workspace, ignore_errors=True)
+            payload, failure = run_analyzer(
+                job,
+                clone_url=job["archive_url"],
+                workspace=workspace,
+                output=raw_output,
+                memory_limit_bytes=memory_limit_bytes,
+                timeout_seconds=timeout_seconds,
+            )
         if failure == "oom":
             report = stub_report(
                 job,

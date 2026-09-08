@@ -7,6 +7,4 @@ Before opening a change, run:
 ```sh
 ruff check .
 pytest
-docker build .
-docker build -f runner/Dockerfile .
 ```

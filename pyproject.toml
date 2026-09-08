@@ -5,25 +5,12 @@ build-backend = "hatchling.build"
 [project]
 name = "lean-report-card"
 version = "0.1.0"
-description = "Single-machine web service for cached, historical Lean repository quality reports"
+description = "Local scoring of Lean 4 repositories into per-repository JSON reports"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [{ name = "Lean Report Card contributors" }]
-dependencies = [
-  "celery[redis]>=5.4,<6",
-  "docker>=7.1,<8",
-  "fastapi>=0.115,<1",
-  "httpx>=0.27,<1",
-  "jinja2>=3.1,<4",
-  "prometheus-client>=0.21,<1",
-  "psycopg[binary]>=3.2,<4",
-  "pydantic-settings>=2.6,<3",
-  "python-multipart>=0.0.12,<1",
-  "redis>=5.2,<6",
-  "sqlalchemy>=2.0.36,<3",
-  "uvicorn[standard]>=0.32,<1",
-]
+dependencies = []
 
 [project.optional-dependencies]
 dev = [
@@ -35,13 +22,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/lean_report_card"]
-
-[tool.hatch.build]
-include = [
-  "src/lean_report_card/templates/**",
-  "src/lean_report_card/static/**",
-]
+packages = ["lean_report_card"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

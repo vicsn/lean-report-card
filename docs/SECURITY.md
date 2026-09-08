@@ -1,18 +1,15 @@
 # Security model and limitations
 
-Analyzing a repository means executing attacker-controlled build configuration, compiler plugins, macros, elaborators, native code and shell commands. Treat every submitted repository as hostile.
+Analyzing a repository means executing attacker-controlled build configuration, compiler plugins, macros, elaborators, native code and shell commands. Treat every analyzed repository as hostile.
 
-The scaffold reduces obvious risk by accepting only public GitHub HTTPS URLs, resolving exact commits before execution, using disposable runner containers, dropping Linux capabilities, enabling `no-new-privileges`, bounding CPU/RAM (no extra swap)/PIDs/time, limiting captured logs and separating small/big worker concurrency.
+Analyses now run **as a local subprocess with no sandbox**. `runner/analyze.py` clones a repository and runs `lake build` with the full privileges of the invoking user, on the invoking user's filesystem and network. The only enforced limits are a resident-memory ceiling and a wall-clock timeout, applied by polling the process tree and killing the process group.
 
-It is **not safe for an unrestricted public production service yet**:
+This is acceptable for a maintainer scoring repositories they have chosen to trust. It is **not safe for unattended or public use**:
 
-- workers mount the Docker socket, which is effectively host-root authority;
-- analyzer containers have outbound network access for Elan and Lake downloads;
-- the default Docker runtime is not a hardened VM or sandbox boundary;
-- shared Elan and dependency caches can become a cross-job channel;
-- no submission authentication, quotas, rate limiting, malware scanning or abuse workflow exists;
-- no egress allowlist, per-job service account, provenance verification or secretless build proof exists;
-- resource limits do not prevent all kernel, Docker daemon or dependency-supply-chain attacks;
+- there is no filesystem, network or privilege boundary between an analyzed project and the host;
+- Elan and Lake require outbound network access, so build steps fetch and execute remote code;
+- shared Elan and Lake caches persist between jobs and can become a cross-job channel;
+- memory and time ceilings do not prevent data exfiltration, credential theft or persistence;
 - the website's form endpoints are unauthenticated Cloudflare Worker routes that email submissions to the maintainers. They validate field shape and length only; they have no captcha, quota or per-IP rate limit, so a bot can flood the notification mailbox.
 
-Before public launch, move untrusted analyses to ephemeral VMs or a hardened sandbox such as gVisor/Kata with no Docker socket, minimal identity, controlled egress, disposable caches, image and dependency provenance checks, strict quotas and automatic teardown. Keep the web/database control plane separate from executors.
+Run analyses inside a disposable VM if you intend to score repositories you have not reviewed. Before accepting public submissions, move untrusted analyses to ephemeral VMs or a hardened sandbox such as gVisor/Kata, with minimal identity, controlled egress, disposable caches, dependency provenance checks, strict quotas and automatic teardown.

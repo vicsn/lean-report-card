@@ -1,19 +1,4 @@
-# Future work
-
-## Hardening local analysis
-
-- Sandbox the analyzer so cloning and building an untrusted repository cannot touch the host: a disposable VM or container per job, restricted egress, no ambient credentials, and a wiped disk afterwards.
-- Handle disk exhaustion as deliberately as memory and timeouts are handled today, and verify an interrupted run leaves no orphaned process groups.
-- Pin analyzer dependencies and record a reproducible environment alongside each report, so a score can be recomputed years later.
-
-## Returning to automated analysis
-
-- Trigger scans from commits via a GitHub App or webhooks, with narrowly scoped short-lived credentials, rather than a maintainer running a script.
-- Restore a queue and result store if scan volume outgrows a single machine, with size classes derived from historical checkout size, dependency closure and prior peak memory.
-- Add anti-abuse controls before accepting arbitrary public submissions: quotas, rate limits, admission limits and repository allow/deny rules.
-- Add structured logs, dashboards and alerts on failed or timed-out jobs and per-tool performance histories.
-
-## Adding more known Lean or uLean tools
+# Ideas for future work
 
 - Integrate `axiom-audit` JSON output, `#print axioms`, `leanchecker` and independent checking with `nanoda`.
 - Integrate `import-graph`, `#redundant_imports`, `#min_imports`, `#find_home`, declaration dependency graphs and stored graph artifacts.

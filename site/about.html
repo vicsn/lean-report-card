@@ -60,10 +60,34 @@
 
   <main class="page-shell legal">
     <h1>About</h1>
-    <p class="lede">Lean libraries are easy to publish and hard to size up. A README can look complete while the toolchain is unpinned, the build is broken, or the sources are full of <code>sorry</code>.</p>
-    <p>Cloning and building every candidate is slow. Reading a Lake manifest is incomplete. Lean Report Card is a public index of mechanical scores for Lean 4 GitHub repositories, so maintainers, users, and reviewers can compare the same checks: does it build, is Lean pinned, and what token and file counts show up in source, tests, and project files.</p>
-    <p>The grade is a deterministic total from 0 to 100, not a kernel proof of correctness or security. Compare scores only for the same analyzer version. If you maintain a public repository, you can submit it for analysis and, if you allow publication, keep the result on the index and as a badge on GitHub or another Lean project registry.</p>
-    <p>The site was inspired by <a href="https://github.com/gojp/goreportcard">Go Report Card</a> and <a href="https://github.com/xuri/rust-reportcard">Rust Report Card</a>.</p>
+    <p>If we want mathematical collaboration to scale, improving code quality will be a key unlock. Software engineering choices in Lean — how a theorem is stated, which instances are registered globally, how modules are split — show up as compilation time and memory for everyone downstream. Readers who want to learn more about that influence can start from <a href="https://victorsintnicolaas.substack.com/p/the-cost-of-a-lemma">The Cost of a Lemma</a>.</p>
+    <p>Lean Report Card is a modest attempt at indexing code quality of Lean repositories. It is open source and a work in progress - if you have ideas for enhancing code quality and security then do reach out!</p>
+    <p>The current grade is a deterministic total from 0 to 100. If you have a public git repository, you can submit it for analysis and, if you allow publication, keep the result on the index and as a badge on GitHub or another Lean project registry.</p>
+    <p>The site was inspired by <a href="https://github.com/gojp/goreportcard">Go Report Card</a> and <a href="https://github.com/xuri/rust-reportcard">Rust Report Card</a>, and by public SSL checking services such as <a href="https://www.ssllabs.com/ssltest/">Qualys SSL Labs</a> and <a href="https://www.sslshopper.com/ssl-checker.html">SSL Shopper</a>.</p>
+    <h2>What we evaluate</h2>
+    <p>Checked items are in the current scorer. Unchecked items are planned.</p>
+    <ul class="eval-checklist">
+      <li><label><input type="checkbox" checked disabled><span>Whether <code>lake build</code> succeeds</span></label></li>
+      <li><label><input type="checkbox" checked disabled><span>Whether a configured <code>lake test</code> driver passes</span></label></li>
+      <li><label><input type="checkbox" checked disabled><span>Whether a configured <code>lake lint</code> driver passes</span></label></li>
+      <li><label><input type="checkbox" checked disabled><span>Token counts of <code>sorry</code>, <code>admit</code>, <code>axiom</code>, and <code>native_decide</code> outside comments and strings</span></label></li>
+      <li><label><input type="checkbox" checked disabled><span>Presence of <code>lean-toolchain</code> and <code>lake-manifest.json</code></span></label></li>
+      <li><label><input type="checkbox" checked disabled><span>README plus module- and declaration-doc comment coverage</span></label></li>
+      <li><label><input type="checkbox" checked disabled><span>License, CI, test paths, CONTRIBUTING, SECURITY, CHANGELOG, and TODO/FIXME counts</span></label></li>
+      <li><label><input type="checkbox" checked disabled><span>Whether a successful build log contains <code>warning:</code> lines</span></label></li>
+      <li><label><input type="checkbox" disabled><span><code>axiom-audit</code> JSON, <code>#print axioms</code>, <code>leanchecker</code>, and independent checking with <code>nanoda</code></span></label></li>
+      <li><label><input type="checkbox" disabled><span><code>import-graph</code>, <code>#redundant_imports</code>, <code>#min_imports</code>, <code>#find_home</code>, declaration dependency graphs, and stored graph artifacts</span></label></li>
+      <li><label><input type="checkbox" disabled><span>More <code>lean-action</code> behavior: Lake target detection, Mathlib cache policy, <code>mk_all --check</code>, Reservoir eligibility, and toolchain compatibility</span></label></li>
+      <li><label><input type="checkbox" disabled><span>Mathlib/Batteries linters, <code>doc-gen4</code>, <code>lean-fmt</code>, warning inventories, and global <code>[simp]</code>/instance/notation audits</span></label></li>
+      <li><label><input type="checkbox" disabled><span>uLean or other project-size, dependency, declaration, proof-term, and elaboration-performance analyzers</span></label></li>
+      <li><label><input type="checkbox" disabled><span>Tests on current, pinned, and next Lean/Mathlib toolchains, with syntax, API, instance, simplifier, import, and performance regressions classified separately</span></label></li>
+      <li><label><input type="checkbox" disabled><span>Stable public permalinks, embeddable badges, scheduled rescans, score-history charts, and side-by-side commit/analyzer diffs</span></label></li>
+      <li><label><input type="checkbox" disabled><span>A documented public API, downloadable JSON/SARIF, webhooks, GitHub checks, issue/PR annotations, and suggested remediation</span></label></li>
+      <li><label><input type="checkbox" disabled><span>Transparent grading rules, analyzer-version pinning, reproducible result bundles, and a public changelog for scoring changes</span></label></li>
+      <li><label><input type="checkbox" disabled><span>“Why this grade?” explanations, severity-ranked findings, links to exact source locations, and one-click retesting after remediation</span></label></li>
+      <li><label><input type="checkbox" disabled><span>Peer/percentile comparisons by project class, dependency freshness/vulnerability data, maintenance activity, and OpenSSF-style repository hygiene</span></label></li>
+      <li><label><input type="checkbox" disabled><span>A scanner-status page, queue estimates, stale-report reminders, and historical trust/compatibility timelines</span></label></li>
+    </ul>
   </main>
 
   <footer class="site-footer">

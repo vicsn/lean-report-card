@@ -321,6 +321,33 @@ button[type="submit"]:hover { background: var(--accent-hover); }
 .legal h1 { margin-bottom: 8px; }
 .legal h2 { font-family: var(--serif); font-size: 1.15rem; margin: 28px 0 8px; }
 .legal p, .legal li { color: var(--ink); max-width: 42rem; }
+.eval-checklist {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  max-width: 46rem;
+}
+.eval-checklist li {
+  margin: 0 0 10px;
+  max-width: none;
+}
+.eval-checklist label {
+  display: grid;
+  grid-template-columns: 1.15em minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: start;
+}
+.eval-checklist input {
+  margin: .28em 0 0;
+  accent-color: var(--good);
+}
+.eval-checklist span {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.eval-checklist code {
+  white-space: nowrap;
+}
 .updated { color: var(--muted); font-size: .9rem; }
 
 @media (max-width: 800px) {

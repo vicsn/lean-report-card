@@ -122,7 +122,6 @@
       }
     }
   ],
-  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "changelog": false,
@@ -218,5 +217,5 @@
     "title": "Proof-Carrying Decreasing-Diagram Confluence Certificates",
     "published_at": "2026-09-01T21:02:59Z"
   },
-  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+  "summary": "Builds · sorry/admit in source · pinned toolchain"
 }

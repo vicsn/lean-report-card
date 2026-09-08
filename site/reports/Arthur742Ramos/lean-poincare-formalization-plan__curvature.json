@@ -122,7 +122,6 @@
       }
     }
   ],
-  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "changelog": false,
@@ -215,8 +214,8 @@
     "ids": [
       "PALOMAR-2026-09-02-000007"
     ],
-    "title": "Levi\u2013Civita connections and metric-determined curvature invariants in Lean",
+    "title": "Levi–Civita connections and metric-determined curvature invariants in Lean",
     "published_at": "2026-09-03T00:09:33Z"
   },
-  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+  "summary": "Builds · sorry/admit in source · pinned toolchain"
 }

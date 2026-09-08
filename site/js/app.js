@@ -199,11 +199,6 @@ function renderReport(report, entry) {
     .join("");
   const repo = report.repository || {};
   const slug = `${repo.owner || ""}/${repo.name || ""}`;
-  const caveat =
-    report.caveat ||
-    (entry && !entry.file
-      ? "This line is from the published index. A full check breakdown appears when the analyzer writes a JSON file for the repository."
-      : "");
   return `
     <a class="back-link" href="./">← Index</a>
     <section class="report-hero">
@@ -222,10 +217,8 @@ function renderReport(report, entry) {
     <div class="meta-grid">
       <div><span>Analyzer</span><strong>${escapeHtml(report.analyzer_version || "index")}</strong></div>
       <div><span>Analyzed</span><strong>${escapeHtml(formatDate(report.analyzed_at || entry?.updated_at))}</strong></div>
-      <div><span>Summary</span><strong>${escapeHtml(entry?.summary || "—")}</strong></div>
     </div>
     ${checks ? `<div class="check-grid">${checks}</div>` : ""}
-    <p class="caveat">${escapeHtml(caveat)}</p>
   `;
 }
 
@@ -239,7 +232,6 @@ function reportFromIndex(entry) {
     analyzed_at: entry.updated_at,
     repository: { owner, name, url: entry.url, commit_sha: "" },
     checks: [],
-    caveat: "",
   };
 }
 

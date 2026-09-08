@@ -2,11 +2,6 @@ from __future__ import annotations
 
 from typing import Any
 
-CAVEAT = (
-    "This score is produced by fixed mechanical checks on a pinned revision. "
-    "It is not a proof of mathematical correctness, soundness, security or project fitness."
-)
-
 
 def _check(
     check_id: str,
@@ -263,5 +258,4 @@ def score_report(facts: dict[str, Any]) -> dict[str, Any]:
         "checks": checks,
         "maximum_raw_score": maximum,
         "raw_score": total,
-        "caveat": CAVEAT,
     }

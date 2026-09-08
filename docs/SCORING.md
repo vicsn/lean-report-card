@@ -1,6 +1,6 @@
 # Scoring model
 
-The score is a deterministic 0–100 total from fixed mechanical checks on a pinned Git revision. Every report stores the component checks, raw counts, analyzer version and caveat text. There is no LLM or reviewer judgement in the grade.
+The score is a deterministic 0–100 total from fixed mechanical checks on a pinned Git revision. Every report stores the component checks, raw counts and analyzer version. There is no LLM or reviewer judgement in the grade.
 
 | Category | Weight | Rule |
 |---|---:|---|

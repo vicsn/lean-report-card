@@ -121,7 +121,6 @@
       }
     }
   ],
-  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "lean_toolchain": "leanprover/lean4:v4.20.0",
@@ -158,5 +157,5 @@
       }
     }
   },
-  "summary": "Builds \u00b7 pinned toolchain"
+  "summary": "Builds · pinned toolchain"
 }

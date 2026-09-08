@@ -122,7 +122,6 @@
       }
     }
   ],
-  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "changelog": false,
@@ -220,5 +219,5 @@
     "title": "ehrlich-b/sequential-products-lean",
     "published_at": "2026-08-22T16:18:09Z"
   },
-  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+  "summary": "Builds · sorry/admit in source · pinned toolchain"
 }

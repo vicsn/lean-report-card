@@ -122,7 +122,6 @@
       }
     }
   ],
-  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "changelog": false,
@@ -218,5 +217,5 @@
     "title": "BochaoKong/nullstellensatz",
     "published_at": "2026-08-30T07:03:18Z"
   },
-  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+  "summary": "Builds · sorry/admit in source · pinned toolchain"
 }

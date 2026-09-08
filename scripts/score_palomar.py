@@ -22,7 +22,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from lean_report_card.badge import write_badges  # noqa: E402
-from lean_report_card.scoring import CAVEAT, score_report  # noqa: E402
+from lean_report_card.scoring import score_report  # noqa: E402
 
 ANALYZER = ROOT / "runner" / "analyze.py"
 PALOMAR_RECENT = "https://data.palomar-registry.org/recent.json"
@@ -309,7 +309,6 @@ def stub_report(
         "score": None,
         "grade": None,
         "checks": [],
-        "caveat": CAVEAT,
         "facts": {},
         "error": error,
         "palomar": {
@@ -348,7 +347,6 @@ def to_site_report(
         "score": scoring.get("score"),
         "grade": scoring.get("grade"),
         "checks": scoring.get("checks") or [],
-        "caveat": scoring.get("caveat") or CAVEAT,
         "facts": compact_facts(
             payload.get("facts") if isinstance(payload.get("facts"), dict) else {}
         ),
@@ -504,7 +502,6 @@ def apply_mechanical_score(report: dict[str, Any]) -> dict[str, Any]:
         report["score"] = scoring["score"]
         report["grade"] = scoring["grade"]
         report["checks"] = scoring["checks"]
-        report["caveat"] = scoring["caveat"]
         report["analyzer_version"] = ANALYZER_VERSION
     report["summary"] = index_summary(report)
     return report

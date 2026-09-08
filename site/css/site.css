@@ -286,19 +286,18 @@ button[type="submit"]:hover { background: var(--accent-hover); }
 .grade-card { display: grid; place-items: center; min-width: 120px; min-height: 120px; border: 1px solid var(--line); border-radius: var(--radius); }
 .grade { font-family: var(--serif); font-size: 3.4rem; line-height: .85; }
 .score { color: var(--muted); font-weight: 650; }
-.meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 18px; }
+.meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 18px; }
 .meta-grid div { background: var(--paper); padding: 12px 14px; }
 .meta-grid span { color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; display: block; }
 .check-grid { display: grid; gap: 10px; }
 .check-card { border: 1px solid var(--line); padding: 14px; background: var(--paper); }
 .check-card p { color: var(--muted); }
 .check-topline { display: flex; justify-content: space-between; }
-.status { font-size: .75rem; font-weight: 750; text-transform: uppercase; letter-spacing: .04em; }
+.status { font-size: 1rem; font-weight: 750; text-transform: uppercase; letter-spacing: .04em; }
 .status-passed, .status-succeeded { color: var(--good); }
 .status-warning { color: var(--warn); }
 .status-failed { color: var(--bad); }
 .status-unavailable, .status-skipped { color: var(--muted); }
-.caveat { color: var(--muted); font-size: .9rem; }
 .alert { border: 1px solid var(--line); padding: 10px 12px; margin: 12px 0; }
 .alert.error { border-color: var(--bad); color: var(--bad); }
 

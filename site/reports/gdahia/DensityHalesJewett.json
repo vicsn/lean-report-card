@@ -122,7 +122,6 @@
       }
     }
   ],
-  "caveat": "This score is produced by fixed mechanical checks on a pinned revision. It is not a proof of mathematical correctness, soundness, security or project fitness.",
   "facts": {
     "files": {
       "changelog": false,
@@ -215,8 +214,8 @@
     "ids": [
       "PALOMAR-2026-09-06-000005"
     ],
-    "title": "The density Hales\u2013Jewett theorem and Szemer\u00e9di's theorem",
+    "title": "The density Hales–Jewett theorem and Szemerédi's theorem",
     "published_at": "2026-09-06T16:15:49Z"
   },
-  "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain"
+  "summary": "Builds · sorry/admit in source · pinned toolchain"
 }

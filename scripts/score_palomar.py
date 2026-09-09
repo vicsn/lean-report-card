@@ -26,7 +26,7 @@ from lean_report_card.scoring import score_report  # noqa: E402
 
 ANALYZER = ROOT / "runner" / "analyze.py"
 PALOMAR_RECENT = "https://data.palomar-registry.org/recent.json"
-ANALYZER_VERSION = "0.2.0"
+ANALYZER_VERSION = "0.3.0"
 
 
 class DiskFull(RuntimeError):
@@ -137,6 +137,8 @@ def compact_facts(facts: dict[str, Any] | None) -> dict[str, Any]:
         },
         "toolchain_install": compact_command(facts.get("toolchain_install") or {}),
         "mathlib_cache": compact_command(facts.get("mathlib_cache") or {}),
+        "axiom_audit": facts.get("axiom_audit") or {},
+        "redundant_imports": facts.get("redundant_imports") or {},
         "logs_truncated": facts.get("logs_truncated"),
     }
 
@@ -152,12 +154,12 @@ def index_summary(report: dict[str, Any]) -> str:
     bits: list[str] = []
     build = checks.get("build") or {}
     bits.append("Builds" if build.get("status") == "passed" else "Build did not pass")
-    trust = checks.get("source-trust-signals") or {}
+    trust = checks.get("axiom-audit") or {}
     details = trust.get("details") or {}
-    if int(details.get("sorry_count") or 0) or int(details.get("admit_count") or 0):
-        bits.append("sorry/admit in source")
-    elif int(details.get("axiom_declaration_count") or 0):
-        bits.append("axiom declarations")
+    if details.get("sorry_ax"):
+        bits.append("sorryAx")
+    elif details.get("extra_axioms"):
+        bits.append("home-rolled axioms")
     repro = checks.get("reproducibility") or {}
     if repro.get("status") == "passed":
         bits.append("pinned toolchain")
@@ -378,6 +380,8 @@ def run_analyzer(
             "ANALYZE_WORKSPACE": str(workspace),
             "ANALYZE_OUTPUT": str(output),
             "ANALYZE_PROJECT_PATH": job["project_path"],
+            "ANALYZE_TOOL_CACHE": str(ROOT / ".data" / "tool-cache"),
+            "ANALYZE_AXIOM_AUDIT_SRC": str(ROOT / "third_party" / "axiom-audit"),
             "PROFILE": "big",
             "ANALYZER_VERSION": ANALYZER_VERSION,
             "LEAN_NUM_THREADS": "2",
@@ -560,6 +564,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Recompute scores for JSON already under site/reports and exit.",
     )
+    parser.add_argument(
+        "--rerun-listed",
+        action="store_true",
+        help="Re-analyse every project already listed in site/reports/index.json.",
+    )
     return parser.parse_args()
 
 
@@ -586,7 +595,26 @@ def main() -> int:
     progress = load_progress(progress_path)
     completed: dict[str, Any] = dict(progress.get("completed") or {})
 
-    remaining = [job for job in jobs if job["slug"] not in completed]
+    if args.rerun_listed:
+        index_path = site_reports / "index.json"
+        listed_slugs: set[str] = set()
+        listed_files: set[str] = set()
+        if index_path.is_file():
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+            for item in index.get("reports") or []:
+                if item.get("slug"):
+                    listed_slugs.add(str(item["slug"]))
+                if item.get("file"):
+                    listed_files.add(str(item["file"]))
+        remaining = [
+            job
+            for job in jobs
+            if job["slug"] in listed_slugs or job["file"] in listed_files
+        ]
+        for job in remaining:
+            completed.pop(job["slug"], None)
+    else:
+        remaining = [job for job in jobs if job["slug"] not in completed]
     if args.limit:
         remaining = remaining[: args.limit]
 

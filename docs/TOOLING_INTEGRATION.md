@@ -8,7 +8,7 @@ Use its scripts and behavior as the compatibility reference for automatic Lake b
 
 ## `axiom-audit`
 
-Add an adapter that builds the tool with the target repository's own Lean toolchain and runs its JSON mode against compiled `.olean` files. Store the allowlist, audited declaration count, used axioms and per-declaration violations. Keep source-token scans as a separate low-confidence signal.
+Add an adapter that builds the tool with the target repository's own Lean toolchain and runs `--json` against compiled `.olean` files. The current analyzer does this after a successful `lake build` and scores `sorryAx`, `native_decide`, and home-rolled axioms from that report. Source-token scans remain in the raw facts only.
 
 ## `import-graph`
 

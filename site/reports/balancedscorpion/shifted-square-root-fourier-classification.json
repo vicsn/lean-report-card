@@ -9,117 +9,350 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-06T23:46:48Z",
-  "score": 76,
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T18:31:22Z",
+  "score": 72,
   "grade": "C",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 532,
+        "duration_seconds": 526,
         "returncode": 0
-      }
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "tests",
       "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
       "score": 3,
-      "maximum": 10,
-      "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "lint",
-      "category": "maintainability",
-      "title": "Project lint driver",
       "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      }
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
     },
     {
-      "id": "source-trust-signals",
       "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 13,
+      "details": {
+        "audited": 2531,
+        "axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": true,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
       "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 2,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
+      "score": 15,
+      "status": "passed",
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
     },
     {
-      "id": "reproducibility",
+      "category": "maintainability",
+      "details": {
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "examples": [
+          {
+            "module": "MeyerProblemAppendixTests",
+            "redundant": [
+              "MeyerProblemAppendix"
+            ]
+          },
+          {
+            "module": "MeyerProblemTests",
+            "redundant": [
+              "MeyerProblem"
+            ]
+          },
+          {
+            "module": "MeyerProblemAppendix",
+            "redundant": [
+              "MeyerProblem.Appendix.AnalyticFactorization",
+              "MeyerProblem.Appendix.CompactifiedThetaDivisor",
+              "MeyerProblem.Appendix.CuspBoundary",
+              "MeyerProblem.Appendix.CuspContour",
+              "MeyerProblem.Appendix.CuspOne",
+              "MeyerProblem.Appendix.GlobalDivisor",
+              "MeyerProblem.Appendix.GlobalValence",
+              "MeyerProblem.Appendix.GreenStokesBridge",
+              "MeyerProblem.Appendix.GreenValence",
+              "MeyerProblem.Appendix.RectangleArgumentPrinciple",
+              "MeyerProblem.Appendix.ThetaArgumentPrinciple",
+              "MeyerProblem.Appendix.ThetaBoundary",
+              "MeyerProblem.Appendix.ThetaFundamentalDomain",
+              "MeyerProblem.Appendix.ThetaGeometry",
+              "MeyerProblem.Appendix.ThetaGroup",
+              "MeyerProblem.Appendix.ThetaHalfWeights",
+              "MeyerProblem.Appendix.ThetaOrbifold",
+              "MeyerProblem.Appendix.ThetaOrbitMass",
+              "MeyerProblem.Appendix.ThetaPVAssembly",
+              "MeyerProblem.Appendix.ThetaWinding",
+              "MeyerProblem.Appendix.UnitArc",
+              "MeyerProblem.Appendix.Valence"
+            ]
+          },
+          {
+            "module": "MeyerProblem",
+            "redundant": [
+              "MeyerProblem.Analytic.RightHalfPlanePower",
+              "MeyerProblem.Atomic.Bump",
+              "MeyerProblem.Atomic.Data",
+              "MeyerProblem.Atomic.LocalAction",
+              "MeyerProblem.Atomic.Radon",
+              "MeyerProblem.Atomic.RadonTempered",
+              "MeyerProblem.Atomic.SectorCoefficients",
+              "MeyerProblem.Atomic.Sectors",
+              "MeyerProblem.Atomic.ShiftedGrowth",
+              "MeyerProblem.Atomic.ShiftedRoots",
+              "MeyerProblem.Atomic.Support",
+              "MeyerProblem.Atomic.TemperedDistribution",
+              "MeyerProblem.Atomic.TemperedGrowth",
+              "MeyerProblem.Basic",
+              "MeyerProblem.Classification.Generators",
+              "MeyerProblem.Classification.Main",
+              "MeyerProblem.Classification.SectorTransfer",
+              "MeyerProblem.Classification.Thresholds",
+              "MeyerProblem.Eta.CanonicalLog",
+              "MeyerProblem.Eta.CuspConstants",
+              "MeyerProblem.Eta.GeneralizedProduct",
+              "MeyerProblem.Eta.QExpansion",
+              "MeyerProblem.Eta.RealPowers",
+              "MeyerProblem.Eta.Transformations",
+              "MeyerProblem.FourierNormalization",
+              "MeyerProblem.Gaussian.Fourier",
+              "MeyerProblem.Gaussian.Hermite",
+              "MeyerProblem.Gaussian.ParameterHolomorphy",
+              "MeyerProblem.Gaussian.Schwartz",
+              "MeyerProblem.Gaussian.Totality",
+              "MeyerProblem.LinearAlgebra.FourierOrderFour",
+              "MeyerProblem.Modular.CuspClassification",
+              "MeyerProblem.Modular.CuspHalf",
+              "MeyerProblem.Modular.CuspHalfExpansion",
+              "MeyerProblem.Modular.Cusps",
+              "MeyerProblem.Modular.EtaCoefficientGrowth",
+              "MeyerProblem.Modular.Gamma0Four",
+              "MeyerProblem.Modular.Matrices",
+              "MeyerProblem.Modular.RealWeightAutomorphy",
+              "MeyerProblem.Modular.Rigidity",
+              "MeyerProblem.Modular.WeightZeroCusps",
+              "MeyerProblem.Modular.WeightZeroHalfCusp",
+              "MeyerProblem.Modular.WeightZeroQuotient",
+              "MeyerProblem.PolynomialGrowth",
+              "MeyerProblem.Series.AutomorphicSeries",
+              "MeyerProblem.Series.BoundaryGrowth",
+              "MeyerProblem.Series.EtaProductExistence",
+              "MeyerProblem.Series.EtaProductSeries",
+              "MeyerProblem.Series.MeasureSeriesCorrespondence",
+              "MeyerProblem.Series.MeasureSeriesEquivalence",
+              "MeyerProblem.Series.ShiftedQSeries"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Eta.CuspConstants",
+            "redundant": [
+              "MeyerProblem.Eta.Transformations"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Eta.RealPowers",
+            "redundant": [
+              "MeyerProblem.Analytic.RightHalfPlanePower"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Eta.Transformations",
+            "redundant": [
+              "Mathlib.Analysis.Calculus.MeanValue"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Modular.EtaCoefficientGrowth",
+            "redundant": [
+              "MeyerProblem.Eta.QExpansion"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Modular.Rigidity",
+            "redundant": [
+              "MeyerProblem.Modular.CuspClassification",
+              "MeyerProblem.Modular.WeightZeroCusps"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Checks.AppendixThetaArgumentPrinciple",
+            "redundant": [
+              "MeyerProblem.Appendix.AnalyticFactorization",
+              "MeyerProblem.Appendix.CuspContour",
+              "MeyerProblem.Appendix.RectangleArgumentPrinciple",
+              "MeyerProblem.Appendix.UnitArc"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Checks.ClassificationSectorTransfer",
+            "redundant": [
+              "MeyerProblem.Basic"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.ThetaArgumentPrinciple",
+            "redundant": [
+              "MeyerProblem.Appendix.AnalyticFactorization"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.CompactifiedThetaDivisor",
+            "redundant": [
+              "MeyerProblem.Appendix.GlobalValence"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.AnalyticFactorization",
+            "redundant": [
+              "Mathlib.Analysis.Meromorphic.LogDeriv",
+              "Mathlib.MeasureTheory.Integral.CurveIntegral.Poincare"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.ThetaBoundary",
+            "redundant": [
+              "MeyerProblem.Appendix.GlobalDivisor"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.ThetaFundamentalDomain",
+            "redundant": [
+              "Mathlib.MeasureTheory.Integral.Prod"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.ThetaWinding",
+            "redundant": [
+              "TauCeti.Analysis.Contour.Winding.Number.Partition",
+              "TauCeti.Analysis.Contour.Winding.Proximity"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.ThetaHalfWeights",
+            "redundant": [
+              "TauCeti.Analysis.Contour.LogDerivFTC"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Appendix.GlobalValence",
+            "redundant": [
+              "MeyerProblem.Appendix.Valence"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Series.MeasureSeriesCorrespondence",
+            "redundant": [
+              "MeyerProblem.Gaussian.Fourier"
+            ]
+          }
+        ],
+        "files_with_redundant_imports": 20,
+        "redundant_import_count": 97
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "Counted 97 transitively redundant import(s).",
+      "title": "Redundant imports"
+    },
+    {
       "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
-      "status": "passed",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.34.0-rc1"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
       "score": 10,
-      "maximum": 10,
+      "status": "passed",
       "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.34.0-rc1",
-        "lake_manifest": true
-      }
+      "title": "Pinned toolchain and dependencies"
     },
     {
-      "id": "documentation",
       "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "passed",
-      "score": 9,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
       "details": {
-        "module_doc_count": 157,
-        "lean_file_count": 159,
+        "declaration_count": 2494,
         "documented_declaration_count": 1692,
-        "declaration_count": 2494
-      }
+        "lean_file_count": 159,
+        "module_doc_count": 157
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 9,
+      "status": "passed",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
     },
     {
-      "id": "project-hygiene",
       "category": "project",
-      "title": "Repository hygiene",
-      "status": "passed",
-      "score": 8,
-      "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
       "details": {
         "test_file_count": 2,
         "todo_count": 0
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 8,
+      "status": "passed",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
         "warning_count": 75
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +377,7 @@
       "lean_file_count": 159,
       "line_count": 39849,
       "max_direct_imports": 53,
+      "module_doc_count": 157,
       "module_doc_ratio": 0.9874213836477987,
       "native_decide_count": 0,
       "sorry_count": 2,
@@ -151,16 +385,61 @@
       "todo_count": 0
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/929cd8bf7ec963bd/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 7,
+        "report": {
+          "allowed": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "audited": 2531,
+          "axioms_used": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": true,
+          "root": "MeyerProblem",
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 532,
+        "duration_seconds": 526,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
         "warning_count": 75
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -202,10 +481,234 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 151,
+      "duration_seconds": 148,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "audited": 2531,
+      "axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": true,
+      "root": "MeyerProblem",
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [
+        {
+          "module": "MeyerProblemAppendixTests",
+          "redundant": [
+            "MeyerProblemAppendix"
+          ]
+        },
+        {
+          "module": "MeyerProblemTests",
+          "redundant": [
+            "MeyerProblem"
+          ]
+        },
+        {
+          "module": "MeyerProblemAppendix",
+          "redundant": [
+            "MeyerProblem.Appendix.AnalyticFactorization",
+            "MeyerProblem.Appendix.CompactifiedThetaDivisor",
+            "MeyerProblem.Appendix.CuspBoundary",
+            "MeyerProblem.Appendix.CuspContour",
+            "MeyerProblem.Appendix.CuspOne",
+            "MeyerProblem.Appendix.GlobalDivisor",
+            "MeyerProblem.Appendix.GlobalValence",
+            "MeyerProblem.Appendix.GreenStokesBridge",
+            "MeyerProblem.Appendix.GreenValence",
+            "MeyerProblem.Appendix.RectangleArgumentPrinciple",
+            "MeyerProblem.Appendix.ThetaArgumentPrinciple",
+            "MeyerProblem.Appendix.ThetaBoundary",
+            "MeyerProblem.Appendix.ThetaFundamentalDomain",
+            "MeyerProblem.Appendix.ThetaGeometry",
+            "MeyerProblem.Appendix.ThetaGroup",
+            "MeyerProblem.Appendix.ThetaHalfWeights",
+            "MeyerProblem.Appendix.ThetaOrbifold",
+            "MeyerProblem.Appendix.ThetaOrbitMass",
+            "MeyerProblem.Appendix.ThetaPVAssembly",
+            "MeyerProblem.Appendix.ThetaWinding",
+            "MeyerProblem.Appendix.UnitArc",
+            "MeyerProblem.Appendix.Valence"
+          ]
+        },
+        {
+          "module": "MeyerProblem",
+          "redundant": [
+            "MeyerProblem.Analytic.RightHalfPlanePower",
+            "MeyerProblem.Atomic.Bump",
+            "MeyerProblem.Atomic.Data",
+            "MeyerProblem.Atomic.LocalAction",
+            "MeyerProblem.Atomic.Radon",
+            "MeyerProblem.Atomic.RadonTempered",
+            "MeyerProblem.Atomic.SectorCoefficients",
+            "MeyerProblem.Atomic.Sectors",
+            "MeyerProblem.Atomic.ShiftedGrowth",
+            "MeyerProblem.Atomic.ShiftedRoots",
+            "MeyerProblem.Atomic.Support",
+            "MeyerProblem.Atomic.TemperedDistribution",
+            "MeyerProblem.Atomic.TemperedGrowth",
+            "MeyerProblem.Basic",
+            "MeyerProblem.Classification.Generators",
+            "MeyerProblem.Classification.Main",
+            "MeyerProblem.Classification.SectorTransfer",
+            "MeyerProblem.Classification.Thresholds",
+            "MeyerProblem.Eta.CanonicalLog",
+            "MeyerProblem.Eta.CuspConstants",
+            "MeyerProblem.Eta.GeneralizedProduct",
+            "MeyerProblem.Eta.QExpansion",
+            "MeyerProblem.Eta.RealPowers",
+            "MeyerProblem.Eta.Transformations",
+            "MeyerProblem.FourierNormalization",
+            "MeyerProblem.Gaussian.Fourier",
+            "MeyerProblem.Gaussian.Hermite",
+            "MeyerProblem.Gaussian.ParameterHolomorphy",
+            "MeyerProblem.Gaussian.Schwartz",
+            "MeyerProblem.Gaussian.Totality",
+            "MeyerProblem.LinearAlgebra.FourierOrderFour",
+            "MeyerProblem.Modular.CuspClassification",
+            "MeyerProblem.Modular.CuspHalf",
+            "MeyerProblem.Modular.CuspHalfExpansion",
+            "MeyerProblem.Modular.Cusps",
+            "MeyerProblem.Modular.EtaCoefficientGrowth",
+            "MeyerProblem.Modular.Gamma0Four",
+            "MeyerProblem.Modular.Matrices",
+            "MeyerProblem.Modular.RealWeightAutomorphy",
+            "MeyerProblem.Modular.Rigidity",
+            "MeyerProblem.Modular.WeightZeroCusps",
+            "MeyerProblem.Modular.WeightZeroHalfCusp",
+            "MeyerProblem.Modular.WeightZeroQuotient",
+            "MeyerProblem.PolynomialGrowth",
+            "MeyerProblem.Series.AutomorphicSeries",
+            "MeyerProblem.Series.BoundaryGrowth",
+            "MeyerProblem.Series.EtaProductExistence",
+            "MeyerProblem.Series.EtaProductSeries",
+            "MeyerProblem.Series.MeasureSeriesCorrespondence",
+            "MeyerProblem.Series.MeasureSeriesEquivalence",
+            "MeyerProblem.Series.ShiftedQSeries"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Eta.CuspConstants",
+          "redundant": [
+            "MeyerProblem.Eta.Transformations"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Eta.RealPowers",
+          "redundant": [
+            "MeyerProblem.Analytic.RightHalfPlanePower"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Eta.Transformations",
+          "redundant": [
+            "Mathlib.Analysis.Calculus.MeanValue"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Modular.EtaCoefficientGrowth",
+          "redundant": [
+            "MeyerProblem.Eta.QExpansion"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Modular.Rigidity",
+          "redundant": [
+            "MeyerProblem.Modular.CuspClassification",
+            "MeyerProblem.Modular.WeightZeroCusps"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Checks.AppendixThetaArgumentPrinciple",
+          "redundant": [
+            "MeyerProblem.Appendix.AnalyticFactorization",
+            "MeyerProblem.Appendix.CuspContour",
+            "MeyerProblem.Appendix.RectangleArgumentPrinciple",
+            "MeyerProblem.Appendix.UnitArc"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Checks.ClassificationSectorTransfer",
+          "redundant": [
+            "MeyerProblem.Basic"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.ThetaArgumentPrinciple",
+          "redundant": [
+            "MeyerProblem.Appendix.AnalyticFactorization"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.CompactifiedThetaDivisor",
+          "redundant": [
+            "MeyerProblem.Appendix.GlobalValence"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.AnalyticFactorization",
+          "redundant": [
+            "Mathlib.Analysis.Meromorphic.LogDeriv",
+            "Mathlib.MeasureTheory.Integral.CurveIntegral.Poincare"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.ThetaBoundary",
+          "redundant": [
+            "MeyerProblem.Appendix.GlobalDivisor"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.ThetaFundamentalDomain",
+          "redundant": [
+            "Mathlib.MeasureTheory.Integral.Prod"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.ThetaWinding",
+          "redundant": [
+            "TauCeti.Analysis.Contour.Winding.Number.Partition",
+            "TauCeti.Analysis.Contour.Winding.Proximity"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.ThetaHalfWeights",
+          "redundant": [
+            "TauCeti.Analysis.Contour.LogDerivFTC"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Appendix.GlobalValence",
+          "redundant": [
+            "MeyerProblem.Appendix.Valence"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Series.MeasureSeriesCorrespondence",
+          "redundant": [
+            "MeyerProblem.Gaussian.Fourier"
+          ]
+        }
+      ],
+      "files_with_redundant_imports": 20,
+      "redundant_import_count": 97
     },
     "logs_truncated": false
   },
@@ -217,5 +720,5 @@
     "title": "balancedscorpion/shifted-square-root-fourier-classification",
     "published_at": "2026-08-25T04:32:11Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain"
 }

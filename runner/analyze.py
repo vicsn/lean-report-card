@@ -6,11 +6,17 @@ import re
 import shutil
 import signal
 import subprocess
+import sys
 import tempfile
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
+
+_RUNNER_DIR = Path(__file__).resolve().parent
+if str(_RUNNER_DIR) not in sys.path:
+    sys.path.insert(0, str(_RUNNER_DIR))
+from extra_checks import run_post_build_checks  # noqa: E402
 
 try:
     from scoring import score_report
@@ -469,6 +475,32 @@ def main() -> int:
                     else "Build did not pass."
                 )
                 commands["lint"] = command_result_unavailable(["lake", "lint"], reason)
+            if commands["build"]["status"] == "passed":
+                extra_commands, axiom_summary, redundant = run_post_build_checks(
+                    project_root,
+                    toolchain=str(toolchain),
+                    env=env,
+                    profile=PROFILE,
+                    run_command=run_command,
+                    unavailable=command_result_unavailable,
+                )
+                commands.update(extra_commands)
+            else:
+                commands["axiom_audit"] = command_result_unavailable(
+                    ["lake", "env", "axiom-audit", "--json"],
+                    "Build did not pass.",
+                )
+                commands["fmt"] = command_result_unavailable(
+                    ["lake", "exe", "leanfmt", "--check"],
+                    "Build did not pass.",
+                )
+                axiom_summary = {"ok": False, "error": "Build did not pass."}
+                redundant = {
+                    "redundant_import_count": 0,
+                    "files_with_redundant_imports": 0,
+                    "examples": [],
+                    "error": "Build did not pass.",
+                }
         else:
             commands["build"] = command_result_unavailable(
                 ["lake", "build"], "Lean toolchain installation failed."
@@ -480,12 +512,31 @@ def main() -> int:
                 ["lake", "lint"], "Build was not attempted."
             )
 
+    if "axiom_audit" not in commands:
+        commands["axiom_audit"] = command_result_unavailable(
+            ["lake", "env", "axiom-audit", "--json"],
+            "Build was not attempted.",
+        )
+        commands["fmt"] = command_result_unavailable(
+            ["lake", "exe", "leanfmt", "--check"],
+            "Build was not attempted.",
+        )
+        axiom_summary = {"ok": False, "error": "Build was not attempted."}
+        redundant = {
+            "redundant_import_count": 0,
+            "files_with_redundant_imports": 0,
+            "examples": [],
+            "error": "Build was not attempted.",
+        }
+
     all_results = [clone, checkout, submodules, install, cache_result, *commands.values()]
     logs_truncated = any(bool(result.get("truncated")) for result in all_results)
     facts = {
         "commands": commands,
         "files": files,
         "static": static,
+        "axiom_audit": axiom_summary,
+        "redundant_imports": redundant,
         "toolchain_install": install,
         "mathlib_cache": cache_result,
         "submodules": submodules,

@@ -9,117 +9,394 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-06T20:57:09Z",
-  "score": 79,
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T15:43:28Z",
+  "score": 74,
   "grade": "C",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 1905,
+        "duration_seconds": 1900,
         "returncode": 0
-      }
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "tests",
       "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
       "score": 3,
-      "maximum": 10,
-      "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "lint",
-      "category": "maintainability",
-      "title": "Project lint driver",
       "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      }
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
     },
     {
-      "id": "source-trust-signals",
       "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 14,
+      "details": {
+        "audited": 9616,
+        "axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": true,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
       "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 1,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
-    },
-    {
-      "id": "reproducibility",
-      "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
+      "score": 15,
       "status": "passed",
-      "score": 10,
-      "maximum": 10,
-      "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.33.0",
-        "lake_manifest": true
-      }
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
     },
     {
-      "id": "documentation",
-      "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "passed",
-      "score": 9,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "category": "maintainability",
       "details": {
-        "module_doc_count": 357,
-        "lean_file_count": 381,
-        "documented_declaration_count": 4206,
-        "declaration_count": 4816
-      }
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
     },
     {
-      "id": "project-hygiene",
-      "category": "project",
-      "title": "Repository hygiene",
+      "category": "maintainability",
+      "details": {
+        "examples": [
+          {
+            "module": "NRR.HalfSpaceCutArea",
+            "redundant": [
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "NRR.PrimeModel",
+            "redundant": [
+              "NRR.PrimeModel.Actions",
+              "NRR.PrimeModel.BoundaryOrthants",
+              "NRR.PrimeModel.ChildEquivariance",
+              "NRR.PrimeModel.ChildTestMap",
+              "NRR.PrimeModel.CoordinateDecomposition",
+              "NRR.PrimeModel.EquivariantMap",
+              "NRR.PrimeModel.FixedVectors",
+              "NRR.PrimeModel.Model",
+              "NRR.PrimeModel.ModelSites",
+              "NRR.PrimeModel.PhaseInterfaces",
+              "NRR.PrimeModel.PrimeSymmetry",
+              "NRR.PrimeModel.ZeroSumAlgebra"
+            ]
+          },
+          {
+            "module": "NRR.ConfigurationSpace",
+            "redundant": [
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "NRR.PowerDiagram",
+            "redundant": [
+              "NRR.PowerDiagram.BodyCellPartition",
+              "NRR.PowerDiagram.BodyCells",
+              "NRR.PowerDiagram.CellAlgebra",
+              "NRR.PowerDiagram.CellAreaContinuityWeights",
+              "NRR.PowerDiagram.CellGeometry",
+              "NRR.PowerDiagram.CellOverlap",
+              "NRR.PowerDiagram.Defs"
+            ]
+          },
+          {
+            "module": "NRR.HalfSpace",
+            "redundant": [
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "NRR.AreaPerimeter",
+            "redundant": [
+              "NRR.Geometry.ConvexBody.PlanarPerimeter",
+              "NRR.Geometry.ConvexBody.PlanarPerimeterTransform"
+            ]
+          },
+          {
+            "module": "NRR.PrimeRefinement",
+            "redundant": [
+              "NRR.PrimeRefinement.Core",
+              "NRR.PrimeRefinement.FlexibleCore",
+              "NRR.PrimeRefinement.IndexedPartition",
+              "NRR.PrimeRefinement.Iteration",
+              "NRR.PrimeRefinement.ProjectedZeroSet",
+              "NRR.PrimeRefinement.SeparatorCertificate"
+            ]
+          },
+          {
+            "module": "NRR.BodySpace",
+            "redundant": [
+              "NRR.BodySpace.AreaContinuity",
+              "NRR.BodySpace.Basic",
+              "NRR.BodySpace.BoundaryNull",
+              "NRR.BodySpace.Compactness",
+              "NRR.BodySpace.ConvexClosed",
+              "NRR.BodySpace.MembershipStability",
+              "NRR.BodySpace.PositiveArea",
+              "NRR.BodySpace.SupportWidthContinuity",
+              "NRR.BodySpace.Topology"
+            ]
+          },
+          {
+            "module": "NRR.Multivalued",
+            "redundant": [
+              "NRR.Multivalued.Nice",
+              "NRR.Multivalued.Operations",
+              "NRR.Multivalued.PhaseInterfaces",
+              "NRR.Multivalued.Separator.Basic",
+              "NRR.Multivalued.Separator.Complement",
+              "NRR.Multivalued.Separator.Distance",
+              "NRR.Multivalued.Separator.Fibers",
+              "NRR.Multivalued.Separator.SignedDistance",
+              "NRR.Multivalued.SignedInterval",
+              "NRR.Multivalued.ZeroSet"
+            ]
+          },
+          {
+            "module": "NRR.SupportFunction",
+            "redundant": [
+              "NRR.Geometry.ConvexBody.SupportFunction",
+              "NRR.Geometry.ConvexBody.SupportFunctionBasic",
+              "NRR.Geometry.ConvexBody.SupportFunctionContinuity",
+              "NRR.Geometry.ConvexBody.SupportFunctionTransform",
+              "NRR.Geometry.ConvexBody.Width",
+              "NRR.Geometry.ConvexBody.WidthContinuity"
+            ]
+          },
+          {
+            "module": "NRR.HalfSpaceCutAreaContinuity",
+            "redundant": [
+              "Mathlib",
+              "NRR.ConvexBody",
+              "NRR.Geometry.ConvexBody.HalfspaceCut"
+            ]
+          },
+          {
+            "module": "NRR.Multivalued.ChildEvaluation",
+            "redundant": [
+              "NRR.Multivalued.PhaseInterfaces"
+            ]
+          },
+          {
+            "module": "NRR.Multivalued.PhaseInterfaces",
+            "redundant": [
+              "NRR.BodySpace"
+            ]
+          },
+          {
+            "module": "NRR.PrimePolyhedron.FoxNeuwirth",
+            "redundant": [
+              "NRR.PrimePolyhedron.FoxNeuwirth.ActualCellularBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.AffineBarycentricSubdivisionCarrier",
+              "NRR.PrimePolyhedron.FoxNeuwirth.BarredPermutation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.CanonicalConfiguration",
+              "NRR.PrimePolyhedron.FoxNeuwirth.CellAtlas",
+              "NRR.PrimePolyhedron.FoxNeuwirth.CellularCycle",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackCore",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackDescent",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackLastVertexCore",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityNonzero",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityPolynomials",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGlobalCancellation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismHorizontalEndpointIdentification",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismNonhorizontalCancellation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismStableRelativeBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismVertexParameters",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarAssignmentCompose",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarCompose",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarReverse",
+              "NRR.PrimePolyhedron.FoxNeuwirth.FacetShuffleEquiv",
+              "NRR.PrimePolyhedron.FoxNeuwirth.FiniteMultivariateGenericPerturbation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ModPOrbitCycle",
+              "NRR.PrimePolyhedron.FoxNeuwirth.OrbitRepresentatives",
+              "NRR.PrimePolyhedron.FoxNeuwirth.OrderComplex",
+              "NRR.PrimePolyhedron.FoxNeuwirth.Orientation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.OrientedBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.PrimeBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZero",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZeroFreeMaps",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierCore",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierEquivariant",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RegularApproximationStability",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabs",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsEndpoints",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderCombinatorics",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionEndpointCollar",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundaryBase",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCells",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCollar",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepEndpoints",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBEndpointFacetTargets",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetTargetComposition",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFrozenSupportGeometry",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarComparison",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarExistenceAudit",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivision",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivisionExact",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableEndpointBridges",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableExactRelativeCollarConstructionAffinePullback",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarConstructionAffinePullback",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMargin",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMarginAffinePullback",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRelativeMesh",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteB",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBComplete",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBFacetGeometry",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBGeometry",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBInstantiation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyBoundary",
+              "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
+              "NRR.PrimePolyhedron.FoxNeuwirth.Strata",
+              "NRR.PrimePolyhedron.FoxNeuwirth.TopCellModel",
+              "NRR.PrimePolyhedron.FoxNeuwirth.TopCells",
+              "NRR.PrimePolyhedron.FoxNeuwirth.TopFlagSubdivision",
+              "NRR.PrimePolyhedron.FoxNeuwirth.TopIncidenceComplex"
+            ]
+          },
+          {
+            "module": "NRR.PrimePolyhedron.FiniteCells",
+            "redundant": [
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
+            "redundant": [
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
+              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin"
+            ]
+          },
+          {
+            "module": "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
+            "redundant": [
+              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
+              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarMiddlePrismEndpoints"
+            ]
+          },
+          {
+            "module": "NRR.PrimePolyhedron.FoxNeuwirth.RefinedAffineMap",
+            "redundant": [
+              "NRR.OddSphereDegree.AlgebraicTopology.BarycentricSubdivisionOperator",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceAffineOrbitCount"
+            ]
+          },
+          {
+            "module": "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
+            "redundant": [
+              "NRR.OddSphereDegree.AlgebraicTopology.BarycentricFiniteCancellation"
+            ]
+          },
+          {
+            "module": "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
+            "redundant": [
+              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBSelectedVectorBlock"
+            ]
+          }
+        ],
+        "files_with_redundant_imports": 193,
+        "redundant_import_count": 462
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 0,
       "status": "warning",
-      "score": 5,
+      "summary": "Counted 462 transitively redundant import(s).",
+      "title": "Redundant imports"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.33.0"
+      },
+      "id": "reproducibility",
       "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_count": 4816,
+        "documented_declaration_count": 4206,
+        "lean_file_count": 381,
+        "module_doc_count": 357
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 9,
+      "status": "passed",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "project",
       "details": {
         "test_file_count": 2,
         "todo_count": 0
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 5,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "passed",
-      "score": 5,
-      "maximum": 5,
-      "summary": "The build produced no warning lines.",
       "details": {
         "warning_count": 0
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "The build produced no warning lines.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +421,7 @@
       "lean_file_count": 381,
       "line_count": 81829,
       "max_direct_imports": 77,
+      "module_doc_count": 357,
       "module_doc_ratio": 0.937007874015748,
       "native_decide_count": 0,
       "sorry_count": 1,
@@ -151,16 +429,61 @@
       "todo_count": 0
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 13,
+        "report": {
+          "allowed": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "audited": 9616,
+          "axioms_used": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": true,
+          "root": "NRR",
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 1905,
+        "duration_seconds": 1900,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
         "warning_count": 0
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -202,10 +525,278 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 149,
+      "duration_seconds": 137,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "audited": 9616,
+      "axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": true,
+      "root": "NRR",
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [
+        {
+          "module": "NRR.HalfSpaceCutArea",
+          "redundant": [
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "NRR.PrimeModel",
+          "redundant": [
+            "NRR.PrimeModel.Actions",
+            "NRR.PrimeModel.BoundaryOrthants",
+            "NRR.PrimeModel.ChildEquivariance",
+            "NRR.PrimeModel.ChildTestMap",
+            "NRR.PrimeModel.CoordinateDecomposition",
+            "NRR.PrimeModel.EquivariantMap",
+            "NRR.PrimeModel.FixedVectors",
+            "NRR.PrimeModel.Model",
+            "NRR.PrimeModel.ModelSites",
+            "NRR.PrimeModel.PhaseInterfaces",
+            "NRR.PrimeModel.PrimeSymmetry",
+            "NRR.PrimeModel.ZeroSumAlgebra"
+          ]
+        },
+        {
+          "module": "NRR.ConfigurationSpace",
+          "redundant": [
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "NRR.PowerDiagram",
+          "redundant": [
+            "NRR.PowerDiagram.BodyCellPartition",
+            "NRR.PowerDiagram.BodyCells",
+            "NRR.PowerDiagram.CellAlgebra",
+            "NRR.PowerDiagram.CellAreaContinuityWeights",
+            "NRR.PowerDiagram.CellGeometry",
+            "NRR.PowerDiagram.CellOverlap",
+            "NRR.PowerDiagram.Defs"
+          ]
+        },
+        {
+          "module": "NRR.HalfSpace",
+          "redundant": [
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "NRR.AreaPerimeter",
+          "redundant": [
+            "NRR.Geometry.ConvexBody.PlanarPerimeter",
+            "NRR.Geometry.ConvexBody.PlanarPerimeterTransform"
+          ]
+        },
+        {
+          "module": "NRR.PrimeRefinement",
+          "redundant": [
+            "NRR.PrimeRefinement.Core",
+            "NRR.PrimeRefinement.FlexibleCore",
+            "NRR.PrimeRefinement.IndexedPartition",
+            "NRR.PrimeRefinement.Iteration",
+            "NRR.PrimeRefinement.ProjectedZeroSet",
+            "NRR.PrimeRefinement.SeparatorCertificate"
+          ]
+        },
+        {
+          "module": "NRR.BodySpace",
+          "redundant": [
+            "NRR.BodySpace.AreaContinuity",
+            "NRR.BodySpace.Basic",
+            "NRR.BodySpace.BoundaryNull",
+            "NRR.BodySpace.Compactness",
+            "NRR.BodySpace.ConvexClosed",
+            "NRR.BodySpace.MembershipStability",
+            "NRR.BodySpace.PositiveArea",
+            "NRR.BodySpace.SupportWidthContinuity",
+            "NRR.BodySpace.Topology"
+          ]
+        },
+        {
+          "module": "NRR.Multivalued",
+          "redundant": [
+            "NRR.Multivalued.Nice",
+            "NRR.Multivalued.Operations",
+            "NRR.Multivalued.PhaseInterfaces",
+            "NRR.Multivalued.Separator.Basic",
+            "NRR.Multivalued.Separator.Complement",
+            "NRR.Multivalued.Separator.Distance",
+            "NRR.Multivalued.Separator.Fibers",
+            "NRR.Multivalued.Separator.SignedDistance",
+            "NRR.Multivalued.SignedInterval",
+            "NRR.Multivalued.ZeroSet"
+          ]
+        },
+        {
+          "module": "NRR.SupportFunction",
+          "redundant": [
+            "NRR.Geometry.ConvexBody.SupportFunction",
+            "NRR.Geometry.ConvexBody.SupportFunctionBasic",
+            "NRR.Geometry.ConvexBody.SupportFunctionContinuity",
+            "NRR.Geometry.ConvexBody.SupportFunctionTransform",
+            "NRR.Geometry.ConvexBody.Width",
+            "NRR.Geometry.ConvexBody.WidthContinuity"
+          ]
+        },
+        {
+          "module": "NRR.HalfSpaceCutAreaContinuity",
+          "redundant": [
+            "Mathlib",
+            "NRR.ConvexBody",
+            "NRR.Geometry.ConvexBody.HalfspaceCut"
+          ]
+        },
+        {
+          "module": "NRR.Multivalued.ChildEvaluation",
+          "redundant": [
+            "NRR.Multivalued.PhaseInterfaces"
+          ]
+        },
+        {
+          "module": "NRR.Multivalued.PhaseInterfaces",
+          "redundant": [
+            "NRR.BodySpace"
+          ]
+        },
+        {
+          "module": "NRR.PrimePolyhedron.FoxNeuwirth",
+          "redundant": [
+            "NRR.PrimePolyhedron.FoxNeuwirth.ActualCellularBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.AffineBarycentricSubdivisionCarrier",
+            "NRR.PrimePolyhedron.FoxNeuwirth.BarredPermutation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.CanonicalConfiguration",
+            "NRR.PrimePolyhedron.FoxNeuwirth.CellAtlas",
+            "NRR.PrimePolyhedron.FoxNeuwirth.CellularCycle",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackCore",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackDescent",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackLastVertexCore",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityNonzero",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityPolynomials",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGlobalCancellation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismHorizontalEndpointIdentification",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismNonhorizontalCancellation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismStableRelativeBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismVertexParameters",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarAssignmentCompose",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarCompose",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarReverse",
+            "NRR.PrimePolyhedron.FoxNeuwirth.FacetShuffleEquiv",
+            "NRR.PrimePolyhedron.FoxNeuwirth.FiniteMultivariateGenericPerturbation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ModPOrbitCycle",
+            "NRR.PrimePolyhedron.FoxNeuwirth.OrbitRepresentatives",
+            "NRR.PrimePolyhedron.FoxNeuwirth.OrderComplex",
+            "NRR.PrimePolyhedron.FoxNeuwirth.Orientation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.OrientedBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.PrimeBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZero",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZeroFreeMaps",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierCore",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierEquivariant",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RegularApproximationStability",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabs",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsEndpoints",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderCombinatorics",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionEndpointCollar",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundaryBase",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCells",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCollar",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepEndpoints",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBEndpointFacetTargets",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetTargetComposition",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFrozenSupportGeometry",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarComparison",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarExistenceAudit",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivision",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivisionExact",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableEndpointBridges",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableExactRelativeCollarConstructionAffinePullback",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarConstructionAffinePullback",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMargin",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMarginAffinePullback",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRelativeMesh",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteB",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBComplete",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBFacetGeometry",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBGeometry",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBInstantiation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyBoundary",
+            "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
+            "NRR.PrimePolyhedron.FoxNeuwirth.Strata",
+            "NRR.PrimePolyhedron.FoxNeuwirth.TopCellModel",
+            "NRR.PrimePolyhedron.FoxNeuwirth.TopCells",
+            "NRR.PrimePolyhedron.FoxNeuwirth.TopFlagSubdivision",
+            "NRR.PrimePolyhedron.FoxNeuwirth.TopIncidenceComplex"
+          ]
+        },
+        {
+          "module": "NRR.PrimePolyhedron.FiniteCells",
+          "redundant": [
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
+          "redundant": [
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
+            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin"
+          ]
+        },
+        {
+          "module": "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
+          "redundant": [
+            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
+            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarMiddlePrismEndpoints"
+          ]
+        },
+        {
+          "module": "NRR.PrimePolyhedron.FoxNeuwirth.RefinedAffineMap",
+          "redundant": [
+            "NRR.OddSphereDegree.AlgebraicTopology.BarycentricSubdivisionOperator",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceAffineOrbitCount"
+          ]
+        },
+        {
+          "module": "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
+          "redundant": [
+            "NRR.OddSphereDegree.AlgebraicTopology.BarycentricFiniteCancellation"
+          ]
+        },
+        {
+          "module": "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
+          "redundant": [
+            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBSelectedVectorBlock"
+          ]
+        }
+      ],
+      "files_with_redundant_imports": 193,
+      "redundant_import_count": 462
     },
     "logs_truncated": false
   },
@@ -217,5 +808,5 @@
     "title": "akopjan/NRR-AAK",
     "published_at": "2026-08-31T04:27:43Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }

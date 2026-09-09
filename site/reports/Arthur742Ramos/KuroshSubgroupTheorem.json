@@ -9,117 +9,211 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-06T22:16:33Z",
-  "score": 68,
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T17:03:59Z",
+  "score": 66,
   "grade": "D",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 63,
+        "duration_seconds": 70,
         "returncode": 0
-      }
-    },
-    {
-      "id": "tests",
-      "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
-      "score": 3,
-      "maximum": 10,
-      "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "lint",
-      "category": "maintainability",
-      "title": "Project lint driver",
-      "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "source-trust-signals",
-      "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 13,
-      "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 2,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
-    },
-    {
-      "id": "reproducibility",
-      "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
       "status": "passed",
-      "score": 10,
-      "maximum": 10,
-      "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.32.0",
-        "lake_manifest": true
-      }
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "documentation",
-      "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "warning",
+      "category": "verification",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "lint",
+      "maximum": 10,
       "score": 4,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
-      "details": {
-        "module_doc_count": 15,
-        "lean_file_count": 35,
-        "documented_declaration_count": 107,
-        "declaration_count": 871
-      }
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
     },
     {
-      "id": "project-hygiene",
-      "category": "project",
-      "title": "Repository hygiene",
+      "category": "trust",
+      "details": {
+        "audited": 467,
+        "axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": true,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
+      "maximum": 15,
+      "score": 15,
+      "status": "passed",
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "examples": [
+          {
+            "module": "FiniteGraphFreeGroup",
+            "redundant": [
+              "FiniteGraphFreeGroup.Consequences",
+              "FiniteGraphFreeGroup.Cover",
+              "FiniteGraphFreeGroup.Realization",
+              "FiniteGraphFreeGroup.TreeContraction"
+            ]
+          },
+          {
+            "module": "KuroshSolution",
+            "redundant": [
+              "Mathlib.Algebra.Group.ULift",
+              "Mathlib.GroupTheory.CoprodI",
+              "Mathlib.GroupTheory.DoubleCoset",
+              "Mathlib.GroupTheory.FreeGroup.NielsenSchreier"
+            ]
+          },
+          {
+            "module": "FiniteGraphFreeGroup.TopologicalComparison",
+            "redundant": [
+              "FiniteGraphFreeGroup.Cover",
+              "FiniteGraphFreeGroup.Realization",
+              "Mathlib.GroupTheory.FreeGroup.Reduce",
+              "Mathlib.Topology.Covering.Basic",
+              "Mathlib.Topology.Homotopy.Lifting"
+            ]
+          },
+          {
+            "module": "GraphCoveringTheory.KuroshCoverLocal",
+            "redundant": [
+              "Mathlib.Combinatorics.Quiver.Covering"
+            ]
+          },
+          {
+            "module": "GraphCoveringTheory.KuroshCoverLift",
+            "redundant": [
+              "GraphCoveringTheory.KuroshFreePart"
+            ]
+          },
+          {
+            "module": "GraphCoveringTheory.IndexFormula",
+            "redundant": [
+              "Mathlib.CategoryTheory.Groupoid.FreeGroupoid"
+            ]
+          },
+          {
+            "module": "GraphCoveringTheory.KuroshCoverAction",
+            "redundant": [
+              "Mathlib.Combinatorics.Quiver.Covering"
+            ]
+          },
+          {
+            "module": "GraphCoveringTheory.SchreierCover",
+            "redundant": [
+              "Mathlib.GroupTheory.FreeGroup.NielsenSchreier"
+            ]
+          }
+        ],
+        "files_with_redundant_imports": 8,
+        "redundant_import_count": 18
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 0,
       "status": "warning",
-      "score": 6,
+      "summary": "Counted 18 transitively redundant import(s).",
+      "title": "Redundant imports"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.32.0"
+      },
+      "id": "reproducibility",
       "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_count": 871,
+        "documented_declaration_count": 107,
+        "lean_file_count": 35,
+        "module_doc_count": 15
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 4,
+      "status": "warning",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "project",
       "details": {
         "test_file_count": 0,
         "todo_count": 0
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 6,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
         "warning_count": 72
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +238,7 @@
       "lean_file_count": 35,
       "line_count": 15921,
       "max_direct_imports": 8,
+      "module_doc_count": 15,
       "module_doc_ratio": 0.42857142857142855,
       "native_decide_count": 0,
       "sorry_count": 2,
@@ -151,16 +246,61 @@
       "todo_count": 0
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/cc346fd7850a83fb/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 3,
+        "report": {
+          "allowed": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "audited": 467,
+          "axioms_used": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": true,
+          "root": "FiniteGraphFreeGroup",
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 63,
+        "duration_seconds": 70,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
         "warning_count": 72
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -202,10 +342,95 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 134,
+      "duration_seconds": 141,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "audited": 467,
+      "axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": true,
+      "root": "FiniteGraphFreeGroup",
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [
+        {
+          "module": "FiniteGraphFreeGroup",
+          "redundant": [
+            "FiniteGraphFreeGroup.Consequences",
+            "FiniteGraphFreeGroup.Cover",
+            "FiniteGraphFreeGroup.Realization",
+            "FiniteGraphFreeGroup.TreeContraction"
+          ]
+        },
+        {
+          "module": "KuroshSolution",
+          "redundant": [
+            "Mathlib.Algebra.Group.ULift",
+            "Mathlib.GroupTheory.CoprodI",
+            "Mathlib.GroupTheory.DoubleCoset",
+            "Mathlib.GroupTheory.FreeGroup.NielsenSchreier"
+          ]
+        },
+        {
+          "module": "FiniteGraphFreeGroup.TopologicalComparison",
+          "redundant": [
+            "FiniteGraphFreeGroup.Cover",
+            "FiniteGraphFreeGroup.Realization",
+            "Mathlib.GroupTheory.FreeGroup.Reduce",
+            "Mathlib.Topology.Covering.Basic",
+            "Mathlib.Topology.Homotopy.Lifting"
+          ]
+        },
+        {
+          "module": "GraphCoveringTheory.KuroshCoverLocal",
+          "redundant": [
+            "Mathlib.Combinatorics.Quiver.Covering"
+          ]
+        },
+        {
+          "module": "GraphCoveringTheory.KuroshCoverLift",
+          "redundant": [
+            "GraphCoveringTheory.KuroshFreePart"
+          ]
+        },
+        {
+          "module": "GraphCoveringTheory.IndexFormula",
+          "redundant": [
+            "Mathlib.CategoryTheory.Groupoid.FreeGroupoid"
+          ]
+        },
+        {
+          "module": "GraphCoveringTheory.KuroshCoverAction",
+          "redundant": [
+            "Mathlib.Combinatorics.Quiver.Covering"
+          ]
+        },
+        {
+          "module": "GraphCoveringTheory.SchreierCover",
+          "redundant": [
+            "Mathlib.GroupTheory.FreeGroup.NielsenSchreier"
+          ]
+        }
+      ],
+      "files_with_redundant_imports": 8,
+      "redundant_import_count": 18
     },
     "logs_truncated": false
   },
@@ -217,5 +442,5 @@
     "title": "Arthur742Ramos/KuroshSubgroupTheorem",
     "published_at": "2026-08-31T18:59:14Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }

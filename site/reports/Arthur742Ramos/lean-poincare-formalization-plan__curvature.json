@@ -9,117 +9,296 @@
     "project_path": "curvature"
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-06T22:28:45Z",
-  "score": 66,
-  "grade": "D",
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T17:16:45Z",
+  "score": 70,
+  "grade": "C",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 1557,
+        "duration_seconds": 1500,
         "returncode": 0
-      }
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "tests",
       "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
       "score": 3,
-      "maximum": 10,
-      "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "lint",
-      "category": "maintainability",
-      "title": "Project lint driver",
       "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      }
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
     },
     {
-      "id": "source-trust-signals",
       "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 7,
+      "details": {
+        "audited": 7359,
+        "axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": true,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
       "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 8,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
-    },
-    {
-      "id": "reproducibility",
-      "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
+      "score": 15,
       "status": "passed",
-      "score": 10,
-      "maximum": 10,
-      "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.33.0",
-        "lake_manifest": true
-      }
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
     },
     {
-      "id": "documentation",
-      "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "passed",
-      "score": 8,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "category": "maintainability",
       "details": {
-        "module_doc_count": 75,
-        "lean_file_count": 86,
-        "documented_declaration_count": 7325,
-        "declaration_count": 9135
-      }
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
     },
     {
-      "id": "project-hygiene",
-      "category": "project",
-      "title": "Repository hygiene",
+      "category": "maintainability",
+      "details": {
+        "examples": [
+          {
+            "module": "PoincareCurvature",
+            "redundant": [
+              "PoincareCurvature.Analysis.TimeDependentGram",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.AutonomousResolventExp",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionCoordBounds",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionPicardTangent",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SectionPointwiseDeriv",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckCorrectionRegularity",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckReactionAssembly",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Sectional",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.DowngradeNormFree",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.HomBundleComp",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.SmoothApprox"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.RicciFlowLocalExistence",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.FunctionSpace",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.HigherFunctionSpace",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.HigherMatrix",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.LocalFrameGram",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.MatrixC0Alpha",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.ParabolicHolder",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SmoothRealization",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SmoothRealizationGaugeRoutes",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowExistence",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.ModelGaugeFlowODE",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.EinsteinAux",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.RankOne",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.RankOneDeTurck",
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.RicciFlatClosure"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Basic",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Along",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Raw",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Metric"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckCorrectionRegularity",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckReactionAssembly",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeTransport",
+            "redundant": [
+              "Mathlib.Geometry.Manifold.ContMDiffMFDeriv",
+              "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion",
+              "Mathlib.Geometry.Manifold.VectorField.LieBracket",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Along",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Raw",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
+            "redundant": [
+              "Mathlib.Analysis.Calculus.Deriv.Prod"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricGaugeFlow",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowExistence"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.FrozenChartAffineEvolution",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionPicardTangent"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionPicard",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SectionSpacePicard",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.ModelManifoldGaugeFlow",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SmoothDependenceManifold"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+            "redundant": [
+              "Mathlib.Topology.ContinuousMap.Compact"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
+            "redundant": [
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
+            "redundant": [
+              "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
+            "redundant": [
+              "Mathlib.Analysis.InnerProductSpace.Trace"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+            "redundant": [
+              "Mathlib.Analysis.InnerProductSpace.Dual",
+              "Mathlib.Geometry.Manifold.BumpFunction",
+              "Mathlib.Geometry.Manifold.VectorBundle.SmoothSection"
+            ]
+          }
+        ],
+        "files_with_redundant_imports": 17,
+        "redundant_import_count": 58
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 0,
       "status": "warning",
-      "score": 6,
+      "summary": "Counted 58 transitively redundant import(s).",
+      "title": "Redundant imports"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.33.0"
+      },
+      "id": "reproducibility",
       "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_count": 9135,
+        "documented_declaration_count": 7325,
+        "lean_file_count": 86,
+        "module_doc_count": 75
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 8,
+      "status": "passed",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "project",
       "details": {
         "test_file_count": 3,
         "todo_count": 1
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 6,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
         "warning_count": 639
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +323,7 @@
       "lean_file_count": 86,
       "line_count": 290935,
       "max_direct_imports": 26,
+      "module_doc_count": 75,
       "module_doc_ratio": 0.872093023255814,
       "native_decide_count": 0,
       "sorry_count": 8,
@@ -151,16 +331,61 @@
       "todo_count": 1
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 8,
+        "report": {
+          "allowed": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "audited": 7359,
+          "axioms_used": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": true,
+          "root": "PoincareCurvature",
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 1557,
+        "duration_seconds": 1500,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
         "warning_count": 639
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -202,10 +427,180 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 134,
+      "duration_seconds": 137,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "audited": 7359,
+      "axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": true,
+      "root": "PoincareCurvature",
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [
+        {
+          "module": "PoincareCurvature",
+          "redundant": [
+            "PoincareCurvature.Analysis.TimeDependentGram",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.AutonomousResolventExp",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionCoordBounds",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionPicardTangent",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SectionPointwiseDeriv",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckCorrectionRegularity",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckReactionAssembly",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Sectional",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.DowngradeNormFree",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.HomBundleComp",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.SmoothApprox"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.RicciFlowLocalExistence",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.FunctionSpace",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.HigherFunctionSpace",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.HigherMatrix",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.LocalFrameGram",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.Parabolic.MatrixC0Alpha",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.ParabolicHolder",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SmoothRealization",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SmoothRealizationGaugeRoutes",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowExistence",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.ModelGaugeFlowODE",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.EinsteinAux",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.RankOne",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.RankOneDeTurck",
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.LocalExistence.RicciFlatClosure"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Basic",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Along",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Raw",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Metric"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckCorrectionRegularity",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckReactionAssembly",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeTransport",
+          "redundant": [
+            "Mathlib.Geometry.Manifold.ContMDiffMFDeriv",
+            "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion",
+            "Mathlib.Geometry.Manifold.VectorField.LieBracket",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Along",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Raw",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
+          "redundant": [
+            "Mathlib.Analysis.Calculus.Deriv.Prod"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricGaugeFlow",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowExistence"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.FrozenChartAffineEvolution",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionPicardTangent"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.GeometricReactionPicard",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SectionSpacePicard",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.ModelManifoldGaugeFlow",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.RicciFlow.AnalyticPDE.SmoothDependenceManifold"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+          "redundant": [
+            "Mathlib.Topology.ContinuousMap.Compact"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
+          "redundant": [
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
+          "redundant": [
+            "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
+          "redundant": [
+            "Mathlib.Analysis.InnerProductSpace.Trace"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+          "redundant": [
+            "Mathlib.Analysis.InnerProductSpace.Dual",
+            "Mathlib.Geometry.Manifold.BumpFunction",
+            "Mathlib.Geometry.Manifold.VectorBundle.SmoothSection"
+          ]
+        }
+      ],
+      "files_with_redundant_imports": 17,
+      "redundant_import_count": 58
     },
     "logs_truncated": false
   },
@@ -214,8 +609,8 @@
     "ids": [
       "PALOMAR-2026-09-02-000007"
     ],
-    "title": "Levi–Civita connections and metric-determined curvature invariants in Lean",
+    "title": "Levi\u2013Civita connections and metric-determined curvature invariants in Lean",
     "published_at": "2026-09-03T00:09:33Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }

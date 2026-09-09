@@ -1,9 +1,9 @@
 # Ideas for future work
 
-- Integrate `axiom-audit` JSON output, `#print axioms`, `leanchecker` and independent checking with `nanoda`.
-- Integrate `import-graph`, `#redundant_imports`, `#min_imports`, `#find_home`, declaration dependency graphs and stored graph artifacts.
+- Integrate `#print axioms`, `leanchecker` and independent checking with `nanoda`.
+- Integrate `#min_imports`, `#find_home`, declaration dependency graphs and stored graph artifacts.
 - Match more `lean-action` behavior: Lake target detection, Mathlib cache policy, `mk_all --check`, Reservoir eligibility and toolchain compatibility handling.
-- Add Mathlib/Batteries linters, documentation coverage, `doc-gen4`, `lean-fmt`, warning inventories and global `[simp]`/instance/notation audits.
+- Add Mathlib/Batteries linters, documentation coverage, `doc-gen4`, warning inventories and global `[simp]`/instance/notation audits.
 - Add uLean or other project-size, dependency, declaration, proof-term and elaboration-performance analyzers as versioned adapters.
 - Test current, pinned and next Lean/Mathlib toolchains; classify syntax, API, instance, simplifier, import and performance regressions separately.
 

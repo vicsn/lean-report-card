@@ -9,117 +9,281 @@
     "project_path": "gcd3-69-cube"
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-07T01:28:34Z",
-  "score": 73,
-  "grade": "C",
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T20:35:24Z",
+  "score": 69,
+  "grade": "D",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 2741,
+        "duration_seconds": 3146,
         "returncode": 0
-      }
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "tests",
       "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
-      "score": 3,
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
       "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
       "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
+      "title": "Project test driver"
     },
     {
-      "id": "lint",
       "category": "maintainability",
-      "title": "Project lint driver",
-      "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      }
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
     },
     {
-      "id": "source-trust-signals",
       "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 14,
+      "details": {
+        "audited": 0,
+        "axioms_used": [],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": false,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
       "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 1,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
-    },
-    {
-      "id": "reproducibility",
-      "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
+      "score": 15,
       "status": "passed",
-      "score": 10,
-      "maximum": 10,
-      "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.34.0-rc1",
-        "lake_manifest": true
-      }
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
     },
     {
-      "id": "documentation",
-      "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "passed",
-      "score": 10,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "category": "maintainability",
       "details": {
-        "module_doc_count": 388,
-        "lean_file_count": 388,
-        "documented_declaration_count": 1654,
-        "declaration_count": 1834
-      }
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
     },
     {
-      "id": "project-hygiene",
-      "category": "project",
-      "title": "Repository hygiene",
+      "category": "maintainability",
+      "details": {
+        "examples": [
+          {
+            "module": "FiniteDoubleLiftCoefficients",
+            "redundant": [
+              "FiniteEarlyNormal"
+            ]
+          },
+          {
+            "module": "InfinityC5Middle",
+            "redundant": [
+              "FiniteC5EarlyNormal"
+            ]
+          },
+          {
+            "module": "FiniteDoubleRow123C2",
+            "redundant": [
+              "FiniteC2EarlyNormal"
+            ]
+          },
+          {
+            "module": "FiniteArbitraryLoadStrict",
+            "redundant": [
+              "ArbitraryLoads"
+            ]
+          },
+          {
+            "module": "FiniteArbitraryLoadTied",
+            "redundant": [
+              "ArbitraryLoads"
+            ]
+          },
+          {
+            "module": "FiniteDoubleSourceChartsC4",
+            "redundant": [
+              "FiniteDoubleSourceChartAll",
+              "FiniteDoubleSourceChartLate",
+              "FiniteDoubleSourceChartMiddle",
+              "FiniteDoubleSourceChartOrders",
+              "FiniteDoubleSourceChartZero"
+            ]
+          },
+          {
+            "module": "FiniteRho2SourceAssembly",
+            "redundant": [
+              "FiniteRho2SourceRootSplit"
+            ]
+          },
+          {
+            "module": "InfinityC2Balanced",
+            "redundant": [
+              "FiniteC2EarlyNormal",
+              "FiniteDoubleC2LoadSourceCoeff"
+            ]
+          },
+          {
+            "module": "FiniteDoubleSourceNonicC4",
+            "redundant": [
+              "FiniteDoubleSource"
+            ]
+          },
+          {
+            "module": "FiniteDoubleC2LoadLift",
+            "redundant": [
+              "FiniteDoubleLiftQuadratic",
+              "FiniteDoubleRow12C2"
+            ]
+          },
+          {
+            "module": "FiniteDoubleSourceChartsRho2",
+            "redundant": [
+              "FiniteDoubleSourceChartAll",
+              "FiniteDoubleSourceChartLate",
+              "FiniteDoubleSourceChartMiddle",
+              "FiniteDoubleSourceChartOrders",
+              "FiniteDoubleSourceChartZero",
+              "FiniteDoubleSourceNonicRho2"
+            ]
+          },
+          {
+            "module": "FiniteDoubleSourceOrderCasesC4",
+            "redundant": [
+              "FiniteDoubleSourceOrderCases"
+            ]
+          },
+          {
+            "module": "InfinityC4Tie",
+            "redundant": [
+              "InfinityLoadLanding"
+            ]
+          },
+          {
+            "module": "FiniteEarlyLoadRouting",
+            "redundant": [
+              "FiniteRootLift"
+            ]
+          },
+          {
+            "module": "FiniteDoubleRho2LoadEndpointLift",
+            "redundant": [
+              "FiniteDoubleRho2Load",
+              "FiniteDoubleRow12Rho2"
+            ]
+          },
+          {
+            "module": "FiniteDoubleSourceOrderCasesC5",
+            "redundant": [
+              "FiniteDoubleSourceOrderCases"
+            ]
+          },
+          {
+            "module": "FiniteRho1SourceAssembly",
+            "redundant": [
+              "FiniteRho1SourceRootSplit"
+            ]
+          },
+          {
+            "module": "FiniteDoubleLiftSourceC1",
+            "redundant": [
+              "FiniteDoubleRow12C1"
+            ]
+          },
+          {
+            "module": "FiniteDoubleSourceNonicC5",
+            "redundant": [
+              "FiniteDoubleSource"
+            ]
+          },
+          {
+            "module": "FiniteC5SourceAssembly",
+            "redundant": [
+              "FiniteC5SourceRootSplit"
+            ]
+          }
+        ],
+        "files_with_redundant_imports": 101,
+        "redundant_import_count": 156
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 0,
       "status": "warning",
-      "score": 3,
+      "summary": "Counted 156 transitively redundant import(s).",
+      "title": "Redundant imports"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.34.0-rc1"
+      },
+      "id": "reproducibility",
       "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_count": 1834,
+        "documented_declaration_count": 1654,
+        "lean_file_count": 388,
+        "module_doc_count": 388
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 10,
+      "status": "passed",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "project",
       "details": {
         "test_file_count": 0,
         "todo_count": 0
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 3,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
         "warning_count": 273
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +308,7 @@
       "lean_file_count": 388,
       "line_count": 113765,
       "max_direct_imports": 8,
+      "module_doc_count": 388,
       "module_doc_ratio": 1.0,
       "native_decide_count": 0,
       "sorry_count": 1,
@@ -151,16 +316,58 @@
       "todo_count": 0
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/929cd8bf7ec963bd/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 10,
+        "report": {
+          "allowed": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "audited": 0,
+          "axioms_used": [],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": false,
+          "root": "GCD369Cube",
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "{\"allowed\":[\"propext\",\"Classical.choice\",\"Quot.sound\"],\"audited\":0,\"axiomsUsed\":[],\"ok\":false,\"root\":\"GCD369Cube\",\"violations\":[]}\n"
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 2741,
+        "duration_seconds": 3146,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
         "warning_count": 273
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -202,10 +409,165 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 156,
+      "duration_seconds": 155,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "audited": 0,
+      "axioms_used": [],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": false,
+      "root": "GCD369Cube",
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [
+        {
+          "module": "FiniteDoubleLiftCoefficients",
+          "redundant": [
+            "FiniteEarlyNormal"
+          ]
+        },
+        {
+          "module": "InfinityC5Middle",
+          "redundant": [
+            "FiniteC5EarlyNormal"
+          ]
+        },
+        {
+          "module": "FiniteDoubleRow123C2",
+          "redundant": [
+            "FiniteC2EarlyNormal"
+          ]
+        },
+        {
+          "module": "FiniteArbitraryLoadStrict",
+          "redundant": [
+            "ArbitraryLoads"
+          ]
+        },
+        {
+          "module": "FiniteArbitraryLoadTied",
+          "redundant": [
+            "ArbitraryLoads"
+          ]
+        },
+        {
+          "module": "FiniteDoubleSourceChartsC4",
+          "redundant": [
+            "FiniteDoubleSourceChartAll",
+            "FiniteDoubleSourceChartLate",
+            "FiniteDoubleSourceChartMiddle",
+            "FiniteDoubleSourceChartOrders",
+            "FiniteDoubleSourceChartZero"
+          ]
+        },
+        {
+          "module": "FiniteRho2SourceAssembly",
+          "redundant": [
+            "FiniteRho2SourceRootSplit"
+          ]
+        },
+        {
+          "module": "InfinityC2Balanced",
+          "redundant": [
+            "FiniteC2EarlyNormal",
+            "FiniteDoubleC2LoadSourceCoeff"
+          ]
+        },
+        {
+          "module": "FiniteDoubleSourceNonicC4",
+          "redundant": [
+            "FiniteDoubleSource"
+          ]
+        },
+        {
+          "module": "FiniteDoubleC2LoadLift",
+          "redundant": [
+            "FiniteDoubleLiftQuadratic",
+            "FiniteDoubleRow12C2"
+          ]
+        },
+        {
+          "module": "FiniteDoubleSourceChartsRho2",
+          "redundant": [
+            "FiniteDoubleSourceChartAll",
+            "FiniteDoubleSourceChartLate",
+            "FiniteDoubleSourceChartMiddle",
+            "FiniteDoubleSourceChartOrders",
+            "FiniteDoubleSourceChartZero",
+            "FiniteDoubleSourceNonicRho2"
+          ]
+        },
+        {
+          "module": "FiniteDoubleSourceOrderCasesC4",
+          "redundant": [
+            "FiniteDoubleSourceOrderCases"
+          ]
+        },
+        {
+          "module": "InfinityC4Tie",
+          "redundant": [
+            "InfinityLoadLanding"
+          ]
+        },
+        {
+          "module": "FiniteEarlyLoadRouting",
+          "redundant": [
+            "FiniteRootLift"
+          ]
+        },
+        {
+          "module": "FiniteDoubleRho2LoadEndpointLift",
+          "redundant": [
+            "FiniteDoubleRho2Load",
+            "FiniteDoubleRow12Rho2"
+          ]
+        },
+        {
+          "module": "FiniteDoubleSourceOrderCasesC5",
+          "redundant": [
+            "FiniteDoubleSourceOrderCases"
+          ]
+        },
+        {
+          "module": "FiniteRho1SourceAssembly",
+          "redundant": [
+            "FiniteRho1SourceRootSplit"
+          ]
+        },
+        {
+          "module": "FiniteDoubleLiftSourceC1",
+          "redundant": [
+            "FiniteDoubleRow12C1"
+          ]
+        },
+        {
+          "module": "FiniteDoubleSourceNonicC5",
+          "redundant": [
+            "FiniteDoubleSource"
+          ]
+        },
+        {
+          "module": "FiniteC5SourceAssembly",
+          "redundant": [
+            "FiniteC5SourceRootSplit"
+          ]
+        }
+      ],
+      "files_with_redundant_imports": 101,
+      "redundant_import_count": 156
     },
     "logs_truncated": false
   },
@@ -217,5 +579,5 @@
     "title": "dcposch/jc2-lean",
     "published_at": "2026-08-29T00:42:55Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }

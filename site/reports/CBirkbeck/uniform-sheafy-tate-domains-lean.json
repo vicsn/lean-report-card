@@ -9,117 +9,148 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-07T01:01:00Z",
-  "score": 63,
-  "grade": "D",
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T20:02:21Z",
+  "score": 73,
+  "grade": "C",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 1062,
+        "duration_seconds": 1235,
         "returncode": 0
-      }
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "tests",
       "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
       "score": 3,
-      "maximum": 10,
-      "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "lint",
-      "category": "maintainability",
-      "title": "Project lint driver",
       "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      }
-    },
-    {
-      "id": "source-trust-signals",
-      "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 5,
-      "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 160,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
-    },
-    {
-      "id": "reproducibility",
-      "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
-      "status": "passed",
-      "score": 10,
+      },
+      "id": "lint",
       "maximum": 10,
-      "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.33.0",
-        "lake_manifest": true
-      }
-    },
-    {
-      "id": "documentation",
-      "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "passed",
-      "score": 9,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
-      "details": {
-        "module_doc_count": 396,
-        "lean_file_count": 398,
-        "documented_declaration_count": 5693,
-        "declaration_count": 8141
-      }
-    },
-    {
-      "id": "project-hygiene",
-      "category": "project",
-      "title": "Repository hygiene",
-      "status": "warning",
       "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "audited": null,
+        "axioms_used": [],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": false,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
+      "maximum": 15,
+      "score": 15,
+      "status": "passed",
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "examples": [],
+        "files_with_redundant_imports": 0,
+        "redundant_import_count": 0
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No transitively redundant imports in project sources.",
+      "title": "Redundant imports"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.33.0"
+      },
+      "id": "reproducibility",
       "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_count": 8141,
+        "documented_declaration_count": 5693,
+        "lean_file_count": 398,
+        "module_doc_count": 396
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 9,
+      "status": "passed",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "project",
       "details": {
         "test_file_count": 2,
         "todo_count": 20
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 4,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
-        "warning_count": 2608
-      }
+        "warning_count": 2606
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +175,7 @@
       "lean_file_count": 398,
       "line_count": 220611,
       "max_direct_imports": 774,
+      "module_doc_count": 396,
       "module_doc_ratio": 0.9949748743718593,
       "native_decide_count": 0,
       "sorry_count": 160,
@@ -151,16 +183,58 @@
       "todo_count": 20
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 10,
+        "report": {
+          "allowed": [
+            "Quot.sound",
+            "propext",
+            "Classical.choice"
+          ],
+          "audited": null,
+          "axioms_used": [],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": false,
+          "root": null,
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "uesFontaine.frobeniusOrbitRel\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.rationalCovering_hasSeparation.match_1_1\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.isClosed_mul_vle_mul_left_prop\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ScottishBook.CompletedAlgClosure.instIsTopologicalRing\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.PrimaryLaneAInputsCanonical.casesOn\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.restrictionMapHom_ker_isTorsion\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.restrictionMapHom_surj\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.RationalCoveringData.separation_via_prime_extension_closed\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.presheafValue_iteratedPlus_equiv._proof_1\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.SpvAI.retraction_surjective\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.exists_hSpa_points_global_of_stronglyNoetherianTate\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.PrimaryLaneAInputs.h_plus_compat\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"FarguesFontaine.Y_FF.frobeniusAction\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.PrimaryLaneAInputs.minus_section_refined\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.span_top_of_per_D_finite_cover\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.isUnit_iff_ne_zero_on_spa_of_complete\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"WeightedParity.qHead_completedLocal_comparison'\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.laurentOverlap_minus_intertwine_of_compatible\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.RationalCoveringData.part2_via_primary_laneA_per_D_allow_empty\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.exists_spa_point_supp_eq_nonOpen_maxIdeal_of_complete\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"ValuationSpectrum.V_cover_gluing_from_laurentPair_via_compatible_bridge\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"FarguesFontaine.Y_FF.frobeniusAction_continuous\"},{\"axioms\":[\"sorryAx\"],\"decl\":\"WeightedParity.weightedParity_chainReduced_unconditional_of_dvr\"}]}\n"
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 1062,
+        "duration_seconds": 1235,
         "returncode": 0,
         "status": "passed",
         "truncated": true,
-        "warning_count": 2608
+        "warning_count": 2606
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -202,10 +276,32 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 131,
+      "duration_seconds": 180,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "Quot.sound",
+        "propext",
+        "Classical.choice"
+      ],
+      "audited": null,
+      "axioms_used": [],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": false,
+      "root": null,
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [],
+      "files_with_redundant_imports": 0,
+      "redundant_import_count": 0
     },
     "logs_truncated": true
   },
@@ -217,5 +313,5 @@
     "title": "CBirkbeck/uniform-sheafy-tate-domains-lean",
     "published_at": "2026-08-22T23:31:52Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }

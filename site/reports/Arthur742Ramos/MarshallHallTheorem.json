@@ -9,117 +9,183 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-06T22:57:25Z",
-  "score": 72,
-  "grade": "C",
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T17:44:45Z",
+  "score": 69,
+  "grade": "D",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
         "duration_seconds": 60,
         "returncode": 0
-      }
-    },
-    {
-      "id": "tests",
-      "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
-      "score": 3,
-      "maximum": 10,
-      "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "lint",
-      "category": "maintainability",
-      "title": "Project lint driver",
-      "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "source-trust-signals",
-      "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 13,
-      "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 2,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
-    },
-    {
-      "id": "reproducibility",
-      "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
       "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
+    },
+    {
+      "category": "verification",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "audited": 1708,
+        "axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": true,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
+      "maximum": 15,
+      "score": 15,
+      "status": "passed",
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "examples": [
+          {
+            "module": "MarshallHall",
+            "redundant": [
+              "MarshallHall.GrushkoEdge",
+              "MarshallHall.GrushkoFold",
+              "MarshallHall.GrushkoFoldStep",
+              "MarshallHall.GrushkoGeneral",
+              "MarshallHall.GrushkoGraph",
+              "MarshallHall.GrushkoInvariant",
+              "MarshallHall.GrushkoReduction",
+              "MarshallHall.GrushkoReductionChain",
+              "MarshallHall.GrushkoRose",
+              "MarshallHall.GrushkoUnfold"
+            ]
+          },
+          {
+            "module": "MarshallHall.GrushkoFoldStep",
+            "redundant": [
+              "Mathlib.Tactic"
+            ]
+          },
+          {
+            "module": "MarshallHall.GrushkoGeneral",
+            "redundant": [
+              "Mathlib.GroupTheory.Coprod.Basic",
+              "Mathlib.GroupTheory.Finiteness",
+              "Mathlib.GroupTheory.Rank",
+              "Mathlib.Tactic"
+            ]
+          }
+        ],
+        "files_with_redundant_imports": 3,
+        "redundant_import_count": 15
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "Counted 15 transitively redundant import(s).",
+      "title": "Redundant imports"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.32.0"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
       "score": 10,
-      "maximum": 10,
+      "status": "passed",
       "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.32.0",
-        "lake_manifest": true
-      }
+      "title": "Pinned toolchain and dependencies"
     },
     {
-      "id": "documentation",
       "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "warning",
-      "score": 7,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
       "details": {
-        "module_doc_count": 25,
-        "lean_file_count": 25,
+        "declaration_count": 660,
         "documented_declaration_count": 106,
-        "declaration_count": 660
-      }
+        "lean_file_count": 25,
+        "module_doc_count": 25
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 7,
+      "status": "warning",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
     },
     {
-      "id": "project-hygiene",
       "category": "project",
-      "title": "Repository hygiene",
-      "status": "warning",
-      "score": 6,
-      "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
       "details": {
         "test_file_count": 0,
         "todo_count": 0
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 6,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
         "warning_count": 183
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +210,7 @@
       "lean_file_count": 25,
       "line_count": 12426,
       "max_direct_imports": 12,
+      "module_doc_count": 25,
       "module_doc_ratio": 1.0,
       "native_decide_count": 0,
       "sorry_count": 2,
@@ -151,6 +218,39 @@
       "todo_count": 0
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/cc346fd7850a83fb/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 4,
+        "report": {
+          "allowed": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "audited": 1708,
+          "axioms_used": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": true,
+          "root": "MarshallHall",
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "build": {
         "command": [
           "lake",
@@ -161,6 +261,18 @@
         "status": "passed",
         "truncated": false,
         "warning_count": 183
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -202,10 +314,67 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 138,
+      "duration_seconds": 136,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "audited": 1708,
+      "axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": true,
+      "root": "MarshallHall",
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [
+        {
+          "module": "MarshallHall",
+          "redundant": [
+            "MarshallHall.GrushkoEdge",
+            "MarshallHall.GrushkoFold",
+            "MarshallHall.GrushkoFoldStep",
+            "MarshallHall.GrushkoGeneral",
+            "MarshallHall.GrushkoGraph",
+            "MarshallHall.GrushkoInvariant",
+            "MarshallHall.GrushkoReduction",
+            "MarshallHall.GrushkoReductionChain",
+            "MarshallHall.GrushkoRose",
+            "MarshallHall.GrushkoUnfold"
+          ]
+        },
+        {
+          "module": "MarshallHall.GrushkoFoldStep",
+          "redundant": [
+            "Mathlib.Tactic"
+          ]
+        },
+        {
+          "module": "MarshallHall.GrushkoGeneral",
+          "redundant": [
+            "Mathlib.GroupTheory.Coprod.Basic",
+            "Mathlib.GroupTheory.Finiteness",
+            "Mathlib.GroupTheory.Rank",
+            "Mathlib.Tactic"
+          ]
+        }
+      ],
+      "files_with_redundant_imports": 3,
+      "redundant_import_count": 15
     },
     "logs_truncated": false
   },
@@ -217,5 +386,5 @@
     "title": "Marshall Hall's theorem through finite cores",
     "published_at": "2026-09-01T16:03:27Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }

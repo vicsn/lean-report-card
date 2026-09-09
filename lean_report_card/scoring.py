@@ -127,30 +127,99 @@ def score_report(facts: dict[str, Any]) -> dict[str, Any]:
         )
     )
 
-    sorry_count = int(static.get("sorry_count", 0))
-    admit_count = int(static.get("admit_count", 0))
-    axiom_count = int(static.get("axiom_declaration_count", 0))
-    native_decide_count = int(static.get("native_decide_count", 0))
-    trust_issues = sorry_count + admit_count
-    trust_score = 10 if trust_issues == 0 else max(0, 10 - min(10, trust_issues))
-    trust_score += 3 if axiom_count == 0 else max(0, 3 - min(3, axiom_count))
-    trust_score += 2 if native_decide_count == 0 else 0
+    audit = facts.get("axiom_audit") or {}
+    audit_status = str(commands.get("axiom_audit", {}).get("status", "unavailable"))
+    used = [str(item) for item in audit.get("axioms_used") or []]
+    extra = [str(item) for item in audit.get("extra_axioms") or []]
+    sorry_decls = int(audit.get("sorry_ax_declarations") or 0)
+    if audit.get("sorry_ax") and sorry_decls == 0:
+        sorry_decls = 1
+    if audit_status in {"unavailable", "skipped"} or audit.get("error"):
+        trust_status = "unavailable"
+        trust_score = 5
+        trust_summary = "axiom-audit did not run on a compiled environment."
+    else:
+        trust_score = 10 if sorry_decls == 0 else max(0, 10 - min(10, sorry_decls))
+        trust_score += 3 if not extra else max(0, 3 - min(3, len(extra)))
+        trust_score += 0 if audit.get("native_decide") else 2
+        trust_status = "passed" if trust_score == 15 else "warning"
+        if trust_score == 15:
+            trust_summary = "axiom-audit found no sorryAx, native_decide, or home-rolled axioms."
+        elif extra:
+            trust_summary = "axiom-audit found axioms outside the default allowlist."
+        else:
+            trust_summary = (
+                "axiom-audit found sorryAx and/or native_decide in the compiled environment."
+            )
     checks.append(
         _check(
-            "source-trust-signals",
+            "axiom-audit",
             "trust",
-            "Source-level trust signals",
-            "passed" if trust_score == 15 else "warning",
+            "Axiom allowlist",
+            trust_status,
             trust_score,
             15,
-            "No sorry, admit, axiom, or native_decide tokens outside comments and strings."
-            if trust_score == 15
-            else "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
+            trust_summary,
             {
-                "sorry_count": sorry_count,
-                "admit_count": admit_count,
-                "axiom_declaration_count": axiom_count,
-                "native_decide_count": native_decide_count,
+                "ok": audit.get("ok"),
+                "audited": audit.get("audited"),
+                "sorry_ax": bool(audit.get("sorry_ax")),
+                "native_decide": bool(audit.get("native_decide")),
+                "extra_axioms": extra[:20],
+                "violation_count": audit.get("violation_count"),
+                "axioms_used": used[:20],
+            },
+        )
+    )
+
+    fmt = commands.get("fmt", {})
+    fmt_status = str(fmt.get("status", "unavailable"))
+    checks.append(
+        _check(
+            "fmt",
+            "maintainability",
+            "lean-fmt",
+            fmt_status,
+            _command_score(fmt_status, 5, unavailable_score=2),
+            5,
+            "lean-fmt --check passed."
+            if fmt_status == "passed"
+            else "No passing lean-fmt check was observed.",
+            {
+                "formatter": fmt.get("formatter"),
+                "dirty_files": fmt.get("dirty_files"),
+                "returncode": fmt.get("returncode"),
+            },
+        )
+    )
+
+    redundant = facts.get("redundant_imports") or {}
+    redundant_count = int(redundant.get("redundant_import_count") or 0)
+    if redundant.get("error"):
+        redundant_status = "unavailable"
+        redundant_score = 2
+        redundant_summary = "Redundant-import analysis did not run."
+    else:
+        redundant_score = 5 if redundant_count == 0 else max(0, 5 - min(5, redundant_count))
+        redundant_status = "passed" if redundant_count == 0 else "warning"
+        redundant_summary = (
+            "No transitively redundant imports in project sources."
+            if redundant_count == 0
+            else f"Counted {redundant_count} transitively redundant import(s)."
+        )
+    checks.append(
+        _check(
+            "redundant-imports",
+            "maintainability",
+            "Redundant imports",
+            redundant_status,
+            redundant_score,
+            5,
+            redundant_summary,
+            {
+                "redundant_import_count": redundant_count,
+                "files_with_redundant_imports": redundant.get("files_with_redundant_imports"),
+                "examples": redundant.get("examples") or [],
             },
         )
     )

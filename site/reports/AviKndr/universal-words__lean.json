@@ -9,117 +9,148 @@
     "project_path": "lean"
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-06T23:24:41Z",
-  "score": 66,
-  "grade": "D",
+  "analyzer_version": "0.3.0",
+  "analyzed_at": "2026-09-08T18:11:12Z",
+  "score": 71,
+  "grade": "C",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 114,
+        "duration_seconds": 107,
         "returncode": 0
-      }
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "tests",
       "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
-      "score": 3,
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
       "maximum": 10,
+      "score": 3,
+      "status": "unavailable",
       "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
+      "title": "Project test driver"
     },
     {
-      "id": "lint",
       "category": "maintainability",
-      "title": "Project lint driver",
-      "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      }
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
     },
     {
-      "id": "source-trust-signals",
       "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 10,
+      "details": {
+        "audited": null,
+        "axioms_used": [],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": false,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
       "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 2,
-        "admit_count": 0,
-        "axiom_declaration_count": 8,
-        "native_decide_count": 0
-      }
+      "score": 15,
+      "status": "passed",
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
     },
     {
-      "id": "reproducibility",
+      "category": "maintainability",
+      "details": {
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "examples": [],
+        "files_with_redundant_imports": 0,
+        "redundant_import_count": 0
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No transitively redundant imports in project sources.",
+      "title": "Redundant imports"
+    },
+    {
       "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
-      "status": "passed",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.34.0-rc1"
+      },
+      "id": "reproducibility",
+      "maximum": 10,
       "score": 10,
-      "maximum": 10,
-      "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.34.0-rc1",
-        "lake_manifest": true
-      }
-    },
-    {
-      "id": "documentation",
-      "category": "documentation",
-      "title": "Documentation coverage",
       "status": "passed",
-      "score": 8,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
-      "details": {
-        "module_doc_count": 12,
-        "lean_file_count": 16,
-        "documented_declaration_count": 131,
-        "declaration_count": 169
-      }
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
     },
     {
-      "id": "project-hygiene",
-      "category": "project",
-      "title": "Repository hygiene",
-      "status": "warning",
-      "score": 3,
+      "category": "documentation",
+      "details": {
+        "declaration_count": 169,
+        "documented_declaration_count": 131,
+        "lean_file_count": 16,
+        "module_doc_count": 12
+      },
+      "id": "documentation",
       "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
+      "score": 8,
+      "status": "passed",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "project",
       "details": {
         "test_file_count": 0,
         "todo_count": 0
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 3,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
         "warning_count": 17
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +175,7 @@
       "lean_file_count": 16,
       "line_count": 3332,
       "max_direct_imports": 13,
+      "module_doc_count": 12,
       "module_doc_ratio": 0.75,
       "native_decide_count": 0,
       "sorry_count": 2,
@@ -151,16 +183,58 @@
       "todo_count": 0
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/929cd8bf7ec963bd/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 6,
+        "report": {
+          "allowed": [
+            "propext",
+            "Quot.sound",
+            "Classical.choice"
+          ],
+          "audited": null,
+          "axioms_used": [],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": false,
+          "root": null,
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "{\"allowed\":[\"propext\",\"Classical.choice\",\"Quot.sound\"],\"audited\":322,\"axiomsUsed\":[\"propext\",\"Classical.choice\",\"Quot.sound\",\"UniversalWords.boccara_three\",\"UniversalWords.brun_titchmarsh\",\"UniversalWords.hkl\",\"UniversalWords.pi_lower\",\"UniversalWords.pi_upper\",\"UniversalWords.rs_window_mass\",\"UniversalWords.sieve_r2\",\"UniversalWords.vinogradov\"],\"ok\":false,\"root\":\"UniversalWords\",\"violations\":[{\"axioms\":[\"UniversalWords.brun_titchmarsh\"],\"decl\":\"UniversalWords.brun_titchmarsh\"},{\"axioms\":[\"UniversalWords.hkl\"],\"decl\":\"UniversalWords.hkl\"},{\"axioms\":[\"UniversalWords.boccara_three\",\"UniversalWords.brun_titchmarsh\",\"UniversalWords.hkl\",\"UniversalWords.pi_lower\",\"UniversalWords.pi_upper\",\"UniversalWords.rs_window_mass\",\"UniversalWords.sieve_r2\",\"UniversalWords.vinogradov\"],\"decl\":\"UniversalWords.kourovka_10_32\"},{\"axioms\":[\"UniversalWords.boccara_three\"],\"decl\":\"UniversalWords.boccara_three\"},{\"axioms\":[\"UniversalWords.pi_lower\"],\"decl\":\"UniversalWords.pi_lower\"},{\"axioms\":[\"UniversalWords.sieve_r2\"],\"decl\":\"UniversalWords.sieve_r2\"},{\"axioms\":[\"UniversalWords.vinogradov\"],\"decl\":\"UniversalWords.vinogradov\"},{\"axioms\":[\"UniversalWords.pi_upper\"],\"decl\":\"UniversalWords.pi_upper\"},{\"axioms\":[\"UniversalWords.rs_window_mass\"],\"decl\":\"UniversalWords.rs_window_mass\"}]}\n"
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 114,
+        "duration_seconds": 107,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
         "warning_count": 17
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -190,8 +264,8 @@
         "install",
         "leanprover/lean4:v4.34.0-rc1"
       ],
-      "duration_seconds": 56,
-      "returncode": 0,
+      "duration_seconds": 0,
+      "returncode": 1,
       "status": "passed",
       "truncated": false
     },
@@ -202,10 +276,32 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 150,
+      "duration_seconds": 145,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Quot.sound",
+        "Classical.choice"
+      ],
+      "audited": null,
+      "axioms_used": [],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": false,
+      "root": null,
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [],
+      "files_with_redundant_imports": 0,
+      "redundant_import_count": 0
     },
     "logs_truncated": false
   },
@@ -217,5 +313,5 @@
     "title": "AviKndr/universal-words",
     "published_at": "2026-08-27T01:47:29Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }

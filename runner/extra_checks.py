@@ -8,6 +8,7 @@ import os
 import re
 import shutil
 import subprocess
+import time
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -39,9 +40,7 @@ LINT_HEADER = re.compile(
 )
 LINT_SECTION = re.compile(r"/- The `(\w+)` linter reports:(.*?)(?=\n/- |\Z)", re.S)
 LINT_FINDING = re.compile(r"(?m)^#check ")
-CONFLICTING_IMPORT = re.compile(
-    r"import (\S+) failed, environment already contains \S+ from (\S+)"
-)
+CONFLICTING_IMPORT = re.compile(r"import (\S+) failed, environment already contains \S+ from (\S+)")
 
 RunCommand = Callable[..., dict[str, Any]]
 Unavailable = Callable[[list[str], str], dict[str, Any]]
@@ -313,9 +312,13 @@ def run_axiom_audit(
         unavailable=unavailable,
     )
     if binary is None:
-        result = built if built.get("status") != "passed" else unavailable(
-            ["lake", "env", "axiom-audit", "--json"],
-            "axiom-audit did not produce a binary.",
+        result = (
+            built
+            if built.get("status") != "passed"
+            else unavailable(
+                ["lake", "env", "axiom-audit", "--json"],
+                "axiom-audit did not produce a binary.",
+            )
         )
         return result, {"ok": False, "error": result.get("output") or "unavailable"}
     command = ["lake", "env", str(binary), "--json"]
@@ -430,8 +433,7 @@ def built_module_parts(project_root: Path) -> list[tuple[str, ...]]:
     if directory is None:
         return []
     return sorted(
-        path.relative_to(directory).with_suffix("").parts
-        for path in directory.rglob("*.olean")
+        path.relative_to(directory).with_suffix("").parts for path in directory.rglob("*.olean")
     )
 
 
@@ -483,18 +485,30 @@ def run_simp_lint(
         return result, {"error": reason}
 
     parts = built_module_parts(project_root)
-    keep = [item for item in parts if item[0] not in DUPLICATE_BY_DESIGN]
-    if not keep:
+    if not parts:
         reason = "The build produced no project modules to lint."
         return unavailable(probe_command, reason), {"error": reason}
+    keep = [item for item in parts if item[0] not in DUPLICATE_BY_DESIGN]
+    if not keep:
+        # Some submissions are only a Challenge and a Solution, with the library
+        # they mirror pulled in as a dependency. Then those are the project.
+        keep = parts
 
-    dropped = [module_name(item) for item in parts if item[0] in DUPLICATE_BY_DESIGN]
+    kept = {module_name(item) for item in keep}
+    dropped = [module_name(item) for item in parts if module_name(item) not in kept]
     modules = [module_name(item) for item in keep]
     probe = project_root / SIMP_LINT_PROBE
     result: dict[str, Any] = {}
     summary: dict[str, Any] = {}
+    # Every retry reruns the whole pass, so the budget is wall-clock across all of
+    # them rather than per attempt. Without that, a large project that needs a few
+    # conflict retries would outlast the caller's budget for the entire analysis.
+    deadline = time.monotonic() + timeout_seconds
     try:
-        for _ in range(12):
+        for _ in range(25):
+            remaining = int(deadline - time.monotonic())
+            if remaining < 60:
+                break
             roots = sorted({item[0] for item in keep if module_name(item) in modules})
             probe.write_text(
                 "\n".join(
@@ -521,7 +535,7 @@ def run_simp_lint(
                     SIMP_LINT_PROBE,
                 ],
                 cwd=project_root,
-                timeout_seconds=timeout_seconds,
+                timeout_seconds=remaining,
                 env=env,
             )
             output = str(result.get("output") or "")
@@ -545,19 +559,21 @@ def run_simp_lint(
     summary["modules_linted"] = len(modules)
     summary["modules_dropped"] = dropped[:20]
     if not summary.get("roots_linted"):
+        timed_out = not result or result.get("status") == "timed_out"
         reason = (
-            "The simp/tautology lint pass timed out."
-            if result.get("status") == "timed_out"
+            "The simp/tautology lint pass ran out of time."
+            if timed_out
             else "The simp/tautology lint pass produced no linter report."
         )
-        summary = {"error": reason, **summary}
-        result["status"] = "unavailable"
-        return result, summary
+        # Keep the attempt's output and duration for debugging, but report the pass
+        # as unavailable so a project is not penalised for a harness shortfall.
+        failed = unavailable(probe_command, reason) | result
+        failed["status"] = "unavailable"
+        failed["report"] = summary
+        return failed, {"error": reason, **summary}
 
     result["status"] = (
-        "passed"
-        if summary["simp_nf_count"] == 0 and summary["syn_taut_count"] == 0
-        else "failed"
+        "passed" if summary["simp_nf_count"] == 0 and summary["syn_taut_count"] == 0 else "failed"
     )
     result["report"] = summary
     return result, summary

@@ -193,6 +193,47 @@ def score_report(facts: dict[str, Any]) -> dict[str, Any]:
         )
     )
 
+    simp_lint = facts.get("simp_lint") or {}
+    simp_lint_status = str(commands.get("simp_lint", {}).get("status", "unavailable"))
+    simp_nf_count = int(simp_lint.get("simp_nf_count") or 0)
+    syn_taut_count = int(simp_lint.get("syn_taut_count") or 0)
+    if simp_lint.get("error") or simp_lint_status in {"unavailable", "skipped"}:
+        simp_status = "unavailable"
+        simp_score = 2
+        simp_summary = "The simp/tautology lint pass did not run."
+    else:
+        # A declaration whose statement is `a = a` claims a result it does not prove,
+        # so a single one forfeits the whole tautology budget. An ill-formed simp
+        # lemma is a defect but not a false claim, so it is counted off instead.
+        simp_score = 3 if syn_taut_count == 0 else 0
+        simp_score += 2 if simp_nf_count == 0 else max(0, 2 - min(2, simp_nf_count))
+        simp_status = "passed" if simp_score == 5 else "warning"
+        if simp_score == 5:
+            simp_summary = "No syntactic tautologies and no ill-formed simp lemmas."
+        elif syn_taut_count:
+            simp_summary = (
+                f"Found {syn_taut_count} declaration(s) whose statement is a syntactic tautology."
+            )
+        else:
+            simp_summary = f"Found {simp_nf_count} simp lemma(s) not in simp-normal form."
+    checks.append(
+        _check(
+            "simp-lint",
+            "trust",
+            "Simp lemmas and tautologies",
+            simp_status,
+            simp_score,
+            5,
+            simp_summary,
+            {
+                "syn_taut_count": syn_taut_count,
+                "simp_nf_count": simp_nf_count,
+                "declarations_linted": simp_lint.get("declarations_linted"),
+                "modules_linted": simp_lint.get("modules_linted"),
+            },
+        )
+    )
+
     redundant = facts.get("redundant_imports") or {}
     redundant_count = int(redundant.get("redundant_import_count") or 0)
     if redundant.get("error"):

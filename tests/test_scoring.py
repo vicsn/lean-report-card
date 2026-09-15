@@ -11,6 +11,7 @@ def good_facts() -> dict[str, object]:
             "lint": {"status": "passed"},
             "axiom_audit": {"status": "passed"},
             "fmt": {"status": "passed", "formatter": "leanfmt"},
+            "simp_lint": {"status": "passed"},
         },
         "files": {
             "lean_toolchain": "leanprover/lean4:v4.20.0",
@@ -50,6 +51,13 @@ def good_facts() -> dict[str, object]:
             "files_with_redundant_imports": 0,
             "examples": [],
         },
+        "simp_lint": {
+            "simp_nf_count": 0,
+            "syn_taut_count": 0,
+            "declarations_linted": 8,
+            "modules_linted": 2,
+            "roots_linted": 1,
+        },
         "toolchain_install": {"status": "passed"},
         "logs_truncated": False,
     }
@@ -59,9 +67,10 @@ def test_good_project_scores_a() -> None:
     result = score_report(good_facts())
     assert result["score"] == 100
     assert result["grade"] == "A"
-    assert len(result["checks"]) == 10
+    assert len(result["checks"]) == 11
     assert all(check["id"] != "source-trust-signals" for check in result["checks"])
     assert any(check["id"] == "axiom-audit" for check in result["checks"])
+    assert result["maximum_raw_score"] == 110
 
 
 def test_home_rolled_axioms_reduce_score() -> None:
@@ -86,6 +95,27 @@ def test_failed_build_gets_no_warning_points() -> None:
     result = score_report(facts)
     diagnostics = next(item for item in result["checks"] if item["id"] == "diagnostics")
     assert diagnostics["score"] == 0
+
+
+def test_syntactic_tautology_costs_more_than_a_bad_simp_lemma() -> None:
+    facts = good_facts()
+    facts["simp_lint"] = dict(facts["simp_lint"], syn_taut_count=1)  # type: ignore[arg-type]
+    tautology = next(item for item in score_report(facts)["checks"] if item["id"] == "simp-lint")
+    facts = good_facts()
+    facts["simp_lint"] = dict(facts["simp_lint"], simp_nf_count=1)  # type: ignore[arg-type]
+    simp_nf = next(item for item in score_report(facts)["checks"] if item["id"] == "simp-lint")
+    assert tautology["score"] == 2
+    assert simp_nf["score"] == 4
+    assert tautology["status"] == simp_nf["status"] == "warning"
+
+
+def test_simp_lint_that_did_not_run_keeps_partial_credit() -> None:
+    facts = good_facts()
+    facts["simp_lint"] = {"error": "Batteries is not in the Lake workspace."}
+    facts["commands"]["simp_lint"] = {"status": "unavailable"}  # type: ignore[index]
+    check = next(item for item in score_report(facts)["checks"] if item["id"] == "simp-lint")
+    assert check["status"] == "unavailable"
+    assert check["score"] == 2
 
 
 def test_grade_boundaries() -> None:

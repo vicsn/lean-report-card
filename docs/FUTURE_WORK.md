@@ -3,7 +3,8 @@
 - Integrate `#print axioms`, `leanchecker` and independent checking with `nanoda`.
 - Integrate `#min_imports`, `#find_home`, declaration dependency graphs and stored graph artifacts.
 - Match more `lean-action` behavior: Lake target detection, Mathlib cache policy, `mk_all --check`, Reservoir eligibility and toolchain compatibility handling.
-- Add Mathlib/Batteries linters, documentation coverage, `doc-gen4`, warning inventories and global `[simp]`/instance/notation audits.
+- Add the remaining Mathlib/Batteries linters, `doc-gen4`, warning inventories and global instance/notation audits. `simpNF` and `synTaut` are already scored; the rest of the default set needs a `nolints`-style suppression story before it can be graded, since `docBlame` overlaps documentation coverage and `unusedArguments` fires in the hundreds on ordinary Mathlib-style code.
+- Speed up the simp/tautology lint pass on projects whose modules are all top-level roots. Each root costs one environment scan, so a flat 1500-module project can exceed its own build time.
 - Add uLean or other project-size, dependency, declaration, proof-term and elaboration-performance analyzers as versioned adapters.
 - Test current, pinned and next Lean/Mathlib toolchains; classify syntax, API, instance, simplifier, import and performance regressions separately.
 

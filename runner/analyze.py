@@ -16,7 +16,7 @@ from typing import Any
 _RUNNER_DIR = Path(__file__).resolve().parent
 if str(_RUNNER_DIR) not in sys.path:
     sys.path.insert(0, str(_RUNNER_DIR))
-from extra_checks import run_post_build_checks  # noqa: E402
+from extra_checks import SIMP_LINT_PROBE, run_post_build_checks  # noqa: E402
 
 try:
     from scoring import score_report
@@ -476,7 +476,7 @@ def main() -> int:
                 )
                 commands["lint"] = command_result_unavailable(["lake", "lint"], reason)
             if commands["build"]["status"] == "passed":
-                extra_commands, axiom_summary, redundant = run_post_build_checks(
+                extra_commands, axiom_summary, redundant, simp_lint = run_post_build_checks(
                     project_root,
                     toolchain=str(toolchain),
                     env=env,
@@ -494,6 +494,10 @@ def main() -> int:
                     ["lake", "exe", "leanfmt", "--check"],
                     "Build did not pass.",
                 )
+                commands["simp_lint"] = command_result_unavailable(
+                    ["lake", "env", "lean", SIMP_LINT_PROBE],
+                    "Build did not pass.",
+                )
                 axiom_summary = {"ok": False, "error": "Build did not pass."}
                 redundant = {
                     "redundant_import_count": 0,
@@ -501,6 +505,7 @@ def main() -> int:
                     "examples": [],
                     "error": "Build did not pass.",
                 }
+                simp_lint = {"error": "Build did not pass."}
         else:
             commands["build"] = command_result_unavailable(
                 ["lake", "build"], "Lean toolchain installation failed."
@@ -521,6 +526,10 @@ def main() -> int:
             ["lake", "exe", "leanfmt", "--check"],
             "Build was not attempted.",
         )
+        commands["simp_lint"] = command_result_unavailable(
+            ["lake", "env", "lean", SIMP_LINT_PROBE],
+            "Build was not attempted.",
+        )
         axiom_summary = {"ok": False, "error": "Build was not attempted."}
         redundant = {
             "redundant_import_count": 0,
@@ -528,6 +537,7 @@ def main() -> int:
             "examples": [],
             "error": "Build was not attempted.",
         }
+        simp_lint = {"error": "Build was not attempted."}
 
     all_results = [clone, checkout, submodules, install, cache_result, *commands.values()]
     logs_truncated = any(bool(result.get("truncated")) for result in all_results)
@@ -537,6 +547,7 @@ def main() -> int:
         "static": static,
         "axiom_audit": axiom_summary,
         "redundant_imports": redundant,
+        "simp_lint": simp_lint,
         "toolchain_install": install,
         "mathlib_cache": cache_result,
         "submodules": submodules,

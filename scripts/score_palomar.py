@@ -26,7 +26,7 @@ from lean_report_card.scoring import score_report  # noqa: E402
 
 ANALYZER = ROOT / "runner" / "analyze.py"
 PALOMAR_RECENT = "https://data.palomar-registry.org/recent.json"
-ANALYZER_VERSION = "0.3.0"
+ANALYZER_VERSION = "0.4.0"
 
 
 class DiskFull(RuntimeError):
@@ -139,6 +139,7 @@ def compact_facts(facts: dict[str, Any] | None) -> dict[str, Any]:
         "mathlib_cache": compact_command(facts.get("mathlib_cache") or {}),
         "axiom_audit": facts.get("axiom_audit") or {},
         "redundant_imports": facts.get("redundant_imports") or {},
+        "simp_lint": facts.get("simp_lint") or {},
         "logs_truncated": facts.get("logs_truncated"),
     }
 
@@ -160,6 +161,9 @@ def index_summary(report: dict[str, Any]) -> str:
         bits.append("sorryAx")
     elif details.get("extra_axioms"):
         bits.append("home-rolled axioms")
+    simp = (checks.get("simp-lint") or {}).get("details") or {}
+    if int(simp.get("syn_taut_count") or 0) > 0:
+        bits.append("syntactic tautologies")
     repro = checks.get("reproducibility") or {}
     if repro.get("status") == "passed":
         bits.append("pinned toolchain")

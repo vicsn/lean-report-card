@@ -8,6 +8,7 @@ The score is a deterministic 0–100 total from fixed mechanical checks on a pin
 | Verification | 10 | 10 if the configured `lake test` driver exits 0; 3 if no test driver is configured; 0 if the driver ran and failed |
 | Maintainability | 10 | 10 if the configured `lake lint` driver exits 0; 4 if no lint driver is configured; 0 if the driver ran and failed |
 | Axiom allowlist | 15 | After a successful build, `axiom-audit --json` inspects the compiled environment. 10 if `sorryAx` is unused (minus one per declaration that uses it, floor 0); 3 if there are no axioms outside the default allowlist (`propext`, `Classical.choice`, `Quot.sound`) plus kernel `sorryAx`/`Lean.ofReduceBool`/`Lean.ofReduceNat`; 2 if `native_decide` axioms are unused. 5 if the audit did not run |
+| Simp lemmas and tautologies | 5 | After a successful build, the Batteries `simpNF` and `synTaut` environment linters run over the built project modules. 3 if no declaration's statement is a syntactic tautology, otherwise 0; 2 if no `@[simp]` lemma is outside simp-normal form, otherwise 2 minus the count (floor 0). 2 if the pass did not run |
 | lean-fmt | 5 | 5 if `lake exe leanfmt`/`lean-fmt --check` exits 0; 2 if no formatter executable is available; 0 if the check ran and failed |
 | Redundant imports | 5 | 5 if no project import is transitively implied by another; otherwise 5 minus the redundant import count (floor 0). 2 if analysis did not run |
 | Reproducibility | 10 | 5 if `lean-toolchain` is present; 5 if `lake-manifest.json` is present |
@@ -21,7 +22,11 @@ Direct import counts are recorded in the raw facts when present. They are not a 
 
 ## Interpretation rules
 
-- A failed project build scores 0 for build and for warnings, and skips axiom-audit, lean-fmt and redundant-import analysis.
+- A failed project build scores 0 for build and for warnings, and skips axiom-audit, the simp/tautology lint pass, lean-fmt and redundant-import analysis.
+- Only `simpNF` and `synTaut` are taken from the Batteries linter set. The other default linters are not scored: `docBlame` overlaps documentation coverage, and `defsWithUnderscore`, `unusedArguments` and friends report naming and generality conventions rather than defects.
+- Batteries environment linters select declarations by defining module, not by what those declarations import, so the pass applies to projects that never reference Batteries. It needs Batteries in the Lake workspace, which holds for anything depending on Mathlib; otherwise the check is unavailable.
+- The pass lints the modules `lake build` actually produced, read from the olean tree rather than from the lakefile, because library roots can be declared through `globs`, a `srcDir`, hundreds of explicit `roots`, or names containing spaces, and because a root module is sometimes deliberately empty. A library excluded from the default build is therefore not linted.
+- Modules that redeclare project definitions under the same names, such as a self-contained Palomar `Challenge`, cannot share an environment with the library they mirror and are excluded from the pass.
 - `axiom-audit` replaces source-token counts of `sorry`/`admit`/`axiom`/`native_decide` for the grade. Token scans may still appear in raw facts.
 - Redundant imports are computed from source import lines (project files plus `.lake/packages` when present), matching the `#redundant_imports` transitivity test.
 - Scores should be compared only when the analyzer version is the same. The website retains raw reports so grading changes can be audited.

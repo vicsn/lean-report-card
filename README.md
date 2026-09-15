@@ -12,11 +12,11 @@ The score comes from fixed mechanical checks on a pinned Git revision. It is not
 2. installs the pinned `lean-toolchain` with Elan;
 3. retrieves the Mathlib cache when the manifest looks like it needs one;
 4. runs `lake build`, then `lake test` and `lake lint` when those drivers are configured;
-5. after a successful build, runs `axiom-audit --json`, `leanfmt`/`lean-fmt --check` when present, and a `#redundant_imports`-style source analysis;
+5. after a successful build, runs `axiom-audit --json`, the Batteries `simpNF`/`synTaut` environment linters over the built modules, `leanfmt`/`lean-fmt --check` when present, and a `#redundant_imports`-style source analysis;
 6. scans sources with comments and strings stripped for documentation, tests, TODOs and common project files;
 7. emits versioned JSON with bounded logs, durations and an explained score.
 
-The score is a deterministic 0–100 total over weighted categories: build (25), axiom-audit (15), verification, maintainability, reproducibility, documentation and project hygiene (10 each), lean-fmt and redundant imports (5 each), and build warnings (5). Scores are only comparable within the same analyzer version. The exact rules are in [`docs/SCORING.md`](docs/SCORING.md).
+The score is a deterministic 0–100 total over weighted categories: build (25), axiom-audit (15), verification, maintainability, reproducibility, documentation and project hygiene (10 each), simp lemmas and tautologies, lean-fmt and redundant imports (5 each), and build warnings (5). Scores are only comparable within the same analyzer version. The exact rules are in [`docs/SCORING.md`](docs/SCORING.md).
 
 ## Hosting
 

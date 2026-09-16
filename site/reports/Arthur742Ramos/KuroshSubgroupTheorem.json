@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T17:03:59Z",
-  "score": 66,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T20:50:57Z",
+  "score": 65,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 70,
+        "duration_seconds": 61,
         "returncode": 0
       },
       "id": "build",
@@ -90,6 +90,21 @@
       "title": "lean-fmt"
     },
     {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 904,
+        "modules_linted": 32,
+        "simp_nf_count": 7,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 7 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
       "category": "maintainability",
       "details": {
         "examples": [
@@ -109,16 +124,6 @@
               "Mathlib.GroupTheory.CoprodI",
               "Mathlib.GroupTheory.DoubleCoset",
               "Mathlib.GroupTheory.FreeGroup.NielsenSchreier"
-            ]
-          },
-          {
-            "module": "FiniteGraphFreeGroup.TopologicalComparison",
-            "redundant": [
-              "FiniteGraphFreeGroup.Cover",
-              "FiniteGraphFreeGroup.Realization",
-              "Mathlib.GroupTheory.FreeGroup.Reduce",
-              "Mathlib.Topology.Covering.Basic",
-              "Mathlib.Topology.Homotopy.Lifting"
             ]
           },
           {
@@ -149,6 +154,16 @@
             "module": "GraphCoveringTheory.SchreierCover",
             "redundant": [
               "Mathlib.GroupTheory.FreeGroup.NielsenSchreier"
+            ]
+          },
+          {
+            "module": "FiniteGraphFreeGroup.TopologicalComparison",
+            "redundant": [
+              "FiniteGraphFreeGroup.Cover",
+              "FiniteGraphFreeGroup.Realization",
+              "Mathlib.GroupTheory.FreeGroup.Reduce",
+              "Mathlib.Topology.Covering.Basic",
+              "Mathlib.Topology.Homotopy.Lifting"
             ]
           }
         ],
@@ -284,7 +299,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 70,
+        "duration_seconds": 61,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -311,6 +326,37 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 5,
+        "report": {
+          "declarations_linted": 904,
+          "findings": {
+            "simpNF": 7,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution",
+            "KuroshChallenge"
+          ],
+          "modules_linted": 32,
+          "roots_linted": 3,
+          "simp_nf_count": 7,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "initeGraphFreeGroup.graphRealizationIntervalSymm_apply, unitInterval.symm_symm]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n-- FiniteGraphFreeGroup.TopologicalCover\n#check FiniteGraphFreeGroup.graphHalf_not_lt_zero /- simp can prove this:\n  by simp only [*, @not_lt_zero]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n-- FiniteGraphFreeGroup.TreeContraction\n#check @FiniteGraphFreeGroup.graphTreeContraction_edge /- simp can prove this:\n  by simp only [*,\n @FiniteGraphFreeGroup.graphTreeContraction_quotient,\n @FiniteGraphFreeGroup.graphTreeContractionPre_edge]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\nReportCardSimpLint.lean:36:0: error: -- Found 1 error in 576 declarations (plus 531 automatically generated ones) in GraphCoveringTheory with 2 linters\n\n/- The `simpNF` linter reports:\nSOME SIMP LEMMAS ARE NOT IN SIMP-NORMAL FORM.\nPlease change the lemma to make sure their left-hand sides are in simp normal form.\nTo learn about simp normal forms, see\nhttps://leanprover-community.github.io/extras/simp.html#simp-normal-form\nand https://lean-lang.org/doc/reference/latest/The-Simplifier/Simp-Normal-Forms/.\nThis linter can be disabled with `@[nolint simpNF]`. -/\n-- GraphCoveringTheory.Kurosh\n#check @GraphCoveringTheory.Kurosh.rawTreeRootPath_cons /- Left-hand side does not simplify, when using the simp lemma on itself.\n            \nThis usually means that it will never apply.\nThe simp lemma is invalid because the value of argument\n  a : WideSubquiver.toType (Quiver.Symmetrify (GraphCoveringTheory.Kurosh.RawBassSerreOrbitVertex G H))\n  (GraphCoveringTheory.Kurosh.rawBassSerreOrbitTree G H)\ncannot be inferred by `simp`.\n -/\n-- Found 0 errors in 11 declarations (plus 15 automatically generated ones) in KuroshSolution with 2 linters\n\n\n-- All linting checks passed!\n"
       },
       "test": {
         "command": [
@@ -342,7 +388,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 141,
+      "duration_seconds": 132,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -389,16 +435,6 @@
           ]
         },
         {
-          "module": "FiniteGraphFreeGroup.TopologicalComparison",
-          "redundant": [
-            "FiniteGraphFreeGroup.Cover",
-            "FiniteGraphFreeGroup.Realization",
-            "Mathlib.GroupTheory.FreeGroup.Reduce",
-            "Mathlib.Topology.Covering.Basic",
-            "Mathlib.Topology.Homotopy.Lifting"
-          ]
-        },
-        {
           "module": "GraphCoveringTheory.KuroshCoverLocal",
           "redundant": [
             "Mathlib.Combinatorics.Quiver.Covering"
@@ -427,10 +463,36 @@
           "redundant": [
             "Mathlib.GroupTheory.FreeGroup.NielsenSchreier"
           ]
+        },
+        {
+          "module": "FiniteGraphFreeGroup.TopologicalComparison",
+          "redundant": [
+            "FiniteGraphFreeGroup.Cover",
+            "FiniteGraphFreeGroup.Realization",
+            "Mathlib.GroupTheory.FreeGroup.Reduce",
+            "Mathlib.Topology.Covering.Basic",
+            "Mathlib.Topology.Homotopy.Lifting"
+          ]
         }
       ],
       "files_with_redundant_imports": 8,
       "redundant_import_count": 18
+    },
+    "simp_lint": {
+      "declarations_linted": 904,
+      "findings": {
+        "simpNF": 7,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution",
+        "KuroshChallenge"
+      ],
+      "modules_linted": 32,
+      "roots_linted": 3,
+      "simp_nf_count": 7,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

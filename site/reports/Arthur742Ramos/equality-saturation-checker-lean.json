@@ -9,9 +9,9 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T16:21:14Z",
-  "score": 54,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T20:08:05Z",
+  "score": 56,
   "grade": "F",
   "checks": [
     {
@@ -84,6 +84,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 179,
+        "modules_linted": 4,
+        "simp_nf_count": 0,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No syntactic tautologies and no ill-formed simp lemmas.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -266,6 +281,35 @@
         "status": "unavailable",
         "truncated": false
       },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 2,
+        "report": {
+          "declarations_linted": 179,
+          "findings": {
+            "simpNF": 0,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 4,
+          "roots_linted": 1,
+          "simp_nf_count": 0,
+          "syn_taut_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "test": {
         "command": [
           "lake",
@@ -296,7 +340,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 132,
+      "duration_seconds": 138,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -342,6 +386,21 @@
       ],
       "files_with_redundant_imports": 2,
       "redundant_import_count": 9
+    },
+    "simp_lint": {
+      "declarations_linted": 179,
+      "findings": {
+        "simpNF": 0,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 4,
+      "roots_linted": 1,
+      "simp_nf_count": 0,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

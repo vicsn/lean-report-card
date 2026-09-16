@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T21:47:54Z",
-  "score": 69,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-16T01:04:38Z",
+  "score": 68,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 474,
+        "duration_seconds": 199,
         "returncode": 0
       },
       "id": "build",
@@ -88,6 +88,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 1940,
+        "modules_linted": 66,
+        "simp_nf_count": 10,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 10 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -381,7 +396,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 12,
+        "duration_seconds": 5,
         "report": {
           "allowed": [
             "propext",
@@ -412,7 +427,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 474,
+        "duration_seconds": 199,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -439,6 +454,37 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 6,
+        "report": {
+          "declarations_linted": 1940,
+          "findings": {
+            "simpNF": 10,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Palomar.ExactSChallenge",
+            "Palomar.FullIndependentChallenge",
+            "Palomar.LimitedIndependenceChallenge"
+          ],
+          "modules_linted": 66,
+          "roots_linted": 2,
+          "simp_nf_count": 10,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "ified term! -/\n#check @SparseFock.LightSectorConcrete.permutedLightWord_mem /- Left-hand side simplifies from\n  SparseFock.LightSectorConcrete.permutedLightWord T ell p pi k \u2208 (\u2191p).light\nto\n  \u2191p (SparseFock.LightSectorConcrete.permutedLightWord T ell p pi k) = SparseFock.Level.one\nusing\n  simp only [*, @SparseFock.Pattern.mem_light]\nTry to change the left-hand side to the simplified term! -/\n#check @SparseFock.LightSectorConcrete.ghat_gradeProjection_transpose /- Left-hand side simplifies from\n  (SparseFock.LightSectorConcrete.ghat F * SparseFock.FiniteHilbert.gradeProjection nu).transpose\nto\n  SparseFock.FiniteHilbert.gradeProjection nu * SparseFock.LightSectorConcrete.ghat F\nusing\n  simp only [*,\n   @Matrix.transpose_mul,\n   @SparseFock.FiniteHilbert.gradeProjection_transpose,\n   @SparseFock.LightSectorConcrete.ghat_transpose]\nTry to change the left-hand side to the simplified term! -/\n\n-- SparseFockFormal.SparseStackModel\n#check @SparseFock.SparseStackModel.inner_signedBasis_self /- Left-hand side simplifies from\n  inner \u211d (SparseFock.SparseStackModel.signedBasis Z g i) (SparseFock.SparseStackModel.signedBasis Z g i)\nto\n  \u2016SparseFock.SparseStackModel.signedBasis Z g i\u2016 ^ 2\nusing\n  simp only [*, @inner_self_eq_norm_sq_to_K, RCLike.ofReal_real_eq_id, @id_eq]\nTry to change the left-hand side to the simplified term! -/\n\n-- SparseFockFormal.UniformExactSSymmetry\n#check SparseFock.UniformExactS.signMul_right_cancel_self /- simp can prove this:\n  by simp only [*,\n SparseFock.UniformExactS.signMul_assoc,\n SparseFock.UniformExactS.signMul_self,\n SparseFock.UniformExactS.signMul_plus_right]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check SparseFock.UniformExactS.actOutcome_ne_zero_iff /- simp can prove this:\n  by simp only [*, @ne_eq, SparseFock.UniformExactS.actOutcome_eq_zero_iff]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n"
       },
       "test": {
         "command": [
@@ -470,7 +516,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 235,
+      "duration_seconds": 131,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -687,6 +733,22 @@
       ],
       "files_with_redundant_imports": 51,
       "redundant_import_count": 137
+    },
+    "simp_lint": {
+      "declarations_linted": 1940,
+      "findings": {
+        "simpNF": 10,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Palomar.ExactSChallenge",
+        "Palomar.FullIndependentChallenge",
+        "Palomar.LimitedIndependenceChallenge"
+      ],
+      "modules_linted": 66,
+      "roots_linted": 2,
+      "simp_nf_count": 10,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

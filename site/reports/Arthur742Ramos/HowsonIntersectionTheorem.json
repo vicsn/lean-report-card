@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T16:56:31Z",
-  "score": 67,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T20:43:33Z",
+  "score": 66,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 100,
+        "duration_seconds": 94,
         "returncode": 0
       },
       "id": "build",
@@ -90,6 +90,21 @@
       "title": "lean-fmt"
     },
     {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 1333,
+        "modules_linted": 46,
+        "simp_nf_count": 5,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 5 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
       "category": "maintainability",
       "details": {
         "examples": [
@@ -109,6 +124,21 @@
             ]
           },
           {
+            "module": "MarshallHall.GrushkoFoldStep",
+            "redundant": [
+              "Mathlib.Tactic"
+            ]
+          },
+          {
+            "module": "MarshallHall.GrushkoGeneral",
+            "redundant": [
+              "Mathlib.GroupTheory.Coprod.Basic",
+              "Mathlib.GroupTheory.Finiteness",
+              "Mathlib.GroupTheory.Rank",
+              "Mathlib.Tactic"
+            ]
+          },
+          {
             "module": "GraphCoveringTheory.KuroshCoverLocal",
             "redundant": [
               "Mathlib.Combinatorics.Quiver.Covering"
@@ -124,21 +154,6 @@
             "module": "GraphCoveringTheory.KuroshCoverAction",
             "redundant": [
               "Mathlib.Combinatorics.Quiver.Covering"
-            ]
-          },
-          {
-            "module": "MarshallHall.GrushkoFoldStep",
-            "redundant": [
-              "Mathlib.Tactic"
-            ]
-          },
-          {
-            "module": "MarshallHall.GrushkoGeneral",
-            "redundant": [
-              "Mathlib.GroupTheory.Coprod.Basic",
-              "Mathlib.GroupTheory.Finiteness",
-              "Mathlib.GroupTheory.Rank",
-              "Mathlib.Tactic"
             ]
           }
         ],
@@ -243,7 +258,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/cc346fd7850a83fb/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 4,
+        "duration_seconds": 3,
         "report": {
           "allowed": [
             "propext",
@@ -274,7 +289,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 100,
+        "duration_seconds": 94,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -301,6 +316,36 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 6,
+        "report": {
+          "declarations_linted": 1333,
+          "findings": {
+            "simpNF": 5,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 46,
+          "roots_linted": 3,
+          "simp_nf_count": 5,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "reports:\nSOME SIMP LEMMAS ARE NOT IN SIMP-NORMAL FORM.\nPlease change the lemma to make sure their left-hand sides are in simp normal form.\nTo learn about simp normal forms, see\nhttps://leanprover-community.github.io/extras/simp.html#simp-normal-form\nand https://lean-lang.org/doc/reference/latest/The-Simplifier/Simp-Normal-Forms/.\nThis linter can be disabled with `@[nolint simpNF]`. -/\n-- Howson.BinaryKurosh\n#check @Howson.binaryIndexedEquiv_of_false /- Left-hand side does not simplify, when using the simp lemma on itself.\n            \nThis usually means that it will never apply.\n -/\n#check @Howson.binaryIndexedEquiv_of_true /- Left-hand side does not simplify, when using the simp lemma on itself.\n            \nThis usually means that it will never apply.\n -/\nReportCardSimpLint.lean:51:0: error: -- Found 2 errors in 773 declarations (plus 934 automatically generated ones) in MarshallHall with 2 linters\n\n/- The `simpNF` linter reports:\nSOME SIMP LEMMAS ARE NOT IN SIMP-NORMAL FORM.\nPlease change the lemma to make sure their left-hand sides are in simp normal form.\nTo learn about simp normal forms, see\nhttps://leanprover-community.github.io/extras/simp.html#simp-normal-form\nand https://lean-lang.org/doc/reference/latest/The-Simplifier/Simp-Normal-Forms/.\nThis linter can be disabled with `@[nolint simpNF]`. -/\n-- MarshallHall.GrushkoFoldStep\n#check @MarshallHall.GeneralGrushko.symmAllArrow_reverse /- Left-hand side simplifies from\n  MarshallHall.GeneralGrushko.symmAllArrow (Quiver.reverse e)\nto\n  MarshallHall.GeneralGrushko.symmAllArrow (Sum.swap e)\nusing\n  simp only [*, @Quiver.symmetrify_reverse]\nTry to change the left-hand side to the simplified term! -/\n\n-- MarshallHall.GrushkoRose\n#check @MarshallHall.GeneralGrushko.rosePosition_zero /- Left-hand side simplifies from\n  MarshallHall.GeneralGrushko.rosePosition w i \u27e80, \u22ef\u27e9\nto\n  MarshallHall.GeneralGrushko.rosePosition w i 0\nusing\n  simp only [*, @Fin.zero_eta]\nTry to change the left-hand side to the simplified term! -/\n"
       },
       "test": {
         "command": [
@@ -332,7 +377,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 133,
+      "duration_seconds": 132,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -376,6 +421,21 @@
           ]
         },
         {
+          "module": "MarshallHall.GrushkoFoldStep",
+          "redundant": [
+            "Mathlib.Tactic"
+          ]
+        },
+        {
+          "module": "MarshallHall.GrushkoGeneral",
+          "redundant": [
+            "Mathlib.GroupTheory.Coprod.Basic",
+            "Mathlib.GroupTheory.Finiteness",
+            "Mathlib.GroupTheory.Rank",
+            "Mathlib.Tactic"
+          ]
+        },
+        {
           "module": "GraphCoveringTheory.KuroshCoverLocal",
           "redundant": [
             "Mathlib.Combinatorics.Quiver.Covering"
@@ -392,25 +452,25 @@
           "redundant": [
             "Mathlib.Combinatorics.Quiver.Covering"
           ]
-        },
-        {
-          "module": "MarshallHall.GrushkoFoldStep",
-          "redundant": [
-            "Mathlib.Tactic"
-          ]
-        },
-        {
-          "module": "MarshallHall.GrushkoGeneral",
-          "redundant": [
-            "Mathlib.GroupTheory.Coprod.Basic",
-            "Mathlib.GroupTheory.Finiteness",
-            "Mathlib.GroupTheory.Rank",
-            "Mathlib.Tactic"
-          ]
         }
       ],
       "files_with_redundant_imports": 6,
       "redundant_import_count": 18
+    },
+    "simp_lint": {
+      "declarations_linted": 1333,
+      "findings": {
+        "simpNF": 5,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 46,
+      "roots_linted": 3,
+      "simp_nf_count": 5,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

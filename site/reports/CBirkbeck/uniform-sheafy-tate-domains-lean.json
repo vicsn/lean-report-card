@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T20:02:21Z",
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T23:30:12Z",
   "score": 73,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 1235,
+        "duration_seconds": 1020,
         "returncode": 0
       },
       "id": "build",
@@ -84,6 +84,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 8254,
+        "modules_linted": 388,
+        "simp_nf_count": 12,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 12 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -190,12 +205,12 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 10,
+        "duration_seconds": 8,
         "report": {
           "allowed": [
+            "Classical.choice",
             "Quot.sound",
-            "propext",
-            "Classical.choice"
+            "propext"
           ],
           "audited": null,
           "axioms_used": [],
@@ -218,7 +233,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 1235,
+        "duration_seconds": 1020,
         "returncode": 0,
         "status": "passed",
         "truncated": true,
@@ -245,6 +260,33 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 6,
+        "report": {
+          "declarations_linted": 8254,
+          "findings": {
+            "simpNF": 12,
+            "synTaut": 0
+          },
+          "modules_dropped": [],
+          "modules_linted": 388,
+          "roots_linted": 1,
+          "simp_nf_count": 12,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": ", @Finsupp.single_eq_same, @ite_true]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n-- \u00abAdic spaces\u00bb.WP.Algebra\n#check WeightedParity.norm_constA /- Left-hand side simplifies from\n  \u2016(WeightedParity.constA K w) x\u2016\nto\n  \u2016\u2191((WeightedParity.constA K w) x)\u2016\nusing\n  simp only [*, @AddSubgroupClass.coe_norm]\nTry to change the left-hand side to the simplified term! -/\n#check @WeightedParity.norm_piW /- Left-hand side simplifies from\n  \u2016WeightedParity.piW \u03d6\u2016\nto\n  \u2016\u2191(WeightedParity.piW \u03d6)\u2016\nusing\n  simp only [*, @AddSubgroupClass.coe_norm]\nTry to change the left-hand side to the simplified term! -/\n\n-- \u00abAdic spaces\u00bb.WP.Heads\n#check WeightedParity.norm_headIncl /- Left-hand side simplifies from\n  \u2016(WeightedParity.headIncl K w N) x\u2016\nto\n  \u2016\u2191((WeightedParity.headIncl K w N) x)\u2016\nusing\n  dsimp only [*, @AddSubgroupClass.coe_norm]\nTry to change the left-hand side to the simplified term! -/\n#check @WeightedParity.norm_constHead /- Left-hand side simplifies from\n  \u2016(WeightedParity.constHead K w N) x\u2016\nto\n  \u2016\u2191((WeightedParity.constHead K w N) x)\u2016\nusing\n  simp only [*, @AddSubgroupClass.coe_norm]\nTry to change the left-hand side to the simplified term! -/\n\n-- \u00abAdic spaces\u00bb.WP.Tail\n#check WeightedParity.rhoHead_headIncl /- Left-hand side simplifies from\n  (WeightedParity.rhoHead K w N) ((WeightedParity.headIncl K w N) x)\nto\n  WeightedParity.tailCoeff K w N 0 ((WeightedParity.headIncl K w N) x)\nusing\n  simp only [*, WeightedParity.rhoHead_apply]\nTry to change the left-hand side to the simplified term! -/\n\n-- \u00abAdic spaces\u00bb.WedhornCechAcyclicity\n#check @ValuationSpectrum.laurentCoverOf_isLaurent /- Left-hand side does not simplify, when using the simp lemma on itself.\n            \nThis usually means that it will never apply.\n -/\n#check @ValuationSpectrum.laurentProdCoverOf_isLaurentProd /- Left-hand side does not simplify, when using the simp lemma on itself.\n            \nThis usually means that it will never apply.\n -/\n"
       },
       "test": {
         "command": [
@@ -276,16 +318,16 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 180,
+      "duration_seconds": 126,
       "returncode": 0,
       "status": "passed",
       "truncated": false
     },
     "axiom_audit": {
       "allowed": [
+        "Classical.choice",
         "Quot.sound",
-        "propext",
-        "Classical.choice"
+        "propext"
       ],
       "audited": null,
       "axioms_used": [],
@@ -302,6 +344,18 @@
       "examples": [],
       "files_with_redundant_imports": 0,
       "redundant_import_count": 0
+    },
+    "simp_lint": {
+      "declarations_linted": 8254,
+      "findings": {
+        "simpNF": 12,
+        "synTaut": 0
+      },
+      "modules_dropped": [],
+      "modules_linted": 388,
+      "roots_linted": 1,
+      "simp_nf_count": 12,
+      "syn_taut_count": 0
     },
     "logs_truncated": true
   },

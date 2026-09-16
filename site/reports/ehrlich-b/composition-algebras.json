@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T22:19:49Z",
-  "score": 74,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-16T01:19:27Z",
+  "score": 75,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 253,
+        "duration_seconds": 87,
         "returncode": 0
       },
       "id": "build",
@@ -88,6 +88,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 477,
+        "modules_linted": 16,
+        "simp_nf_count": 0,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No syntactic tautologies and no ill-formed simp lemmas.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -194,7 +209,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 10,
+        "duration_seconds": 5,
         "report": {
           "allowed": [
             "propext",
@@ -225,7 +240,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 253,
+        "duration_seconds": 87,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -251,6 +266,40 @@
         "duration_seconds": 0,
         "returncode": null,
         "status": "unavailable",
+        "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 5,
+        "report": {
+          "declarations_linted": 477,
+          "findings": {
+            "simpNF": 0,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "CayleyDicksonChallenge",
+            "CayleyDicksonSolution",
+            "ClassificationChallenge",
+            "ClassificationSolution",
+            "DimensionChallenge",
+            "HurwitzChallenge",
+            "NucleusChallenge"
+          ],
+          "modules_linted": 16,
+          "roots_linted": 4,
+          "simp_nf_count": 0,
+          "syn_taut_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
         "truncated": false
       },
       "test": {
@@ -283,7 +332,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 229,
+      "duration_seconds": 129,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -313,6 +362,26 @@
       "examples": [],
       "files_with_redundant_imports": 0,
       "redundant_import_count": 0
+    },
+    "simp_lint": {
+      "declarations_linted": 477,
+      "findings": {
+        "simpNF": 0,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "CayleyDicksonChallenge",
+        "CayleyDicksonSolution",
+        "ClassificationChallenge",
+        "ClassificationSolution",
+        "DimensionChallenge",
+        "HurwitzChallenge",
+        "NucleusChallenge"
+      ],
+      "modules_linted": 16,
+      "roots_linted": 4,
+      "simp_nf_count": 0,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

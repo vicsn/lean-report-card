@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T18:16:04Z",
-  "score": 79,
-  "grade": "C",
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T22:01:52Z",
+  "score": 80,
+  "grade": "B",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 682,
+        "duration_seconds": 658,
         "returncode": 0
       },
       "id": "build",
@@ -43,7 +43,7 @@
     {
       "category": "maintainability",
       "details": {
-        "duration_seconds": 47,
+        "duration_seconds": 40,
         "returncode": 0
       },
       "id": "lint",
@@ -88,6 +88,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 10465,
+        "modules_linted": 412,
+        "simp_nf_count": 0,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No syntactic tautologies and no ill-formed simp lemmas.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -184,60 +199,6 @@
             ]
           },
           {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice05",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice09",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice08",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice04",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice03",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice02",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice01",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice07",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
-            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice06",
-            "redundant": [
-              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-            ]
-          },
-          {
             "module": "PrimeGapsCert.Gap246.RHS.Checks.Slice05",
             "redundant": [
               "PrimeGapsCert.Gap246.Sparse.RhsCommands"
@@ -289,6 +250,60 @@
             "module": "PrimeGapsCert.Gap246.RHS.Checks.Slice06",
             "redundant": [
               "PrimeGapsCert.Gap246.Sparse.RhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice05",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice09",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice08",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice04",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice03",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice02",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice01",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice07",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+            ]
+          },
+          {
+            "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice06",
+            "redundant": [
+              "PrimeGapsCert.Gap246.Sparse.LhsCommands"
             ]
           }
         ],
@@ -424,7 +439,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 682,
+        "duration_seconds": 658,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -447,7 +462,33 @@
           "lake",
           "lint"
         ],
-        "duration_seconds": 47,
+        "duration_seconds": 40,
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 8,
+        "report": {
+          "declarations_linted": 10465,
+          "findings": {
+            "simpNF": 0,
+            "synTaut": 0
+          },
+          "modules_dropped": [],
+          "modules_linted": 412,
+          "roots_linted": 3,
+          "simp_nf_count": 0,
+          "syn_taut_count": 0
+        },
         "returncode": 0,
         "status": "passed",
         "truncated": false
@@ -482,7 +523,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 145,
+      "duration_seconds": 138,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -601,60 +642,6 @@
           ]
         },
         {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice05",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice09",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice08",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice04",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice03",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice02",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice01",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice07",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
-          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice06",
-          "redundant": [
-            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
-          ]
-        },
-        {
           "module": "PrimeGapsCert.Gap246.RHS.Checks.Slice05",
           "redundant": [
             "PrimeGapsCert.Gap246.Sparse.RhsCommands"
@@ -707,10 +694,76 @@
           "redundant": [
             "PrimeGapsCert.Gap246.Sparse.RhsCommands"
           ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice05",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice09",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice08",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice04",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice03",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice02",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice01",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice07",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
+        },
+        {
+          "module": "PrimeGapsCert.Gap246.LHS.Checks.Slice06",
+          "redundant": [
+            "PrimeGapsCert.Gap246.Sparse.LhsCommands"
+          ]
         }
       ],
       "files_with_redundant_imports": 19,
       "redundant_import_count": 103
+    },
+    "simp_lint": {
+      "declarations_linted": 10465,
+      "findings": {
+        "simpNF": 0,
+        "synTaut": 0
+      },
+      "modules_dropped": [],
+      "modules_linted": 412,
+      "roots_linted": 3,
+      "simp_nf_count": 0,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

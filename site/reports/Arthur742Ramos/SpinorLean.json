@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T17:51:59Z",
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T21:38:05Z",
   "score": 72,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 611,
+        "duration_seconds": 591,
         "returncode": 0
       },
       "id": "build",
@@ -88,6 +88,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 1536,
+        "modules_linted": 27,
+        "simp_nf_count": 66,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 66 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -202,7 +217,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/139988460d342a89/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 7,
+        "duration_seconds": 5,
         "report": {
           "allowed": [
             "propext",
@@ -233,7 +248,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 611,
+        "duration_seconds": 591,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -260,6 +275,33 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 8,
+        "report": {
+          "declarations_linted": 1536,
+          "findings": {
+            "simpNF": 66,
+            "synTaut": 0
+          },
+          "modules_dropped": [],
+          "modules_linted": 27,
+          "roots_linted": 1,
+          "simp_nf_count": 66,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": ".wittSubspace) ((Q.splitWittIsometryEquiv hQ hsplit) v)) x)\nusing\n  simp only [*,\n @Spinor.splitWittCliffordAction_apply_\u03b9,\n @Spinor.splitWittPresentation_W,\n @Spinor.splitWittPresentation_iso]\nTry to change the left-hand side to the simplified term! -/\n#check @Spinor.splitSpinorCliffordModule_smul /- Left-hand side simplifies from\n  a \u2022 x\nto\n  ((Spinor.splitWittCliffordAction Q hQ hsplit) a) x\nusing\n  simp only [*, @Spinor.splitWittCliffordModule_smul]\nTry to change the left-hand side to the simplified term! -/\n#check @Spinor.positiveHalfSpinorCliffordModule_smul /- Left-hand side simplifies from\n  a \u2022 x\nto\n  ((Spinor.positiveSplitWittCliffordAction Q hQ hsplit) a) x\nusing\n  simp only [*, @Spinor.positiveSplitWittCliffordModule_smul]\nTry to change the left-hand side to the simplified term! -/\n#check @Spinor.negativeHalfSpinorCliffordModule_smul /- Left-hand side simplifies from\n  a \u2022 x\nto\n  ((Spinor.negativeSplitWittCliffordAction Q hQ hsplit) a) x\nusing\n  simp only [*, @Spinor.negativeSplitWittCliffordModule_smul]\nTry to change the left-hand side to the simplified term! -/\n\n-- Spinor.SpinRep\n#check @Spinor.spinRepresentation_eq_one_iff /- Left-hand side simplifies from\n  (Spinor.spinRepresentation Q) x = 1\nto\n  (Spinor.cliffordAction Q) \u2191x = 1\nusing\n  simp only [*, @Spinor.spinRepresentation_apply]\nTry to change the left-hand side to the simplified term! -/\n\n-- Spinor.WittDecomp\n#check @QuadraticForm.complementQuadraticCorrection_spec /- Left-hand side simplifies from\n  ((QuadraticMap.associated Q) \u2191((QuadraticForm.complementQuadraticCorrection hQ hW hsplit hWU) u)) \u2191u'\nto\n  2\u207b\u00b9 *\n  (Q (\u2191((QuadraticForm.complementQuadraticCorrection hQ hW hsplit hWU) u) + \u2191u') -\n      Q \u2191((QuadraticForm.complementQuadraticCorrection hQ hW hsplit hWU) u) -\n    Q \u2191u')\nusing\n  simp only [*,\n QuadraticMap.associated_apply,\n @Module.End.smul_def,\n @QuadraticMap.half_moduleEnd_apply_eq_half_smul,\n @invOf_eq_inv,\n @smul_eq_mul]\nTry to change the left-hand side to the simplified term! -/\n"
       },
       "test": {
         "command": [
@@ -291,7 +333,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 122,
+      "duration_seconds": 127,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -329,6 +371,18 @@
       ],
       "files_with_redundant_imports": 1,
       "redundant_import_count": 2
+    },
+    "simp_lint": {
+      "declarations_linted": 1536,
+      "findings": {
+        "simpNF": 66,
+        "synTaut": 0
+      },
+      "modules_dropped": [],
+      "modules_linted": 27,
+      "roots_linted": 1,
+      "simp_nf_count": 66,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

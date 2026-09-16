@@ -9,9 +9,9 @@
     "project_path": "palomar"
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T16:53:36Z",
-  "score": 72,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T20:40:36Z",
+  "score": 74,
   "grade": "C",
   "checks": [
     {
@@ -84,6 +84,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 113,
+        "modules_linted": 1,
+        "simp_nf_count": 0,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No syntactic tautologies and no ill-formed simp lemmas.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -193,9 +208,9 @@
         "duration_seconds": 2,
         "report": {
           "allowed": [
-            "Quot.sound",
             "Classical.choice",
-            "propext"
+            "propext",
+            "Quot.sound"
           ],
           "audited": null,
           "axioms_used": [],
@@ -246,6 +261,34 @@
         "status": "unavailable",
         "truncated": false
       },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 2,
+        "report": {
+          "declarations_linted": 113,
+          "findings": {
+            "simpNF": 0,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge"
+          ],
+          "modules_linted": 1,
+          "roots_linted": 1,
+          "simp_nf_count": 0,
+          "syn_taut_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "test": {
         "command": [
           "lake",
@@ -276,16 +319,16 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 140,
+      "duration_seconds": 135,
       "returncode": 0,
       "status": "passed",
       "truncated": false
     },
     "axiom_audit": {
       "allowed": [
-        "Quot.sound",
         "Classical.choice",
-        "propext"
+        "propext",
+        "Quot.sound"
       ],
       "audited": null,
       "axioms_used": [],
@@ -302,6 +345,20 @@
       "examples": [],
       "files_with_redundant_imports": 0,
       "redundant_import_count": 0
+    },
+    "simp_lint": {
+      "declarations_linted": 113,
+      "findings": {
+        "simpNF": 0,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge"
+      ],
+      "modules_linted": 1,
+      "roots_linted": 1,
+      "simp_nf_count": 0,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

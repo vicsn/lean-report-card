@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T22:01:13Z",
-  "score": 70,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-16T01:11:09Z",
+  "score": 72,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 791,
+        "duration_seconds": 321,
         "returncode": 0
       },
       "id": "build",
@@ -86,6 +86,21 @@
       "title": "lean-fmt"
     },
     {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 473,
+        "modules_linted": 54,
+        "simp_nf_count": 0,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No syntactic tautologies and no ill-formed simp lemmas.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
       "category": "maintainability",
       "details": {
         "examples": [
@@ -102,71 +117,78 @@
             ]
           },
           {
-            "module": "KasamiCyclicAdditive.Validation.BoundaryCases",
+            "module": "KasamiCyclicAdditive.Counting.Definitions",
             "redundant": [
               "Mathlib"
             ]
           },
           {
-            "module": "KasamiCyclicAdditive.Validation.BoundaryComputations",
+            "module": "KasamiCyclicAdditive.Counting.Average",
+            "redundant": [
+              "KasamiCyclicAdditive.Counting.Definitions",
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "KasamiCyclicAdditive.Phase.DillonKashyapInterface",
             "redundant": [
               "Mathlib"
             ]
           },
           {
-            "module": "KasamiCyclicAdditive.Geometry.EvenCase",
+            "module": "KasamiCyclicAdditive.Phase.CharacterSums",
             "redundant": [
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "KasamiCyclicAdditive.Assembly.CoefficientReduction",
+            "redundant": [
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "KasamiCyclicAdditive.Assembly.Normalization",
+            "redundant": [
+              "KasamiCyclicAdditive.Counting.Definitions",
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "KasamiCyclicAdditive.Assembly.ElementaryInputs",
+            "redundant": [
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "KasamiCyclicAdditive.Assembly.Reduction",
+            "redundant": [
+              "KasamiCyclicAdditive.Assembly.ElementaryInputs",
+              "KasamiCyclicAdditive.MCM.ComplementTransport",
+              "Mathlib"
+            ]
+          },
+          {
+            "module": "KasamiCyclicAdditive.Assembly.GeometricChain",
+            "redundant": [
+              "KasamiCyclicAdditive.Counting.Definitions",
               "KasamiCyclicAdditive.Geometry.FermatCubic.IncidenceChart",
+              "KasamiCyclicAdditive.Geometry.FermatCubic.RationalKernel",
+              "KasamiCyclicAdditive.Geometry.PointFrobenius",
+              "KasamiCyclicAdditive.Geometry.RootEquation",
               "Mathlib"
             ]
           },
           {
-            "module": "KasamiCyclicAdditive.Geometry.BaseChange",
+            "module": "KasamiCyclicAdditive.Statement.CoefficientForm",
             "redundant": [
               "Mathlib"
             ]
           },
           {
-            "module": "KasamiCyclicAdditive.Geometry.FrobeniusAnnihilator",
+            "module": "KasamiCyclicAdditive.Statement.ParameterReduction",
             "redundant": [
               "Mathlib"
-            ]
-          },
-          {
-            "module": "KasamiCyclicAdditive.Geometry.PointFrobenius",
-            "redundant": [
-              "Mathlib"
-            ]
-          },
-          {
-            "module": "KasamiCyclicAdditive.Geometry.FermatCubic.RationalKernel",
-            "redundant": [
-              "Mathlib"
-            ]
-          },
-          {
-            "module": "KasamiCyclicAdditive.Geometry.FermatCubic.Frobenius",
-            "redundant": [
-              "Mathlib"
-            ]
-          },
-          {
-            "module": "KasamiCyclicAdditive.Geometry.FermatCubic.Quotient",
-            "redundant": [
-              "Mathlib"
-            ]
-          },
-          {
-            "module": "KasamiCyclicAdditive.Geometry.FermatCubic.Curve",
-            "redundant": [
-              "Mathlib"
-            ]
-          },
-          {
-            "module": "KasamiCyclicAdditive.Preliminaries.FiniteCharacterCriterion",
-            "redundant": [
-              "Mathlib",
-              "Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality"
             ]
           },
           {
@@ -322,12 +344,12 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 20,
+        "duration_seconds": 10,
         "report": {
           "allowed": [
             "propext",
-            "Classical.choice",
-            "Quot.sound"
+            "Quot.sound",
+            "Classical.choice"
           ],
           "audited": null,
           "axioms_used": [],
@@ -350,7 +372,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 791,
+        "duration_seconds": 321,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -376,6 +398,35 @@
         "duration_seconds": 0,
         "returncode": null,
         "status": "unavailable",
+        "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 8,
+        "report": {
+          "declarations_linted": 473,
+          "findings": {
+            "simpNF": 0,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 54,
+          "roots_linted": 1,
+          "simp_nf_count": 0,
+          "syn_taut_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
         "truncated": false
       },
       "test": {
@@ -408,7 +459,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 235,
+      "duration_seconds": 127,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -416,8 +467,8 @@
     "axiom_audit": {
       "allowed": [
         "propext",
-        "Classical.choice",
-        "Quot.sound"
+        "Quot.sound",
+        "Classical.choice"
       ],
       "audited": null,
       "axioms_used": [],
@@ -445,71 +496,78 @@
           ]
         },
         {
-          "module": "KasamiCyclicAdditive.Validation.BoundaryCases",
+          "module": "KasamiCyclicAdditive.Counting.Definitions",
           "redundant": [
             "Mathlib"
           ]
         },
         {
-          "module": "KasamiCyclicAdditive.Validation.BoundaryComputations",
+          "module": "KasamiCyclicAdditive.Counting.Average",
+          "redundant": [
+            "KasamiCyclicAdditive.Counting.Definitions",
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "KasamiCyclicAdditive.Phase.DillonKashyapInterface",
           "redundant": [
             "Mathlib"
           ]
         },
         {
-          "module": "KasamiCyclicAdditive.Geometry.EvenCase",
+          "module": "KasamiCyclicAdditive.Phase.CharacterSums",
           "redundant": [
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "KasamiCyclicAdditive.Assembly.CoefficientReduction",
+          "redundant": [
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "KasamiCyclicAdditive.Assembly.Normalization",
+          "redundant": [
+            "KasamiCyclicAdditive.Counting.Definitions",
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "KasamiCyclicAdditive.Assembly.ElementaryInputs",
+          "redundant": [
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "KasamiCyclicAdditive.Assembly.Reduction",
+          "redundant": [
+            "KasamiCyclicAdditive.Assembly.ElementaryInputs",
+            "KasamiCyclicAdditive.MCM.ComplementTransport",
+            "Mathlib"
+          ]
+        },
+        {
+          "module": "KasamiCyclicAdditive.Assembly.GeometricChain",
+          "redundant": [
+            "KasamiCyclicAdditive.Counting.Definitions",
             "KasamiCyclicAdditive.Geometry.FermatCubic.IncidenceChart",
+            "KasamiCyclicAdditive.Geometry.FermatCubic.RationalKernel",
+            "KasamiCyclicAdditive.Geometry.PointFrobenius",
+            "KasamiCyclicAdditive.Geometry.RootEquation",
             "Mathlib"
           ]
         },
         {
-          "module": "KasamiCyclicAdditive.Geometry.BaseChange",
+          "module": "KasamiCyclicAdditive.Statement.CoefficientForm",
           "redundant": [
             "Mathlib"
           ]
         },
         {
-          "module": "KasamiCyclicAdditive.Geometry.FrobeniusAnnihilator",
+          "module": "KasamiCyclicAdditive.Statement.ParameterReduction",
           "redundant": [
             "Mathlib"
-          ]
-        },
-        {
-          "module": "KasamiCyclicAdditive.Geometry.PointFrobenius",
-          "redundant": [
-            "Mathlib"
-          ]
-        },
-        {
-          "module": "KasamiCyclicAdditive.Geometry.FermatCubic.RationalKernel",
-          "redundant": [
-            "Mathlib"
-          ]
-        },
-        {
-          "module": "KasamiCyclicAdditive.Geometry.FermatCubic.Frobenius",
-          "redundant": [
-            "Mathlib"
-          ]
-        },
-        {
-          "module": "KasamiCyclicAdditive.Geometry.FermatCubic.Quotient",
-          "redundant": [
-            "Mathlib"
-          ]
-        },
-        {
-          "module": "KasamiCyclicAdditive.Geometry.FermatCubic.Curve",
-          "redundant": [
-            "Mathlib"
-          ]
-        },
-        {
-          "module": "KasamiCyclicAdditive.Preliminaries.FiniteCharacterCriterion",
-          "redundant": [
-            "Mathlib",
-            "Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality"
           ]
         },
         {
@@ -566,6 +624,21 @@
       ],
       "files_with_redundant_imports": 33,
       "redundant_import_count": 53
+    },
+    "simp_lint": {
+      "declarations_linted": 473,
+      "findings": {
+        "simpNF": 0,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 54,
+      "roots_linted": 1,
+      "simp_nf_count": 0,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

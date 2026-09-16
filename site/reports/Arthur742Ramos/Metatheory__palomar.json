@@ -9,15 +9,15 @@
     "project_path": "palomar"
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T17:48:31Z",
-  "score": 71,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T21:34:41Z",
+  "score": 70,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 4,
+        "duration_seconds": 2,
         "returncode": 0
       },
       "id": "build",
@@ -84,6 +84,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": null,
+        "modules_linted": null,
+        "simp_nf_count": 0,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "The simp/tautology lint pass did not run.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -217,7 +232,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 4,
+        "duration_seconds": 2,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -239,6 +254,18 @@
         "command": [
           "lake",
           "lint"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "ReportCardSimpLint.lean"
         ],
         "duration_seconds": 0,
         "returncode": null,
@@ -301,6 +328,9 @@
       "examples": [],
       "files_with_redundant_imports": 0,
       "redundant_import_count": 0
+    },
+    "simp_lint": {
+      "error": "Batteries is not in the Lake workspace."
     },
     "logs_truncated": false
   },

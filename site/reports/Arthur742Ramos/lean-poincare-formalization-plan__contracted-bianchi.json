@@ -9,15 +9,15 @@
     "project_path": "contracted-bianchi"
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T17:08:02Z",
-  "score": 68,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T20:54:48Z",
+  "score": 67,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 350,
+        "duration_seconds": 334,
         "returncode": 0
       },
       "id": "build",
@@ -84,6 +84,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 676,
+        "modules_linted": 13,
+        "simp_nf_count": 7,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 7 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -217,7 +232,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 2,
+        "duration_seconds": 1,
         "report": {
           "allowed": [
             "propext",
@@ -245,7 +260,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 350,
+        "duration_seconds": 334,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -272,6 +287,36 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 8,
+        "report": {
+          "declarations_linted": 676,
+          "findings": {
+            "simpNF": 7,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 13,
+          "roots_linted": 2,
+          "simp_nf_count": 7,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "ngentSpace I) x v) x)\nusing\n  simp only [*, @CovariantDerivative.curvatureTensor_apply, @Pi.sub_apply, @CovariantDerivative.along_apply]\nTry to change the left-hand side to the simplified term! -/\n#check @CovariantDerivative.curvatureTensor_self /- simp can prove this:\n  by simp only [*,\n @CovariantDerivative.curvatureTensor_apply,\n @Pi.sub_apply,\n @CovariantDerivative.along_apply,\n @sub_self,\n @VectorField.mlieBracket_self,\n @Pi.zero_apply,\n @map_zero]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n-- PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection\n#check @Bundle.ContinuousLinearMap.symmetrizeBilinear_apply_self /- simp can prove this:\n  by simp only [*, @Bundle.ContinuousLinearMap.symmetrizeBilinear_apply_apply, @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @Bundle.symmetrizeBilinearSection_apply_self /- simp can prove this:\n  by simp only [*, @Bundle.symmetrizeBilinearSection_apply_apply, @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordContinuousLinearMap_apply_self /- simp can prove this:\n  by simp only [*,\n @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordContinuousLinearMap_apply_apply,\n @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordFamilyContinuousLinearMap_apply_self /- simp can prove this:\n  by simp only [*,\n @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordFamilyContinuousLinearMap_apply_apply,\n @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n"
       },
       "test": {
         "command": [
@@ -303,7 +348,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 142,
+      "duration_seconds": 132,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -356,6 +401,21 @@
       ],
       "files_with_redundant_imports": 4,
       "redundant_import_count": 6
+    },
+    "simp_lint": {
+      "declarations_linted": 676,
+      "findings": {
+        "simpNF": 7,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 13,
+      "roots_linted": 2,
+      "simp_nf_count": 7,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

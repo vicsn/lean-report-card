@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T15:43:28Z",
-  "score": 74,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T19:31:24Z",
+  "score": 71,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 1900,
+        "duration_seconds": 1830,
         "returncode": 0
       },
       "id": "build",
@@ -90,9 +90,38 @@
       "title": "lean-fmt"
     },
     {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 6031,
+        "modules_linted": 379,
+        "simp_nf_count": 53,
+        "syn_taut_count": 2
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "Found 2 declaration(s) whose statement is a syntactic tautology.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
       "category": "maintainability",
       "details": {
         "examples": [
+          {
+            "module": "HumanVerification.InternalModel",
+            "redundant": [
+              "Mathlib",
+              "NRR.Geometry.ConvexBody.PlanarPerimeter",
+              "NRR.Partition.ConvexPartition"
+            ]
+          },
+          {
+            "module": "HumanVerification.Main",
+            "redundant": [
+              "Mathlib"
+            ]
+          },
           {
             "module": "NRR.HalfSpaceCutArea",
             "redundant": [
@@ -207,131 +236,59 @@
             ]
           },
           {
-            "module": "NRR.Multivalued.ChildEvaluation",
+            "module": "HumanVerification.CauchyCrofton.NearestProjection",
             "redundant": [
-              "NRR.Multivalued.PhaseInterfaces"
+              "Mathlib.Analysis.InnerProductSpace.Projection.Minimal"
             ]
           },
           {
-            "module": "NRR.Multivalued.PhaseInterfaces",
+            "module": "HumanVerification.CauchyCrofton.Basic",
             "redundant": [
-              "NRR.BodySpace"
+              "NRR.Geometry.ConvexBody.PlanarPerimeterMonotonicity",
+              "NRR.Geometry.ConvexBody.PlanarPerimeterTransform"
             ]
           },
           {
-            "module": "NRR.PrimePolyhedron.FoxNeuwirth",
+            "module": "NRR.AAK.SimplestRoute",
             "redundant": [
-              "NRR.PrimePolyhedron.FoxNeuwirth.ActualCellularBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.AffineBarycentricSubdivisionCarrier",
-              "NRR.PrimePolyhedron.FoxNeuwirth.BarredPermutation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.CanonicalConfiguration",
-              "NRR.PrimePolyhedron.FoxNeuwirth.CellAtlas",
-              "NRR.PrimePolyhedron.FoxNeuwirth.CellularCycle",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackCore",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackDescent",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackLastVertexCore",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityNonzero",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityPolynomials",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGlobalCancellation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismHorizontalEndpointIdentification",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismNonhorizontalCancellation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismStableRelativeBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismVertexParameters",
-              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarAssignmentCompose",
-              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarCompose",
-              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarReverse",
+              "NRR.Multivalued.Separator.ObstructionValue",
               "NRR.PrimePolyhedron.FoxNeuwirth.FacetShuffleEquiv",
-              "NRR.PrimePolyhedron.FoxNeuwirth.FiniteMultivariateGenericPerturbation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.ModPOrbitCycle",
-              "NRR.PrimePolyhedron.FoxNeuwirth.OrbitRepresentatives",
-              "NRR.PrimePolyhedron.FoxNeuwirth.OrderComplex",
-              "NRR.PrimePolyhedron.FoxNeuwirth.Orientation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.OrientedBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.PrimeBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZero",
-              "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZeroFreeMaps",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierCore",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierEquivariant",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RegularApproximationStability",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabs",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsEndpoints",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderCombinatorics",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionEndpointCollar",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundaryBase",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCells",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCollar",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepEndpoints",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBEndpointFacetTargets",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetTargetComposition",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFrozenSupportGeometry",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarComparison",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarExistenceAudit",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivision",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivisionExact",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableEndpointBridges",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableExactRelativeCollarConstructionAffinePullback",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarConstructionAffinePullback",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMargin",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMarginAffinePullback",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRelativeMesh",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteB",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBComplete",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBFacetGeometry",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBGeometry",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBInstantiation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyBoundary",
-              "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
-              "NRR.PrimePolyhedron.FoxNeuwirth.Strata",
-              "NRR.PrimePolyhedron.FoxNeuwirth.TopCellModel",
-              "NRR.PrimePolyhedron.FoxNeuwirth.TopCells",
+              "NRR.PrimePolyhedron.FoxNeuwirth.FiniteAffineZeroCount",
+              "NRR.PrimePolyhedron.FoxNeuwirth.MaximalFlagBridge",
+              "NRR.PrimePolyhedron.FoxNeuwirth.MaximalFlagCode",
+              "NRR.PrimePolyhedron.FoxNeuwirth.OrderComplexRealization",
+              "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceAffineOrbitCount",
               "NRR.PrimePolyhedron.FoxNeuwirth.TopFlagSubdivision",
+              "NRR.PrimePolyhedron.FoxNeuwirth.TopFlagTerminalCancellation",
               "NRR.PrimePolyhedron.FoxNeuwirth.TopIncidenceComplex"
             ]
           },
           {
-            "module": "NRR.PrimePolyhedron.FiniteCells",
+            "module": "NRR.AAK.MainTheoremAffinePullback",
             "redundant": [
-              "Mathlib"
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableHomotopyInvarianceAffinePullback"
             ]
           },
           {
-            "module": "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
+            "module": "NRR.AAK.SimplestRouteS6Refined",
             "redundant": [
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
-              "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin"
+              "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivision"
             ]
           },
           {
-            "module": "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
+            "module": "NRR.PrimeModel.PhaseInterfaces",
             "redundant": [
-              "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
-              "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarMiddlePrismEndpoints"
+              "Mathlib.GroupTheory.SpecificGroups.Alternating",
+              "Mathlib.LinearAlgebra.FiniteDimensional.Basic",
+              "NRR.BodySpace",
+              "NRR.EMP.VariableBody"
             ]
           },
           {
-            "module": "NRR.PrimePolyhedron.FoxNeuwirth.RefinedAffineMap",
+            "module": "NRR.Topology.OutwardFieldZero",
             "redundant": [
-              "NRR.OddSphereDegree.AlgebraicTopology.BarycentricSubdivisionOperator",
-              "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceAffineOrbitCount"
-            ]
-          },
-          {
-            "module": "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
-            "redundant": [
-              "NRR.OddSphereDegree.AlgebraicTopology.BarycentricFiniteCancellation"
-            ]
-          },
-          {
-            "module": "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
-            "redundant": [
-              "NRR.PrimePolyhedron.FoxNeuwirth.RouteBSelectedVectorBlock"
+              "Mathlib",
+              "NRR.OddSphereDegree.BallBoundaryLES"
             ]
           }
         ],
@@ -436,7 +393,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/d66fa8e53d5173fd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 13,
+        "duration_seconds": 11,
         "report": {
           "allowed": [
             "propext",
@@ -467,7 +424,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 1900,
+        "duration_seconds": 1830,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -494,6 +451,33 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 11,
+        "report": {
+          "declarations_linted": 6031,
+          "findings": {
+            "simpNF": 53,
+            "synTaut": 2
+          },
+          "modules_dropped": [],
+          "modules_linted": 379,
+          "roots_linted": 2,
+          "simp_nf_count": 53,
+          "syn_taut_count": 2
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "      hp F\u2080 F\u2081 H A\u2080 A\u2081).map\n    (NRR.FoxNeuwirthOrderComplex.RefinedAffineMap.vertex hp A\u2080.level q i, 0)\nusing\n  simp only [*, @Set.Icc.mk_zero]\nTry to change the left-hand side to the simplified term! -/\n#check @NRR.FoxNeuwirthOrderComplex.EquivariantPrismStableRelativeBoundary.StablePatchedHomotopyBoundary.stablePatchedHomotopy_one_refinedVertex /- Left-hand side simplifies from\n  (NRR.FoxNeuwirthOrderComplex.EquivariantPrismStableRelativeBoundary.StablePatchedHomotopyBoundary.stablePatchedHomotopy\n        hp F\u2080 F\u2081 H A\u2080 A\u2081).map\n    (NRR.FoxNeuwirthOrderComplex.RefinedAffineMap.vertex hp A\u2081.level q i, \u27e81, \u22ef\u27e9)\nto\n  (NRR.FoxNeuwirthOrderComplex.EquivariantPrismStableRelativeBoundary.StablePatchedHomotopyBoundary.stablePatchedHomotopy\n        hp F\u2080 F\u2081 H A\u2080 A\u2081).map\n    (NRR.FoxNeuwirthOrderComplex.RefinedAffineMap.vertex hp A\u2081.level q i, 1)\nusing\n  simp only [*, @Set.Icc.mk_one]\nTry to change the left-hand side to the simplified term! -/\n\n-- NRR.PrimePolyhedron.FoxNeuwirth.TopIncidenceComplex\n#check @NRR.FoxNeuwirth.PrimeTopIncidenceData.mk.injEq /- simp can prove this:\n  by simp only [*]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n/- The `synTaut` linter reports:\nTHE FOLLOWING DECLARATIONS ARE SYNTACTIC TAUTOLOGIES. This usually means that they are of the form `\u2200 a b ... z, e\u2081 = e\u2082` where `e\u2081` and `e\u2082` are identical expressions. We call declarations of this form syntactic tautologies. Such lemmas are (mostly) useless and sometimes introduced unintentionally when proving basic facts using `rfl`, when elaboration results in a different term than the user intended. You should check that the declaration really says what you think it does.\nThis linter can be disabled with `@[nolint synTaut]`. -/\n-- NRR.BodySpace.Basic\n#check @NRR.ConvexSubbody.coe_to_set /- LHS equals RHS syntactically -/\n\n-- NRR.Geometry.ConvexBody.Basic\n#check @NRR.Geometry.ConvexBody.mem_carrier /- LHS equals RHS syntactically -/\n"
       },
       "test": {
         "command": [
@@ -525,7 +509,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 137,
+      "duration_seconds": 134,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -553,6 +537,20 @@
     },
     "redundant_imports": {
       "examples": [
+        {
+          "module": "HumanVerification.InternalModel",
+          "redundant": [
+            "Mathlib",
+            "NRR.Geometry.ConvexBody.PlanarPerimeter",
+            "NRR.Partition.ConvexPartition"
+          ]
+        },
+        {
+          "module": "HumanVerification.Main",
+          "redundant": [
+            "Mathlib"
+          ]
+        },
         {
           "module": "NRR.HalfSpaceCutArea",
           "redundant": [
@@ -667,136 +665,76 @@
           ]
         },
         {
-          "module": "NRR.Multivalued.ChildEvaluation",
+          "module": "HumanVerification.CauchyCrofton.NearestProjection",
           "redundant": [
-            "NRR.Multivalued.PhaseInterfaces"
+            "Mathlib.Analysis.InnerProductSpace.Projection.Minimal"
           ]
         },
         {
-          "module": "NRR.Multivalued.PhaseInterfaces",
+          "module": "HumanVerification.CauchyCrofton.Basic",
           "redundant": [
-            "NRR.BodySpace"
+            "NRR.Geometry.ConvexBody.PlanarPerimeterMonotonicity",
+            "NRR.Geometry.ConvexBody.PlanarPerimeterTransform"
           ]
         },
         {
-          "module": "NRR.PrimePolyhedron.FoxNeuwirth",
+          "module": "NRR.AAK.SimplestRoute",
           "redundant": [
-            "NRR.PrimePolyhedron.FoxNeuwirth.ActualCellularBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.AffineBarycentricSubdivisionCarrier",
-            "NRR.PrimePolyhedron.FoxNeuwirth.BarredPermutation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.CanonicalConfiguration",
-            "NRR.PrimePolyhedron.FoxNeuwirth.CellAtlas",
-            "NRR.PrimePolyhedron.FoxNeuwirth.CellularCycle",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackCore",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackAffinePullbackDescent",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EndpointStackLastVertexCore",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityNonzero",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericityPolynomials",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGlobalCancellation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismHorizontalEndpointIdentification",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismNonhorizontalCancellation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismStableRelativeBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismVertexParameters",
-            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarAssignmentCompose",
-            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarCompose",
-            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarReverse",
+            "NRR.Multivalued.Separator.ObstructionValue",
             "NRR.PrimePolyhedron.FoxNeuwirth.FacetShuffleEquiv",
-            "NRR.PrimePolyhedron.FoxNeuwirth.FiniteMultivariateGenericPerturbation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.ModPOrbitCycle",
-            "NRR.PrimePolyhedron.FoxNeuwirth.OrbitRepresentatives",
-            "NRR.PrimePolyhedron.FoxNeuwirth.OrderComplex",
-            "NRR.PrimePolyhedron.FoxNeuwirth.Orientation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.OrientedBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.PrimeBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZero",
-            "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceZeroFreeMaps",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierCore",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RefinedChartCarrierEquivariant",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RegularApproximationStability",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabs",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarThinSlabsEndpoints",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionCylinderCombinatorics",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionEndpointCollar",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepBoundaryBase",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCells",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepCollar",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeSubdivisionOneStepEndpoints",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBEndpointFacetTargets",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetTargetComposition",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFrozenSupportGeometry",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarComparison",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarExistenceAudit",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivision",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivisionExact",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableEndpointBridges",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableExactRelativeCollarConstructionAffinePullback",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarConstructionAffinePullback",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMargin",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarOriginMarginAffinePullback",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRelativeMesh",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteB",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBComplete",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBFacetGeometry",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBGeometry",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StableFullCollarRouteBInstantiation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyBoundary",
-            "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
-            "NRR.PrimePolyhedron.FoxNeuwirth.Strata",
-            "NRR.PrimePolyhedron.FoxNeuwirth.TopCellModel",
-            "NRR.PrimePolyhedron.FoxNeuwirth.TopCells",
+            "NRR.PrimePolyhedron.FoxNeuwirth.FiniteAffineZeroCount",
+            "NRR.PrimePolyhedron.FoxNeuwirth.MaximalFlagBridge",
+            "NRR.PrimePolyhedron.FoxNeuwirth.MaximalFlagCode",
+            "NRR.PrimePolyhedron.FoxNeuwirth.OrderComplexRealization",
+            "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceAffineOrbitCount",
             "NRR.PrimePolyhedron.FoxNeuwirth.TopFlagSubdivision",
+            "NRR.PrimePolyhedron.FoxNeuwirth.TopFlagTerminalCancellation",
             "NRR.PrimePolyhedron.FoxNeuwirth.TopIncidenceComplex"
           ]
         },
         {
-          "module": "NRR.PrimePolyhedron.FiniteCells",
+          "module": "NRR.AAK.MainTheoremAffinePullback",
           "redundant": [
-            "Mathlib"
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableHomotopyInvarianceAffinePullback"
           ]
         },
         {
-          "module": "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
+          "module": "NRR.AAK.SimplestRouteS6Refined",
           "redundant": [
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismGenericPerturbation",
-            "NRR.PrimePolyhedron.FoxNeuwirth.EquivariantPrismSubdivisionMargin"
+            "NRR.PrimePolyhedron.FoxNeuwirth.StableCollarRelativeSubdivision"
           ]
         },
         {
-          "module": "NRR.PrimePolyhedron.FoxNeuwirth.StablePatchedHomotopyFineMargin",
+          "module": "NRR.PrimeModel.PhaseInterfaces",
           "redundant": [
-            "NRR.PrimePolyhedron.FoxNeuwirth.ExplicitAffineRelativeCollarGenericity",
-            "NRR.PrimePolyhedron.FoxNeuwirth.RelativeCollarMiddlePrismEndpoints"
+            "Mathlib.GroupTheory.SpecificGroups.Alternating",
+            "Mathlib.LinearAlgebra.FiniteDimensional.Basic",
+            "NRR.BodySpace",
+            "NRR.EMP.VariableBody"
           ]
         },
         {
-          "module": "NRR.PrimePolyhedron.FoxNeuwirth.RefinedAffineMap",
+          "module": "NRR.Topology.OutwardFieldZero",
           "redundant": [
-            "NRR.OddSphereDegree.AlgebraicTopology.BarycentricSubdivisionOperator",
-            "NRR.PrimePolyhedron.FoxNeuwirth.ReferenceAffineOrbitCount"
-          ]
-        },
-        {
-          "module": "NRR.PrimePolyhedron.FoxNeuwirth.FiniteSimplexDoubleBoundary",
-          "redundant": [
-            "NRR.OddSphereDegree.AlgebraicTopology.BarycentricFiniteCancellation"
-          ]
-        },
-        {
-          "module": "NRR.PrimePolyhedron.FoxNeuwirth.RouteBFacetWitnessRealization",
-          "redundant": [
-            "NRR.PrimePolyhedron.FoxNeuwirth.RouteBSelectedVectorBlock"
+            "Mathlib",
+            "NRR.OddSphereDegree.BallBoundaryLES"
           ]
         }
       ],
       "files_with_redundant_imports": 193,
       "redundant_import_count": 462
+    },
+    "simp_lint": {
+      "declarations_linted": 6031,
+      "findings": {
+        "simpNF": 53,
+        "synTaut": 2
+      },
+      "modules_dropped": [],
+      "modules_linted": 379,
+      "roots_linted": 2,
+      "simp_nf_count": 53,
+      "syn_taut_count": 2
     },
     "logs_truncated": false
   },
@@ -808,5 +746,5 @@
     "title": "akopjan/NRR-AAK",
     "published_at": "2026-08-31T04:27:43Z"
   },
-  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
+  "summary": "Builds \u00b7 syntactic tautologies \u00b7 pinned toolchain"
 }

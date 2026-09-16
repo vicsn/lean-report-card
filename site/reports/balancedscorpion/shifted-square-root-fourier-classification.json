@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T18:31:22Z",
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T22:16:37Z",
   "score": 72,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 526,
+        "duration_seconds": 508,
         "returncode": 0
       },
       "id": "build",
@@ -88,6 +88,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 2501,
+        "modules_linted": 157,
+        "simp_nf_count": 132,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 132 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -189,49 +204,9 @@
             ]
           },
           {
-            "module": "MeyerProblem.Eta.CuspConstants",
+            "module": "MeyerProblem.Series.MeasureSeriesCorrespondence",
             "redundant": [
-              "MeyerProblem.Eta.Transformations"
-            ]
-          },
-          {
-            "module": "MeyerProblem.Eta.RealPowers",
-            "redundant": [
-              "MeyerProblem.Analytic.RightHalfPlanePower"
-            ]
-          },
-          {
-            "module": "MeyerProblem.Eta.Transformations",
-            "redundant": [
-              "Mathlib.Analysis.Calculus.MeanValue"
-            ]
-          },
-          {
-            "module": "MeyerProblem.Modular.EtaCoefficientGrowth",
-            "redundant": [
-              "MeyerProblem.Eta.QExpansion"
-            ]
-          },
-          {
-            "module": "MeyerProblem.Modular.Rigidity",
-            "redundant": [
-              "MeyerProblem.Modular.CuspClassification",
-              "MeyerProblem.Modular.WeightZeroCusps"
-            ]
-          },
-          {
-            "module": "MeyerProblem.Checks.AppendixThetaArgumentPrinciple",
-            "redundant": [
-              "MeyerProblem.Appendix.AnalyticFactorization",
-              "MeyerProblem.Appendix.CuspContour",
-              "MeyerProblem.Appendix.RectangleArgumentPrinciple",
-              "MeyerProblem.Appendix.UnitArc"
-            ]
-          },
-          {
-            "module": "MeyerProblem.Checks.ClassificationSectorTransfer",
-            "redundant": [
-              "MeyerProblem.Basic"
+              "MeyerProblem.Gaussian.Fourier"
             ]
           },
           {
@@ -285,9 +260,49 @@
             ]
           },
           {
-            "module": "MeyerProblem.Series.MeasureSeriesCorrespondence",
+            "module": "MeyerProblem.Checks.AppendixThetaArgumentPrinciple",
             "redundant": [
-              "MeyerProblem.Gaussian.Fourier"
+              "MeyerProblem.Appendix.AnalyticFactorization",
+              "MeyerProblem.Appendix.CuspContour",
+              "MeyerProblem.Appendix.RectangleArgumentPrinciple",
+              "MeyerProblem.Appendix.UnitArc"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Checks.ClassificationSectorTransfer",
+            "redundant": [
+              "MeyerProblem.Basic"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Modular.EtaCoefficientGrowth",
+            "redundant": [
+              "MeyerProblem.Eta.QExpansion"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Modular.Rigidity",
+            "redundant": [
+              "MeyerProblem.Modular.CuspClassification",
+              "MeyerProblem.Modular.WeightZeroCusps"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Eta.CuspConstants",
+            "redundant": [
+              "MeyerProblem.Eta.Transformations"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Eta.RealPowers",
+            "redundant": [
+              "MeyerProblem.Analytic.RightHalfPlanePower"
+            ]
+          },
+          {
+            "module": "MeyerProblem.Eta.Transformations",
+            "redundant": [
+              "Mathlib.Analysis.Calculus.MeanValue"
             ]
           }
         ],
@@ -423,7 +438,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 526,
+        "duration_seconds": 508,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -450,6 +465,36 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 7,
+        "report": {
+          "declarations_linted": 2501,
+          "findings": {
+            "simpNF": 132,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 157,
+          "roots_linted": 4,
+          "simp_nf_count": 132,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "(\u21a5(MeyerProblem.MeyerSector \u22ef w) \u2192\u2097[\u2102]\n        \u21a5(MeyerProblem.AutomorphicSeries (3 / 2) theta\n            (Complex.I *\n              match w with\n              | MeyerProblem.FourierEigenvalue.one => 1\n              | MeyerProblem.FourierEigenvalue.negOne => -1\n              | MeyerProblem.FourierEigenvalue.I => Complex.I\n              | MeyerProblem.FourierEigenvalue.negI => -Complex.I)))\n      (\u21a5(MeyerProblem.MeyerSector \u22ef w))\n      (fun x =>\n        \u21a5(MeyerProblem.AutomorphicSeries (3 / 2) theta\n            (Complex.I *\n              match w with\n              | MeyerProblem.FourierEigenvalue.one => 1\n              | MeyerProblem.FourierEigenvalue.negOne => -1\n              | MeyerProblem.FourierEigenvalue.I => Complex.I\n              | MeyerProblem.FourierEigenvalue.negI => -Complex.I)))\n      LinearMap.instFunLike (MeyerProblem.imaginarySectorToAutomorphicSeries htheta w hw) x)\nusing\n  simp only [*, MeyerProblem.FourierEigenvalue.value]\nTry to change the left-hand side to the simplified term! -/\n#check MeyerProblem.imaginaryFrickeParameter_I /- simp can prove this:\n  by simp only [*, MeyerProblem.FourierEigenvalue.value, Complex.I_mul_I]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check MeyerProblem.imaginaryFrickeParameter_negI /- simp can prove this:\n  by simp only [*, MeyerProblem.FourierEigenvalue.value, @mul_neg, Complex.I_mul_I, @neg_neg]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n-- Found 0 errors in 0 declarations (plus 0 automatically generated ones) in MeyerProblemAppendix with 2 linters\n\n\n-- All linting checks passed!\n-- Found 0 errors in 0 declarations (plus 0 automatically generated ones) in MeyerProblemAppendixTests with 2 linters\n\n\n-- All linting checks passed!\n-- Found 0 errors in 0 declarations (plus 0 automatically generated ones) in MeyerProblemTests with 2 linters\n\n\n-- All linting checks passed!\n"
       },
       "test": {
         "command": [
@@ -481,7 +526,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 148,
+      "duration_seconds": 147,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -605,49 +650,9 @@
           ]
         },
         {
-          "module": "MeyerProblem.Eta.CuspConstants",
+          "module": "MeyerProblem.Series.MeasureSeriesCorrespondence",
           "redundant": [
-            "MeyerProblem.Eta.Transformations"
-          ]
-        },
-        {
-          "module": "MeyerProblem.Eta.RealPowers",
-          "redundant": [
-            "MeyerProblem.Analytic.RightHalfPlanePower"
-          ]
-        },
-        {
-          "module": "MeyerProblem.Eta.Transformations",
-          "redundant": [
-            "Mathlib.Analysis.Calculus.MeanValue"
-          ]
-        },
-        {
-          "module": "MeyerProblem.Modular.EtaCoefficientGrowth",
-          "redundant": [
-            "MeyerProblem.Eta.QExpansion"
-          ]
-        },
-        {
-          "module": "MeyerProblem.Modular.Rigidity",
-          "redundant": [
-            "MeyerProblem.Modular.CuspClassification",
-            "MeyerProblem.Modular.WeightZeroCusps"
-          ]
-        },
-        {
-          "module": "MeyerProblem.Checks.AppendixThetaArgumentPrinciple",
-          "redundant": [
-            "MeyerProblem.Appendix.AnalyticFactorization",
-            "MeyerProblem.Appendix.CuspContour",
-            "MeyerProblem.Appendix.RectangleArgumentPrinciple",
-            "MeyerProblem.Appendix.UnitArc"
-          ]
-        },
-        {
-          "module": "MeyerProblem.Checks.ClassificationSectorTransfer",
-          "redundant": [
-            "MeyerProblem.Basic"
+            "MeyerProblem.Gaussian.Fourier"
           ]
         },
         {
@@ -701,14 +706,69 @@
           ]
         },
         {
-          "module": "MeyerProblem.Series.MeasureSeriesCorrespondence",
+          "module": "MeyerProblem.Checks.AppendixThetaArgumentPrinciple",
           "redundant": [
-            "MeyerProblem.Gaussian.Fourier"
+            "MeyerProblem.Appendix.AnalyticFactorization",
+            "MeyerProblem.Appendix.CuspContour",
+            "MeyerProblem.Appendix.RectangleArgumentPrinciple",
+            "MeyerProblem.Appendix.UnitArc"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Checks.ClassificationSectorTransfer",
+          "redundant": [
+            "MeyerProblem.Basic"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Modular.EtaCoefficientGrowth",
+          "redundant": [
+            "MeyerProblem.Eta.QExpansion"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Modular.Rigidity",
+          "redundant": [
+            "MeyerProblem.Modular.CuspClassification",
+            "MeyerProblem.Modular.WeightZeroCusps"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Eta.CuspConstants",
+          "redundant": [
+            "MeyerProblem.Eta.Transformations"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Eta.RealPowers",
+          "redundant": [
+            "MeyerProblem.Analytic.RightHalfPlanePower"
+          ]
+        },
+        {
+          "module": "MeyerProblem.Eta.Transformations",
+          "redundant": [
+            "Mathlib.Analysis.Calculus.MeanValue"
           ]
         }
       ],
       "files_with_redundant_imports": 20,
       "redundant_import_count": 97
+    },
+    "simp_lint": {
+      "declarations_linted": 2501,
+      "findings": {
+        "simpNF": 132,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 157,
+      "roots_linted": 4,
+      "simp_nf_count": 132,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

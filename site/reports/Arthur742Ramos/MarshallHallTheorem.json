@@ -9,9 +9,9 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T17:44:45Z",
-  "score": 69,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T21:30:49Z",
+  "score": 68,
   "grade": "D",
   "checks": [
     {
@@ -88,6 +88,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 773,
+        "modules_linted": 23,
+        "simp_nf_count": 2,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 2 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -225,7 +240,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/cc346fd7850a83fb/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 4,
+        "duration_seconds": 3,
         "report": {
           "allowed": [
             "propext",
@@ -284,6 +299,36 @@
         "status": "unavailable",
         "truncated": false
       },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 4,
+        "report": {
+          "declarations_linted": 773,
+          "findings": {
+            "simpNF": 2,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 23,
+          "roots_linted": 1,
+          "simp_nf_count": 2,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "ReportCardSimpLint.lean:26:0: error: -- Found 2 errors in 773 declarations (plus 935 automatically generated ones) in MarshallHall with 2 linters\n\n/- The `simpNF` linter reports:\nSOME SIMP LEMMAS ARE NOT IN SIMP-NORMAL FORM.\nPlease change the lemma to make sure their left-hand sides are in simp normal form.\nTo learn about simp normal forms, see\nhttps://leanprover-community.github.io/extras/simp.html#simp-normal-form\nand https://lean-lang.org/doc/reference/latest/The-Simplifier/Simp-Normal-Forms/.\nThis linter can be disabled with `@[nolint simpNF]`. -/\n-- MarshallHall.GrushkoFoldStep\n#check @MarshallHall.GeneralGrushko.symmAllArrow_reverse /- Left-hand side simplifies from\n  MarshallHall.GeneralGrushko.symmAllArrow (Quiver.reverse e)\nto\n  MarshallHall.GeneralGrushko.symmAllArrow (Sum.swap e)\nusing\n  simp only [*, @Quiver.symmetrify_reverse]\nTry to change the left-hand side to the simplified term! -/\n\n-- MarshallHall.GrushkoRose\n#check @MarshallHall.GeneralGrushko.rosePosition_zero /- Left-hand side simplifies from\n  MarshallHall.GeneralGrushko.rosePosition w i \u27e80, \u22ef\u27e9\nto\n  MarshallHall.GeneralGrushko.rosePosition w i 0\nusing\n  simp only [*, @Fin.zero_eta]\nTry to change the left-hand side to the simplified term! -/\n"
+      },
       "test": {
         "command": [
           "lake",
@@ -314,7 +359,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 136,
+      "duration_seconds": 135,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -375,6 +420,21 @@
       ],
       "files_with_redundant_imports": 3,
       "redundant_import_count": 15
+    },
+    "simp_lint": {
+      "declarations_linted": 773,
+      "findings": {
+        "simpNF": 2,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 23,
+      "roots_linted": 1,
+      "simp_nf_count": 2,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

@@ -9,15 +9,15 @@
     "project_path": "gcd3-69-cube"
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T20:35:24Z",
-  "score": 69,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T23:57:21Z",
+  "score": 68,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 3146,
+        "duration_seconds": 2598,
         "returncode": 0
       },
       "id": "build",
@@ -84,6 +84,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 2357,
+        "modules_linted": 387,
+        "simp_nf_count": 3,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 3 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -323,7 +338,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/929cd8bf7ec963bd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 10,
+        "duration_seconds": 7,
         "report": {
           "allowed": [
             "propext",
@@ -351,7 +366,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 3146,
+        "duration_seconds": 2598,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -378,6 +393,35 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 381,
+        "report": {
+          "declarations_linted": 2357,
+          "findings": {
+            "simpNF": 3,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge"
+          ],
+          "modules_linted": 387,
+          "roots_linted": 387,
+          "simp_nf_count": 3,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": " (plus 98 automatically generated ones) in PolynomialSource with 2 linters\n\n\n-- All linting checks passed!\n-- Found 0 errors in 77 declarations (plus 79 automatically generated ones) in RationalSource with 2 linters\n\n\n-- All linting checks passed!\n-- Found 0 errors in 3 declarations (plus 0 automatically generated ones) in SolutionV2 with 2 linters\n\n\n-- All linting checks passed!\n-- Found 0 errors in 97 declarations (plus 70 automatically generated ones) in SourceBridge with 2 linters\n\n\n-- All linting checks passed!\nReportCardSimpLint.lean:775:0: error: -- Found 2 errors in 22 declarations (plus 23 automatically generated ones) in TargetNormalization with 2 linters\n\n/- The `simpNF` linter reports:\nSOME SIMP LEMMAS ARE NOT IN SIMP-NORMAL FORM.\nPlease change the lemma to make sure their left-hand sides are in simp normal form.\nTo learn about simp normal forms, see\nhttps://leanprover-community.github.io/extras/simp.html#simp-normal-form\nand https://lean-lang.org/doc/reference/latest/The-Simplifier/Simp-Normal-Forms/.\nThis linter can be disabled with `@[nolint simpNF]`. -/\n-- TargetNormalization\n#check @GCD369CubePolynomialSource.targetTranslate_normalizedP_coeff_zero /- simp can prove this:\n  by simp only [*,\n @GCD369CubePolynomialSource.targetTranslate_normalizedP,\n @RatFunc.algebraMap_eq_C,\n @Polynomial.coeff_add,\n @Polynomial.coeff_C_zero]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @GCD369CubePolynomialSource.targetTranslate_normalizedP_coeff_succ /- simp can prove this:\n  by simp only [*,\n @GCD369CubePolynomialSource.targetTranslate_normalizedP,\n @RatFunc.algebraMap_eq_C,\n @Polynomial.coeff_add,\n @Polynomial.coeff_C_succ,\n @add_zero]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n-- Found 0 errors in 84 declarations (plus 64 automatically generated ones) in WeightedPole with 2 linters\n\n\n-- All linting checks passed!\n"
       },
       "test": {
         "command": [
@@ -409,7 +453,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 155,
+      "duration_seconds": 143,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -568,6 +612,20 @@
       ],
       "files_with_redundant_imports": 101,
       "redundant_import_count": 156
+    },
+    "simp_lint": {
+      "declarations_linted": 2357,
+      "findings": {
+        "simpNF": 3,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge"
+      ],
+      "modules_linted": 387,
+      "roots_linted": 387,
+      "simp_nf_count": 3,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

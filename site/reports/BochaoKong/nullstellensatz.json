@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T18:56:06Z",
-  "score": 69,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T22:39:04Z",
+  "score": 68,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 361,
+        "duration_seconds": 245,
         "returncode": 0
       },
       "id": "build",
@@ -90,6 +90,21 @@
       "title": "lean-fmt"
     },
     {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 546,
+        "modules_linted": 42,
+        "simp_nf_count": 8,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 8 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
       "category": "maintainability",
       "details": {
         "examples": [
@@ -106,18 +121,6 @@
             "module": "LocalComplexGeometry.Palomar",
             "redundant": [
               "LocalComplexGeometry.Noetherian.Ruckert"
-            ]
-          },
-          {
-            "module": "LocalComplexGeometry.Analytic.Regularization",
-            "redundant": [
-              "Mathlib.Topology.Algebra.Module.FiniteDimension"
-            ]
-          },
-          {
-            "module": "LocalComplexGeometry.FiniteProjection.Main",
-            "redundant": [
-              "Mathlib.RingTheory.Ideal.Quotient.Operations"
             ]
           },
           {
@@ -159,6 +162,18 @@
             "module": "LocalComplexGeometry.Nullstellensatz.Coordinates",
             "redundant": [
               "LocalComplexGeometry.Germs.Coordinates"
+            ]
+          },
+          {
+            "module": "LocalComplexGeometry.FiniteProjection.Main",
+            "redundant": [
+              "Mathlib.RingTheory.Ideal.Quotient.Operations"
+            ]
+          },
+          {
+            "module": "LocalComplexGeometry.Analytic.Regularization",
+            "redundant": [
+              "Mathlib.Topology.Algebra.Module.FiniteDimension"
             ]
           }
         ],
@@ -263,7 +278,7 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/cc346fd7850a83fb/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 7,
+        "duration_seconds": 5,
         "report": {
           "allowed": [
             "propext",
@@ -294,7 +309,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 361,
+        "duration_seconds": 245,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -321,6 +336,33 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 4,
+        "report": {
+          "declarations_linted": 546,
+          "findings": {
+            "simpNF": 8,
+            "synTaut": 0
+          },
+          "modules_dropped": [],
+          "modules_linted": 42,
+          "roots_linted": 1,
+          "simp_nf_count": 8,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "ry.wptAmbientEquiv n) x\nto\n  (fun i => x i.castSucc, x (Fin.last n))\nusing\n  simp only [*, LocalComplexGeometry.wptAmbientEquiv_apply]\nTry to change the left-hand side to the simplified term! -/\n\n-- LocalComplexGeometry.Germs.Coordinates\n#check LocalComplexGeometry.wptAmbientEquiv_zero /- Left-hand side simplifies from\n  (LocalComplexGeometry.wptAmbientEquiv n) 0\nto\n  (fun i => 0, 0)\nusing\n  simp only [*, LocalComplexGeometry.wptAmbientEquiv_apply, @Pi.zero_apply]\nTry to change the left-hand side to the simplified term! -/\n#check LocalComplexGeometry.wptAmbientEquiv_symm_zero /- Left-hand side simplifies from\n  (LocalComplexGeometry.wptAmbientEquiv n).symm 0\nto\n  fun i => Fin.lastCases 0 0 i\nusing\n  simp only [*, LocalComplexGeometry.wptAmbientEquiv_symm_apply, @Prod.snd_zero, @Prod.fst_zero]\nTry to change the left-hand side to the simplified term! -/\n#check @LocalComplexGeometry.evalAtOrigin_coordinatePullback /- simp can prove this:\n  by simp only [*,\n @LocalComplexGeometry.coordinatePullback_apply,\n @LocalComplexGeometry.evalAtOrigin_holomorphicGermPullbackHom]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n-- LocalComplexGeometry.Nullstellensatz.ResultantSpecialization\n#check @LocalComplexGeometry.fixedDegreePolynomial_coeff_top /- simp can prove this:\n  by simp only [*,\n @LocalComplexGeometry.fixedDegreePolynomial_coeff,\n @lt_add_iff_pos_right,\n @Order.lt_one_iff,\n @dite_true]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @LocalComplexGeometry.fixedDegreePolynomial_map_eval /- Left-hand side simplifies from\n  Polynomial.map (Pi.evalRingHom (fun x => R) x) (LocalComplexGeometry.fixedDegreePolynomial c)\nto\n  LocalComplexGeometry.fixedDegreePolynomial fun i => c i x\nusing\n  simp only [*, @LocalComplexGeometry.fixedDegreePolynomial_map, @Pi.evalRingHom_apply]\nTry to change the left-hand side to the simplified term! -/\n"
       },
       "test": {
         "command": [
@@ -352,7 +394,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 153,
+      "duration_seconds": 130,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -396,18 +438,6 @@
           ]
         },
         {
-          "module": "LocalComplexGeometry.Analytic.Regularization",
-          "redundant": [
-            "Mathlib.Topology.Algebra.Module.FiniteDimension"
-          ]
-        },
-        {
-          "module": "LocalComplexGeometry.FiniteProjection.Main",
-          "redundant": [
-            "Mathlib.RingTheory.Ideal.Quotient.Operations"
-          ]
-        },
-        {
           "module": "LocalComplexGeometry.Nullstellensatz.MinpolyResultant",
           "redundant": [
             "LocalComplexGeometry.Germs.Representatives",
@@ -447,10 +477,34 @@
           "redundant": [
             "LocalComplexGeometry.Germs.Coordinates"
           ]
+        },
+        {
+          "module": "LocalComplexGeometry.FiniteProjection.Main",
+          "redundant": [
+            "Mathlib.RingTheory.Ideal.Quotient.Operations"
+          ]
+        },
+        {
+          "module": "LocalComplexGeometry.Analytic.Regularization",
+          "redundant": [
+            "Mathlib.Topology.Algebra.Module.FiniteDimension"
+          ]
         }
       ],
       "files_with_redundant_imports": 10,
       "redundant_import_count": 18
+    },
+    "simp_lint": {
+      "declarations_linted": 546,
+      "findings": {
+        "simpNF": 8,
+        "synTaut": 0
+      },
+      "modules_dropped": [],
+      "modules_linted": 42,
+      "roots_linted": 1,
+      "simp_nf_count": 8,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

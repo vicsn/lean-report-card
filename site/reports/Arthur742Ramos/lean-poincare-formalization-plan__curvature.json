@@ -9,15 +9,15 @@
     "project_path": "curvature"
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T17:16:45Z",
-  "score": 70,
-  "grade": "C",
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T21:03:16Z",
+  "score": 66,
+  "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 1500,
+        "duration_seconds": 1471,
         "returncode": 0
       },
       "id": "build",
@@ -90,6 +90,21 @@
       "title": "lean-fmt"
     },
     {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 5142,
+        "modules_linted": 48,
+        "simp_nf_count": 71,
+        "syn_taut_count": 1
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "Found 1 declaration(s) whose statement is a syntactic tautology.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
       "category": "maintainability",
       "details": {
         "examples": [
@@ -144,6 +159,12 @@
             ]
           },
           {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+            "redundant": [
+              "Mathlib.Topology.ContinuousMap.Compact"
+            ]
+          },
+          {
             "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckCorrectionRegularity",
             "redundant": [
               "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection"
@@ -169,9 +190,29 @@
             ]
           },
           {
-            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
             "redundant": [
-              "Mathlib.Analysis.Calculus.Deriv.Prod"
+              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
+            "redundant": [
+              "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
+            "redundant": [
+              "Mathlib.Analysis.InnerProductSpace.Trace"
+            ]
+          },
+          {
+            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+            "redundant": [
+              "Mathlib.Analysis.InnerProductSpace.Dual",
+              "Mathlib.Geometry.Manifold.BumpFunction",
+              "Mathlib.Geometry.Manifold.VectorBundle.SmoothSection"
             ]
           },
           {
@@ -205,35 +246,9 @@
             ]
           },
           {
-            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+            "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
             "redundant": [
-              "Mathlib.Topology.ContinuousMap.Compact"
-            ]
-          },
-          {
-            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
-            "redundant": [
-              "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
-            ]
-          },
-          {
-            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
-            "redundant": [
-              "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion"
-            ]
-          },
-          {
-            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
-            "redundant": [
-              "Mathlib.Analysis.InnerProductSpace.Trace"
-            ]
-          },
-          {
-            "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
-            "redundant": [
-              "Mathlib.Analysis.InnerProductSpace.Dual",
-              "Mathlib.Geometry.Manifold.BumpFunction",
-              "Mathlib.Geometry.Manifold.VectorBundle.SmoothSection"
+              "Mathlib.Analysis.Calculus.Deriv.Prod"
             ]
           }
         ],
@@ -369,7 +384,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 1500,
+        "duration_seconds": 1471,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -396,6 +411,33 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 6,
+        "report": {
+          "declarations_linted": 5142,
+          "findings": {
+            "simpNF": 71,
+            "synTaut": 1
+          },
+          "modules_dropped": [],
+          "modules_linted": 48,
+          "roots_linted": 1,
+          "simp_nf_count": 71,
+          "syn_taut_count": 1
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "y_apply, @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @Bundle.symmetrizeBilinearSection_apply_self /- simp can prove this:\n  by simp only [*, @Bundle.symmetrizeBilinearSection_apply_apply, @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordContinuousLinearMap_apply_self /- simp can prove this:\n  by simp only [*,\n @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordContinuousLinearMap_apply_apply,\n @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordFamilyContinuousLinearMap_apply_self /- simp can prove this:\n  by simp only [*,\n @PoincareCurvature.Bundle.Trivialization.symmetrizeBilinearCoordFamilyContinuousLinearMap_apply_apply,\n @add_self_div_two]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n/- The `synTaut` linter reports:\nTHE FOLLOWING DECLARATIONS ARE SYNTACTIC TAUTOLOGIES. This usually means that they are of the form `\u2200 a b ... z, e\u2081 = e\u2082` where `e\u2081` and `e\u2082` are identical expressions. We call declarations of this form syntactic tautologies. Such lemmas are (mostly) useless and sometimes introduced unintentionally when proving basic facts using `rfl`, when elaboration results in a different term than the user intended. You should check that the declaration really says what you think it does.\nThis linter can be disabled with `@[nolint synTaut]`. -/\n-- PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowExistence\n#check @RicciFlow.SelectedIntrinsicDeTurckGaugeFlowExistence.flow_vectorField_eq_intrinsicDeTurckGaugeField /- LHS equals RHS syntactically -/\n"
       },
       "test": {
         "command": [
@@ -427,7 +469,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 137,
+      "duration_seconds": 131,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -506,6 +548,12 @@
           ]
         },
         {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+          "redundant": [
+            "Mathlib.Topology.ContinuousMap.Compact"
+          ]
+        },
+        {
           "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.DeTurckCorrectionRegularity",
           "redundant": [
             "PoincareCurvature.Geometry.Manifold.VectorBundle.ContinuousSection"
@@ -531,9 +579,29 @@
           ]
         },
         {
-          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
           "redundant": [
-            "Mathlib.Analysis.Calculus.Deriv.Prod"
+            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
+          "redundant": [
+            "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
+          "redundant": [
+            "Mathlib.Analysis.InnerProductSpace.Trace"
+          ]
+        },
+        {
+          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
+          "redundant": [
+            "Mathlib.Analysis.InnerProductSpace.Dual",
+            "Mathlib.Geometry.Manifold.BumpFunction",
+            "Mathlib.Geometry.Manifold.VectorBundle.SmoothSection"
           ]
         },
         {
@@ -567,40 +635,26 @@
           ]
         },
         {
-          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.RiemannianSection",
+          "module": "PoincareCurvature.Geometry.Manifold.RicciFlow.GaugeReduction.Diffeomorph3FlowTimeDerivative",
           "redundant": [
-            "Mathlib.Topology.ContinuousMap.Compact"
-          ]
-        },
-        {
-          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.TimeDependent",
-          "redundant": [
-            "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita"
-          ]
-        },
-        {
-          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Bianchi",
-          "redundant": [
-            "Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Torsion"
-          ]
-        },
-        {
-          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Contractions",
-          "redundant": [
-            "Mathlib.Analysis.InnerProductSpace.Trace"
-          ]
-        },
-        {
-          "module": "PoincareCurvature.Geometry.Manifold.VectorBundle.CovariantDerivative.Curvature.Tensor",
-          "redundant": [
-            "Mathlib.Analysis.InnerProductSpace.Dual",
-            "Mathlib.Geometry.Manifold.BumpFunction",
-            "Mathlib.Geometry.Manifold.VectorBundle.SmoothSection"
+            "Mathlib.Analysis.Calculus.Deriv.Prod"
           ]
         }
       ],
       "files_with_redundant_imports": 17,
       "redundant_import_count": 58
+    },
+    "simp_lint": {
+      "declarations_linted": 5142,
+      "findings": {
+        "simpNF": 71,
+        "synTaut": 1
+      },
+      "modules_dropped": [],
+      "modules_linted": 48,
+      "roots_linted": 1,
+      "simp_nf_count": 71,
+      "syn_taut_count": 1
     },
     "logs_truncated": false
   },
@@ -612,5 +666,5 @@
     "title": "Levi\u2013Civita connections and metric-determined curvature invariants in Lean",
     "published_at": "2026-09-03T00:09:33Z"
   },
-  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
+  "summary": "Builds \u00b7 syntactic tautologies \u00b7 pinned toolchain"
 }

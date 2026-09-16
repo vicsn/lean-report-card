@@ -9,15 +9,15 @@
     "project_path": "theorem-a"
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T21:35:14Z",
-  "score": 73,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-16T00:53:47Z",
+  "score": 75,
   "grade": "C",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 43,
+        "duration_seconds": 31,
         "returncode": 0
       },
       "id": "build",
@@ -84,6 +84,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 5,
+        "modules_linted": 2,
+        "simp_nf_count": 0,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 5,
+      "status": "passed",
+      "summary": "No syntactic tautologies and no ill-formed simp lemmas.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -190,12 +205,12 @@
           "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/929cd8bf7ec963bd/.lake/build/bin/axiom-audit",
           "--json"
         ],
-        "duration_seconds": 9,
+        "duration_seconds": 7,
         "report": {
           "allowed": [
-            "propext",
             "Quot.sound",
-            "Classical.choice"
+            "Classical.choice",
+            "propext"
           ],
           "audited": null,
           "axioms_used": [],
@@ -218,7 +233,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 43,
+        "duration_seconds": 31,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -244,6 +259,32 @@
         "duration_seconds": 0,
         "returncode": null,
         "status": "unavailable",
+        "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 9,
+        "report": {
+          "declarations_linted": 5,
+          "findings": {
+            "simpNF": 0,
+            "synTaut": 0
+          },
+          "modules_dropped": [],
+          "modules_linted": 2,
+          "roots_linted": 2,
+          "simp_nf_count": 0,
+          "syn_taut_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
         "truncated": false
       },
       "test": {
@@ -276,16 +317,16 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 149,
+      "duration_seconds": 137,
       "returncode": 0,
       "status": "passed",
       "truncated": false
     },
     "axiom_audit": {
       "allowed": [
-        "propext",
         "Quot.sound",
-        "Classical.choice"
+        "Classical.choice",
+        "propext"
       ],
       "audited": null,
       "axioms_used": [],
@@ -302,6 +343,18 @@
       "examples": [],
       "files_with_redundant_imports": 0,
       "redundant_import_count": 0
+    },
+    "simp_lint": {
+      "declarations_linted": 5,
+      "findings": {
+        "simpNF": 0,
+        "synTaut": 0
+      },
+      "modules_dropped": [],
+      "modules_linted": 2,
+      "roots_linted": 2,
+      "simp_nf_count": 0,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

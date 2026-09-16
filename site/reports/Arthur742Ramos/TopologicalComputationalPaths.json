@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T18:04:50Z",
-  "score": 68,
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T21:50:45Z",
+  "score": 65,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 44,
+        "duration_seconds": 42,
         "returncode": 0
       },
       "id": "build",
@@ -88,6 +88,21 @@
       "status": "unavailable",
       "summary": "No passing lean-fmt check was observed.",
       "title": "lean-fmt"
+    },
+    {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 1643,
+        "modules_linted": 33,
+        "simp_nf_count": 243,
+        "syn_taut_count": 1
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "Found 1 declaration(s) whose statement is a syntactic tautology.",
+      "title": "Simp lemmas and tautologies"
     },
     {
       "category": "maintainability",
@@ -282,7 +297,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 44,
+        "duration_seconds": 42,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -309,6 +324,36 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 4,
+        "report": {
+          "declarations_linted": 1643,
+          "findings": {
+            "simpNF": 243,
+            "synTaut": 1
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 33,
+          "roots_linted": 1,
+          "simp_nf_count": 243,
+          "syn_taut_count": 1
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "lemmas or adding @[priority]. -/\n#check @ComputationalPaths.Path.weight_trans /- simp can prove this:\n  by simp only [*, @ComputationalPaths.Path.weight, @ComputationalPaths.Path.trans, @List.length_append]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @ComputationalPaths.Path.leftWeight_trans /- simp can prove this:\n  by simp only [*, @ComputationalPaths.Path.leftWeight, @ComputationalPaths.Path.trans, @List.length_append]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @ComputationalPaths.Path.Step.complexity_symm /- simp can prove this:\n  by simp only [*,\n @ComputationalPaths.Path.Step.complexity,\n @ComputationalPaths.Path.symm,\n @List.map_reverse,\n @List.length_reverse,\n @List.length_map]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @ComputationalPaths.Path.Step.complexity_trans /- simp can prove this:\n  by simp only [*, @ComputationalPaths.Path.Step.complexity, @ComputationalPaths.Path.trans, @List.length_append]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n\n/- The `synTaut` linter reports:\nTHE FOLLOWING DECLARATIONS ARE SYNTACTIC TAUTOLOGIES. This usually means that they are of the form `\u2200 a b ... z, e\u2081 = e\u2082` where `e\u2081` and `e\u2082` are identical expressions. We call declarations of this form syntactic tautologies. Such lemmas are (mostly) useless and sometimes introduced unintentionally when proving basic facts using `rfl`, when elaboration results in a different term than the user intended. You should check that the declaration really says what you think it does.\nThis linter can be disabled with `@[nolint synTaut]`. -/\n-- ComputationalPaths.Path.Basic.PathEquivalence\n#check @ComputationalPaths.Path.HalfAdjEquiv.adj_subsingleton /- LHS equals RHS syntactically -/\n"
       },
       "test": {
         "command": [
@@ -340,7 +385,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 135,
+      "duration_seconds": 134,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -428,6 +473,21 @@
       "files_with_redundant_imports": 9,
       "redundant_import_count": 11
     },
+    "simp_lint": {
+      "declarations_linted": 1643,
+      "findings": {
+        "simpNF": 243,
+        "synTaut": 1
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 33,
+      "roots_linted": 1,
+      "simp_nf_count": 243,
+      "syn_taut_count": 1
+    },
     "logs_truncated": false
   },
   "error": null,
@@ -438,5 +498,5 @@
     "title": "Arthur742Ramos/TopologicalComputationalPaths",
     "published_at": "2026-08-29T01:10:01Z"
   },
-  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
+  "summary": "Builds \u00b7 syntactic tautologies \u00b7 pinned toolchain"
 }

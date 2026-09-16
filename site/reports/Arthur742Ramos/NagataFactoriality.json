@@ -9,15 +9,15 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.3.0",
-  "analyzed_at": "2026-09-08T17:48:39Z",
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-15T21:34:47Z",
   "score": 65,
   "grade": "D",
   "checks": [
     {
       "category": "build",
       "details": {
-        "duration_seconds": 35,
+        "duration_seconds": 32,
         "returncode": 0
       },
       "id": "build",
@@ -90,6 +90,21 @@
       "title": "lean-fmt"
     },
     {
+      "category": "trust",
+      "details": {
+        "declarations_linted": 131,
+        "modules_linted": 19,
+        "simp_nf_count": 2,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
+      "status": "warning",
+      "summary": "Found 2 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
       "category": "maintainability",
       "details": {
         "examples": [
@@ -116,9 +131,9 @@
             ]
           },
           {
-            "module": "NagataFactoriality.Applications.Laurent",
+            "module": "NagataFactoriality.Basic.Noetherian",
             "redundant": [
-              "NagataFactoriality.Nagata.Lemmas"
+              "Mathlib.RingTheory.Noetherian.UniqueFactorizationDomain"
             ]
           },
           {
@@ -128,9 +143,9 @@
             ]
           },
           {
-            "module": "NagataFactoriality.Basic.Noetherian",
+            "module": "NagataFactoriality.Applications.Laurent",
             "redundant": [
-              "Mathlib.RingTheory.Noetherian.UniqueFactorizationDomain"
+              "NagataFactoriality.Nagata.Lemmas"
             ]
           }
         ],
@@ -266,7 +281,7 @@
           "lake",
           "build"
         ],
-        "duration_seconds": 35,
+        "duration_seconds": 32,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
@@ -293,6 +308,36 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 3,
+        "report": {
+          "declarations_linted": 131,
+          "findings": {
+            "simpNF": 2,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 19,
+          "roots_linted": 1,
+          "simp_nf_count": 2,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "ReportCardSimpLint.lean:22:0: error: -- Found 2 errors in 131 declarations (plus 20 automatically generated ones) in NagataFactoriality with 2 linters\n\n/- The `simpNF` linter reports:\nSOME SIMP LEMMAS ARE NOT IN SIMP-NORMAL FORM.\nPlease change the lemma to make sure their left-hand sides are in simp normal form.\nTo learn about simp normal forms, see\nhttps://leanprover-community.github.io/extras/simp.html#simp-normal-form\nand https://lean-lang.org/doc/reference/latest/The-Simplifier/Simp-Normal-Forms/.\nThis linter can be disabled with `@[nolint simpNF]`. -/\n-- NagataFactoriality.Localization.IsLocalization\n#check @NagataFactoriality.IsLocalization.mk'_mul_map /- simp can prove this:\n  by simp only [*, @IsLocalization.mk'_spec_mk]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @NagataFactoriality.IsLocalization.map_eq_zero_iff /- Left-hand side does not simplify, when using the simp lemma on itself.\n            \nThis usually means that it will never apply.\nThe simp lemma is invalid because the value of argument\n  S : Submonoid \u03b1\ncannot be inferred by `simp`.\n -/\n"
       },
       "test": {
         "command": [
@@ -324,7 +369,7 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 132,
+      "duration_seconds": 127,
       "returncode": 0,
       "status": "passed",
       "truncated": false
@@ -375,9 +420,9 @@
           ]
         },
         {
-          "module": "NagataFactoriality.Applications.Laurent",
+          "module": "NagataFactoriality.Basic.Noetherian",
           "redundant": [
-            "NagataFactoriality.Nagata.Lemmas"
+            "Mathlib.RingTheory.Noetherian.UniqueFactorizationDomain"
           ]
         },
         {
@@ -387,14 +432,29 @@
           ]
         },
         {
-          "module": "NagataFactoriality.Basic.Noetherian",
+          "module": "NagataFactoriality.Applications.Laurent",
           "redundant": [
-            "Mathlib.RingTheory.Noetherian.UniqueFactorizationDomain"
+            "NagataFactoriality.Nagata.Lemmas"
           ]
         }
       ],
       "files_with_redundant_imports": 6,
       "redundant_import_count": 10
+    },
+    "simp_lint": {
+      "declarations_linted": 131,
+      "findings": {
+        "simpNF": 2,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 19,
+      "roots_linted": 1,
+      "simp_nf_count": 2,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },

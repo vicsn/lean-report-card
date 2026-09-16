@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-09-16T01:28:55Z",
+  "generated": "2026-09-16T09:30:03Z",
   "source": "palomar-registry",
   "reports": [
     {
@@ -14,6 +14,16 @@
       "url": "https://github.com/AxiomMath/PrimeGapsLib"
     },
     {
+      "slug": "gdahia/DensityHalesJewett",
+      "file": "gdahia/DensityHalesJewett.json",
+      "grade": "B",
+      "score": 80,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:03:00Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/gdahia/DensityHalesJewett"
+    },
+    {
       "slug": "Arthur742Ramos/jacobian-conjecture-lean",
       "file": "Arthur742Ramos/jacobian-conjecture-lean.json",
       "grade": "C",
@@ -22,6 +32,26 @@
       "updated_at": "2026-09-15T20:47:58Z",
       "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
       "url": "https://github.com/Arthur742Ramos/jacobian-conjecture-lean"
+    },
+    {
+      "slug": "gaearon/conway-refinement",
+      "file": "gaearon/conway-refinement.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T04:43:19Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/gaearon/conway-refinement"
+    },
+    {
+      "slug": "geoconuk/lean-misc-math",
+      "file": "geoconuk/lean-misc-math.json",
+      "grade": "C",
+      "score": 76,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:06:36Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/geoconuk/lean-misc-math"
     },
     {
       "slug": "adas1236/KaltonPeckPalomar",
@@ -114,6 +144,16 @@
       "url": "https://github.com/ehrlich-b/composition-algebras"
     },
     {
+      "slug": "GrgAakash/factorial-hypergraph-auxiliary-erdos",
+      "file": "GrgAakash/factorial-hypergraph-auxiliary-erdos.json",
+      "grade": "C",
+      "score": 75,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:17:39Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/GrgAakash/factorial-hypergraph-auxiliary-erdos"
+    },
+    {
       "slug": "Arthur742Ramos/HigherLambdaModel/palomar",
       "file": "Arthur742Ramos/HigherLambdaModel__palomar.json",
       "grade": "C",
@@ -154,6 +194,16 @@
       "url": "https://github.com/dcposch/jc2-lean"
     },
     {
+      "slug": "hkjtsgmc79-boop/colombo-odd-lean",
+      "file": "hkjtsgmc79-boop/colombo-odd-lean.json",
+      "grade": "C",
+      "score": 74,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:31:26Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/hkjtsgmc79-boop/colombo-odd-lean"
+    },
+    {
       "slug": "AviKndr/universal-words/lean",
       "file": "AviKndr/universal-words__lean.json",
       "grade": "C",
@@ -182,6 +232,16 @@
       "updated_at": "2026-09-15T23:30:12Z",
       "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
       "url": "https://github.com/CBirkbeck/uniform-sheafy-tate-domains-lean"
+    },
+    {
+      "slug": "gexahedron/sabidussi-lean",
+      "file": "gexahedron/sabidussi-lean.json",
+      "grade": "C",
+      "score": 73,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:10:04Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/gexahedron/sabidussi-lean"
     },
     {
       "slug": "Arthur742Ramos/dinitz-garg-goemans-counterexample-lean",
@@ -294,6 +354,26 @@
       "url": "https://github.com/catskillsresearch/cardb"
     },
     {
+      "slug": "ehrlich-b/sequential-products-lean",
+      "file": "ehrlich-b/sequential-products-lean.json",
+      "grade": "C",
+      "score": 71,
+      "status": "succeeded",
+      "updated_at": "2026-09-16T05:43:56Z",
+      "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
+      "url": "https://github.com/ehrlich-b/sequential-products-lean"
+    },
+    {
+      "slug": "elliotglazer/erdos501",
+      "file": "elliotglazer/erdos501.json",
+      "grade": "C",
+      "score": 71,
+      "status": "succeeded",
+      "updated_at": "2026-09-16T05:54:07Z",
+      "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
+      "url": "https://github.com/elliotglazer/erdos501"
+    },
+    {
       "slug": "Arthur742Ramos/Metatheory/palomar",
       "file": "Arthur742Ramos/Metatheory__palomar.json",
       "grade": "C",
@@ -312,6 +392,26 @@
       "updated_at": "2026-09-16T01:24:05Z",
       "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
       "url": "https://github.com/ehrlich-b/euclidean-jordan"
+    },
+    {
+      "slug": "google-deepmind/formal-conjectures",
+      "file": "google-deepmind/formal-conjectures.json",
+      "grade": "D",
+      "score": 69,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:13:57Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/google-deepmind/formal-conjectures"
+    },
+    {
+      "slug": "guanyangwang/ktv-swap-lean-comparator",
+      "file": "guanyangwang/ktv-swap-lean-comparator.json",
+      "grade": "D",
+      "score": 69,
+      "status": "succeeded",
+      "updated_at": "2026-09-07T05:24:07Z",
+      "summary": "Builds \u00b7 sorry/admit in source \u00b7 pinned toolchain",
+      "url": "https://github.com/guanyangwang/ktv-swap-lean-comparator"
     },
     {
       "slug": "Arthur742Ramos/GrushkoNeumannTheorem",
@@ -404,6 +504,16 @@
       "url": "https://github.com/Arthur742Ramos/lean-poincare-formalization-plan"
     },
     {
+      "slug": "g-pichler/bsc-averaging",
+      "file": "g-pichler/bsc-averaging.json",
+      "grade": "D",
+      "score": 67,
+      "status": "succeeded",
+      "updated_at": "2026-09-16T07:57:42Z",
+      "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
+      "url": "https://github.com/g-pichler/bsc-averaging"
+    },
+    {
       "slug": "Arthur742Ramos/HowsonIntersectionTheorem",
       "file": "Arthur742Ramos/HowsonIntersectionTheorem.json",
       "grade": "D",
@@ -462,6 +572,16 @@
       "updated_at": "2026-09-15T23:26:41Z",
       "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
       "url": "https://github.com/catskillsresearch/scott_models"
+    },
+    {
+      "slug": "elliotglazer/nf-not-wpp",
+      "file": "elliotglazer/nf-not-wpp.json",
+      "grade": "F",
+      "score": 58,
+      "status": "succeeded",
+      "updated_at": "2026-09-16T06:01:52Z",
+      "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene",
+      "url": "https://github.com/elliotglazer/nf-not-wpp"
     },
     {
       "slug": "Arthur742Ramos/equality-saturation-checker-lean",

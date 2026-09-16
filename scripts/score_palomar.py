@@ -114,11 +114,7 @@ def compact_command(result: dict[str, Any] | None) -> dict[str, Any]:
         return {}
     output = str(result.get("output") or "")
     keep_output = result.get("status") not in {"passed", "unavailable", "skipped"}
-    compact = {
-        key: value
-        for key, value in result.items()
-        if key != "output"
-    }
+    compact = {key: value for key, value in result.items() if key != "output"}
     if keep_output and output:
         compact["output_tail"] = output[-2000:]
     return compact
@@ -240,6 +236,42 @@ def fetch_catalog(cache_path: Path) -> dict[str, Any]:
         payload = json.load(response)
     cache_path.write_text(json.dumps(payload), encoding="utf-8")
     return payload
+
+
+def completed_from_index(site_reports: Path) -> dict[str, Any]:
+    """Treat every published report as already scored.
+
+    The run loop rewrites the index from the jobs it knows about, so without this
+    a partial run would silently de-index every report it did not revisit.
+    """
+    index_path = site_reports / "index.json"
+    if not index_path.is_file():
+        return {}
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    found: dict[str, Any] = {}
+    for item in index.get("reports") or []:
+        slug = str(item.get("slug") or "")
+        if not slug:
+            continue
+        found[slug] = {
+            "file": item.get("file"),
+            "status": item.get("status"),
+            "score": item.get("score"),
+            "grade": item.get("grade"),
+            "analyzed_at": item.get("updated_at"),
+            "summary": item.get("summary"),
+            "url": item.get("url"),
+            "slug": slug,
+        }
+    return found
+
+
+def report_files(site_reports: Path) -> set[str]:
+    return {
+        str(path.relative_to(site_reports))
+        for path in site_reports.rglob("*.json")
+        if path.name != "index.json"
+    }
 
 
 def load_progress(path: Path) -> dict[str, Any]:
@@ -571,7 +603,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--rerun-listed",
         action="store_true",
-        help="Re-analyse every project already listed in site/reports/index.json.",
+        help="Re-analyse every project that already has a report under site/reports.",
+    )
+    parser.add_argument(
+        "--only",
+        action="append",
+        default=[],
+        metavar="SLUG",
+        help="Restrict the queue to this slug, re-analysing it even if already scored.",
     )
     return parser.parse_args()
 
@@ -597,23 +636,24 @@ def main() -> int:
         catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
     jobs = jobs_from_catalog(list(catalog.get("entries") or []))
     progress = load_progress(progress_path)
-    completed: dict[str, Any] = dict(progress.get("completed") or {})
+    completed: dict[str, Any] = {
+        **completed_from_index(site_reports),
+        **dict(progress.get("completed") or {}),
+    }
 
-    if args.rerun_listed:
-        index_path = site_reports / "index.json"
-        listed_slugs: set[str] = set()
-        listed_files: set[str] = set()
-        if index_path.is_file():
-            index = json.loads(index_path.read_text(encoding="utf-8"))
-            for item in index.get("reports") or []:
-                if item.get("slug"):
-                    listed_slugs.add(str(item["slug"]))
-                if item.get("file"):
-                    listed_files.add(str(item["file"]))
+    if args.only:
+        wanted = {str(slug) for slug in args.only}
+        remaining = [job for job in jobs if job["slug"] in wanted]
+        unknown = sorted(wanted - {job["slug"] for job in remaining})
+        if unknown:
+            print(f"Not in the catalog, skipping: {', '.join(unknown)}", flush=True)
+        for job in remaining:
+            completed.pop(job["slug"], None)
+    elif args.rerun_listed:
+        listed_slugs = set(completed)
+        listed_files = report_files(site_reports)
         remaining = [
-            job
-            for job in jobs
-            if job["slug"] in listed_slugs or job["file"] in listed_files
+            job for job in jobs if job["slug"] in listed_slugs or job["file"] in listed_files
         ]
         for job in remaining:
             completed.pop(job["slug"], None)
@@ -679,9 +719,7 @@ def main() -> int:
     progress["stopped_reason"] = None
     progress["updated_at"] = utcnow()
     save_progress(progress_path, progress)
-    oom_slugs = [
-        slug for slug, item in completed.items() if item.get("status") == "oom_killed"
-    ]
+    oom_slugs = [slug for slug, item in completed.items() if item.get("status") == "oom_killed"]
     print(
         f"Done. {len(completed)}/{len(jobs)} scored. "
         f"OOM: {len(oom_slugs)}{(' — ' + ', '.join(oom_slugs)) if oom_slugs else ''}.",

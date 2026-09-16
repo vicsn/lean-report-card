@@ -9,117 +9,290 @@
     "project_path": null
   },
   "status": "succeeded",
-  "analyzer_version": "0.2.0",
-  "analyzed_at": "2026-09-07T05:31:26Z",
-  "score": 74,
-  "grade": "C",
+  "analyzer_version": "0.4.0",
+  "analyzed_at": "2026-09-16T10:20:13Z",
+  "score": 69,
+  "grade": "D",
   "checks": [
     {
-      "id": "build",
       "category": "build",
-      "title": "Lake build",
-      "status": "passed",
-      "score": 25,
-      "maximum": 25,
-      "summary": "The pinned project revision builds.",
       "details": {
-        "duration_seconds": 127,
+        "duration_seconds": 123,
         "returncode": 0
-      }
+      },
+      "id": "build",
+      "maximum": 25,
+      "score": 25,
+      "status": "passed",
+      "summary": "The pinned project revision builds.",
+      "title": "Lake build"
     },
     {
-      "id": "tests",
       "category": "verification",
-      "title": "Project test driver",
-      "status": "unavailable",
+      "details": {
+        "duration_seconds": 0,
+        "returncode": null
+      },
+      "id": "tests",
+      "maximum": 10,
       "score": 3,
-      "maximum": 10,
-      "summary": "No passing project test result was observed.",
-      "details": {
-        "duration_seconds": 0,
-        "returncode": null
-      }
-    },
-    {
-      "id": "lint",
-      "category": "maintainability",
-      "title": "Project lint driver",
       "status": "unavailable",
-      "score": 4,
-      "maximum": 10,
-      "summary": "No passing project lint result was observed.",
+      "summary": "No passing project test result was observed.",
+      "title": "Project test driver"
+    },
+    {
+      "category": "maintainability",
       "details": {
         "duration_seconds": 0,
         "returncode": null
-      }
+      },
+      "id": "lint",
+      "maximum": 10,
+      "score": 4,
+      "status": "unavailable",
+      "summary": "No passing project lint result was observed.",
+      "title": "Project lint driver"
     },
     {
-      "id": "source-trust-signals",
       "category": "trust",
-      "title": "Source-level trust signals",
-      "status": "warning",
-      "score": 14,
+      "details": {
+        "audited": 2850,
+        "axioms_used": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extra_axioms": [],
+        "native_decide": false,
+        "ok": true,
+        "sorry_ax": false,
+        "violation_count": 0
+      },
+      "id": "axiom-audit",
       "maximum": 15,
-      "summary": "Counted sorry, admit, axiom, and/or native_decide tokens in source.",
-      "details": {
-        "sorry_count": 1,
-        "admit_count": 0,
-        "axiom_declaration_count": 0,
-        "native_decide_count": 0
-      }
-    },
-    {
-      "id": "reproducibility",
-      "category": "reproducibility",
-      "title": "Pinned toolchain and dependencies",
+      "score": 15,
       "status": "passed",
-      "score": 10,
-      "maximum": 10,
-      "summary": "Lean and Lake dependencies are pinned.",
-      "details": {
-        "lean_toolchain": "leanprover/lean4:v4.30.0",
-        "lake_manifest": true
-      }
+      "summary": "axiom-audit found no sorryAx, native_decide, or home-rolled axioms.",
+      "title": "Axiom allowlist"
     },
     {
-      "id": "documentation",
-      "category": "documentation",
-      "title": "Documentation coverage",
-      "status": "passed",
-      "score": 9,
-      "maximum": 10,
-      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "category": "maintainability",
       "details": {
-        "module_doc_count": 49,
-        "lean_file_count": 53,
-        "documented_declaration_count": 832,
-        "declaration_count": 1125
-      }
+        "dirty_files": null,
+        "formatter": null,
+        "returncode": null
+      },
+      "id": "fmt",
+      "maximum": 5,
+      "score": 2,
+      "status": "unavailable",
+      "summary": "No passing lean-fmt check was observed.",
+      "title": "lean-fmt"
     },
     {
-      "id": "project-hygiene",
-      "category": "project",
-      "title": "Repository hygiene",
+      "category": "trust",
+      "details": {
+        "declarations_linted": 1162,
+        "modules_linted": 50,
+        "simp_nf_count": 5,
+        "syn_taut_count": 0
+      },
+      "id": "simp-lint",
+      "maximum": 5,
+      "score": 3,
       "status": "warning",
-      "score": 5,
+      "summary": "Found 5 simp lemma(s) not in simp-normal form.",
+      "title": "Simp lemmas and tautologies"
+    },
+    {
+      "category": "maintainability",
+      "details": {
+        "examples": [
+          {
+            "module": "ColomboGeneralK2",
+            "redundant": [
+              "ColomboGeneralK2.ComplementaryMinor",
+              "ColomboGeneralK2.MatrixAdapter",
+              "ColomboGeneralK2.OddBSplineCollocation",
+              "ColomboGeneralK2.OddBSplineRefinement",
+              "ColomboGeneralK2.OddBetaDeBruijn",
+              "ColomboGeneralK2.OddBetaIntegral",
+              "ColomboGeneralK2.OddCentralSimplex",
+              "ColomboGeneralK2.OddCentralStrictness",
+              "ColomboGeneralK2.OddCriticalSplit",
+              "ColomboGeneralK2.OddCriticalSplitBridge",
+              "ColomboGeneralK2.OddCriticalTieFree",
+              "ColomboGeneralK2.OddDeBruijnAnalyticTargets",
+              "ColomboGeneralK2.OddDeBruijnFinite",
+              "ColomboGeneralK2.OddDeBruijnIntegral",
+              "ColomboGeneralK2.OddDeBruijnShuffle",
+              "ColomboGeneralK2.OddDeBruijnSignatures",
+              "ColomboGeneralK2.OddDegreeZeroBoundary",
+              "ColomboGeneralK2.OddDesnanotJacobi",
+              "ColomboGeneralK2.OddFiniteBSpline",
+              "ColomboGeneralK2.OddMVP1Endgame",
+              "ColomboGeneralK2.OddMVP1Signatures",
+              "ColomboGeneralK2.OddMarsdenFactorization",
+              "ColomboGeneralK2.OddOneFanMinors",
+              "ColomboGeneralK2.OddOrderedChamber",
+              "ColomboGeneralK2.OddPairedSplitLimit",
+              "ColomboGeneralK2.OddPfaffianSquare",
+              "ColomboGeneralK2.OddPlucker",
+              "ColomboGeneralK2.OddSeparatedPowers",
+              "ColomboGeneralK2.OddSlidingRootBasis",
+              "ColomboGeneralK2.OddStaircasePromotion",
+              "ColomboGeneralK2.OddStaircaseSupport",
+              "ColomboGeneralK2.OddTwoFanCondensationSupport",
+              "ColomboGeneralK2.OddTwoFanData",
+              "ColomboGeneralK2.OddTwoFanKnotOrder",
+              "ColomboGeneralK2.OddTwoFanLargeSeam",
+              "ColomboGeneralK2.OddTwoFanSmallSeam",
+              "ColomboGeneralK2.OddTwoFanTN",
+              "ColomboGeneralK2.OddTwoFanWidthOne",
+              "ColomboGeneralK2.OddTwoFanWindowDJ",
+              "ColomboGeneralK2.OddTwoFanWindows",
+              "ColomboGeneralK2.OddVolterra",
+              "ColomboGeneralK2.P4Complement",
+              "ColomboGeneralK2.PfAgreement",
+              "ColomboGeneralK2.VandermondeKernel"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddCriticalSplit",
+            "redundant": [
+              "Mathlib.Data.Finset.Sort"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddFiniteBSpline",
+            "redundant": [
+              "Mathlib.Data.Fin.Tuple.Basic",
+              "Mathlib.Data.Real.Basic",
+              "Mathlib.Tactic.Ring"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddVolterra",
+            "redundant": [
+              "Mathlib.MeasureTheory.Integral.Pi"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddBSplineRefinement",
+            "redundant": [
+              "ColomboGeneralK2.OddStaircaseSupport",
+              "Mathlib.Algebra.BigOperators.Fin",
+              "Mathlib.Data.Fin.Tuple.Basic",
+              "Mathlib.Data.Real.Basic",
+              "Mathlib.LinearAlgebra.Matrix.Determinant.Basic",
+              "Mathlib.Order.Interval.Finset.Fin",
+              "Mathlib.Tactic.FieldSimp",
+              "Mathlib.Tactic.Ring"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddCriticalTieFree",
+            "redundant": [
+              "ColomboGeneralK2.OddCriticalSplitBridge",
+              "ColomboGeneralK2.OddMVP1Signatures"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddBSplineCollocation",
+            "redundant": [
+              "ColomboGeneralK2.OddFiniteBSpline",
+              "ColomboGeneralK2.OddTwoFanData",
+              "Mathlib.Algebra.BigOperators.Fin",
+              "Mathlib.Data.Fin.Tuple.Basic",
+              "Mathlib.Data.Real.Basic",
+              "Mathlib.LinearAlgebra.Matrix.Determinant.Basic",
+              "Mathlib.Order.Interval.Finset.Fin",
+              "Mathlib.Tactic.FieldSimp",
+              "Mathlib.Tactic.Linarith",
+              "Mathlib.Tactic.Ring"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddCentralSimplex",
+            "redundant": [
+              "ColomboGeneralK2.OddMVP1Signatures"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddTwoFanWindows",
+            "redundant": [
+              "ColomboGeneralK2.OddStaircaseSupport"
+            ]
+          },
+          {
+            "module": "ColomboGeneralK2.OddMarsdenFactorization",
+            "redundant": [
+              "ColomboGeneralK2.OddTwoFanData"
+            ]
+          }
+        ],
+        "files_with_redundant_imports": 10,
+        "redundant_import_count": 72
+      },
+      "id": "redundant-imports",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "Counted 72 transitively redundant import(s).",
+      "title": "Redundant imports"
+    },
+    {
+      "category": "reproducibility",
+      "details": {
+        "lake_manifest": true,
+        "lean_toolchain": "leanprover/lean4:v4.30.0"
+      },
+      "id": "reproducibility",
       "maximum": 10,
-      "summary": "Checks for common maintenance files, CI and test sources.",
+      "score": 10,
+      "status": "passed",
+      "summary": "Lean and Lake dependencies are pinned.",
+      "title": "Pinned toolchain and dependencies"
+    },
+    {
+      "category": "documentation",
+      "details": {
+        "declaration_count": 1125,
+        "documented_declaration_count": 832,
+        "lean_file_count": 53,
+        "module_doc_count": 49
+      },
+      "id": "documentation",
+      "maximum": 10,
+      "score": 9,
+      "status": "passed",
+      "summary": "README present; module-doc and declaration-doc comments scored by count.",
+      "title": "Documentation coverage"
+    },
+    {
+      "category": "project",
       "details": {
         "test_file_count": 0,
         "todo_count": 0
-      }
+      },
+      "id": "project-hygiene",
+      "maximum": 10,
+      "score": 5,
+      "status": "warning",
+      "summary": "Checks for common maintenance files, CI and test sources.",
+      "title": "Repository hygiene"
     },
     {
-      "id": "diagnostics",
       "category": "performance",
-      "title": "Build warnings",
-      "status": "warning",
-      "score": 0,
-      "maximum": 5,
-      "summary": "The build was not clean, or no passing build was observed.",
       "details": {
         "warning_count": 56
-      }
+      },
+      "id": "diagnostics",
+      "maximum": 5,
+      "score": 0,
+      "status": "warning",
+      "summary": "The build was not clean, or no passing build was observed.",
+      "title": "Build warnings"
     }
   ],
   "facts": {
@@ -144,6 +317,7 @@
       "lean_file_count": 53,
       "line_count": 20067,
       "max_direct_imports": 46,
+      "module_doc_count": 49,
       "module_doc_ratio": 0.9245283018867925,
       "native_decide_count": 0,
       "sorry_count": 1,
@@ -151,16 +325,61 @@
       "todo_count": 0
     },
     "commands": {
+      "axiom_audit": {
+        "command": [
+          "lake",
+          "env",
+          "/Users/victorsintnicolaas/programs/lean-report-card/.data/tool-cache/axiom-audit/95902a685e480b41/.lake/build/bin/axiom-audit",
+          "--json"
+        ],
+        "duration_seconds": 6,
+        "report": {
+          "allowed": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "audited": 2850,
+          "axioms_used": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "error": null,
+          "extra_axioms": [],
+          "native_decide": false,
+          "ok": true,
+          "root": "ColomboGeneralK2",
+          "sorry_ax": false,
+          "sorry_ax_declarations": 0,
+          "violation_count": 0
+        },
+        "returncode": 0,
+        "status": "passed",
+        "truncated": false
+      },
       "build": {
         "command": [
           "lake",
           "build"
         ],
-        "duration_seconds": 127,
+        "duration_seconds": 123,
         "returncode": 0,
         "status": "passed",
         "truncated": false,
         "warning_count": 56
+      },
+      "fmt": {
+        "command": [
+          "lake",
+          "exe",
+          "leanfmt",
+          "--check"
+        ],
+        "duration_seconds": 0,
+        "returncode": null,
+        "status": "unavailable",
+        "truncated": false
       },
       "lint": {
         "command": [
@@ -171,6 +390,36 @@
         "returncode": null,
         "status": "unavailable",
         "truncated": false
+      },
+      "simp_lint": {
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "-DmaxHeartbeats=1000000",
+          "-DmaxErrors=1000000",
+          "ReportCardSimpLint.lean"
+        ],
+        "duration_seconds": 5,
+        "report": {
+          "declarations_linted": 1162,
+          "findings": {
+            "simpNF": 5,
+            "synTaut": 0
+          },
+          "modules_dropped": [
+            "Challenge",
+            "Solution"
+          ],
+          "modules_linted": 50,
+          "roots_linted": 1,
+          "simp_nf_count": 5,
+          "syn_taut_count": 0
+        },
+        "returncode": 1,
+        "status": "failed",
+        "truncated": false,
+        "output_tail": "P-NORMAL FORM.\nPlease change the lemma to make sure their left-hand sides are in simp normal form.\nTo learn about simp normal forms, see\nhttps://leanprover-community.github.io/extras/simp.html#simp-normal-form\nand https://lean-lang.org/doc/reference/latest/The-Simplifier/Simp-Normal-Forms/. -/\n-- ColomboGeneralK2.GeneralADPf\n#check @ColomboGeneralK2.selectedPairMatrix_pairCol /- Left-hand side simplifies from\n  ColomboGeneralK2.selectedPairMatrix Z pairs row (ColomboGeneralK2.pairCol m q side)\nto\n  Z (pairs.get ((ColomboGeneralK2.pairColumnEquiv m).symm (ColomboGeneralK2.pairCol m q side)).1) row\n  ((ColomboGeneralK2.pairColumnEquiv m).symm (ColomboGeneralK2.pairCol m q side)).2\nusing\n  simp only [*, @ColomboGeneralK2.selectedPairMatrix_apply]\nTry to change the left-hand side to the simplified term! -/\n\n-- ColomboGeneralK2.OddPfaffianSquare\n#check @ColomboGeneralK2.pfTailIndex_ne_zero /- simp can prove this:\n  by simp only [*, @ColomboGeneralK2.pfTailIndex_eq_succ_succ, @Fin.succ_ne_zero]\nOne of the lemmas above could be a duplicate.\nIf that's not the case try reordering lemmas or adding @[priority]. -/\n#check @ColomboGeneralK2.pfTailIndex_ne_one /- Left-hand side simplifies from\n  ColomboGeneralK2.pfTailIndex n i = 1\nto\n  i.succ.succ = 1\nusing\n  simp only [*, @ColomboGeneralK2.pfTailIndex_eq_succ_succ]\nTry to change the left-hand side to the simplified term! -/\n#check @ColomboGeneralK2.pfPivotShear_tail /- Left-hand side simplifies from\n  ColomboGeneralK2.pfPivotShear A (ColomboGeneralK2.pfTailIndex n i) j\nto\n  ColomboGeneralK2.pfPivotShear A i.succ.succ j\nusing\n  simp only [*, @ColomboGeneralK2.pfTailIndex_eq_succ_succ]\nTry to change the left-hand side to the simplified term! -/\n\n-- ColomboGeneralK2.OddTwoFanWindows\n#check @ColomboGeneralK2.Odd.FanMinorWindow.fanRows_val /- Left-hand side simplifies from\n  \u2191(W.fanRows t)\nto\n  \u2191(W.fanRows t)\nusing\n  simp only [*, @ColomboGeneralK2.Odd.FanMinorWindow.q_eq]\nTry to change the left-hand side to the simplified term! -/\n"
       },
       "test": {
         "command": [
@@ -202,10 +451,174 @@
         "cache",
         "get"
       ],
-      "duration_seconds": 135,
+      "duration_seconds": 97,
       "returncode": 0,
       "status": "passed",
       "truncated": false
+    },
+    "axiom_audit": {
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "audited": 2850,
+      "axioms_used": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "error": null,
+      "extra_axioms": [],
+      "native_decide": false,
+      "ok": true,
+      "root": "ColomboGeneralK2",
+      "sorry_ax": false,
+      "sorry_ax_declarations": 0,
+      "violation_count": 0
+    },
+    "redundant_imports": {
+      "examples": [
+        {
+          "module": "ColomboGeneralK2",
+          "redundant": [
+            "ColomboGeneralK2.ComplementaryMinor",
+            "ColomboGeneralK2.MatrixAdapter",
+            "ColomboGeneralK2.OddBSplineCollocation",
+            "ColomboGeneralK2.OddBSplineRefinement",
+            "ColomboGeneralK2.OddBetaDeBruijn",
+            "ColomboGeneralK2.OddBetaIntegral",
+            "ColomboGeneralK2.OddCentralSimplex",
+            "ColomboGeneralK2.OddCentralStrictness",
+            "ColomboGeneralK2.OddCriticalSplit",
+            "ColomboGeneralK2.OddCriticalSplitBridge",
+            "ColomboGeneralK2.OddCriticalTieFree",
+            "ColomboGeneralK2.OddDeBruijnAnalyticTargets",
+            "ColomboGeneralK2.OddDeBruijnFinite",
+            "ColomboGeneralK2.OddDeBruijnIntegral",
+            "ColomboGeneralK2.OddDeBruijnShuffle",
+            "ColomboGeneralK2.OddDeBruijnSignatures",
+            "ColomboGeneralK2.OddDegreeZeroBoundary",
+            "ColomboGeneralK2.OddDesnanotJacobi",
+            "ColomboGeneralK2.OddFiniteBSpline",
+            "ColomboGeneralK2.OddMVP1Endgame",
+            "ColomboGeneralK2.OddMVP1Signatures",
+            "ColomboGeneralK2.OddMarsdenFactorization",
+            "ColomboGeneralK2.OddOneFanMinors",
+            "ColomboGeneralK2.OddOrderedChamber",
+            "ColomboGeneralK2.OddPairedSplitLimit",
+            "ColomboGeneralK2.OddPfaffianSquare",
+            "ColomboGeneralK2.OddPlucker",
+            "ColomboGeneralK2.OddSeparatedPowers",
+            "ColomboGeneralK2.OddSlidingRootBasis",
+            "ColomboGeneralK2.OddStaircasePromotion",
+            "ColomboGeneralK2.OddStaircaseSupport",
+            "ColomboGeneralK2.OddTwoFanCondensationSupport",
+            "ColomboGeneralK2.OddTwoFanData",
+            "ColomboGeneralK2.OddTwoFanKnotOrder",
+            "ColomboGeneralK2.OddTwoFanLargeSeam",
+            "ColomboGeneralK2.OddTwoFanSmallSeam",
+            "ColomboGeneralK2.OddTwoFanTN",
+            "ColomboGeneralK2.OddTwoFanWidthOne",
+            "ColomboGeneralK2.OddTwoFanWindowDJ",
+            "ColomboGeneralK2.OddTwoFanWindows",
+            "ColomboGeneralK2.OddVolterra",
+            "ColomboGeneralK2.P4Complement",
+            "ColomboGeneralK2.PfAgreement",
+            "ColomboGeneralK2.VandermondeKernel"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddCriticalSplit",
+          "redundant": [
+            "Mathlib.Data.Finset.Sort"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddFiniteBSpline",
+          "redundant": [
+            "Mathlib.Data.Fin.Tuple.Basic",
+            "Mathlib.Data.Real.Basic",
+            "Mathlib.Tactic.Ring"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddVolterra",
+          "redundant": [
+            "Mathlib.MeasureTheory.Integral.Pi"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddBSplineRefinement",
+          "redundant": [
+            "ColomboGeneralK2.OddStaircaseSupport",
+            "Mathlib.Algebra.BigOperators.Fin",
+            "Mathlib.Data.Fin.Tuple.Basic",
+            "Mathlib.Data.Real.Basic",
+            "Mathlib.LinearAlgebra.Matrix.Determinant.Basic",
+            "Mathlib.Order.Interval.Finset.Fin",
+            "Mathlib.Tactic.FieldSimp",
+            "Mathlib.Tactic.Ring"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddCriticalTieFree",
+          "redundant": [
+            "ColomboGeneralK2.OddCriticalSplitBridge",
+            "ColomboGeneralK2.OddMVP1Signatures"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddBSplineCollocation",
+          "redundant": [
+            "ColomboGeneralK2.OddFiniteBSpline",
+            "ColomboGeneralK2.OddTwoFanData",
+            "Mathlib.Algebra.BigOperators.Fin",
+            "Mathlib.Data.Fin.Tuple.Basic",
+            "Mathlib.Data.Real.Basic",
+            "Mathlib.LinearAlgebra.Matrix.Determinant.Basic",
+            "Mathlib.Order.Interval.Finset.Fin",
+            "Mathlib.Tactic.FieldSimp",
+            "Mathlib.Tactic.Linarith",
+            "Mathlib.Tactic.Ring"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddCentralSimplex",
+          "redundant": [
+            "ColomboGeneralK2.OddMVP1Signatures"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddTwoFanWindows",
+          "redundant": [
+            "ColomboGeneralK2.OddStaircaseSupport"
+          ]
+        },
+        {
+          "module": "ColomboGeneralK2.OddMarsdenFactorization",
+          "redundant": [
+            "ColomboGeneralK2.OddTwoFanData"
+          ]
+        }
+      ],
+      "files_with_redundant_imports": 10,
+      "redundant_import_count": 72
+    },
+    "simp_lint": {
+      "declarations_linted": 1162,
+      "findings": {
+        "simpNF": 5,
+        "synTaut": 0
+      },
+      "modules_dropped": [
+        "Challenge",
+        "Solution"
+      ],
+      "modules_linted": 50,
+      "roots_linted": 1,
+      "simp_nf_count": 5,
+      "syn_taut_count": 0
     },
     "logs_truncated": false
   },
@@ -217,5 +630,5 @@
     "title": "hkjtsgmc79-boop/colombo-odd-lean",
     "published_at": "2026-08-27T05:27:10Z"
   },
-  "summary": "Builds · sorry/admit in source · pinned toolchain"
+  "summary": "Builds \u00b7 pinned toolchain \u00b7 sparse hygiene"
 }
